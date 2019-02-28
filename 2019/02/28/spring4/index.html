@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/MeBlog/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="springMVC​    运行流程图  dispatcher Servlet 前端控制器（front Controller）核心 快速尝鲜： 基于spring 搭建spring mvc1.将DispatcherServlet 注册到web容器中 在 Servlet 3. 0 环境 中， 容器 会在 类 路径 中 查找 实现 javax. servlet. ServletContainerInit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring4">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/02/28/spring4/index.html">
+<meta property="og:site_name" content="baoWenLiangBlog">
+<meta property="og:description" content="springMVC​    运行流程图  dispatcher Servlet 前端控制器（front Controller）核心 快速尝鲜： 基于spring 搭建spring mvc1.将DispatcherServlet 注册到web容器中 在 Servlet 3. 0 环境 中， 容器 会在 类 路径 中 查找 实现 javax. servlet. ServletContainerInit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://39.104.171.29/image/springMvc-generater.png">
+<meta property="og:updated_time" content="2019-02-28T03:37:32.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring4">
+<meta name="twitter:description" content="springMVC​    运行流程图  dispatcher Servlet 前端控制器（front Controller）核心 快速尝鲜： 基于spring 搭建spring mvc1.将DispatcherServlet 注册到web容器中 在 Servlet 3. 0 环境 中， 容器 会在 类 路径 中 查找 实现 javax. servlet. ServletContainerInit">
+<meta name="twitter:image" content="http://39.104.171.29/image/springMvc-generater.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/02/28/spring4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>spring4 | baoWenLiangBlog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/MeBlog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">baoWenLiangBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">6</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/02/28/spring4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baoWenLiang">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baoWenLiangBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spring4
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-28 11:29:31 / 修改时间：11:37:32" itemprop="dateCreated datePublished" datetime="2019-02-28T11:29:31+08:00">2019-02-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2><p>​    运行流程图</p>
+<p><img src="http://39.104.171.29/image/springMvc-generater.png" alt></p>
+<p>dispatcher Servlet 前端控制器（front Controller）核心</p>
+<p>快速尝鲜：</p>
+<h4 id="基于spring-搭建spring-mvc"><a href="#基于spring-搭建spring-mvc" class="headerlink" title="基于spring 搭建spring mvc"></a>基于spring 搭建spring mvc</h4><p>1.将DispatcherServlet 注册到web容器中</p>
+<pre><code>在 Servlet 3. 0 环境 中， 容器 会在 类 路径 中 查找 实现 javax. servlet. ServletContainerInitializer 接口 的 类， 如果 能 发现 的 话， 就会 用 它来 配置 Servlet 容器。
+</code></pre><p>​    Spring 提供 了 这个 接口 的 实现， 名为 SpringServletContainerInitializer。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@HandlesTypes(&#123;WebApplicationInitializer.class&#125;)</span><br><span class="line">public class SpringServletContainerInitializer implements ServletContainerInitializer</span><br></pre></td></tr></table></figure>
+<p>​    其中的HandlesTypes 是什么？</p>
+<p>1.Tomcat的主机容器在添加子容器时，会通过解析.xml并通过类加载器加载@HandlesTypes注解的类</p>
+<p>2.读取@HandlesTypes注解值值。并放入ServletContainerInitializers对应的Set集合中</p>
+<p>3.在ApplicationContext内部启动时会通知ServletContainerInitializers的onStart方法（）。这个onStart方法的第一个参数就是@HandlesTypes注解的值值指定的类集合</p>
+<p>4.在Spring应用中，对ServletContainerInitializers的实现就是SpringServletContainerInitializer，注解指定的类就是WebApplicationInitializer。</p>
+<p>通过上面解读过程我们知道，如果要想使用基于servlet3.0支持注解申明servlet。使用spring框架时的关注点就在WebApplicationInitializer接口中。</p>
+<p>如果个人有能力或者有兴趣的化可以自己通过实现WebApplicationInitializer接口来注册servlet。但是一般我们只需要使用spring进行过一些封装的AbstractAnnotationConfigDispatcherServletInitializer抽象类即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.web.servlet.support;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.lang.Nullable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.ObjectUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.WebApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.support.AnnotationConfigWebApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createRootApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getRootConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">            <span class="keyword">return</span> context;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createServletApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getServletConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getRootConfigClasses();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getServletConfigClasses();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 AbstractAnnotationConfigDispatcherServletInitializer注册容器并初始化上下文</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="配置Filter"><a href="#配置Filter" class="headerlink" title="配置Filter"></a>配置Filter</h4><h5 id="方式1：基于Disparther-Servlet-配置"><a href="#方式1：基于Disparther-Servlet-配置" class="headerlink" title="方式1：基于Disparther Servlet 配置"></a>方式1：基于Disparther Servlet 配置</h5><p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置filter</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="comment">//自己定义的filter 类（数组）</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="方式2：自行实现"><a href="#方式2：自行实现" class="headerlink" title="方式2：自行实现"></a>方式2：自行实现</h5><h4 id="处理Multipart格式的内容信息"><a href="#处理Multipart格式的内容信息" class="headerlink" title="处理Multipart格式的内容信息"></a>处理Multipart格式的内容信息</h4><h5 id="基于Disparther-Servlet"><a href="#基于Disparther-Servlet" class="headerlink" title="基于Disparther Servlet"></a>基于Disparther Servlet</h5><p>​    1.配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义注册</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//Multipart 配置设置</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> MultipartConfigElement(<span class="string">"temp/medpro/"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.配置MultipartResolver Bean</p>
+<p>spring支持 解析multiparty的类有</p>
+<p>​    1.CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求；               </p>
+<p>​    2.StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span> <span class="function"><span class="keyword">public</span> MultipartResolver <span class="title">multipartResolver</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StandardServletMultipartResolver();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">multipartHandle</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String originalFilename = multipartFile.getOriginalFilename();</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = multipartFile.getBytes();</span><br><span class="line">    String contentType = multipartFile.getContentType();</span><br><span class="line">    InputStream inputStream = multipartFile.getInputStream();</span><br><span class="line">    String name = multipartFile.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>spring Boot 配置spring mvc</p>
+<p>1.抛弃spring Boot 自动装配的前提下，可实现继承</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>baoWenLiang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2019/02/28/spring4/" title="spring4">https://slothjun.github.io/MeBlog/2019/02/28/spring4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2019/02/28/jwt/" rel="next" title="jwt">
+                <i class="fa fa-chevron-left"></i> jwt
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/MeBlog/2019/02/28/web_认证机制/" rel="prev" title="web认证机制">
+                web认证机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="baoWenLiang">
+            
+              <p class="site-author-name" itemprop="name">baoWenLiang</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)吾日三省吾身，必成其业</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/MeBlog/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#springMVC"><span class="nav-number">1.</span> <span class="nav-text">springMVC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于spring-搭建spring-mvc"><span class="nav-number">1.0.1.</span> <span class="nav-text">基于spring 搭建spring mvc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Filter"><span class="nav-number">1.0.2.</span> <span class="nav-text">配置Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方式1：基于Disparther-Servlet-配置"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">方式1：基于Disparther Servlet 配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方式2：自行实现"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">方式2：自行实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理Multipart格式的内容信息"><span class="nav-number">1.0.3.</span> <span class="nav-text">处理Multipart格式的内容信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基于Disparther-Servlet"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">基于Disparther Servlet</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baoWenLiang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
