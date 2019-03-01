@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="title： configuartionProperties注解@configuartionProperties作用​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中 使用案例@configuartionProperties + @Component实体类 123456789101112131415161718192021import lombok.Dat">
+  <meta name="description" content="@configuartionProperties作用​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中 使用案例@configuartionProperties + @Component实体类 123456789101112131415161718192021import lombok.Data;import org.springframework.boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="baoWenLiangBlog">
+<meta property="og:title" content="configuartionProperties注解">
 <meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/03/01/ConfigurationProperties注解/index.html">
 <meta property="og:site_name" content="baoWenLiangBlog">
-<meta property="og:description" content="title： configuartionProperties注解@configuartionProperties作用​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中 使用案例@configuartionProperties + @Component实体类 123456789101112131415161718192021import lombok.Dat">
+<meta property="og:description" content="@configuartionProperties作用​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中 使用案例@configuartionProperties + @Component实体类 123456789101112131415161718192021import lombok.Data;import org.springframework.boot">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-01T07:30:19.426Z">
+<meta property="og:updated_time" content="2019-03-01T10:23:17.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="baoWenLiangBlog">
-<meta name="twitter:description" content="title： configuartionProperties注解@configuartionProperties作用​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中 使用案例@configuartionProperties + @Component实体类 123456789101112131415161718192021import lombok.Dat">
+<meta name="twitter:title" content="configuartionProperties注解">
+<meta name="twitter:description" content="@configuartionProperties作用​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中 使用案例@configuartionProperties + @Component实体类 123456789101112131415161718192021import lombok.Data;import org.springframework.boot">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title> | baoWenLiangBlog</title>
+  <title>configuartionProperties注解 | baoWenLiangBlog</title>
   
 
 
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">configuartionProperties注解
 
               
             
@@ -339,7 +339,7 @@
                 
               
 
-              <time title="创建时间：2019-03-01 14:01:49 / 修改时间：15:30:19" itemprop="dateCreated datePublished" datetime="2019-03-01T14:01:49+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-01 14:01:49 / 修改时间：18:23:17" itemprop="dateCreated datePublished" datetime="2019-03-01T14:01:49+08:00">2019-03-01</time>
             
 
             
@@ -378,8 +378,7 @@
       
 
       
-        <hr>
-<h2 id="title：-configuartionProperties注解"><a href="#title：-configuartionProperties注解" class="headerlink" title="title： configuartionProperties注解"></a>title： configuartionProperties注解</h2><h2 id="configuartionProperties"><a href="#configuartionProperties" class="headerlink" title="@configuartionProperties"></a>@configuartionProperties</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中</p>
+        <h2 id="configuartionProperties"><a href="#configuartionProperties" class="headerlink" title="@configuartionProperties"></a>@configuartionProperties</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中</p>
 <h3 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h3><h4 id="configuartionProperties-Component"><a href="#configuartionProperties-Component" class="headerlink" title="@configuartionProperties + @Component"></a>@configuartionProperties + @Component</h4><p>实体类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"me.user"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", password='"</span> + password + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试方法</p>
@@ -441,7 +440,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://slothjun.github.io/MeBlog/2019/03/01/ConfigurationProperties注解/">https://slothjun.github.io/MeBlog/2019/03/01/ConfigurationProperties注解/</a>
+    <a href="https://slothjun.github.io/MeBlog/2019/03/01/ConfigurationProperties注解/" title="configuartionProperties注解">https://slothjun.github.io/MeBlog/2019/03/01/ConfigurationProperties注解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -461,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MeBlog/2019/02/28/SpringBoot-MultipartAutoConfiguration/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/MeBlog/2019/02/28/SpringBoot-MultipartAutoConfiguration/" rel="next" title="springBoot-MultipartAutoConfiguration">
+                <i class="fa fa-chevron-left"></i> springBoot-MultipartAutoConfiguration
               </a>
             
           </div>
@@ -590,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title：-configuartionProperties注解"><span class="nav-number">1.</span> <span class="nav-text">title： configuartionProperties注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#configuartionProperties"><span class="nav-number">2.</span> <span class="nav-text">@configuartionProperties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">2.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用案例"><span class="nav-number">2.2.</span> <span class="nav-text">使用案例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#configuartionProperties-Component"><span class="nav-number">2.2.1.</span> <span class="nav-text">@configuartionProperties + @Component</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bean-ConfigurationProperties"><span class="nav-number">2.2.2.</span> <span class="nav-text">@Bean + @ConfigurationProperties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EnableConfigurationProperties-ConfigurationProperties"><span class="nav-number">2.2.3.</span> <span class="nav-text">@EnableConfigurationProperties + @ConfigurationProperties</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#configuartionProperties"><span class="nav-number">1.</span> <span class="nav-text">@configuartionProperties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">1.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用案例"><span class="nav-number">1.2.</span> <span class="nav-text">使用案例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#configuartionProperties-Component"><span class="nav-number">1.2.1.</span> <span class="nav-text">@configuartionProperties + @Component</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bean-ConfigurationProperties"><span class="nav-number">1.2.2.</span> <span class="nav-text">@Bean + @ConfigurationProperties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EnableConfigurationProperties-ConfigurationProperties"><span class="nav-number">1.2.3.</span> <span class="nav-text">@EnableConfigurationProperties + @ConfigurationProperties</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
