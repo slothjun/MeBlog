@@ -96,24 +96,24 @@
 
 
 
-  <meta name="description" content="什么是jwt​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的信息。在Java世界中通过JJWT实现JWT创建和验证。 jjwt快速尝鲜 引入坐标 12345&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;io.jsonwebtoken&amp;lt;/groupId&amp;gt;	&amp;lt;artifactId&amp;g">
+  <meta name="description" content="@modelAttributemoelAttribute 是springmvc提供的注解。  1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；  2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中； 运用在方法上实现案例，抽取reques">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jwt">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/02/28/jwt/index.html">
+<meta property="og:title" content="modelAttribute注解">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/index.html">
 <meta property="og:site_name" content="baoWenLiangBlog">
-<meta property="og:description" content="什么是jwt​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的信息。在Java世界中通过JJWT实现JWT创建和验证。 jjwt快速尝鲜 引入坐标 12345&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;io.jsonwebtoken&amp;lt;/groupId&amp;gt;	&amp;lt;artifactId&amp;g">
+<meta property="og:description" content="@modelAttributemoelAttribute 是springmvc提供的注解。  1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；  2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中； 运用在方法上实现案例，抽取reques">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-28T03:36:14.029Z">
+<meta property="og:updated_time" content="2019-03-03T08:35:21.081Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jwt">
-<meta name="twitter:description" content="什么是jwt​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的信息。在Java世界中通过JJWT实现JWT创建和验证。 jjwt快速尝鲜 引入坐标 12345&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;io.jsonwebtoken&amp;lt;/groupId&amp;gt;	&amp;lt;artifactId&amp;g">
+<meta name="twitter:title" content="modelAttribute注解">
+<meta name="twitter:description" content="@modelAttributemoelAttribute 是springmvc提供的注解。  1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；  2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中； 运用在方法上实现案例，抽取reques">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/02/28/jwt/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>jwt | baoWenLiangBlog</title>
+  <title>modelAttribute注解 | baoWenLiangBlog</title>
   
 
 
@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/02/28/jwt/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/03/03/modelAttribute注解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="baoWenLiang">
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">jwt
+          <h1 class="post-title" itemprop="name headline">modelAttribute注解
 
               
             
@@ -339,7 +339,7 @@
                 
               
 
-              <time title="创建时间：2019-02-28 11:29:15 / 修改时间：11:36:14" itemprop="dateCreated datePublished" datetime="2019-02-28T11:29:15+08:00">2019-02-28</time>
+              <time title="创建时间：2019-03-03 15:39:09 / 修改时间：16:35:21" itemprop="dateCreated datePublished" datetime="2019-03-03T15:39:09+08:00">2019-03-03</time>
             
 
             
@@ -378,25 +378,15 @@
       
 
       
-        <h2 id="什么是jwt"><a href="#什么是jwt" class="headerlink" title="什么是jwt"></a>什么是jwt</h2><p>​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的<br>信息。在Java世界中通过JJWT实现JWT创建和验证。</p>
-<h2 id="jjwt快速尝鲜"><a href="#jjwt快速尝鲜" class="headerlink" title="jjwt快速尝鲜"></a>jjwt快速尝鲜</h2><ol>
-<li><p>引入坐标</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面使用的坐标是基于apache2.0 下的jwt实现</p>
-</li>
-<li><p>使用并测试</p>
-<p>生成token</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">JwtBuilder jwt = Jwts.builder()</span><br><span class="line">                .setId(<span class="string">"123"</span>)</span><br><span class="line">                .setSubject(<span class="string">"老王"</span>)</span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> Date())<span class="comment">//发布时间</span></span><br><span class="line">                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis()+<span class="number">6000</span>))<span class="comment">//到期时间</span></span><br><span class="line">                .signWith(SignatureAlgorithm.HS384,<span class="string">"XXXXX"</span>);<span class="comment">//设置密钥</span></span><br><span class="line">String compact = jwt.compact();<span class="comment">//签约生成token</span></span><br><span class="line">System.out.println(compact);</span><br></pre></td></tr></table></figure>
-<p>解析token</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Claims cla = Jwts.parser()</span><br><span class="line">    .setSigningKey(<span class="string">"XXXXX"</span>)<span class="comment">//设置密钥</span></span><br><span class="line">    .parseClaimsJws(key)<span class="comment">//设置token</span></span><br><span class="line">    .getBody();</span><br></pre></td></tr></table></figure>
-<p>当token认证失败时会抛出ExpiredJwtException异常</p>
-<p>自定义claims</p>
-<p>生成</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为了方便测试，我们将过期时间设置为1分钟</span></span><br><span class="line"><span class="keyword">long</span> now = System.currentTimeMillis();<span class="comment">//当前时间</span></span><br><span class="line"><span class="keyword">long</span> exp = now + <span class="number">1000</span>*<span class="number">60</span>;<span class="comment">//过期时间为1分钟</span></span><br><span class="line">JwtBuilder builder= Jwts.builder().setId(<span class="string">"888"</span>)</span><br><span class="line">.setSubject(<span class="string">"小白"</span>)</span><br><span class="line">.setIssuedAt(<span class="keyword">new</span> Date())</span><br><span class="line">.signWith(SignatureAlgorithm.HS256,<span class="string">"itcast"</span>)</span><br><span class="line">.setExpiration(<span class="keyword">new</span> Date(exp))</span><br><span class="line">.claim(<span class="string">"roles"</span>,<span class="string">"admin"</span>) <span class="comment">//自定义claims存储数据</span></span><br><span class="line">.claim(<span class="string">"logo"</span>,<span class="string">"logo.png"</span>);</span><br><span class="line">System.out.println( builder.compact() );</span><br></pre></td></tr></table></figure>
-<p>解析</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String</span><br><span class="line">compactJws=<span class="string">"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4ODgiLCJzdWIiOiLlsI_nmb0iLCJpYXQiOjE1MjM0MT</span></span><br><span class="line"><span class="string">czMjMsImV4cCI6MTUyMzQxNzM4Mywicm9sZXMiOiJhZG1pbiIsImxvZ28iOiJsb2dvLnBuZyJ9.b11p4g4rE94r</span></span><br><span class="line"><span class="string">qFhcfzdJTPCORikqP_1zJ1MP8KihYTQ"</span>;</span><br><span class="line">Claims claims =</span><br><span class="line">Jwts.parser().setSigningKey(<span class="string">"itcast"</span>).parseClaimsJws(compactJws).getBody();</span><br><span class="line">System.out.println(<span class="string">"id:"</span>+claims.getId());</span><br><span class="line">System.out.println(<span class="string">"subject:"</span>+claims.getSubject());</span><br><span class="line">System.out.println(<span class="string">"roles:"</span>+claims.get(<span class="string">"roles"</span>));</span><br><span class="line">System.out.println(<span class="string">"logo:"</span>+claims.get(<span class="string">"logo"</span>));</span><br><span class="line">SimpleDateFormat sdf=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">System.out.println(<span class="string">"签发时间:"</span>+sdf.format(claims.getIssuedAt()));</span><br><span class="line">System.out.println(<span class="string">"过期时间:"</span>+sdf.format(claims.getExpiration()));</span><br><span class="line">System.out.println(<span class="string">"当前时间:"</span>+sdf.format(<span class="keyword">new</span> Date()) );</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+        <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
+
+1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
+
+2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
+</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基础controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
 
       
     </div>
@@ -431,7 +421,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://slothjun.github.io/MeBlog/2019/02/28/jwt/" title="jwt">https://slothjun.github.io/MeBlog/2019/02/28/jwt/</a>
+    <a href="https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/" title="modelAttribute注解">https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -451,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MeBlog/2019/02/28/gradle-wrapper/" rel="next" title="Gradle Wrapper">
-                <i class="fa fa-chevron-left"></i> Gradle Wrapper
+              <a href="/MeBlog/2019/03/01/ConfigurationProperties注解/" rel="next" title="configuartionProperties注解">
+                <i class="fa fa-chevron-left"></i> configuartionProperties注解
               </a>
             
           </div>
@@ -461,8 +451,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/MeBlog/2019/02/28/spring4/" rel="prev" title="spring4">
-                spring4 <i class="fa fa-chevron-right"></i>
+              <a href="/MeBlog/2019/03/13/Docker/" rel="prev" title="Docker">
+                Docker <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是jwt"><span class="nav-number">1.</span> <span class="nav-text">什么是jwt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jjwt快速尝鲜"><span class="nav-number">2.</span> <span class="nav-text">jjwt快速尝鲜</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#modelAttribute"><span class="nav-number">1.</span> <span class="nav-text">@modelAttribute</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运用在方法上"><span class="nav-number">1.1.</span> <span class="nav-text">运用在方法上</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。"><span class="nav-number">1.1.1.</span> <span class="nav-text">实现案例，抽取request 和response、modelMap将其注入在baseController中。</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
