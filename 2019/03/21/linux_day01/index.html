@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/MeBlog/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Linux简介Linux 学习方法 坚持使用命令行 遇到问题，不要马上问别人。先自行寻找答案 解决问题的的智慧： 帮助、文档、示例、查找   忘掉Windows思维方式 计划、坚持、专注、练习  Linux系统分区1.什么是磁盘分区： ​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxDay01">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/03/21/linux_day01/index.html">
+<meta property="og:site_name" content="baoWenLiangBlog">
+<meta property="og:description" content="Linux简介Linux 学习方法 坚持使用命令行 遇到问题，不要马上问别人。先自行寻找答案 解决问题的的智慧： 帮助、文档、示例、查找   忘掉Windows思维方式 计划、坚持、专注、练习  Linux系统分区1.什么是磁盘分区： ​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553220848741.png">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553216867850.png">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553217099195.png">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553217517403.png">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553217620457.png">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553217899946.png">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553221402638.png">
+<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553235600779.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553455157361.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553455753059.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553456138517.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553456202080.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553456372734.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553456551687.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553457241923.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553457569457.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553457832770.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553457956595.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553458096340.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553458587530.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553458964678.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553463374927.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553463888804.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553464171496.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553464603686.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553465266101.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553465409489.png">
+<meta property="og:updated_time" content="2019-03-26T14:00:11.653Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LinuxDay01">
+<meta name="twitter:description" content="Linux简介Linux 学习方法 坚持使用命令行 遇到问题，不要马上问别人。先自行寻找答案 解决问题的的智慧： 帮助、文档、示例、查找   忘掉Windows思维方式 计划、坚持、专注、练习  Linux系统分区1.什么是磁盘分区： ​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存">
+<meta name="twitter:image" content="c:/Users/sloth/AppData/Local/Temp/1553220848741.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/03/21/linux_day01/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LinuxDay01 | baoWenLiangBlog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/MeBlog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">baoWenLiangBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">13</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/03/21/linux_day01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baoWenLiang">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baoWenLiangBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LinuxDay01
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-21 22:36:36" itemprop="dateCreated datePublished" datetime="2019-03-21T22:36:36+08:00">2019-03-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-26 22:00:11" itemprop="dateModified" datetime="2019-03-26T22:00:11+08:00">2019-03-26</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><h3 id="Linux-学习方法"><a href="#Linux-学习方法" class="headerlink" title="Linux 学习方法"></a>Linux 学习方法</h3><ol>
+<li>坚持使用命令行</li>
+<li>遇到问题，不要马上问别人。先自行寻找答案<ol>
+<li>解决问题的的智慧： 帮助、文档、示例、查找</li>
+</ol>
+</li>
+<li>忘掉Windows思维方式</li>
+<li>计划、坚持、专注、练习</li>
+</ol>
+<h3 id="Linux系统分区"><a href="#Linux系统分区" class="headerlink" title="Linux系统分区"></a>Linux系统分区</h3><p>1.什么是磁盘分区：</p>
+<p>​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存储进不同的分区。</p>
+<p>example：</p>
+<p>划分柜子，将一个大柜子划分为3个小柜子。这样可以方便使用者。</p>
+<p>分区类型：</p>
+<p>主分区：最多只能有4个（一块硬盘的前提条件下）</p>
+<p>扩展分区：</p>
+<p>​    最多只能有1个（一块硬盘的前提条件下）</p>
+<p>​    主分区加扩展分区最多有4个（一块硬盘的前提条件下）</p>
+<p>​    不能写入数据，只能包含逻辑分区（一块硬盘的前提条件下）</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553220848741.png" alt="1553220848741"></p>
+<p>逻辑分区</p>
+<p>2.格式化</p>
+<p>​    什么是格式化：</p>
+<p>​    格式化 （高级格式化）又称逻辑格式化。它是指根据用户选的的文件系统（FAT16、FAT32、NTFS、EXT3、EXT2、EXT4等）在磁盘的特定区域写入特定数据，在分区中划出一片用于存放文件的分配表、目录表等用于文件管理的磁盘空间。</p>
+<p>Linux默认的文件系统：EXT4</p>
+<p>关键词：</p>
+<p>​    block</p>
+<p>​    inode 号</p>
+<p>3.硬件设备文件名</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553216867850.png" alt="1553216867850"></p>
+<p>4.分区设备文件名</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217099195.png" alt="1553217099195"></p>
+<p>/dev/hda1 代表什么？ /dev 代表了这是系统的设备文件的根目录，hda1中hda表示用户使用的是IDE硬盘，1表示第几个分区（数字标识）</p>
+<p>IDE硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217517403.png" alt="1553217517403"></p>
+<p>理论每秒传输133MB</p>
+<p>SCSI硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217620457.png" alt="1553217620457"></p>
+<p>理论每秒传输200MB</p>
+<p>SATA硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217899946.png" alt="1553217899946"></p>
+<p>sata3代理论每秒传输500MB  </p>
+<p>5.挂载</p>
+<p>​    必须分区</p>
+<p>​        /(根分区)</p>
+<p>​        swap（交换分区、内存2倍）</p>
+<p>​    推荐分区</p>
+<p>​        /boot（启动分区，200MB）</p>
+<p>文件系统结构</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553221402638.png" alt="1553221402638"></p>
+<p>系统分区流程</p>
+<p>​    分区 》格式化 》为分区指定设备文件名 》 挂载</p>
+<h3 id="密码原则："><a href="#密码原则：" class="headerlink" title="密码原则："></a>密码原则：</h3><p>​    复杂性</p>
+<p>​        八位字符以上、大小写字母、数字、符号</p>
+<p>​        不是单词</p>
+<p>​        不是用户的相关信息</p>
+<p>​    易记性</p>
+<p>​    时效性</p>
+<h3 id="安装日志"><a href="#安装日志" class="headerlink" title="安装日志"></a>安装日志</h3><p>​    /root/install.log 存储了安装在系统中的软件包及其版本信息</p>
+<p>​    /root/install.log.syslog 存储了安装过程中留下来的事件信息</p>
+<p>​    /root/anaconda-ks.cfg 以Kickstrat配置文件的格式记录安装过程中设置的选项信息</p>
+<h3 id="linux-关于IP操作的一些命令"><a href="#linux-关于IP操作的一些命令" class="headerlink" title="linux 关于IP操作的一些命令"></a>linux 关于IP操作的一些命令</h3><p>ifconfig ：查看系统网卡信息</p>
+<p>ifconfig eth0 [ip 地址]  :临时配置网卡，系统重启后失效</p>
+<h3 id="Linux-注意事项"><a href="#Linux-注意事项" class="headerlink" title="Linux 注意事项"></a>Linux 注意事项</h3><p>​    严格区分大小写</p>
+<p>​     Linux中所有的内容都是以文件形式保存，包括硬件</p>
+<p>​        硬盘文件是/dev/sd[a-p]</p>
+<p>​        光盘文件是/dev/sr0等</p>
+<p>​    Linux不靠扩展名区分文件类型 </p>
+<p>​    Linux所有存储设备都必须挂载之后用户才能使用,包括硬盘、U盘和光盘</p>
+<p>​    windows下的程序不能直接在Linux中安装和运行 </p>
+<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p><img src="C:\Users\sloth\AppData\Local\Temp\1553235600779.png" alt="1553235600779"></p>
+<p>服务器最好重启操作，不要关机操作</p>
+<p>重启时应该关闭服务器</p>
+<p>不要在服务器访问高峰运行高负载命令</p>
+<p>远程配置防火墙时不要把自己踢出服务器</p>
+<p>指定合理的密码规范并定期更新</p>
+<p>合理分配权限</p>
+<p>定期备份重要数据和日志</p>
+<h3 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h3><h4 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h4><p><img src="http://39.104.171.29/image/1553455157361.png" alt="1553455157361"></p>
+<h4 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h4><p><img src="http://39.104.171.29/image/1553455753059.png" alt="1553455753059"></p>
+<p>使用 -a 时会看到有的文件名前有.此时表示此文件为隐藏文件。</p>
+<p>使用-l 查看详细信息</p>
+<p><img src="http://39.104.171.29/image/1553456138517.png" alt="1553456138517"></p>
+<p>上面1表示此文件的链接计数</p>
+<p><img src="http://39.104.171.29/image/1553456202080.png" alt="1553456202080"></p>
+<p>上面的root 表示文件的所有者，也就是文件的创建人或负责人，一个文件只能有一个所有者</p>
+<p><img src="http://39.104.171.29/image/1553456372734.png" alt="1553456372734"></p>
+<p>上面表示文件的所属组，一个文件只能拥有一个所有组</p>
+<p>在-l 后追加h -lh 表示人性化显示，使文件的大小更直观、</p>
+<p><img src="http://39.104.171.29/image/1553456551687.png" alt="1553456551687"></p>
+<p>ls -i 可以获取文件的I节点或获取文件的id号</p>
+<p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
+<p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
+<p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
+<p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
+<p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
+<p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
+<p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
+<h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
+<p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
+<p>cat 适用于查看简短文件内容，如shell脚本</p>
+<p><img src="http://39.104.171.29/image/1553464171496.png" alt="1553464171496"></p>
+<p><img src="http://39.104.171.29/image/1553464603686.png" alt="1553464603686"></p>
+<p>less 进入后使用 /关键字 可进行反白关键字高亮显示，同时按N键可以跳到下一个关键字</p>
+<p><img src="http://39.104.171.29/image/1553465266101.png" alt="1553465266101"></p>
+<p><img src="http://39.104.171.29/image/1553465409489.png" alt="1553465409489"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>baoWenLiang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2019/03/21/linux_day01/" title="LinuxDay01">https://slothjun.github.io/MeBlog/2019/03/21/linux_day01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2019/03/13/Docker/" rel="next" title="Docker">
+                <i class="fa fa-chevron-left"></i> Docker
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/MeBlog/2019/03/26/jodconverter/" rel="prev" title="jodconverter">
+                jodconverter <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="baoWenLiang">
+            
+              <p class="site-author-name" itemprop="name">baoWenLiang</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)吾日三省吾身，必成其业</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/MeBlog/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux简介"><span class="nav-number">1.</span> <span class="nav-text">Linux简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-学习方法"><span class="nav-number">2.</span> <span class="nav-text">Linux 学习方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统分区"><span class="nav-number">3.</span> <span class="nav-text">Linux系统分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码原则："><span class="nav-number">4.</span> <span class="nav-text">密码原则：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装日志"><span class="nav-number">5.</span> <span class="nav-text">安装日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-关于IP操作的一些命令"><span class="nav-number">6.</span> <span class="nav-text">linux 关于IP操作的一些命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-注意事项"><span class="nav-number">7.</span> <span class="nav-text">Linux 注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器管理和维护建议"><span class="nav-number">8.</span> <span class="nav-text">服务器管理和维护建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-常用命令"><span class="nav-number">9.</span> <span class="nav-text">Linux 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令格式"><span class="nav-number">9.1.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录处理命令"><span class="nav-number">9.2.</span> <span class="nav-text">目录处理命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件处理命令"><span class="nav-number">9.3.</span> <span class="nav-text">文件处理命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baoWenLiang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

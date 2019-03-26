@@ -96,27 +96,34 @@
 
 
 
-  <meta name="description" content="RBAC模型什么是RBACRBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责任和资格来被指派相应的角色，用户可以很容易地从">
+  <meta name="description" content="文件处理命令  硬链接的生成命令 1ln /tmp/china/changzhi /root/china.hard 硬链接 共享文件的inode ,但是文件夹不能创建硬链接。 权限管理命令权限分为了三类 r w s 读 写 执行     其他权限管理命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统安全案例及设计理念">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/02/28/系统安全框架搭建/index.html">
+<meta property="og:title" content="LinuxDay02">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/03/26/linux_day02/index.html">
 <meta property="og:site_name" content="baoWenLiangBlog">
-<meta property="og:description" content="RBAC模型什么是RBACRBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责任和资格来被指派相应的角色，用户可以很容易地从">
+<meta property="og:description" content="文件处理命令  硬链接的生成命令 1ln /tmp/china/changzhi /root/china.hard 硬链接 共享文件的inode ,但是文件夹不能创建硬链接。 权限管理命令权限分为了三类 r w s 读 写 执行     其他权限管理命令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://39.104.171.29:80/image/RBAC_data_model.png">
-<meta property="og:image" content="http://39.104.171.29:80/image/filter-intercept-aop.png">
-<meta property="og:updated_time" content="2019-02-28T03:37:24.449Z">
+<meta property="og:image" content="http://39.104.171.29/image/1553600438679.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553601846764.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553602141983.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553602447029.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553603202959.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553603260245.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553605959901.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553606015581.png">
+<meta property="og:image" content="http://39.104.171.29/image/1553606075600.png">
+<meta property="og:updated_time" content="2019-03-26T14:00:34.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统安全案例及设计理念">
-<meta name="twitter:description" content="RBAC模型什么是RBACRBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责任和资格来被指派相应的角色，用户可以很容易地从">
-<meta name="twitter:image" content="http://39.104.171.29:80/image/RBAC_data_model.png">
+<meta name="twitter:title" content="LinuxDay02">
+<meta name="twitter:description" content="文件处理命令  硬链接的生成命令 1ln /tmp/china/changzhi /root/china.hard 硬链接 共享文件的inode ,但是文件夹不能创建硬链接。 权限管理命令权限分为了三类 r w s 读 写 执行     其他权限管理命令">
+<meta name="twitter:image" content="http://39.104.171.29/image/1553600438679.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/02/28/系统安全框架搭建/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/03/26/linux_day02/">
 
 
 
@@ -126,7 +133,7 @@
   };
 </script>
 
-  <title>系统安全案例及设计理念 | baoWenLiangBlog</title>
+  <title>LinuxDay02 | baoWenLiangBlog</title>
   
 
 
@@ -299,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/02/28/系统安全框架搭建/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/03/26/linux_day02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="baoWenLiang">
@@ -316,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">系统安全案例及设计理念
+          <h1 class="post-title" itemprop="name headline">LinuxDay02
 
               
             
@@ -342,7 +349,7 @@
                 
               
 
-              <time title="创建时间：2019-02-28 11:29:41 / 修改时间：11:37:24" itemprop="dateCreated datePublished" datetime="2019-02-28T11:29:41+08:00">2019-02-28</time>
+              <time title="创建时间：2019-03-26 19:36:07 / 修改时间：22:00:34" itemprop="dateCreated datePublished" datetime="2019-03-26T19:36:07+08:00">2019-03-26</time>
             
 
             
@@ -381,26 +388,20 @@
       
 
       
-        <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
-<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
-<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
-<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
-<p>​    动态加载用户的功能模块</p>
-<p>后端</p>
-<p>​    根据用户权限使用API</p>
-<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
-<p>​        问题：数据如何存储便于后期的使用与管理。</p>
-<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
-<p>​    数据传输</p>
-<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
-<p>​        方案：认证+校验</p>
-<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
-<p>​            校验 ：</p>
-<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
-<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
-<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
-<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
-<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
+        <h2 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h2><p><img src="http://39.104.171.29/image/1553600438679.png" alt="1553600438679"></p>
+<p><img src="http://39.104.171.29/image/1553601846764.png" alt="1553601846764"></p>
+<p>硬链接的生成命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln /tmp/china/changzhi /root/china.hard</span><br></pre></td></tr></table></figure>
+<p>硬链接 共享文件的inode ,但是文件夹不能创建硬链接。</p>
+<h2 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h2><p>权限分为了三类 r w s 读 写 执行</p>
+<p><img src="http://39.104.171.29/image/1553602141983.png" alt="1553602141983"></p>
+<p><img src="http://39.104.171.29/image/1553602447029.png" alt="1553602447029"></p>
+<p><img src="http://39.104.171.29/image/1553603202959.png" alt="1553603202959"></p>
+<p><img src="http://39.104.171.29/image/1553603260245.png" alt="1553603260245"></p>
+<h2 id="其他权限管理命令"><a href="#其他权限管理命令" class="headerlink" title="其他权限管理命令"></a>其他权限管理命令</h2><p><img src="http://39.104.171.29/image/1553605959901.png" alt="1553605959901"></p>
+<p><img src="http://39.104.171.29/image/1553606015581.png" alt="1553606015581"></p>
+<p><img src="http://39.104.171.29/image/1553606075600.png" alt="1553606075600"></p>
+
       
     </div>
 
@@ -434,7 +435,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://slothjun.github.io/MeBlog/2019/02/28/系统安全框架搭建/" title="系统安全案例及设计理念">https://slothjun.github.io/MeBlog/2019/02/28/系统安全框架搭建/</a>
+    <a href="https://slothjun.github.io/MeBlog/2019/03/26/linux_day02/" title="LinuxDay02">https://slothjun.github.io/MeBlog/2019/03/26/linux_day02/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -454,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MeBlog/2019/02/28/web_认证机制/" rel="next" title="web认证机制">
-                <i class="fa fa-chevron-left"></i> web认证机制
+              <a href="/MeBlog/2019/03/26/jodconverter/" rel="next" title="jodconverter">
+                <i class="fa fa-chevron-left"></i> jodconverter
               </a>
             
           </div>
@@ -463,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/MeBlog/2019/02/28/SpringBoot-MultipartAutoConfiguration/" rel="prev" title="springBoot-MultipartAutoConfiguration">
-                springBoot-MultipartAutoConfiguration <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -587,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RBAC模型"><span class="nav-number">1.</span> <span class="nav-text">RBAC模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是RBAC"><span class="nav-number">1.1.</span> <span class="nav-text">什么是RBAC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于RBAC实现的设计思路"><span class="nav-number">1.2.</span> <span class="nav-text">基于RBAC实现的设计思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表结构模型图"><span class="nav-number">1.3.</span> <span class="nav-text">表结构模型图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求1"><span class="nav-number">1.4.</span> <span class="nav-text">需求1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于RBAC-dome-案例分析并实现"><span class="nav-number">1.5.</span> <span class="nav-text">基于RBAC dome 案例分析并实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#后台无状态安全校验实现"><span class="nav-number">1.5.1.</span> <span class="nav-text">后台无状态安全校验实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后台有状态安全校验实现"><span class="nav-number">1.5.2.</span> <span class="nav-text">后台有状态安全校验实现</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件处理命令"><span class="nav-number">1.</span> <span class="nav-text">文件处理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限管理命令"><span class="nav-number">2.</span> <span class="nav-text">权限管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他权限管理命令"><span class="nav-number">3.</span> <span class="nav-text">其他权限管理命令</span></a></li></ol></div>
             
 
           </div>

@@ -96,27 +96,23 @@
 
 
 
-  <meta name="description" content="解决方案​JSR-303 实现方案+JSR-349Bean 验证 JSR-303的实现使用hibernate的实现 @Valid注解 JSR-349Bean 验证的实现使用spring提供的@Validated注解 校验案例本案例的环境为，springboot2.0.5.RELEASE 基础代码实现：  导入坐标 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;o">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot 参数校验">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/02/28/springboot_param_validation/index.html">
+  <meta name="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+<meta property="og:type" content="website">
+<meta property="og:title" content="baoWenLiangBlog">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/page/2/index.html">
 <meta property="og:site_name" content="baoWenLiangBlog">
-<meta property="og:description" content="解决方案​JSR-303 实现方案+JSR-349Bean 验证 JSR-303的实现使用hibernate的实现 @Valid注解 JSR-349Bean 验证的实现使用spring提供的@Validated注解 校验案例本案例的环境为，springboot2.0.5.RELEASE 基础代码实现：  导入坐标 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;o">
+<meta property="og:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://39.104.171.29:80/image/springBoot-validatd1.png">
-<meta property="og:image" content="http://39.104.171.29:80/image/springBoot-validatd2.png">
-<meta property="og:updated_time" content="2019-02-28T02:55:11.053Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot 参数校验">
-<meta name="twitter:description" content="解决方案​JSR-303 实现方案+JSR-349Bean 验证 JSR-303的实现使用hibernate的实现 @Valid注解 JSR-349Bean 验证的实现使用spring提供的@Validated注解 校验案例本案例的环境为，springboot2.0.5.RELEASE 基础代码实现：  导入坐标 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;o">
-<meta name="twitter:image" content="http://39.104.171.29:80/image/springBoot-validatd1.png">
+<meta name="twitter:title" content="baoWenLiangBlog">
+<meta name="twitter:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/02/28/springboot_param_validation/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/page/2/">
 
 
 
@@ -126,7 +122,7 @@
   };
 </script>
 
-  <title>SpringBoot 参数校验 | baoWenLiangBlog</title>
+  <title>baoWenLiangBlog</title>
   
 
 
@@ -174,7 +170,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -282,9 +279,345 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/02/28/jwt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baoWenLiang">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baoWenLiangBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/02/28/jwt/" class="post-title-link" itemprop="url">jwt</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-28 11:29:15 / 修改时间：11:36:14" itemprop="dateCreated datePublished" datetime="2019-02-28T11:29:15+08:00">2019-02-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是jwt"><a href="#什么是jwt" class="headerlink" title="什么是jwt"></a>什么是jwt</h2><p>​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的<br>信息。在Java世界中通过JJWT实现JWT创建和验证。</p>
+<h2 id="jjwt快速尝鲜"><a href="#jjwt快速尝鲜" class="headerlink" title="jjwt快速尝鲜"></a>jjwt快速尝鲜</h2><ol>
+<li><p>引入坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面使用的坐标是基于apache2.0 下的jwt实现</p>
+</li>
+<li><p>使用并测试</p>
+<p>生成token</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">JwtBuilder jwt = Jwts.builder()</span><br><span class="line">                .setId(<span class="string">"123"</span>)</span><br><span class="line">                .setSubject(<span class="string">"老王"</span>)</span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> Date())<span class="comment">//发布时间</span></span><br><span class="line">                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis()+<span class="number">6000</span>))<span class="comment">//到期时间</span></span><br><span class="line">                .signWith(SignatureAlgorithm.HS384,<span class="string">"XXXXX"</span>);<span class="comment">//设置密钥</span></span><br><span class="line">String compact = jwt.compact();<span class="comment">//签约生成token</span></span><br><span class="line">System.out.println(compact);</span><br></pre></td></tr></table></figure>
+<p>解析token</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Claims cla = Jwts.parser()</span><br><span class="line">    .setSigningKey(<span class="string">"XXXXX"</span>)<span class="comment">//设置密钥</span></span><br><span class="line">    .parseClaimsJws(key)<span class="comment">//设置token</span></span><br><span class="line">    .getBody();</span><br></pre></td></tr></table></figure>
+<p>当token认证失败时会抛出ExpiredJwtException异常</p>
+<p>自定义claims</p>
+<p>生成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为了方便测试，我们将过期时间设置为1分钟</span></span><br><span class="line"><span class="keyword">long</span> now = System.currentTimeMillis();<span class="comment">//当前时间</span></span><br><span class="line"><span class="keyword">long</span> exp = now + <span class="number">1000</span>*<span class="number">60</span>;<span class="comment">//过期时间为1分钟</span></span><br><span class="line">JwtBuilder builder= Jwts.builder().setId(<span class="string">"888"</span>)</span><br><span class="line">.setSubject(<span class="string">"小白"</span>)</span><br><span class="line">.setIssuedAt(<span class="keyword">new</span> Date())</span><br><span class="line">.signWith(SignatureAlgorithm.HS256,<span class="string">"itcast"</span>)</span><br><span class="line">.setExpiration(<span class="keyword">new</span> Date(exp))</span><br><span class="line">.claim(<span class="string">"roles"</span>,<span class="string">"admin"</span>) <span class="comment">//自定义claims存储数据</span></span><br><span class="line">.claim(<span class="string">"logo"</span>,<span class="string">"logo.png"</span>);</span><br><span class="line">System.out.println( builder.compact() );</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String</span><br><span class="line">compactJws=<span class="string">"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4ODgiLCJzdWIiOiLlsI_nmb0iLCJpYXQiOjE1MjM0MT</span></span><br><span class="line"><span class="string">czMjMsImV4cCI6MTUyMzQxNzM4Mywicm9sZXMiOiJhZG1pbiIsImxvZ28iOiJsb2dvLnBuZyJ9.b11p4g4rE94r</span></span><br><span class="line"><span class="string">qFhcfzdJTPCORikqP_1zJ1MP8KihYTQ"</span>;</span><br><span class="line">Claims claims =</span><br><span class="line">Jwts.parser().setSigningKey(<span class="string">"itcast"</span>).parseClaimsJws(compactJws).getBody();</span><br><span class="line">System.out.println(<span class="string">"id:"</span>+claims.getId());</span><br><span class="line">System.out.println(<span class="string">"subject:"</span>+claims.getSubject());</span><br><span class="line">System.out.println(<span class="string">"roles:"</span>+claims.get(<span class="string">"roles"</span>));</span><br><span class="line">System.out.println(<span class="string">"logo:"</span>+claims.get(<span class="string">"logo"</span>));</span><br><span class="line">SimpleDateFormat sdf=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">System.out.println(<span class="string">"签发时间:"</span>+sdf.format(claims.getIssuedAt()));</span><br><span class="line">System.out.println(<span class="string">"过期时间:"</span>+sdf.format(claims.getExpiration()));</span><br><span class="line">System.out.println(<span class="string">"当前时间:"</span>+sdf.format(<span class="keyword">new</span> Date()) );</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/02/28/gradle-wrapper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baoWenLiang">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baoWenLiangBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/02/28/gradle-wrapper/" class="post-title-link" itemprop="url">Gradle Wrapper</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-28 11:29:08 / 修改时间：11:36:10" itemprop="dateCreated datePublished" datetime="2019-02-28T11:29:08+08:00">2019-02-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关于Gradle-Wrapper"><a href="#关于Gradle-Wrapper" class="headerlink" title="关于Gradle Wrapper"></a>关于Gradle Wrapper</h1><p>推荐的方式执行任何Gradle构建的帮助下Gradle包装器(总之只是“包装器”)。包装是一个脚本,该脚本调用它宣布版本,必要时预先下载它。因此,开发人员可以用Gradle项目迅速而不必遵循手动安装过程节省贵公司的时间和金钱 </p>
+<p><img src="https://docs.gradle.org/current/userguide/img/wrapper-workflow.png" alt></p>
+<p>你将获得以下好处：</p>
+<p>同一版本</p>
+<p>减低了版本统一的维护成本，只需在wrapper 文件下声明处修改版本就可以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">task wrapper(type: Wrapper) &#123;</span><br><span class="line">    gradleVersion = &apos;1.11&apos; //修改此处版本</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用wrapper-的3中情况"><a href="#使用wrapper-的3中情况" class="headerlink" title="使用wrapper 的3中情况"></a>使用wrapper 的3中情况</h2><h3 id="创建一个新的项目并加入wrapper"><a href="#创建一个新的项目并加入wrapper" class="headerlink" title="创建一个新的项目并加入wrapper"></a>创建一个新的项目并加入wrapper</h3><ol>
+<li><p>在自己指定的工作空间目录下运行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建指令</p>
+<p>–gradle-version ：用于指定gradle 的版本</p>
+<p>–distribution-type ：用于指定gradle的类型 bin 或 all</p>
+<p>–gradle-distribution-url : 用于指导gradle的下载路径</p>
+<p>–gradle-distribution-sha256-sum ：用于指定编码格式</p>
+<p>案例：创建gradle 版本为5.1.1的all类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper --gradle-version 5.1.1 --distribution-type all</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建后的目录结构图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├── gradle</span><br><span class="line">│   └── wrapper</span><br><span class="line">│       ├── gradle-wrapper.jar</span><br><span class="line">│       └── gradle-wrapper.properties</span><br><span class="line">├── gradlew</span><br><span class="line">└── gradlew.bat</span><br></pre></td></tr></table></figure>
+<p>gradle-wrapper.jar  wrapper的源文件</p>
+<p>gradle-wrapper.properties  wrapper的版本等配置属性</p>
+<p>gradlew  shell脚本工具</p>
+<p>gradlew.bat windows 批处理工具</p>
+</li>
+</ol>
+<h3 id="运行已经加入wrapper的项目"><a href="#运行已经加入wrapper的项目" class="headerlink" title="运行已经加入wrapper的项目"></a>运行已经加入wrapper的项目</h3><ol>
+<li><p>在项目目录下运行下列代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew.bat build</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="在已有wrapper的gradle项目中更新gradle的版本为最新。"><a href="#在已有wrapper的gradle项目中更新gradle的版本为最新。" class="headerlink" title="在已有wrapper的gradle项目中更新gradle的版本为最新。"></a>在已有wrapper的gradle项目中更新gradle的版本为最新。</h3><p>使用前面的命令可进行更新</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper --gradle-version 5.1.1</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
@@ -316,8 +649,10 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringBoot 参数校验
-
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/02/28/springboot_param_validation/" class="post-title-link" itemprop="url">SpringBoot 参数校验</a>
               
             
           </h1>
@@ -381,7 +716,9 @@
       
 
       
-        <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>​JSR-303 实现方案+JSR-349Bean 验证</p>
+        
+          
+            <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>​JSR-303 实现方案+JSR-349Bean 验证</p>
 <p>JSR-303的实现使用hibernate的实现 @Valid注解</p>
 <p>JSR-349Bean 验证的实现使用spring提供的@Validated注解</p>
 <h3 id="校验案例"><a href="#校验案例" class="headerlink" title="校验案例"></a>校验案例</h3><p>本案例的环境为，springboot2.0.5.RELEASE</p>
@@ -441,6 +778,8 @@
 </li>
 </ol>
 
+          
+        
       
     </div>
 
@@ -458,57 +797,17 @@
     
 
     
-      <div>
-        
-
-
-
-
-  
-
-
-
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>baoWenLiang</li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    
-    <a href="https://slothjun.github.io/MeBlog/2019/02/28/springboot_param_validation/" title="SpringBoot 参数校验">https://slothjun.github.io/MeBlog/2019/02/28/springboot_param_validation/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
-</ul>
-
-      </div>
-    
 
     <footer class="post-footer">
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/MeBlog/2019/02/28/gradle-wrapper/" rel="prev" title="Gradle Wrapper">
-                Gradle Wrapper <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -518,15 +817,18 @@
   </article>
 
 
-  </div>
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/MeBlog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -546,17 +848,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,23 +905,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验案例"><span class="nav-number">2.</span> <span class="nav-text">校验案例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础校验（快速尝鲜）"><span class="nav-number">2.1.</span> <span class="nav-text">基础校验（快速尝鲜）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单个参数校验"><span class="nav-number">2.2.</span> <span class="nav-text">单个参数校验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组校验"><span class="nav-number">3.</span> <span class="nav-text">分组校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套属性校验"><span class="nav-number">4.</span> <span class="nav-text">嵌套属性校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非嵌套属性校验"><span class="nav-number">5.</span> <span class="nav-text">非嵌套属性校验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义校验规则"><span class="nav-number">5.1.</span> <span class="nav-text">自定义校验规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验异常类全局处理"><span class="nav-number">6.</span> <span class="nav-text">校验异常类全局处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例后发现的缺陷"><span class="nav-number">7.</span> <span class="nav-text">案例后发现的缺陷</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
@@ -758,10 +1034,6 @@
 
 
   
-  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
-<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
-
-
 
   
 
@@ -772,8 +1044,6 @@
   
   
 
-
-  
 
 
   
