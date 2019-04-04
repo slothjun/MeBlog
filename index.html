@@ -244,7 +244,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">16</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">18</span></a>
 
   </li>
 
@@ -280,6 +280,463 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/03/linux_day07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baoWenLiang">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baoWenLiangBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/03/linux_day07/" class="post-title-link" itemprop="url">LinuxDay07</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-03 15:36:29" itemprop="dateCreated datePublished" datetime="2019-04-03T15:36:29+08:00">2019-04-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-04 17:08:25" itemprop="dateModified" datetime="2019-04-04T17:08:25+08:00">2019-04-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="源码包安装管理"><a href="#源码包安装管理" class="headerlink" title="源码包安装管理"></a>源码包安装管理</h2><h3 id="源码包和rpm包的区别"><a href="#源码包和rpm包的区别" class="headerlink" title="源码包和rpm包的区别"></a>源码包和rpm包的区别</h3><p>​    安装之前的区别：概念上的区别</p>
+<p>​    安装之后的区别：安装位置不同</p>
+<p><img src="http://39.104.171.29/image/1554360805482.png" alt="1554360805482"></p>
+<p><img src="http://39.104.171.29/image/1554360845078.png" alt="1554360845078"></p>
+<p>​    由于源码包和rpm 安装包的安装位置不同导致了，应用的启动方式选择面不同</p>
+<p>​    rpm 包安装的软件可以 使用 service 去执行命令，也可以使用 绝对路径 + 命令的方法操作</p>
+<p>​    源码包 只能通过 绝对路径 + 命令的方法操作</p>
+<p>​    service 操作软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service tomcat start</span><br></pre></td></tr></table></figure>
+<p>​    绝对路径+命令方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/tomcat start</span><br></pre></td></tr></table></figure>
+<h3 id="源码包安装过程"><a href="#源码包安装过程" class="headerlink" title="源码包安装过程"></a>源码包安装过程</h3><p><img src="http://39.104.171.29/image/1554360911277.png" alt="1554360911277"></p>
+<p><img src="http://39.104.171.29/image/1554361918473.png" alt="1554361918473"></p>
+<h4 id="源码包安装流程"><a href="#源码包安装流程" class="headerlink" title="源码包安装流程"></a>源码包安装流程</h4><ol>
+<li>下载源码包文件</li>
+<li>解压源码包文件到 /usr/local/ 源码文件名 下</li>
+<li>进入解压目录阅读 INSTALL 文档，查看如何安装。</li>
+<li>使用make  命令编译源码</li>
+<li>使用make install 命令安装</li>
+</ol>
+<p>INSTALL安装说明文档</p>
+<p>README使用说明</p>
+<p>make 编译</p>
+<p>make install 编译安装</p>
+<p>make clean 清空编译</p>
+<p><img src="http://39.104.171.29/image/1554362742757.png" alt="1554362742757"></p>
+<p>###脚本安装包</p>
+<p><img src="http://39.104.171.29/image/1554368570910.png" alt="1554368570910"></p>
+<p><img src="http://39.104.171.29/image/1554368673263.png" alt="1554368673263"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/02/linux_day06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baoWenLiang">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="baoWenLiangBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/02/linux_day06/" class="post-title-link" itemprop="url">LinuxDay06</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-02 08:44:23" itemprop="dateCreated datePublished" datetime="2019-04-02T08:44:23+08:00">2019-04-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-04 17:08:28" itemprop="dateModified" datetime="2019-04-04T17:08:28+08:00">2019-04-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="软件包管理简介"><a href="#软件包管理简介" class="headerlink" title="软件包管理简介"></a>软件包管理简介</h2><p><img src="http://39.104.171.29/image/1554165969408.png" alt="1554165969408"></p>
+<p><img src="http://39.104.171.29/image/1554166782008.png" alt="1554166782008"></p>
+<p><img src="http://39.104.171.29/image/1554167202716.png" alt="1554167202716"></p>
+<p><img src="http://39.104.171.29/image/1554167710627.png" alt="1554167710627"></p>
+<p><img src="http://39.104.171.29/image/1554167773662.png" alt="1554167773662"></p>
+<p>总结：Linux 软件安装包分为</p>
+<p>​    源码包安装</p>
+<p>​        优点：可控性高，可以自己查看或修改程序的源代码。安装后软件的执行效率高，比厂商提供的二进制包高5%</p>
+<p>​        缺点：需要自己手动编译源码后才可安装，操作难度高。</p>
+<p>​    二进制包安装</p>
+<p>​        优点：安装速度块，由于使用的是厂商编译过的二进制包，所有省去了自己对源码的手动编译。直接安装即可。</p>
+<p>​        缺点：不可以直接查看程序的源代码。安装后软件的执行效率比自己手动编译的的软件包慢5%。并且安装软件存在依赖性问题</p>
+<p>​    脚本包安装</p>
+<p>​        优点：脚本包安装类似与Windows下的软件安装界面。它是源码包安装和二进制包安装的中和方式。运行脚本后，脚本会帮助你去编译软件的源代码并安装。</p>
+<p>​        缺点：单独编写软件脚本</p>
+<h2 id="RPM-包管理（二进制包）"><a href="#RPM-包管理（二进制包）" class="headerlink" title="RPM 包管理（二进制包）"></a>RPM 包管理（二进制包）</h2><h3 id="rpm的命名规则"><a href="#rpm的命名规则" class="headerlink" title="rpm的命名规则"></a>rpm的命名规则</h3><p><img src="http://39.104.171.29/image/1554169009132.png" alt="1554169009132"></p>
+<p>包名或包全名例子</p>
+<p>​    httpd-2.2.15-15.el6.centos.1.i686.rpm</p>
+<p>​    包名 : httpd</p>
+<p>​    包全名 : httpd-2.2.15-15.el6.centos.1.i686.rpm</p>
+<h3 id="rpm的依赖性"><a href="#rpm的依赖性" class="headerlink" title="rpm的依赖性"></a>rpm的依赖性</h3><p><img src="http://39.104.171.29/image/1554170327297.png" alt="1554170327297"></p>
+<p>总结：</p>
+<p>​    rpm包的命名规则：</p>
+<p>​    软件包名-软件版本-软件的发布次数.适合的Linux平台.适合的硬件平台.rpm包扩展名</p>
+<p>​    rpm依赖性：</p>
+<p>​        树形依赖 ：如安装软件包a时发现需要安装软件包b,而安装软件包b又需要软件包c.</p>
+<p>解决上述的树形依赖问题的方法：先安装软件包c然后依次安装软件包b,软件包a</p>
+<p>​        环形依赖：如安装软件包a时发现需要安装软件包b,而安装软件包b需要安装软件包c,但是安装软件包c却需要软件包a,这样就形成了环形的依赖结构。</p>
+<p>环形依赖解决方案：同时安装包a,b,c即可解决此问题。</p>
+<p>​        模块依赖：模块依赖和软件包依赖不同之处在于，模块所依赖的包，有可能不在系统安装包内。</p>
+<p>解决方案：进入 <a href="http://www.rpmfind.net" target="_blank" rel="noopener">www.rpmfind.net</a> 搜索需要的模块包</p>
+<h3 id="包全名和包名的使用介绍"><a href="#包全名和包名的使用介绍" class="headerlink" title="包全名和包名的使用介绍"></a>包全名和包名的使用介绍</h3><p><img src="http://39.104.171.29/image/1554172185949.png" alt="1554172185949"></p>
+<h3 id="rpm安装升级卸载"><a href="#rpm安装升级卸载" class="headerlink" title="rpm安装升级卸载"></a>rpm安装升级卸载</h3><p><img src="http://39.104.171.29/image/1554172274777.png" alt="1554172274777"></p>
+<p><img src="http://39.104.171.29/image/1554172740075.png" alt="1554172740075"></p>
+<p><img src="http://39.104.171.29/image/1554172783240.png" alt="1554172783240"></p>
+<p>总结：</p>
+<ol>
+<li><p>什么时候使用包全名或包名</p>
+<ol>
+<li>包全名，在软件没有安装并需要使用的情况下。如软件的安装或更新</li>
+<li>包名，在软件已经被安装的情况下。如软件的卸载</li>
+</ol>
+</li>
+<li><p>rpm实现包安装</p>
+<p>在进入安装包目录的情况下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh 需要安装的包全名（need install package name）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rpm实现包升级</p>
+<p>在进入安装包目录的情况下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh 需要更新的包全名（need update package name）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rpm实现包卸载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e 需要卸载的包名 （need deleter package name）</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="rpm查询"><a href="#rpm查询" class="headerlink" title="rpm查询"></a>rpm查询</h3><h4 id="查询是否安装"><a href="#查询是否安装" class="headerlink" title="查询是否安装"></a>查询是否安装</h4><p><img src="http://39.104.171.29/image/1554173640238.png" alt="1554173640238"></p>
+<h4 id="安装包的详细信息查询"><a href="#安装包的详细信息查询" class="headerlink" title="安装包的详细信息查询"></a>安装包的详细信息查询</h4><p><img src="http://39.104.171.29/image/1554174085399.png" alt="1554174085399"></p>
+<h4 id="RPM的安装位置查询"><a href="#RPM的安装位置查询" class="headerlink" title="RPM的安装位置查询"></a>RPM的安装位置查询</h4><p><img src="http://39.104.171.29/image/1554174169009.png" alt="1554174169009"></p>
+<h4 id="根据文件名查询rpm包"><a href="#根据文件名查询rpm包" class="headerlink" title="根据文件名查询rpm包"></a>根据文件名查询rpm包</h4><p><img src="http://39.104.171.29/image/1554174656232.png" alt="1554174656232"></p>
+<h4 id="查询安装包的依赖性"><a href="#查询安装包的依赖性" class="headerlink" title="查询安装包的依赖性"></a>查询安装包的依赖性</h4><p><img src="http://39.104.171.29/image/1554174809684.png" alt="1554174809684"></p>
+<p>总结：</p>
+<p>rpm查询</p>
+<ol>
+<li><p>查询是否安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -q 包名 （package name）</span><br></pre></td></tr></table></figure>
+<p>系统已经安装的所有安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>安装包的详细信息查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qi 包名 （package name）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RPM的安装位置查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ql 包名 （package name）</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="4">
+<li><p>获取给定文件名属于哪个RPM</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qf 文件名 （file name）</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="5">
+<li><p>查询RPM的依赖性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qR 包名（package name）</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="rpm包校验"><a href="#rpm包校验" class="headerlink" title="rpm包校验"></a>rpm包校验</h3><p><img src="http://39.104.171.29/image/1554175762509.png" alt="1554175762509"></p>
+<p><img src="http://39.104.171.29/image/1554175960568.png" alt="1554175960568"></p>
+<p><img src="http://39.104.171.29/image/1554176086475.png" alt="1554176086475"></p>
+<h3 id="rpm包提取"><a href="#rpm包提取" class="headerlink" title="rpm包提取"></a>rpm包提取</h3><p><img src="http://39.104.171.29/image/1554176212571.png" alt="1554176212571"></p>
+<p><img src="http://39.104.171.29/image/1554176347181.png" alt="1554176347181"></p>
+<p>总结：</p>
+<p>rpm 包校验</p>
+<p>rpm 包提取</p>
+<p>/usr/bin/ls  文件提取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm2cpio /mnt/cdrom/Packages/coreutils-8.22-23.el7.x86_64.rpm | cpio -idv ./usr/bin/ls</span><br></pre></td></tr></table></figure>
+<h3 id="yum在线管理-IP地址配置"><a href="#yum在线管理-IP地址配置" class="headerlink" title="yum在线管理-IP地址配置"></a>yum在线管理-IP地址配置</h3><p>使用 red heat 的setup命令</p>
+<p>本人使用的是contos7，发现使用setup后没有网络配置项，在网上查他们说需要使用yum去安装setup的一些功能项。（未做测试）</p>
+<p>那我是怎么配置使自己的系统可以访问外网的呢？我直接修改改network 的配置文件（/etc/sysconfig/network-scripts/ifcfg-ens33）文件，将ONBOOT 设为 true，然后就可以上网了。</p>
+<h3 id="网络yum源"><a href="#网络yum源" class="headerlink" title="网络yum源"></a>网络yum源</h3><p>本人安装的contos已经默认安装并配置了yum源，下面是有关yum源的一些配置属性的解释</p>
+<p><img src="http://39.104.171.29/image/1554189939317.png" alt="1554189939317"></p>
+<p>使用镜像（mirror）</p>
+<ol>
+<li>下载镜像repo配置文件 <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a> </li>
+<li>将原repo文件备份为 repo.backup</li>
+<li>将下载好的Centos-7.repo 移动到/etc/yum.repos.d/下并改名为CentOS-Base.repo</li>
+</ol>
+<p>总结：</p>
+<p>​    1.系统上网配置，使用setup 下的网络配置，配置ip 子网掩码 网关 CSDN 保存即可，设置后记得修改network 的网络配置文件，将ONBOOT 设为true， 之后service network restart 重启即可，然后使用ping命令测试系统是否联网</p>
+<p>​    2.yum 配置使用contos默认即可</p>
+<p>​    3.yum mirror设置，上述配置即可</p>
+<h3 id="yum命令"><a href="#yum命令" class="headerlink" title="yum命令"></a>yum命令</h3><h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p><img src="http://39.104.171.29/image/1554192514578.png" alt="1554192514578"></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><img src="http://39.104.171.29/image/1554194593714.png" alt="1554194593714"></p>
+<p>​    注意 当更新时，没有指定包名，yum会更新整个系统中所有软件甚至内核也会被升级。</p>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><p><img src="http://39.104.171.29/image/1554194899289.png" alt="1554194899289"></p>
+<h4 id="yum软件组使用"><a href="#yum软件组使用" class="headerlink" title="yum软件组使用"></a>yum软件组使用</h4><p><img src="http://39.104.171.29/image/1554195154103.png" alt="1554195154103"></p>
+<p>总结：</p>
+<p>​    系统安装原则：最小化安装，用需要用什么软件，就安装什么软件。最好不要卸载软件。更新软件时要注意指定软件名，不然就会更新整个系统（包括内核）。安装时-y 命令要在安装熟练时使用，一般慎用</p>
+<h3 id="yum光盘源搭建"><a href="#yum光盘源搭建" class="headerlink" title="yum光盘源搭建"></a>yum光盘源搭建</h3><p><img src="http://39.104.171.29/image/1554195811036.png" alt="1554195811036"><img src="http://39.104.171.29/image/1554196150392.png" alt="1554196150392"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -769,7 +1226,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#110;&#121;&#x5f;&#x74;&#x79;&#x40;&#x32;&#54;&#x33;&#46;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#x6f;&#110;&#121;&#x5f;&#x74;&#x79;&#x40;&#x32;&#54;&#x33;&#46;&#x6e;&#101;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#121;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#46;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#121;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#46;&#x6e;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -777,7 +1234,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#110;&#121;&#95;&#x74;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#110;&#x65;&#116;" target="_blank" rel="noopener">&#116;&#x6f;&#110;&#121;&#95;&#x74;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#110;&#x65;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#121;&#95;&#x74;&#121;&#64;&#50;&#54;&#51;&#x2e;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#121;&#95;&#x74;&#121;&#64;&#50;&#54;&#51;&#x2e;&#x6e;&#101;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"> </p>
@@ -2004,344 +2461,6 @@ Docker也不关心你要把容器运到何方：我们可以在自己的笔记�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/03/01/ConfigurationProperties注解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="baoWenLiang">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="baoWenLiangBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/03/01/ConfigurationProperties注解/" class="post-title-link" itemprop="url">configuartionProperties注解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-01 14:01:49 / 修改时间：18:23:17" itemprop="dateCreated datePublished" datetime="2019-03-01T14:01:49+08:00">2019-03-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="configuartionProperties"><a href="#configuartionProperties" class="headerlink" title="@configuartionProperties"></a>@configuartionProperties</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中</p>
-<h3 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h3><h4 id="configuartionProperties-Component"><a href="#configuartionProperties-Component" class="headerlink" title="@configuartionProperties + @Component"></a>@configuartionProperties + @Component</h4><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"me.user"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", password='"</span> + password + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.FileSystemApplication;</span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.controller.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = FileSystemApplication.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationProperties</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configuration</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件设置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">me:</span></span><br><span class="line"><span class="attr">  user:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">baowengliang</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>测试结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User&#123;name=&apos;baowengliang&apos;, password=&apos;123456&apos;&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Bean-ConfigurationProperties"><a href="#Bean-ConfigurationProperties" class="headerlink" title="@Bean + @ConfigurationProperties"></a>@Bean + @ConfigurationProperties</h4><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", password='"</span> + password + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>启动类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(FileSystemApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"me.user"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">user</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.FileSystemApplication;</span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.controller.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = FileSystemApplication.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationProperties</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configuration</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件设置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">me:</span></span><br><span class="line"><span class="attr">  user:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">baowengliang</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>测试结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User&#123;name=&apos;baowengliang&apos;, password=&apos;123456&apos;&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="EnableConfigurationProperties-ConfigurationProperties"><a href="#EnableConfigurationProperties-ConfigurationProperties" class="headerlink" title="@EnableConfigurationProperties + @ConfigurationProperties"></a>@EnableConfigurationProperties + @ConfigurationProperties</h4><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"me.user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", password='"</span> + password + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>启动类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="meta">@EnableConfigurationProperties</span>(User.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(FileSystemApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">me:</span></span><br><span class="line"><span class="attr">  user:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">baowengliang</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.FileSystemApplication;</span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.controller.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = FileSystemApplication.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationProperties</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configuration</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User&#123;name=&apos;baowengliang&apos;, password=&apos;123456&apos;&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/02/28/SpringBoot-MultipartAutoConfiguration/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="baoWenLiang">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="baoWenLiangBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/02/28/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-28 17:30:23" itemprop="dateCreated datePublished" datetime="2019-02-28T17:30:23+08:00">2019-02-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-01 18:24:42" itemprop="dateModified" datetime="2019-03-01T18:24:42+08:00">2019-03-01</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
-<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
-<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
-<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
-<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
-<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
-<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
-<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
-<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
-<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
-<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
-<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
-<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2390,7 +2509,7 @@ Docker也不关心你要把容器运到何方：我们可以在自己的笔记�
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

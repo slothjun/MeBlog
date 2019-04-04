@@ -96,24 +96,32 @@
 
 
 
-  <meta name="description" content="@modelAttributemoelAttribute 是springmvc提供的注解。  1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；  2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中； 运用在方法上实现案例，抽取reques">
+  <meta name="description" content="源码包安装管理源码包和rpm包的区别​    安装之前的区别：概念上的区别 ​    安装之后的区别：安装位置不同   ​    由于源码包和rpm 安装包的安装位置不同导致了，应用的启动方式选择面不同 ​    rpm 包安装的软件可以 使用 service 去执行命令，也可以使用 绝对路径 + 命令的方法操作 ​    源码包 只能通过 绝对路径 + 命令的方法操作 ​    service">
 <meta property="og:type" content="article">
-<meta property="og:title" content="modelAttribute注解">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/index.html">
+<meta property="og:title" content="LinuxDay07">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/04/03/linux_day07/index.html">
 <meta property="og:site_name" content="baoWenLiangBlog">
-<meta property="og:description" content="@modelAttributemoelAttribute 是springmvc提供的注解。  1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；  2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中； 运用在方法上实现案例，抽取reques">
+<meta property="og:description" content="源码包安装管理源码包和rpm包的区别​    安装之前的区别：概念上的区别 ​    安装之后的区别：安装位置不同   ​    由于源码包和rpm 安装包的安装位置不同导致了，应用的启动方式选择面不同 ​    rpm 包安装的软件可以 使用 service 去执行命令，也可以使用 绝对路径 + 命令的方法操作 ​    源码包 只能通过 绝对路径 + 命令的方法操作 ​    service">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-03T08:35:21.081Z">
+<meta property="og:image" content="http://39.104.171.29/image/1554360805482.png">
+<meta property="og:image" content="http://39.104.171.29/image/1554360845078.png">
+<meta property="og:image" content="http://39.104.171.29/image/1554360911277.png">
+<meta property="og:image" content="http://39.104.171.29/image/1554361918473.png">
+<meta property="og:image" content="http://39.104.171.29/image/1554362742757.png">
+<meta property="og:image" content="http://39.104.171.29/image/1554368570910.png">
+<meta property="og:image" content="http://39.104.171.29/image/1554368673263.png">
+<meta property="og:updated_time" content="2019-04-04T09:08:25.223Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="modelAttribute注解">
-<meta name="twitter:description" content="@modelAttributemoelAttribute 是springmvc提供的注解。  1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；  2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中； 运用在方法上实现案例，抽取reques">
+<meta name="twitter:title" content="LinuxDay07">
+<meta name="twitter:description" content="源码包安装管理源码包和rpm包的区别​    安装之前的区别：概念上的区别 ​    安装之后的区别：安装位置不同   ​    由于源码包和rpm 安装包的安装位置不同导致了，应用的启动方式选择面不同 ​    rpm 包安装的软件可以 使用 service 去执行命令，也可以使用 绝对路径 + 命令的方法操作 ​    源码包 只能通过 绝对路径 + 命令的方法操作 ​    service">
+<meta name="twitter:image" content="http://39.104.171.29/image/1554360805482.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/04/03/linux_day07/">
 
 
 
@@ -123,7 +131,7 @@
   };
 </script>
 
-  <title>modelAttribute注解 | baoWenLiangBlog</title>
+  <title>LinuxDay07 | baoWenLiangBlog</title>
   
 
 
@@ -296,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/03/03/modelAttribute注解/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/03/linux_day07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="baoWenLiang">
@@ -313,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">modelAttribute注解
+          <h1 class="post-title" itemprop="name headline">LinuxDay07
 
               
             
@@ -339,12 +347,24 @@
                 
               
 
-              <time title="创建时间：2019-03-03 15:39:09 / 修改时间：16:35:21" itemprop="dateCreated datePublished" datetime="2019-03-03T15:39:09+08:00">2019-03-03</time>
+              <time title="创建时间：2019-04-03 15:36:29" itemprop="dateCreated datePublished" datetime="2019-04-03T15:36:29+08:00">2019-04-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-04 17:08:25" itemprop="dateModified" datetime="2019-04-04T17:08:25+08:00">2019-04-04</time>
               
             
           </span>
@@ -378,15 +398,35 @@
       
 
       
-        <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
-
-1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
-
-2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
-</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>基础controller</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
+        <h2 id="源码包安装管理"><a href="#源码包安装管理" class="headerlink" title="源码包安装管理"></a>源码包安装管理</h2><h3 id="源码包和rpm包的区别"><a href="#源码包和rpm包的区别" class="headerlink" title="源码包和rpm包的区别"></a>源码包和rpm包的区别</h3><p>​    安装之前的区别：概念上的区别</p>
+<p>​    安装之后的区别：安装位置不同</p>
+<p><img src="http://39.104.171.29/image/1554360805482.png" alt="1554360805482"></p>
+<p><img src="http://39.104.171.29/image/1554360845078.png" alt="1554360845078"></p>
+<p>​    由于源码包和rpm 安装包的安装位置不同导致了，应用的启动方式选择面不同</p>
+<p>​    rpm 包安装的软件可以 使用 service 去执行命令，也可以使用 绝对路径 + 命令的方法操作</p>
+<p>​    源码包 只能通过 绝对路径 + 命令的方法操作</p>
+<p>​    service 操作软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service tomcat start</span><br></pre></td></tr></table></figure>
+<p>​    绝对路径+命令方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/tomcat start</span><br></pre></td></tr></table></figure>
+<h3 id="源码包安装过程"><a href="#源码包安装过程" class="headerlink" title="源码包安装过程"></a>源码包安装过程</h3><p><img src="http://39.104.171.29/image/1554360911277.png" alt="1554360911277"></p>
+<p><img src="http://39.104.171.29/image/1554361918473.png" alt="1554361918473"></p>
+<h4 id="源码包安装流程"><a href="#源码包安装流程" class="headerlink" title="源码包安装流程"></a>源码包安装流程</h4><ol>
+<li>下载源码包文件</li>
+<li>解压源码包文件到 /usr/local/ 源码文件名 下</li>
+<li>进入解压目录阅读 INSTALL 文档，查看如何安装。</li>
+<li>使用make  命令编译源码</li>
+<li>使用make install 命令安装</li>
+</ol>
+<p>INSTALL安装说明文档</p>
+<p>README使用说明</p>
+<p>make 编译</p>
+<p>make install 编译安装</p>
+<p>make clean 清空编译</p>
+<p><img src="http://39.104.171.29/image/1554362742757.png" alt="1554362742757"></p>
+<p>###脚本安装包</p>
+<p><img src="http://39.104.171.29/image/1554368570910.png" alt="1554368570910"></p>
+<p><img src="http://39.104.171.29/image/1554368673263.png" alt="1554368673263"></p>
 
       
     </div>
@@ -421,7 +461,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/" title="modelAttribute注解">https://slothjun.github.io/MeBlog/2019/03/03/modelAttribute注解/</a>
+    <a href="https://slothjun.github.io/MeBlog/2019/04/03/linux_day07/" title="LinuxDay07">https://slothjun.github.io/MeBlog/2019/04/03/linux_day07/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -441,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MeBlog/2019/03/01/ConfigurationProperties注解/" rel="next" title="configuartionProperties注解">
-                <i class="fa fa-chevron-left"></i> configuartionProperties注解
+              <a href="/MeBlog/2019/04/02/linux_day06/" rel="next" title="LinuxDay06">
+                <i class="fa fa-chevron-left"></i> LinuxDay06
               </a>
             
           </div>
@@ -450,10 +490,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/MeBlog/2019/03/13/Docker/" rel="prev" title="Docker">
-                Docker <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#modelAttribute"><span class="nav-number">1.</span> <span class="nav-text">@modelAttribute</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运用在方法上"><span class="nav-number">1.1.</span> <span class="nav-text">运用在方法上</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。"><span class="nav-number">1.1.1.</span> <span class="nav-text">实现案例，抽取request 和response、modelMap将其注入在baseController中。</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#源码包安装管理"><span class="nav-number">1.</span> <span class="nav-text">源码包安装管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码包和rpm包的区别"><span class="nav-number">1.1.</span> <span class="nav-text">源码包和rpm包的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码包安装过程"><span class="nav-number">1.2.</span> <span class="nav-text">源码包安装过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码包安装流程"><span class="nav-number">1.2.1.</span> <span class="nav-text">源码包安装流程</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
