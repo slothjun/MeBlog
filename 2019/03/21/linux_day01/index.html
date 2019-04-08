@@ -110,7 +110,6 @@
 <meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553217620457.png">
 <meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553217899946.png">
 <meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553221402638.png">
-<meta property="og:image" content="c:/Users/sloth/AppData/Local/Temp/1553235600779.png">
 <meta property="og:image" content="http://39.104.171.29/image/1553455157361.png">
 <meta property="og:image" content="http://39.104.171.29/image/1553455753059.png">
 <meta property="og:image" content="http://39.104.171.29/image/1553456138517.png">
@@ -130,7 +129,7 @@
 <meta property="og:image" content="http://39.104.171.29/image/1553464603686.png">
 <meta property="og:image" content="http://39.104.171.29/image/1553465266101.png">
 <meta property="og:image" content="http://39.104.171.29/image/1553465409489.png">
-<meta property="og:updated_time" content="2019-03-26T14:00:11.653Z">
+<meta property="og:updated_time" content="2019-04-08T07:31:14.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinuxDay01">
 <meta name="twitter:description" content="Linux简介Linux 学习方法 坚持使用命令行 遇到问题，不要马上问别人。先自行寻找答案 解决问题的的智慧： 帮助、文档、示例、查找   忘掉Windows思维方式 计划、坚持、专注、练习  Linux系统分区1.什么是磁盘分区： ​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存">
@@ -272,7 +271,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">18</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">20</span></a>
 
   </li>
 
@@ -384,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-26 22:00:11" itemprop="dateModified" datetime="2019-03-26T22:00:11+08:00">2019-03-26</time>
+                <time title="修改时间：2019-04-08 15:31:14" itemprop="dateModified" datetime="2019-04-08T15:31:14+08:00">2019-04-08</time>
               
             
           </span>
@@ -488,8 +487,7 @@
 <p>​    Linux不靠扩展名区分文件类型 </p>
 <p>​    Linux所有存储设备都必须挂载之后用户才能使用,包括硬盘、U盘和光盘</p>
 <p>​    windows下的程序不能直接在Linux中安装和运行 </p>
-<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p><img src="C:\Users\sloth\AppData\Local\Temp\1553235600779.png" alt="1553235600779"></p>
-<p>服务器最好重启操作，不要关机操作</p>
+<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p>服务器最好重启操作，不要关机操作</p>
 <p>重启时应该关闭服务器</p>
 <p>不要在服务器访问高峰运行高负载命令</p>
 <p>远程配置防火墙时不要把自己踢出服务器</p>
@@ -511,11 +509,19 @@
 <p>ls -i 可以获取文件的I节点或获取文件的id号</p>
 <p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
 <p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
+<p>cd - 回到上次操作的目录</p>
+<p>cd ~ 回到当前用户的根目录</p>
+<p>cd 回到当前用户的根目录</p>
 <p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
 <p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
 <p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
 <p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
 <p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
+<p>tree 命令以目录树的方式显示文件结构信息</p>
+<p>使用tree 时可能会遇到command not  found ,这时就需要安装此命令</p>
+<p>本人使用的是centos 7 的系统 发现使用yum 无法获取tree的安装包</p>
+<p>所以只能使用源码包安装，于是在<a href="ftp://mama.indstate.edu/linux/tree/" target="_blank" rel="noopener">ftp://mama.indstate.edu/linux/tree/</a> 下载了 源码包</p>
+<p>在/usr/local/src 下使用make 编译了源码包</p>
 <h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
 <p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
 <p>cat 适用于查看简短文件内容，如shell脚本</p>
@@ -661,7 +667,7 @@
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
