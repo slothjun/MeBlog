@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/MeBlog/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="监控参数信息列表阅读示例 品牌类型 ​    型号 ​        监控参数 CT飞利浦CT扫描参数 Top 30  CT 球管温度  球管参数_NumberOfScans  球管参数_TubeKWh  球管参数_TubeScanSeconds  飞利浦 64排CT扫描参数 Top 30  CT 球管温度  球管参数_NumberOfScans  球管参数_TubeKWh  GECT CT660">
+<meta property="og:type" content="article">
+<meta property="og:title" content="监控参数信息列表">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/04/29/远程监控数据获取/index.html">
+<meta property="og:site_name" content="WenLiangBaoBlog">
+<meta property="og:description" content="监控参数信息列表阅读示例 品牌类型 ​    型号 ​        监控参数 CT飞利浦CT扫描参数 Top 30  CT 球管温度  球管参数_NumberOfScans  球管参数_TubeKWh  球管参数_TubeScanSeconds  飞利浦 64排CT扫描参数 Top 30  CT 球管温度  球管参数_NumberOfScans  球管参数_TubeKWh  GECT CT660">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-29T13:24:25.652Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="监控参数信息列表">
+<meta name="twitter:description" content="监控参数信息列表阅读示例 品牌类型 ​    型号 ​        监控参数 CT飞利浦CT扫描参数 Top 30  CT 球管温度  球管参数_NumberOfScans  球管参数_TubeKWh  球管参数_TubeScanSeconds  飞利浦 64排CT扫描参数 Top 30  CT 球管温度  球管参数_NumberOfScans  球管参数_TubeKWh  GECT CT660">
+
+
+
+
+
+
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/04/29/远程监控数据获取/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>监控参数信息列表 | WenLiangBaoBlog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?634fa4157d9129d4fc7c51fd0e0849f8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/MeBlog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WenLiangBaoBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">20</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/远程监控数据获取/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">监控参数信息列表
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="监控参数信息列表"><a href="#监控参数信息列表" class="headerlink" title="监控参数信息列表"></a>监控参数信息列表</h2><p>阅读示例</p>
+<p>品牌类型</p>
+<p>​    型号</p>
+<p>​        监控参数</p>
+<h3 id="CT"><a href="#CT" class="headerlink" title="CT"></a>CT</h3><h4 id="飞利浦CT"><a href="#飞利浦CT" class="headerlink" title="飞利浦CT"></a>飞利浦CT</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<h4 id="飞利浦-64排CT"><a href="#飞利浦-64排CT" class="headerlink" title="飞利浦 64排CT"></a>飞利浦 64排CT</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<h4 id="GECT-CT660"><a href="#GECT-CT660" class="headerlink" title="GECT CT660"></a>GECT CT660</h4><p>扫描参数 Top 30 </p>
+<p>球管打火次数 </p>
+<p>CT 球管温度 </p>
+<p>滑环失联次数 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<h4 id="Discovery-CT750-HD"><a href="#Discovery-CT750-HD" class="headerlink" title="Discovery CT750 HD"></a>Discovery CT750 HD</h4><p>扫描参数 Top 30 </p>
+<p>球管打火次数 </p>
+<p>CT 球管温度 </p>
+<p>滑环失联次数 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<p>球管统计_ExamUsageTotal </p>
+<p>球管统计_Patient mAs </p>
+<p>球管统计_PatientScanSeconds </p>
+<h4 id="飞利浦-Brilliance16"><a href="#飞利浦-Brilliance16" class="headerlink" title="飞利浦_Brilliance16"></a>飞利浦_Brilliance16</h4><p>扫描参数 Top 30 </p>
+<h4 id="慈铭体检-奥亚医院-飞利浦CT"><a href="#慈铭体检-奥亚医院-飞利浦CT" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦CT"></a>慈铭体检(奥亚医院)-飞利浦CT</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<h4 id="慈铭体检-北京月坛旗舰店-飞利浦CT"><a href="#慈铭体检-北京月坛旗舰店-飞利浦CT" class="headerlink" title="慈铭体检(北京月坛旗舰店)_飞利浦CT"></a>慈铭体检(北京月坛旗舰店)_飞利浦CT</h4><p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeScanSeconds </p>
+<h4 id="16排CT-Bright-Sperd-Elite"><a href="#16排CT-Bright-Sperd-Elite" class="headerlink" title="16排CT Bright Sperd Elite"></a>16排CT Bright Sperd Elite</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管统计_ExamUsageTotal </p>
+<p>球管统计_Patient mAs </p>
+<p>球管统计_PatientScanSeconds </p>
+<h4 id="西门子64排CT-SOMATOM-Definition-As-64"><a href="#西门子64排CT-SOMATOM-Definition-As-64" class="headerlink" title="西门子64排CT SOMATOM Definition As 64"></a>西门子64排CT SOMATOM Definition As 64</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<p>球管参数_SysScanSeconds </p>
+<h4 id="西门子双排CT"><a href="#西门子双排CT" class="headerlink" title="西门子双排CT"></a>西门子双排CT</h4><h4 id="GECT-Optima-CT680"><a href="#GECT-Optima-CT680" class="headerlink" title="GECT-Optima-CT680"></a>GECT-Optima-CT680</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>滑环失联次数 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<p>球管参数_SysScanSeconds </p>
+<p>球管统计_ExamUsageTotal </p>
+<p>球管统计_Patient mAs </p>
+<p>球管统计_PatientScanSeconds </p>
+<h4 id="CT-Discovery-CT750-HD-GE"><a href="#CT-Discovery-CT750-HD-GE" class="headerlink" title="CT Discovery CT750 HD GE"></a>CT Discovery CT750 HD GE</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<p>球管参数_SysScanSeconds </p>
+<p>球管统计_ExamUsageTotal </p>
+<p>球管统计_Patient mAs </p>
+<p>球管统计_PatientScanSeconds </p>
+<h4 id="西门子emotion16"><a href="#西门子emotion16" class="headerlink" title="西门子emotion16"></a>西门子emotion16</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<p>球管参数_SysScanSeconds </p>
+<h4 id="64排螺旋CT"><a href="#64排螺旋CT" class="headerlink" title="64排螺旋CT"></a>64排螺旋CT</h4><p>扫描参数 Top 30 </p>
+<p>CT 球管温度 </p>
+<p>球管参数_NumberOfScans </p>
+<p>球管参数_TubeKWh </p>
+<p>球管参数_TubeScanSeconds </p>
+<p>球管参数_SysScanSeconds </p>
+<h3 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h3><h4 id="韩国怡友牙片机-PaX500ECT"><a href="#韩国怡友牙片机-PaX500ECT" class="headerlink" title="韩国怡友牙片机_PaX500ECT"></a>韩国怡友牙片机_PaX500ECT</h4><h4 id="慈铭体检-奥亚医院-飞利浦DR-B1"><a href="#慈铭体检-奥亚医院-飞利浦DR-B1" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦DR-B1"></a>慈铭体检(奥亚医院)-飞利浦DR-B1</h4><p>探测器温度 </p>
+<p>曝光时间 </p>
+<p>AreaDose </p>
+<h4 id="慈铭体检-奥亚医院-飞利浦DR-1F"><a href="#慈铭体检-奥亚医院-飞利浦DR-1F" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦DR-1F"></a>慈铭体检(奥亚医院)-飞利浦DR-1F</h4><p>曝光时间 </p>
+<p>AreaDose </p>
+<h4 id="慈铭体检-北京月坛旗舰店-飞利浦DR-1"><a href="#慈铭体检-北京月坛旗舰店-飞利浦DR-1" class="headerlink" title="慈铭体检(北京月坛旗舰店)_飞利浦DR-1"></a>慈铭体检(北京月坛旗舰店)_飞利浦DR-1</h4><h4 id="慈铭体检-北京月坛旗舰店-飞利浦DR-2"><a href="#慈铭体检-北京月坛旗舰店-飞利浦DR-2" class="headerlink" title="慈铭体检(北京月坛旗舰店)_飞利浦DR-2"></a>慈铭体检(北京月坛旗舰店)_飞利浦DR-2</h4><h4 id="西门子乳腺机MAMOMAT-Inspiration"><a href="#西门子乳腺机MAMOMAT-Inspiration" class="headerlink" title="西门子乳腺机MAMOMAT Inspiration"></a>西门子乳腺机MAMOMAT Inspiration</h4><p>Total mAs </p>
+<p>患者接触面温度 </p>
+<p>曝光时间 </p>
+<p>Entrance Dose 直方图统计 </p>
+<p>Organ Dose 直方图统计 </p>
+<p>使用Anode/Filter扫描数统计 </p>
+<h4 id="GEDR-DR-F-玲珑DR"><a href="#GEDR-DR-F-玲珑DR" class="headerlink" title="GEDR DR-F 玲珑DR"></a>GEDR DR-F 玲珑DR</h4><h4 id="GE胃肠机PS800"><a href="#GE胃肠机PS800" class="headerlink" title="GE胃肠机PS800"></a>GE胃肠机PS800</h4><h4 id="美国HOLOGIC骨密度仪"><a href="#美国HOLOGIC骨密度仪" class="headerlink" title="美国HOLOGIC骨密度仪"></a>美国HOLOGIC骨密度仪</h4><h4 id="西门子乳腺机-MAMMOMAT-Inspiration"><a href="#西门子乳腺机-MAMMOMAT-Inspiration" class="headerlink" title="西门子乳腺机 MAMMOMAT Inspiration"></a>西门子乳腺机 MAMMOMAT Inspiration</h4><p>Total mAs </p>
+<p>患者接触面温度 </p>
+<p>曝光时间 </p>
+<p>Entrance Dose 直方图统计 </p>
+<p>Organ Dose 直方图统计 </p>
+<p>使用Anode/Filter扫描数统计 </p>
+<h4 id="西门子DR-syngo-VD31A-SL03P08"><a href="#西门子DR-syngo-VD31A-SL03P08" class="headerlink" title="西门子DR syngo VD31A SL03P08"></a>西门子DR syngo VD31A SL03P08</h4><h4 id="日立MZMDR-7600-UniDROC"><a href="#日立MZMDR-7600-UniDROC" class="headerlink" title="日立MZMDR-7600 UniDROC"></a>日立MZMDR-7600 UniDROC</h4><p>探测器温度 </p>
+<h4 id="岛津Sonialvision-safire-Plus-岛津数字胃肠机"><a href="#岛津Sonialvision-safire-Plus-岛津数字胃肠机" class="headerlink" title="岛津Sonialvision safire Plus (岛津数字胃肠机)"></a>岛津Sonialvision safire Plus (岛津数字胃肠机)</h4><h4 id="锐科DR7500"><a href="#锐科DR7500" class="headerlink" title="锐科DR7500"></a>锐科DR7500</h4><p>探测器温度 </p>
+<h4 id="西门子DR-YISO"><a href="#西门子DR-YISO" class="headerlink" title="西门子DR YISO"></a>西门子DR YISO</h4><h3 id="DSA"><a href="#DSA" class="headerlink" title="DSA"></a>DSA</h3><h4 id="西门子DSA-Artis-zee-floor"><a href="#西门子DSA-Artis-zee-floor" class="headerlink" title="西门子DSA Artis zee floor"></a>西门子DSA Artis zee floor</h4><p>FD 温度 </p>
+<h4 id="ArtiszeeIIIbiplaneMN-DSA"><a href="#ArtiszeeIIIbiplaneMN-DSA" class="headerlink" title="ArtiszeeIIIbiplaneMN  DSA"></a>ArtiszeeIIIbiplaneMN  DSA</h4><p>FD 温度 </p>
+<h3 id="MR"><a href="#MR" class="headerlink" title="MR"></a>MR</h3><h4 id="1-5T-Sympnony"><a href="#1-5T-Sympnony" class="headerlink" title="1.5T-Sympnony"></a>1.5T-Sympnony</h4><p>液氦水平 </p>
+<p>磁体屏蔽层温度 </p>
+<h4 id="3-0T-Signa-HDxt"><a href="#3-0T-Signa-HDxt" class="headerlink" title="3.0T-Signa-HDxt"></a>3.0T-Signa-HDxt</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<p>设备间温度 </p>
+<p>设备间湿度 </p>
+<p>扫描腔温度 </p>
+<h4 id="GEMR-MR-HDe"><a href="#GEMR-MR-HDe" class="headerlink" title="GEMR  MR HDe"></a>GEMR  MR HDe</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<p>设备间温度 </p>
+<p>设备间湿度 </p>
+<p>扫描腔温度 </p>
+<h4 id="GEMR-Excite-1-5T"><a href="#GEMR-Excite-1-5T" class="headerlink" title="GEMR  Excite 1.5T"></a>GEMR  Excite 1.5T</h4><h4 id="GEMR-750-3-0T"><a href="#GEMR-750-3-0T" class="headerlink" title="GEMR  750 3.0T"></a>GEMR  750 3.0T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>设备间温度 </p>
+<p>设备间湿度 </p>
+<h4 id="西门子MR-Verio-3-0T"><a href="#西门子MR-Verio-3-0T" class="headerlink" title="西门子MR_Verio 3.0T"></a>西门子MR_Verio 3.0T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>液氦水平(Probe 1 &amp; Probe 2) </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<p>Board Temperature </p>
+<p>CPU Temperature </p>
+<p>PressureHeaterAveragePower </p>
+<h4 id="GE360光纤核磁，1-5T"><a href="#GE360光纤核磁，1-5T" class="headerlink" title="GE360光纤核磁，1.5T"></a>GE360光纤核磁，1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<h4 id="HDe-1-5T"><a href="#HDe-1-5T" class="headerlink" title="HDe 1.5T"></a>HDe 1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<h4 id="HDe-1-5T-1"><a href="#HDe-1-5T-1" class="headerlink" title="HDe 1.5T"></a>HDe 1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<h4 id="飞利浦-Achieva"><a href="#飞利浦-Achieva" class="headerlink" title="飞利浦_Achieva"></a>飞利浦_Achieva</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>设备间温度 </p>
+<p>设备间湿度 </p>
+<p>LCC_PrimaryFlow </p>
+<p>LCC_T1 Temperature </p>
+<p>射频功率系数 </p>
+<p>梯度爬升率 </p>
+<p>射频放大器电源监控 </p>
+<h4 id="ExciteHD-1-5T-MM3"><a href="#ExciteHD-1-5T-MM3" class="headerlink" title="ExciteHD_1.5T_MM3"></a>ExciteHD_1.5T_MM3</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<h4 id="GE-Excite-HDXT-1-5T"><a href="#GE-Excite-HDXT-1-5T" class="headerlink" title="GE Excite HDXT 1.5T"></a>GE Excite HDXT 1.5T</h4><p>设备间温度 </p>
+<p>设备间湿度 </p>
+<p>扫描腔温度 </p>
+<h4 id="GE-光纤360-1-5T"><a href="#GE-光纤360-1-5T" class="headerlink" title="GE 光纤360 1.5T"></a>GE 光纤360 1.5T</h4><h4 id="GE-Hdxt-1-5T"><a href="#GE-Hdxt-1-5T" class="headerlink" title="GE Hdxt 1.5T"></a>GE Hdxt 1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<p>设备间温度 </p>
+<p>设备间湿度 </p>
+<p>扫描腔温度 </p>
+<h4 id="西门子-AVANTO-1-5T"><a href="#西门子-AVANTO-1-5T" class="headerlink" title="西门子_AVANTO-1.5T"></a>西门子_AVANTO-1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<p>PressureHeaterAveragePower </p>
+<h4 id="GEMR"><a href="#GEMR" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<h4 id="GE-Signa-Exaiter-1-5T"><a href="#GE-Signa-Exaiter-1-5T" class="headerlink" title="GE Signa Exaiter 1.5T"></a>GE Signa Exaiter 1.5T</h4><h4 id="GE光纤360-1-5T"><a href="#GE光纤360-1-5T" class="headerlink" title="GE光纤360-1.5T"></a>GE光纤360-1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<h4 id="宁阳县第一人民医院-GEMR"><a href="#宁阳县第一人民医院-GEMR" class="headerlink" title="宁阳县第一人民医院_GEMR"></a>宁阳县第一人民医院_GEMR</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<p>扫描腔温度 </p>
+<h4 id="GEMR-GE-HDE"><a href="#GEMR-GE-HDE" class="headerlink" title="GEMR_GE-HDE"></a>GEMR_GE-HDE</h4><p>扫描腔温度 </p>
+<h4 id="慈铭体检-奥亚医院-飞利浦MR"><a href="#慈铭体检-奥亚医院-飞利浦MR" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦MR"></a>慈铭体检(奥亚医院)-飞利浦MR</h4><p>液氦水平 </p>
+<p>设备间温度 </p>
+<p>LCC_PrimaryFlow </p>
+<p>LCC_T1 Temperature </p>
+<p>射频功率系数 </p>
+<p>梯度爬升率 </p>
+<p>射频放大器电源监控 </p>
+<h4 id="GEMR-光纤355"><a href="#GEMR-光纤355" class="headerlink" title="GEMR-光纤355"></a>GEMR-光纤355</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<h4 id="GEsigna-excite-1-5T"><a href="#GEsigna-excite-1-5T" class="headerlink" title="GEsigna excite   1.5T"></a>GEsigna excite   1.5T</h4><h4 id="西门子MR-Magnetom-Skyra-3-0T"><a href="#西门子MR-Magnetom-Skyra-3-0T" class="headerlink" title="西门子MR Magnetom Skyra 3.0T"></a>西门子MR Magnetom Skyra 3.0T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<p>PressureHeaterAveragePower </p>
+<h4 id="西门子MR-MAGNETOM-ESSENZA-1-5T"><a href="#西门子MR-MAGNETOM-ESSENZA-1-5T" class="headerlink" title="西门子MR MAGNETOM ESSENZA 1.5T"></a>西门子MR MAGNETOM ESSENZA 1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<p>PressureHeaterAveragePower </p>
+<h4 id="GEMR-1"><a href="#GEMR-1" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<h4 id="西门子MR-Essenza1-5T"><a href="#西门子MR-Essenza1-5T" class="headerlink" title="西门子MR-Essenza1.5T"></a>西门子MR-Essenza1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<p>PressureHeaterAveragePower </p>
+<h4 id="西门子0-35T核磁"><a href="#西门子0-35T核磁" class="headerlink" title="西门子0.35T核磁"></a>西门子0.35T核磁</h4><h4 id="GE光纤360-1-5T-MM3"><a href="#GE光纤360-1-5T-MM3" class="headerlink" title="GE光纤360-1.5T_MM3"></a>GE光纤360-1.5T_MM3</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<h4 id="飞利浦MR-Achieva-1-5T"><a href="#飞利浦MR-Achieva-1-5T" class="headerlink" title="飞利浦MR-Achieva_1.5T"></a>飞利浦MR-Achieva_1.5T</h4><p>设备间温度 </p>
+<p>设备间湿度 </p>
+<p>LCC_PrimaryFlow </p>
+<p>LCC_T1 Temperature </p>
+<h4 id="飞利浦MR-1-5T"><a href="#飞利浦MR-1-5T" class="headerlink" title="飞利浦MR-1.5T"></a>飞利浦MR-1.5T</h4><p>液氦水平 </p>
+<p>射频功率系数 </p>
+<p>梯度爬升率 </p>
+<p>射频放大器电源监控 </p>
+<h4 id="GEMR360"><a href="#GEMR360" class="headerlink" title="GEMR360"></a>GEMR360</h4><h4 id="GEMR-2"><a href="#GEMR-2" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>扫描腔温度 </p>
+<h4 id="GEMR-1-5T"><a href="#GEMR-1-5T" class="headerlink" title="GEMR-1.5T"></a>GEMR-1.5T</h4><h4 id="GEMR-3"><a href="#GEMR-3" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<p>设备间温度 </p>
+<p>设备间湿度 </p>
+<p>扫描腔温度 </p>
+<h4 id="GEMR-MM3"><a href="#GEMR-MM3" class="headerlink" title="GEMR_MM3"></a>GEMR_MM3</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p>冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+<h4 id="GE355核磁-1-5T"><a href="#GE355核磁-1-5T" class="headerlink" title="GE355核磁-1.5T"></a>GE355核磁-1.5T</h4><p>液氦水平 </p>
+<p>液氦压力 </p>
+<p>水温 </p>
+<p>水流 </p>
+<p> 冷头温度 </p>
+<p>磁体屏蔽层温度 </p>
+<p>冷凝腔温度 </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WenLiangBao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2019/04/29/远程监控数据获取/" title="监控参数信息列表">https://slothjun.github.io/MeBlog/2019/04/29/远程监控数据获取/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2019/04/29/系统安全框架搭建/" rel="next" title="系统安全案例及设计理念">
+                <i class="fa fa-chevron-left"></i> 系统安全案例及设计理念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/MeBlog/2019/04/30/ubuntu 下的软件管理/" rel="prev" title="ubuntu 下的软件管理">
+                ubuntu 下的软件管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="WenLiangBao">
+            
+              <p class="site-author-name" itemprop="name">WenLiangBao</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)吾日三省吾身，必成其业</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/MeBlog/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#监控参数信息列表"><span class="nav-number">1.</span> <span class="nav-text">监控参数信息列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CT"><span class="nav-number">1.1.</span> <span class="nav-text">CT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#飞利浦CT"><span class="nav-number">1.1.1.</span> <span class="nav-text">飞利浦CT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#飞利浦-64排CT"><span class="nav-number">1.1.2.</span> <span class="nav-text">飞利浦 64排CT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GECT-CT660"><span class="nav-number">1.1.3.</span> <span class="nav-text">GECT CT660</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Discovery-CT750-HD"><span class="nav-number">1.1.4.</span> <span class="nav-text">Discovery CT750 HD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#飞利浦-Brilliance16"><span class="nav-number">1.1.5.</span> <span class="nav-text">飞利浦_Brilliance16</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慈铭体检-奥亚医院-飞利浦CT"><span class="nav-number">1.1.6.</span> <span class="nav-text">慈铭体检(奥亚医院)-飞利浦CT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慈铭体检-北京月坛旗舰店-飞利浦CT"><span class="nav-number">1.1.7.</span> <span class="nav-text">慈铭体检(北京月坛旗舰店)_飞利浦CT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16排CT-Bright-Sperd-Elite"><span class="nav-number">1.1.8.</span> <span class="nav-text">16排CT Bright Sperd Elite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子64排CT-SOMATOM-Definition-As-64"><span class="nav-number">1.1.9.</span> <span class="nav-text">西门子64排CT SOMATOM Definition As 64</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子双排CT"><span class="nav-number">1.1.10.</span> <span class="nav-text">西门子双排CT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GECT-Optima-CT680"><span class="nav-number">1.1.11.</span> <span class="nav-text">GECT-Optima-CT680</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CT-Discovery-CT750-HD-GE"><span class="nav-number">1.1.12.</span> <span class="nav-text">CT Discovery CT750 HD GE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子emotion16"><span class="nav-number">1.1.13.</span> <span class="nav-text">西门子emotion16</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#64排螺旋CT"><span class="nav-number">1.1.14.</span> <span class="nav-text">64排螺旋CT</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DR"><span class="nav-number">1.2.</span> <span class="nav-text">DR</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#韩国怡友牙片机-PaX500ECT"><span class="nav-number">1.2.1.</span> <span class="nav-text">韩国怡友牙片机_PaX500ECT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慈铭体检-奥亚医院-飞利浦DR-B1"><span class="nav-number">1.2.2.</span> <span class="nav-text">慈铭体检(奥亚医院)-飞利浦DR-B1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慈铭体检-奥亚医院-飞利浦DR-1F"><span class="nav-number">1.2.3.</span> <span class="nav-text">慈铭体检(奥亚医院)-飞利浦DR-1F</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慈铭体检-北京月坛旗舰店-飞利浦DR-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">慈铭体检(北京月坛旗舰店)_飞利浦DR-1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慈铭体检-北京月坛旗舰店-飞利浦DR-2"><span class="nav-number">1.2.5.</span> <span class="nav-text">慈铭体检(北京月坛旗舰店)_飞利浦DR-2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子乳腺机MAMOMAT-Inspiration"><span class="nav-number">1.2.6.</span> <span class="nav-text">西门子乳腺机MAMOMAT Inspiration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEDR-DR-F-玲珑DR"><span class="nav-number">1.2.7.</span> <span class="nav-text">GEDR DR-F 玲珑DR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE胃肠机PS800"><span class="nav-number">1.2.8.</span> <span class="nav-text">GE胃肠机PS800</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#美国HOLOGIC骨密度仪"><span class="nav-number">1.2.9.</span> <span class="nav-text">美国HOLOGIC骨密度仪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子乳腺机-MAMMOMAT-Inspiration"><span class="nav-number">1.2.10.</span> <span class="nav-text">西门子乳腺机 MAMMOMAT Inspiration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子DR-syngo-VD31A-SL03P08"><span class="nav-number">1.2.11.</span> <span class="nav-text">西门子DR syngo VD31A SL03P08</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日立MZMDR-7600-UniDROC"><span class="nav-number">1.2.12.</span> <span class="nav-text">日立MZMDR-7600 UniDROC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#岛津Sonialvision-safire-Plus-岛津数字胃肠机"><span class="nav-number">1.2.13.</span> <span class="nav-text">岛津Sonialvision safire Plus (岛津数字胃肠机)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锐科DR7500"><span class="nav-number">1.2.14.</span> <span class="nav-text">锐科DR7500</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子DR-YISO"><span class="nav-number">1.2.15.</span> <span class="nav-text">西门子DR YISO</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DSA"><span class="nav-number">1.3.</span> <span class="nav-text">DSA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子DSA-Artis-zee-floor"><span class="nav-number">1.3.1.</span> <span class="nav-text">西门子DSA Artis zee floor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ArtiszeeIIIbiplaneMN-DSA"><span class="nav-number">1.3.2.</span> <span class="nav-text">ArtiszeeIIIbiplaneMN  DSA</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MR"><span class="nav-number">1.4.</span> <span class="nav-text">MR</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5T-Sympnony"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.5T-Sympnony</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-0T-Signa-HDxt"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.0T-Signa-HDxt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-MR-HDe"><span class="nav-number">1.4.3.</span> <span class="nav-text">GEMR  MR HDe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-Excite-1-5T"><span class="nav-number">1.4.4.</span> <span class="nav-text">GEMR  Excite 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-750-3-0T"><span class="nav-number">1.4.5.</span> <span class="nav-text">GEMR  750 3.0T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子MR-Verio-3-0T"><span class="nav-number">1.4.6.</span> <span class="nav-text">西门子MR_Verio 3.0T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE360光纤核磁，1-5T"><span class="nav-number">1.4.7.</span> <span class="nav-text">GE360光纤核磁，1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDe-1-5T"><span class="nav-number">1.4.8.</span> <span class="nav-text">HDe 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDe-1-5T-1"><span class="nav-number">1.4.9.</span> <span class="nav-text">HDe 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#飞利浦-Achieva"><span class="nav-number">1.4.10.</span> <span class="nav-text">飞利浦_Achieva</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ExciteHD-1-5T-MM3"><span class="nav-number">1.4.11.</span> <span class="nav-text">ExciteHD_1.5T_MM3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE-Excite-HDXT-1-5T"><span class="nav-number">1.4.12.</span> <span class="nav-text">GE Excite HDXT 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE-光纤360-1-5T"><span class="nav-number">1.4.13.</span> <span class="nav-text">GE 光纤360 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE-Hdxt-1-5T"><span class="nav-number">1.4.14.</span> <span class="nav-text">GE Hdxt 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子-AVANTO-1-5T"><span class="nav-number">1.4.15.</span> <span class="nav-text">西门子_AVANTO-1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR"><span class="nav-number">1.4.16.</span> <span class="nav-text">GEMR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE-Signa-Exaiter-1-5T"><span class="nav-number">1.4.17.</span> <span class="nav-text">GE Signa Exaiter 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE光纤360-1-5T"><span class="nav-number">1.4.18.</span> <span class="nav-text">GE光纤360-1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宁阳县第一人民医院-GEMR"><span class="nav-number">1.4.19.</span> <span class="nav-text">宁阳县第一人民医院_GEMR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-GE-HDE"><span class="nav-number">1.4.20.</span> <span class="nav-text">GEMR_GE-HDE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慈铭体检-奥亚医院-飞利浦MR"><span class="nav-number">1.4.21.</span> <span class="nav-text">慈铭体检(奥亚医院)-飞利浦MR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-光纤355"><span class="nav-number">1.4.22.</span> <span class="nav-text">GEMR-光纤355</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEsigna-excite-1-5T"><span class="nav-number">1.4.23.</span> <span class="nav-text">GEsigna excite   1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子MR-Magnetom-Skyra-3-0T"><span class="nav-number">1.4.24.</span> <span class="nav-text">西门子MR Magnetom Skyra 3.0T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子MR-MAGNETOM-ESSENZA-1-5T"><span class="nav-number">1.4.25.</span> <span class="nav-text">西门子MR MAGNETOM ESSENZA 1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-1"><span class="nav-number">1.4.26.</span> <span class="nav-text">GEMR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子MR-Essenza1-5T"><span class="nav-number">1.4.27.</span> <span class="nav-text">西门子MR-Essenza1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#西门子0-35T核磁"><span class="nav-number">1.4.28.</span> <span class="nav-text">西门子0.35T核磁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE光纤360-1-5T-MM3"><span class="nav-number">1.4.29.</span> <span class="nav-text">GE光纤360-1.5T_MM3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#飞利浦MR-Achieva-1-5T"><span class="nav-number">1.4.30.</span> <span class="nav-text">飞利浦MR-Achieva_1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#飞利浦MR-1-5T"><span class="nav-number">1.4.31.</span> <span class="nav-text">飞利浦MR-1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR360"><span class="nav-number">1.4.32.</span> <span class="nav-text">GEMR360</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-2"><span class="nav-number">1.4.33.</span> <span class="nav-text">GEMR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-1-5T"><span class="nav-number">1.4.34.</span> <span class="nav-text">GEMR-1.5T</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-3"><span class="nav-number">1.4.35.</span> <span class="nav-text">GEMR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEMR-MM3"><span class="nav-number">1.4.36.</span> <span class="nav-text">GEMR_MM3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GE355核磁-1-5T"><span class="nav-number">1.4.37.</span> <span class="nav-text">GE355核磁-1.5T</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WenLiangBao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '756ca4e66e7a3ba50532',
+    clientSecret: '840c7ad727c8f03ae56aee11949a8ac37a06ead1',
+    repo: 'BlogComments',
+    owner: 'slothjun',
+    admin: ['slothjun'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/MeBlog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

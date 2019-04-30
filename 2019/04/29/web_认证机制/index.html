@@ -96,23 +96,27 @@
 
 
 
-  <meta name="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-<meta property="og:type" content="website">
-<meta property="og:title" content="WenLiangBaoBlog">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/archives/2019/page/2/index.html">
+  <meta name="description" content="HTTP Basic Auth​    HTTP Basic Auth简单点说明就是每次请求API时都提供用户的username和password，简言之，Basic Auth是配合RESTful API 使用的最简单的认证方式，只需提供用户名密码即可，但由于有把用户名密码暴露给第三方客户端的风险，在生产环境下被使用的越来越少。因此，在开发对外开放的RESTful API时，尽量避免采用HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web认证机制">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/04/29/web_认证机制/index.html">
 <meta property="og:site_name" content="WenLiangBaoBlog">
-<meta property="og:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+<meta property="og:description" content="HTTP Basic Auth​    HTTP Basic Auth简单点说明就是每次请求API时都提供用户的username和password，简言之，Basic Auth是配合RESTful API 使用的最简单的认证方式，只需提供用户名密码即可，但由于有把用户名密码暴露给第三方客户端的风险，在生产环境下被使用的越来越少。因此，在开发对外开放的RESTful API时，尽量避免采用HTTP">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://39.104.171.29:80/image/oauth_storm.jpg">
+<meta property="og:image" content="http://39.104.171.29:80/image/token_auth_storm.jpg">
+<meta property="og:updated_time" content="2019-04-29T13:24:25.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WenLiangBaoBlog">
-<meta name="twitter:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+<meta name="twitter:title" content="web认证机制">
+<meta name="twitter:description" content="HTTP Basic Auth​    HTTP Basic Auth简单点说明就是每次请求API时都提供用户的username和password，简言之，Basic Auth是配合RESTful API 使用的最简单的认证方式，只需提供用户名密码即可，但由于有把用户名密码暴露给第三方客户端的风险，在生产环境下被使用的越来越少。因此，在开发对外开放的RESTful API时，尽量避免采用HTTP">
+<meta name="twitter:image" content="http://39.104.171.29:80/image/oauth_storm.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/archives/2019/page/2/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/04/29/web_认证机制/">
 
 
 
@@ -122,7 +126,7 @@
   };
 </script>
 
-  <title>归档 | WenLiangBaoBlog</title>
+  <title>web认证机制 | WenLiangBaoBlog</title>
   
 
 
@@ -180,7 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -241,7 +245,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -272,19 +276,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -331,397 +322,214 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/web_认证机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">web认证机制
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 20 篇日志。 继续努力。
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/python-入门篇/" itemprop="url">
             
-              <span itemprop="name">python-入门篇.md</span>
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-软件管理篇/" itemprop="url">
-            
-              <span itemprop="name">Linux-软件管理篇</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-用户用户组篇/" itemprop="url">
-            
-              <span itemprop="name">Linux-用户用户组篇</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="HTTP-Basic-Auth"><a href="#HTTP-Basic-Auth" class="headerlink" title="HTTP Basic Auth"></a>HTTP Basic Auth</h2><p>​    HTTP Basic Auth简单点说明就是每次请求API时都提供用户的username和password，简言之，Basic Auth是配合<br>RESTful API 使用的最简单的认证方式，只需提供用户名密码即可，但由于有把用户名密码暴露给第三方客户端的风险，在生产环境下被使用的越来越少。因此，在开发对外开放的RESTful API时，尽量避免采用HTTP Basic Auth</p>
+<p>个人观点：简单易于实现，安全性低</p>
+<h2 id="Cookie-Auth"><a href="#Cookie-Auth" class="headerlink" title="Cookie Auth"></a>Cookie Auth</h2><p>​    Cookie认证机制就是为一次请求认证在服务端创建一个Session对象，同时在客户端的浏览器端创建了一个Cookie<br>对象；通过客户端带上来Cookie对象来与服务器端的session对象匹配来实现状态管理的。默认的，当我们关闭浏览器的时候，cookie会被删除。但可以通过修改cookie 的expire time使cookie在一定时间内有效</p>
+<p>个人观点：可以使应用认证有状态性，要想保证认证的有状态性使得服务器的session频繁创建，会对服务器的开销增加压力。安全性：一般</p>
+<h2 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h2><p>​    OAuth（开放授权）是一个开放的授权标准，允许用户让第三方应用访问该用户在某一web服务上存储的私密的资<br>源（如照片，视频，联系人列表），而无需将用户名和密码提供给第三方应用。 OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们存放在特定服务提供者的数据。每一个令牌授权一个特定的第三方系统（例如，视频编辑网站)在特定的时段（例如，接下来的2小时内）内访问特定的资源（例如仅仅是某一相册中的视频）。这样，OAuth让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息，而非所有内容这种基于OAuth的认证机制适用于个人消者类的互联网产品，如社交类APP等应用，但是不太适合拥有自有认证权限管理的企业应用。</p>
+<p><img src="http://39.104.171.29:80/image/oauth_storm.jpg" alt></p>
+<p>个人观点：安全性高。OAuth让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息，而非所有内容这种基于OAuth的认证机制适用于个人消者类的互联网产品，如社交类APP等应用，但是不太适合拥有自有认证权限管理的企业应用。</p>
+<h2 id="Token-Auth"><a href="#Token-Auth" class="headerlink" title="Token Auth"></a>Token Auth</h2><p>使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：</p>
+<ol>
+<li>客户端使用用户名跟密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端</li>
+<li>客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里</li>
+<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 Token</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</li>
+</ol>
+<p><img src="http://39.104.171.29:80/image/token_auth_storm.jpg" alt></p>
+<p>Token Auth的优点</p>
+<p>​    支持跨域访问: Cookie是不允许垮域访问的，这一点对Token机制是不存在的，前提是传输的用户认证信息通过HTTP头传输.<br>    无状态(也称：服务端可扩展行):Token机制在服务端不需要存储session信息，因为Token 自身包含了所有登录用户的信息，只需要在客户端的cookie或本地介质存储状态信息.<br>    更适用CDN: 可以通过内容分发网络请求你服务端的所有资料（如：javascript，HTML,图片等），而你的服务端只要提供API即可.<br>    去耦: 不需要绑定到一个特定的身份验证方案。Token可以在任何地方生成，只要在你的API被调用的时候，你可以进行Token生成调用即可.<br>    更适用于移动应用: 当你的客户端是一个原生平台（iOS, Android，Windows 8等）时，Cookie是不被支持的（你需要通过Cookie容器进行处理），这时采用Token认证机制就会简单得多。<br>    CSRF:因为不再依赖于Cookie，所以你就不需要考虑对CSRF（跨站请求伪造）的防范。<br>性能: 一次网络往返时间（通过数据库查询session信息）总比做一次HMACSHA256计算 的Token验证和解析要费时得多.<br>    不需要为登录页面做特殊处理: 如果你使用Protractor 做功能测试的时候，不再需要为登录页面做特殊处理.<br>    基于标准化:你的API可以采用标准化的 JSON Web Token (JWT). 这个标准已经存在多个后端库（.NET, Ruby,<br>Java,Python, PHP）和多家公司的支持（如：Firebase,Google, Microsoft）.</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/jwt/" itemprop="url">
-            
-              <span itemprop="name">jwt</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/jodconverter/" itemprop="url">
-            
-              <span itemprop="name">jodconverter</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/gradle-wrapper/" itemprop="url">
-            
-              <span itemprop="name">Gradle Wrapper</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-命令篇/" itemprop="url">
-            
-              <span itemprop="name">Linux-命令篇</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-初识/" itemprop="url">
-            
-              <span itemprop="name">Linux-初识</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Docker/" itemprop="url">
-            
-              <span itemprop="name">Docker</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/ConfigurationProperties注解/" itemprop="url">
-            
-              <span itemprop="name">configuartionProperties注解</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WenLiangBao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2019/04/29/web_认证机制/" title="web认证机制">https://slothjun.github.io/MeBlog/2019/04/29/web_认证机制/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2019/04/29/vim篇/" rel="next" title="vim篇">
+                <i class="fa fa-chevron-left"></i> vim篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/MeBlog/2019/04/29/单词库/" rel="prev" title="单词库">
+                单词库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/MeBlog/archives/2019/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/archives/2019/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -741,8 +549,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -798,6 +615,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Basic-Auth"><span class="nav-number">1.</span> <span class="nav-text">HTTP Basic Auth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-Auth"><span class="nav-number">2.</span> <span class="nav-text">Cookie Auth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OAuth"><span class="nav-number">3.</span> <span class="nav-text">OAuth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Token-Auth"><span class="nav-number">4.</span> <span class="nav-text">Token Auth</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -927,6 +761,10 @@
 
 
   
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -937,6 +775,34 @@
   
   
 
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '756ca4e66e7a3ba50532',
+    clientSecret: '840c7ad727c8f03ae56aee11949a8ac37a06ead1',
+    repo: 'BlogComments',
+    owner: 'slothjun',
+    admin: ['slothjun'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
 
 
   
