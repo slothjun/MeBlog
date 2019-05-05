@@ -96,23 +96,26 @@
 
 
 
-  <meta name="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-<meta property="og:type" content="website">
-<meta property="og:title" content="WenLiangBaoBlog">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/archives/2019/04/page/2/index.html">
+  <meta name="description" content="目标1：了解base64基础知识，在python中会使用base64base64的编码原理（摘录）Base64是一种用64个字符来表示任意二进制数据的方法。  用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python_base64">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/05/05/pyhton_base64/index.html">
 <meta property="og:site_name" content="WenLiangBaoBlog">
-<meta property="og:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+<meta property="og:description" content="目标1：了解base64基础知识，在python中会使用base64base64的编码原理（摘录）Base64是一种用64个字符来表示任意二进制数据的方法。  用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.liaoxuefeng.com/files/attachments/949444125467040">
+<meta property="og:updated_time" content="2019-05-05T13:10:52.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WenLiangBaoBlog">
-<meta name="twitter:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+<meta name="twitter:title" content="python_base64">
+<meta name="twitter:description" content="目标1：了解base64基础知识，在python中会使用base64base64的编码原理（摘录）Base64是一种用64个字符来表示任意二进制数据的方法。  用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编">
+<meta name="twitter:image" content="https://www.liaoxuefeng.com/files/attachments/949444125467040">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/archives/2019/04/page/2/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/05/05/pyhton_base64/">
 
 
 
@@ -122,7 +125,7 @@
   };
 </script>
 
-  <title>归档 | WenLiangBaoBlog</title>
+  <title>python_base64 | WenLiangBaoBlog</title>
   
 
 
@@ -180,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -241,7 +244,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -272,19 +275,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -331,397 +321,208 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/05/pyhton_base64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">python_base64
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-05 21:10:52" itemprop="dateCreated datePublished" datetime="2019-05-05T21:10:52+08:00">2019-05-05</time>
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 22 篇日志。 继续努力。
-      </span>
-      
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/spring4/" itemprop="url">
             
-              <span itemprop="name">spring4</span>
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-软件管理篇/" itemprop="url">
-            
-              <span itemprop="name">Linux-软件管理篇</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <h2 id="目标1：了解base64基础知识，在python中会使用base64"><a href="#目标1：了解base64基础知识，在python中会使用base64" class="headerlink" title="目标1：了解base64基础知识，在python中会使用base64"></a>目标1：了解base64基础知识，在python中会使用base64</h2><h3 id="base64的编码原理（摘录）"><a href="#base64的编码原理（摘录）" class="headerlink" title="base64的编码原理（摘录）"></a>base64的编码原理（摘录）</h3><pre><code>Base64是一种用64个字符来表示任意二进制数据的方法。
 
-        
-        
+用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编码方法。
 
-        
+Base64的原理很简单，首先，准备一个包含64个字符的数组：
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+[&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, ... &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, ... &apos;0&apos;, &apos;1&apos;, ... &apos;+&apos;, &apos;/&apos;]
+然后，对二进制数据进行处理，每3个字节一组，一共是3x8=24bit，划为4组，每组正好6个bit：
+</code></pre><p><img src="https://www.liaoxuefeng.com/files/attachments/949444125467040" alt><br>    这样我们得到4个数字作为索引，然后查表，获得相应的4个字符，就是编码后的字符串。</p>
+<pre><code>所以，Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。
 
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-用户用户组篇/" itemprop="url">
-            
-              <span itemprop="name">Linux-用户用户组篇</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+如果要编码的二进制数据不是3的倍数，最后会剩下1个或2个字节怎么办？Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号，表示补了多少字节，解码的时候，会自动去掉。
+</code></pre><h3 id="python中的base64"><a href="#python中的base64" class="headerlink" title="python中的base64"></a>python中的base64</h3><h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.b64encode(<span class="string">b'binary\x00string'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.b64decode(<span class="string">b'YmluYXJ5AHN0cmluZw=='</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="safe"><a href="#safe" class="headerlink" title="safe"></a>safe</h4><pre><code>由于标准的Base64编码后可能出现字符+和/，在URL中就不能直接作为参数，所以又有一种&quot;url safe&quot;的base64编码，其实就是把字符+和/分别变成-和_
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.urlsafe_b64encode(<span class="string">b'i\xb7\x1d\xfb\xef\xff'</span>)</span><br></pre></td></tr></table></figure>
+</code></pre><p>以上内容参考<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017684507717184" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1016959663602400/1017684507717184</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/jwt/" itemprop="url">
-            
-              <span itemprop="name">jwt</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/jodconverter/" itemprop="url">
-            
-              <span itemprop="name">jodconverter</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/gradle-wrapper/" itemprop="url">
-            
-              <span itemprop="name">Gradle Wrapper</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-初识/" itemprop="url">
-            
-              <span itemprop="name">Linux-初识</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Linux-命令篇/" itemprop="url">
-            
-              <span itemprop="name">Linux-命令篇</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/Docker/" itemprop="url">
-            
-              <span itemprop="name">Docker</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/MeBlog/2019/04/29/ConfigurationProperties注解/" itemprop="url">
-            
-              <span itemprop="name">configuartionProperties注解</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T21:24:25+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WenLiangBao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2019/05/05/pyhton_base64/" title="python_base64">https://slothjun.github.io/MeBlog/2019/05/05/pyhton_base64/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2019/05/02/python_argparse/" rel="next" title="python_argparse">
+                <i class="fa fa-chevron-left"></i> python_argparse
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/MeBlog/archives/2019/04/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/archives/2019/04/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -741,8 +542,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -798,6 +608,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标1：了解base64基础知识，在python中会使用base64"><span class="nav-number">1.</span> <span class="nav-text">目标1：了解base64基础知识，在python中会使用base64</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#base64的编码原理（摘录）"><span class="nav-number">1.1.</span> <span class="nav-text">base64的编码原理（摘录）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的base64"><span class="nav-number">1.2.</span> <span class="nav-text">python中的base64</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密"><span class="nav-number">1.2.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解密"><span class="nav-number">1.2.2.</span> <span class="nav-text">解密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#safe"><span class="nav-number">1.2.3.</span> <span class="nav-text">safe</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -927,6 +754,10 @@
 
 
   
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -937,6 +768,34 @@
   
   
 
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '756ca4e66e7a3ba50532',
+    clientSecret: '840c7ad727c8f03ae56aee11949a8ac37a06ead1',
+    repo: 'BlogComments',
+    owner: 'slothjun',
+    admin: ['slothjun'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
 
 
   
