@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">22</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
 
   </li>
 
@@ -319,6 +319,191 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/08/maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/05/08/maven/" class="post-title-link" itemprop="url">maven</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-08 14:44:58" itemprop="dateCreated datePublished" datetime="2019-05-08T14:44:58+08:00">2019-05-08</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="maven介绍"><a href="#maven介绍" class="headerlink" title="maven介绍"></a>maven介绍</h2><h3 id="什么是maven"><a href="#什么是maven" class="headerlink" title="什么是maven"></a>什么是maven</h3><pre><code>Maven 的正确发音是[ˈmevən],而不是“马瘟”以及其他什么瘟。Maven 在美国是一个口语化的词
+语,代表专家、内行的意思。
+
+maven 是一个项目管理工具,它包含了一个项目对象模型（pom:project object model）一组标准集合,一个项目生命周期（project Lifecycle）,一个依赖管理系统（dependency management system）和用来运行定义在生命周期阶段中插件目标的逻辑
+</code></pre><h3 id="maven-能做什么"><a href="#maven-能做什么" class="headerlink" title="maven 能做什么"></a>maven 能做什么</h3><pre><code>1.引入jar包，可控制jar包冲突问题
+2.编译（java文件编译为字节码）
+3.运行测试用例
+4.打包
+</code></pre><h3 id="maven-的特点"><a href="#maven-的特点" class="headerlink" title="maven 的特点"></a>maven 的特点</h3><h4 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h4><pre><code>根据pom中的坐标将jar包导入项目中，可以做到jar包的复用。
+如将一个junit导入项目使用maven则体现为
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="一键构建"><a href="#一键构建" class="headerlink" title="一键构建"></a>一键构建</h4><pre><code>maven 规范化流程如下图
+</code></pre><p><img src="http://39.104.171.29/image/maven_stream.png" alt><br>    一键构建是指，如果用户需要实现上述流程中的清理，只需要使用maven自带的mvn clean命令即可完成项目的清空。<br>    如果是实现流程中的打包，则使用命令mvn package 即可，并且它还会执行打包前的所有流程项。</p>
+<h3 id="maven-安装后目录解析"><a href="#maven-安装后目录解析" class="headerlink" title="maven 安装后目录解析"></a>maven 安装后目录解析</h3><p>bin:存放了 maven 的命令,比如我们前面用到的 mvn tomcat:run<br>boot:存放了一些 maven 本身的引导程序,如类加载器等<br>conf:存放了 maven 的一些配置文件,如 setting.xml 文件<br>lib:存放了 maven 本身运行所需的一些 jar 包<br>在使用maven前电脑需安装jdk因为maven是一个用java编写</p>
+<h3 id="maven-命令"><a href="#maven-命令" class="headerlink" title="maven 命令"></a>maven 命令</h3><p>查看maven的帮助信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~$ mvn -help</span><br></pre></td></tr></table></figure></p>
+<p>maven 查看版本信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~$ mvn -v</span><br><span class="line">Apache Maven 3.6.0</span><br><span class="line">Maven home: xxx</span><br><span class="line">Java version: 1.8.0_191, vendor: Oracle Corporation, runtime: xxx</span><br><span class="line">java-8-openjdk-amd64/jre</span><br><span class="line">Default locale: zh_CN, platform encoding: UTF-8</span><br><span class="line">OS name: &quot;linux&quot;, version: &quot;4.18.0-18-generic&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</span><br></pre></td></tr></table></figure></p>
+<p>compile 编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn complie</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD FAILURE</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  0.145 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:24:23+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[ERROR] Unknown lifecycle phase &quot;complie&quot;. You must specify a valid lifecycle phase or a goal in the format &lt;plugin-prefix&gt;:&lt;goal&gt; or &lt;plugin-group-id&gt;:&lt;plugin-artifact-id&gt;[:&lt;plugin-version&gt;]:&lt;goal&gt;. Available lifecycle phases are: validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-clean, clean, post-clean, pre-site, site, post-site, site-deploy. -&gt; [Help 1]</span><br><span class="line">[ERROR] </span><br><span class="line">[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.</span><br><span class="line">[ERROR] Re-run Maven using the -X switch to enable full debug logging.</span><br><span class="line">[ERROR] </span><br><span class="line">[ERROR] For more information about the errors and possible solutions, please read the following articles:</span><br><span class="line">[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/LifecyclePhaseNotFoundException</span><br></pre></td></tr></table></figure></p>
+<p>mvn complie 打错 改为 compile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn compile</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Changes detected - recompiling the module!</span><br><span class="line">[INFO] Compiling 1 source file to /home/spiderbao/idea_dev/hello_maven/target/classes</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.307 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:26:40+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
+<p>test 测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn test</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Nothing to compile - all classes are up to date</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/test/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello_maven ---</span><br><span class="line">[INFO] No sources to compile</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ hello_maven ---</span><br><span class="line">[INFO] No tests to run.</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.072 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:27:10+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
+<p>由于没有写测试用例所以No tests to run.<br>clean 清空<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn clean</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello_maven ---</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  0.289 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:23:21+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
+<p>package 打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn package</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Nothing to compile - all classes are up to date</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/test/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello_maven ---</span><br><span class="line">[INFO] No sources to compile</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ hello_maven ---</span><br><span class="line">[INFO] No tests to run.</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-war-plugin:2.2:war (default-war) @ hello_maven ---</span><br><span class="line">[INFO] Packaging webapp</span><br><span class="line">[INFO] Assembling webapp [hello_maven] in [/home/spiderbao/idea_dev/hello_maven/target/hello_maven]</span><br><span class="line">[INFO] Processing war project</span><br><span class="line">[INFO] Copying webapp resources [/home/spiderbao/idea_dev/hello_maven/src/main/webapp]</span><br><span class="line">[INFO] Webapp assembled in [22 msecs]</span><br><span class="line">[INFO] Building war: /home/spiderbao/idea_dev/hello_maven/target/hello_maven.war</span><br><span class="line">[INFO] WEB-INF/web.xml already added, skipping</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.515 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:28:25+08:00</span><br></pre></td></tr></table></figure></p>
+<p>install 安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn install</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Nothing to compile - all classes are up to date</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/test/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello_maven ---</span><br><span class="line">[INFO] No sources to compile</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ hello_maven ---</span><br><span class="line">[INFO] No tests to run.</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-war-plugin:2.2:war (default-war) @ hello_maven ---</span><br><span class="line">[INFO] Packaging webapp</span><br><span class="line">[INFO] Assembling webapp [hello_maven] in [/home/spiderbao/idea_dev/hello_maven/target/hello_maven]</span><br><span class="line">[INFO] Processing war project</span><br><span class="line">[INFO] Copying webapp resources [/home/spiderbao/idea_dev/hello_maven/src/main/webapp]</span><br><span class="line">[INFO] Webapp assembled in [23 msecs]</span><br><span class="line">[INFO] Building war: /home/spiderbao/idea_dev/hello_maven/target/hello_maven.war</span><br><span class="line">[INFO] WEB-INF/web.xml already added, skipping</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-install-plugin:2.4:install (default-install) @ hello_maven ---</span><br><span class="line">[INFO] Installing /home/spiderbao/idea_dev/hello_maven/target/hello_maven.war to /home/spiderbao/.m2/repository/com/itheima/hello_maven/1.0-SNAPSHOT/hello_maven-1.0-SNAPSHOT.war</span><br><span class="line">[INFO] Installing /home/spiderbao/idea_dev/hello_maven/pom.xml to /home/spiderbao/.m2/repository/com/itheima/hello_maven/1.0-SNAPSHOT/hello_maven-1.0-SNAPSHOT.pom</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.604 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:42:26+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
+<h3 id="maven-库"><a href="#maven-库" class="headerlink" title="maven 库"></a>maven 库</h3><p>maven库可以分为3类分别是：</p>
+<h4 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h4><pre><code>本地仓库 :用来存储从远程仓库或中央仓库下载的插件和 jar 包,项目使用一些插件或 jar 包,
+</code></pre><p>优先从本地仓库查找</p>
+<h4 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h4><pre><code>远程仓库:如果本地需要插件或者 jar 包,本地仓库没有,默认去远程仓库下载。
+</code></pre><p>远程仓库可以在互联网内也可以在局域网内。</p>
+<h4 id="中央仓库"><a href="#中央仓库" class="headerlink" title="中央仓库"></a>中央仓库</h4><pre><code>中央仓库 :在 maven 软件中内置一个远程仓库地址 http://repo1.maven.org/maven2 ,它是中
+</code></pre><p>央仓库,服务于整个互联网,它是由 Maven 团队自己维护,里面存储了非常全的 jar 包,它包<br>含了世界上大部分流行的开源项目构件。</p>
+<h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><p>setting 文件主要用来配置maven的一些仓库设置，如本地仓库，远程仓库等。</p>
+<h4 id="全局setting-和用户-setting"><a href="#全局setting-和用户-setting" class="headerlink" title="全局setting 和用户 setting"></a>全局setting 和用户 setting</h4><p>在 maven 安装目录下的有 conf/setting.xml 文件,此 setting.xml 文件用于 maven 的所有 project<br>项目,它作为 maven 的全局配置。<br>如需要个性配置则需要在用户配置中设置,用户配置的 setting.xml 文件默认的位置在: ${user.dir}<br>/.m2/settings.xml 目录中,${user.dir} 指 windows 中的用户目录。或在项目中添加setting.xml<br>maven 会先找用户配置,如果找到则以用户配置文件为准,否则使用全局配置文件。</p>
+<p><img src="http://39.104.171.29/image/maven_001.png" alt></p>
+<h3 id="maven-工程认识"><a href="#maven-工程认识" class="headerlink" title="maven 工程认识"></a>maven 工程认识</h3><p>maven 工程的目录结构如下图</p>
+<p><img src="http://39.104.171.29/image/maven_002.png" alt></p>
+<p>作为一个 maven 工程,它的 src 目录和 pom.xml 是必备的。<br>进入 src 目录后,我们发现它里面的目录结构如下:</p>
+<p><img src="http://39.104.171.29/image/maven_004.png" alt></p>
+<p>src/main/java —— 存放项目的.java 文件<br>src/main/resources —— 存放项目资源文件,如 spring, hibernate 配置文件<br>src/test/java —— 存放所有单元测试.java 文件,如 JUnit 测试类<br>src/test/resources —— 测试资源文件<br>target —— 项目输出位置,编译后的 class 文件会输出到此目录<br>pom.xml——maven 项目核心配置文件<br>注意:如果是普通的 java 项目,那么就没有 webapp 目录。</p>
+<h3 id="maven-指令的生命周期"><a href="#maven-指令的生命周期" class="headerlink" title="maven 指令的生命周期"></a>maven 指令的生命周期</h3><p>maven 对项目构建过程分为三套相互独立的生命周期,请注意这里说的是“三套”,而且“相互独立”,<br>这三套生命周期分别是:</p>
+<p>Clean Lifecycle 在进行真正的构建之前进行一些清理工作。<br>Default Lifecycle 构建的核心部分,编译,测试,打包,部署等等。<br>Site Lifecycle 生成项目报告,站点,发布站点</p>
+<h3 id="maven-概念模型"><a href="#maven-概念模型" class="headerlink" title="maven 概念模型"></a>maven 概念模型</h3><p>Maven 包含了一个项目对象模型 (Project Object Model),一组标准集合,一个项目生命周期(Project<br>Lifecycle),一个依赖管理系统(Dependency Management System),和用来运行定义在生命周期阶段<br>(phase)中插件(plugin)目标(goal)的逻辑。</p>
+<p><img src="http://39.104.171.29/image/maven_005.png" alt></p>
+<p>  项目对象模型 (Project Object Model)<br>一个 maven 工程都有一个 pom.xml 文件,通过 pom.xml 文件定义项目的坐标、项目依赖、项目信息、<br>插件目标等。</p>
+<p>  依赖管理系统(Dependency Management System)<br>通过 maven 的依赖管理对项目所依赖的 jar 包进行统一管理。<br>比如:项目依赖 junit4.9,通过在 pom.xml 中定义 junit4.9 的依赖即使用 junit4.9,如下所示是 junit4.9<br>的依赖定义:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 依赖关系 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 此项目运行使用 junit,所以此项目依赖 junit --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- junit 的项目名称 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- junit 的模块名称 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- junit 版本 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 依赖范围:单元测试时使用 junit --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>   一个项目生命周期(Project Lifecycle)<br>使用 maven 完成项目的构建,项目构建包括:清理、编译、测试、部署等过程,maven 将这些<br>过程规范为一个生命周期,如下所示是生命周期的各各阶段:<br><img src="http://39.104.171.29/image/maven_006.png" alt><br>maven 通过执行一些简单命令即可实现上边生命周期的各各过程,比如执行 mvn compile 执行编译、<br>执行 mvn clean 执行清理。</p>
+<p>   一组标准集合<br>maven 将整个项目管理过程定义一组标准,比如:通过 maven 构建工程有标准的目录结构,有<br>标准的生命周期阶段、依赖管理有标准的坐标定义等。</p>
+<p>  插件(plugin)目标(goal)<br>maven 管理项目生命周期过程都是基于插件完成的</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1307,313 +1492,6 @@ Filename_Version-Reversion_Architecture.deb
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
-<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
-<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
-<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
-<p>​    动态加载用户的功能模块</p>
-<p>后端</p>
-<p>​    根据用户权限使用API</p>
-<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
-<p>​        问题：数据如何存储便于后期的使用与管理。</p>
-<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
-<p>​    数据传输</p>
-<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
-<p>​        方案：认证+校验</p>
-<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
-<p>​            校验 ：</p>
-<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
-<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
-<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
-<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
-<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/单词库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/单词库/" class="post-title-link" itemprop="url">单词库</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>operating  <a href="http://www.youdao.com/w/eng/operating/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>kernel <a href="http://www.youdao.com/w/eng/kernel/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>enterprise <a href="http://www.youdao.com/w/eng/enterprise/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>movie 电影 <a href="http://www.youdao.com/w/eng/movie/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>advanced <a href="http://www.youdao.com/w/eng/advanced/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>assume <a href="http://www.youdao.com/w/eng/assume/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>echo <a href="http://www.youdao.com/w/eng/echo/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>touch <a href="http://www.youdao.com/w/eng/touch/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>perusal <a href="http://www.youdao.com/w/eng/perusal/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>block <a href="http://www.youdao.com/w/eng/block/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>between <a href="http://www.youdao.com/w/eng/between/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>owner <a href="http://www.youdao.com/w/eng/owner/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/web_认证机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1716,6 +1594,163 @@ Filename_Version-Reversion_Architecture.deb
 <p>Token Auth的优点</p>
 <p>​    支持跨域访问: Cookie是不允许垮域访问的，这一点对Token机制是不存在的，前提是传输的用户认证信息通过HTTP头传输.<br>    无状态(也称：服务端可扩展行):Token机制在服务端不需要存储session信息，因为Token 自身包含了所有登录用户的信息，只需要在客户端的cookie或本地介质存储状态信息.<br>    更适用CDN: 可以通过内容分发网络请求你服务端的所有资料（如：javascript，HTML,图片等），而你的服务端只要提供API即可.<br>    去耦: 不需要绑定到一个特定的身份验证方案。Token可以在任何地方生成，只要在你的API被调用的时候，你可以进行Token生成调用即可.<br>    更适用于移动应用: 当你的客户端是一个原生平台（iOS, Android，Windows 8等）时，Cookie是不被支持的（你需要通过Cookie容器进行处理），这时采用Token认证机制就会简单得多。<br>    CSRF:因为不再依赖于Cookie，所以你就不需要考虑对CSRF（跨站请求伪造）的防范。<br>性能: 一次网络往返时间（通过数据库查询session信息）总比做一次HMACSHA256计算 的Token验证和解析要费时得多.<br>    不需要为登录页面做特殊处理: 如果你使用Protractor 做功能测试的时候，不再需要为登录页面做特殊处理.<br>    基于标准化:你的API可以采用标准化的 JSON Web Token (JWT). 这个标准已经存在多个后端库（.NET, Ruby,<br>Java,Python, PHP）和多家公司的支持（如：Firebase,Google, Microsoft）.</p>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
+<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
+<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
+<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
+<p>​    动态加载用户的功能模块</p>
+<p>后端</p>
+<p>​    根据用户权限使用API</p>
+<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
+<p>​        问题：数据如何存储便于后期的使用与管理。</p>
+<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
+<p>​    数据传输</p>
+<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
+<p>​        方案：认证+校验</p>
+<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
+<p>​            校验 ：</p>
+<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
+<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
+<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
+<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
+<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
           
         
       
@@ -1922,7 +1957,7 @@ Filename_Version-Reversion_Architecture.deb
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/springboot_param_validation/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/单词库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -1942,7 +1977,7 @@ Filename_Version-Reversion_Architecture.deb
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/springboot_param_validation/" class="post-title-link" itemprop="url">SpringBoot 参数校验</a>
+                <a href="/MeBlog/2019/04/29/单词库/" class="post-title-link" itemprop="url">单词库</a>
               
             
           </h1>
@@ -2004,65 +2039,18 @@ Filename_Version-Reversion_Architecture.deb
       
         
           
-            <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>​JSR-303 实现方案+JSR-349Bean 验证</p>
-<p>JSR-303的实现使用hibernate的实现 @Valid注解</p>
-<p>JSR-349Bean 验证的实现使用spring提供的@Validated注解</p>
-<h3 id="校验案例"><a href="#校验案例" class="headerlink" title="校验案例"></a>校验案例</h3><p>本案例的环境为，springboot2.0.5.RELEASE</p>
-<p>基础代码实现：</p>
-<ol>
-<li><p>导入坐标</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>此坐标包含了@Valid 和@Validated</p>
-</li>
-<li><p>创建入口启动类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.utils.IdWorker;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.domain.EntityScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.config.EnableJpaRepositories;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="meta">@ComponentScan</span>(<span class="string">"com.healthengine.department"</span>)</span><br><span class="line"><span class="meta">@EntityScan</span>(<span class="string">"com.healthengine.medpro.department"</span>)</span><br><span class="line"><span class="meta">@EnableJpaRepositories</span>(basePackages = <span class="string">"com.healthengine.department.dao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DepartmentApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(DepartmentApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//雪花算法用来生成id</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IdWorker <span class="title">idWorker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> IdWorker(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：此入口启动类要放在Controller包的同级目录下，因为@SpringBootApplication注解会扫描同级目录及其子目录。此类只放在java目录下是不对的。要放在Java目录下的下级目录下</p>
-<p><img src="http://39.104.171.29:80/image/springBoot-validatd1.png" alt>（正确目录格式）</p>
-<p><img src="http://39.104.171.29:80/image/springBoot-validatd2.png" alt>(错误目录格式)</p>
-</li>
-</ol>
-<ol start="3">
-<li><p>配置文件设置</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">9002</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">medpro-department</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/medprotwo</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    database:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    open-in-view:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建controller</p>
-</li>
-</ol>
-<p>案例使用到的java Bean</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.department.Department;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.Valid;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"co_company"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">594829320797158219L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"版本号不能为空"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String version;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date renewalDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date expirationDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyArea;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyAddress;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String businessLicenseId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String legalRepresentative;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyPhone;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String mailbox;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companySize;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String industry;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String remarks;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String auditState;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer state;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Double balance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line">    <span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line">    <span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"co_department"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"id不能为空"</span>)</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String pid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 企业id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String companyId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门编码，同级部门不可重复</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String manager;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 介绍</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String introduce;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建时间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Date create;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="基础校验（快速尝鲜）"><a href="#基础校验（快速尝鲜）" class="headerlink" title="基础校验（快速尝鲜）"></a>基础校验（快速尝鲜）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象参数校验</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test1"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test1</span><span class="params">(@Validated @RequestBody Company company)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="单个参数校验"><a href="#单个参数校验" class="headerlink" title="单个参数校验"></a>单个参数校验</h4><ol>
-<li><p>在类中加入@Validated</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span>()</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/validation"</span>)</span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValidationTest</span> </span>&#123;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法上对参数使用校验注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/test2"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test2</span><span class="params">(@NotNull(message = <span class="string">"年齡不能為空"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="分组校验"><a href="#分组校验" class="headerlink" title="分组校验"></a>分组校验</h3></li>
-<li><p>创建分组标识接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在要校验的字段上使用校验注解并添加groups属性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在方法上使用校验</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test3"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test3</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="嵌套属性校验"><a href="#嵌套属性校验" class="headerlink" title="嵌套属性校验"></a>嵌套属性校验</h3></li>
-<li><p>在要需要嵌套校验的对象上添加@valid</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 部门列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line"><span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在方法上使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Valid @Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="非嵌套属性校验"><a href="#非嵌套属性校验" class="headerlink" title="非嵌套属性校验"></a>非嵌套属性校验</h3></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="自定义校验规则"><a href="#自定义校验规则" class="headerlink" title="自定义校验规则"></a>自定义校验规则</h4><h3 id="校验异常类全局处理"><a href="#校验异常类全局处理" class="headerlink" title="校验异常类全局处理"></a>校验异常类全局处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department.exception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.entity.Result;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.converter.HttpMessageConversionException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.BindingResult;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.FieldError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.ObjectError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.MethodArgumentNotValidException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolation;</span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolationException;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单个参数异常抛出</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(ConstraintViolationException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">constraintViolationException</span><span class="params">(ConstraintViolationException ce)</span></span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(ConstraintViolation violation:ce.getConstraintViolations())&#123;</span><br><span class="line">            sb.append(<span class="string">"异常信息： "</span>+violation.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实体类异常抛出</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(MethodArgumentNotValidException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">validationBodyException</span><span class="params">(MethodArgumentNotValidException exception)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        BindingResult result = exception.getBindingResult();</span><br><span class="line">        <span class="keyword">if</span> (result.hasErrors()) &#123;</span><br><span class="line"></span><br><span class="line">            List&lt;ObjectError&gt; errors = result.getAllErrors();</span><br><span class="line"></span><br><span class="line">            errors.forEach(p -&gt;&#123;</span><br><span class="line"></span><br><span class="line">                FieldError fieldError = (FieldError) p;</span><br><span class="line">                sb.append(<span class="string">"异常字段："</span>+fieldError.getField()+<span class="string">" 异常信息："</span>+fieldError.getDefaultMessage()).append(System.lineSeparator());</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 参数类型转换错误</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception 错误</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 错误信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(HttpMessageConversionException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">parameterTypeException</span><span class="params">(HttpMessageConversionException exception)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,exception.getCause().getLocalizedMessage(),<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="案例后发现的缺陷"><a href="#案例后发现的缺陷" class="headerlink" title="案例后发现的缺陷"></a>案例后发现的缺陷</h3><ol>
-<li><p>使用hibernate参数校验注解后发现，使用Spring jpa 存入数据时也会产生校验。</p>
-<p>目前解决方案，使用注解时为其分组。这样可以解决存入数据库时的校验，当存入数据库前，想做校验需要自己手动编写逻辑。</p>
-</li>
-</ol>
+            <p>operating  <a href="http://www.youdao.com/w/eng/operating/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>kernel <a href="http://www.youdao.com/w/eng/kernel/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>enterprise <a href="http://www.youdao.com/w/eng/enterprise/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>movie 电影 <a href="http://www.youdao.com/w/eng/movie/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>advanced <a href="http://www.youdao.com/w/eng/advanced/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>assume <a href="http://www.youdao.com/w/eng/assume/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>echo <a href="http://www.youdao.com/w/eng/echo/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>touch <a href="http://www.youdao.com/w/eng/touch/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>perusal <a href="http://www.youdao.com/w/eng/perusal/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>block <a href="http://www.youdao.com/w/eng/block/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>between <a href="http://www.youdao.com/w/eng/between/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
+<p>owner <a href="http://www.youdao.com/w/eng/owner/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
 
           
         
@@ -2119,7 +2107,7 @@ Filename_Version-Reversion_Architecture.deb
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/spring4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -2139,7 +2127,7 @@ Filename_Version-Reversion_Architecture.deb
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
+                <a href="/MeBlog/2019/04/29/spring4/" class="post-title-link" itemprop="url">spring4</a>
               
             
           </h1>
@@ -2201,21 +2189,36 @@ Filename_Version-Reversion_Architecture.deb
       
         
           
-            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
-<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
-<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
-<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
-<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
-<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
-<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
-<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
-<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
-<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
-<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
-<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
-<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
+            <h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2><p>​    运行流程图</p>
+<p><img src="http://39.104.171.29/image/springMvc-generater.png" alt></p>
+<p>dispatcher Servlet 前端控制器（front Controller）核心</p>
+<p>快速尝鲜：</p>
+<h4 id="基于spring-搭建spring-mvc"><a href="#基于spring-搭建spring-mvc" class="headerlink" title="基于spring 搭建spring mvc"></a>基于spring 搭建spring mvc</h4><p>1.将DispatcherServlet 注册到web容器中</p>
+<pre><code>在 Servlet 3. 0 环境 中， 容器 会在 类 路径 中 查找 实现 javax. servlet. ServletContainerInitializer 接口 的 类， 如果 能 发现 的 话， 就会 用 它来 配置 Servlet 容器。
+</code></pre><p>​    Spring 提供 了 这个 接口 的 实现， 名为 SpringServletContainerInitializer。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@HandlesTypes(&#123;WebApplicationInitializer.class&#125;)</span><br><span class="line">public class SpringServletContainerInitializer implements ServletContainerInitializer</span><br></pre></td></tr></table></figure>
+<p>​    其中的HandlesTypes 是什么？</p>
+<p>1.Tomcat的主机容器在添加子容器时，会通过解析.xml并通过类加载器加载@HandlesTypes注解的类</p>
+<p>2.读取@HandlesTypes注解值值。并放入ServletContainerInitializers对应的Set集合中</p>
+<p>3.在ApplicationContext内部启动时会通知ServletContainerInitializers的onStart方法（）。这个onStart方法的第一个参数就是@HandlesTypes注解的值值指定的类集合</p>
+<p>4.在Spring应用中，对ServletContainerInitializers的实现就是SpringServletContainerInitializer，注解指定的类就是WebApplicationInitializer。</p>
+<p>通过上面解读过程我们知道，如果要想使用基于servlet3.0支持注解申明servlet。使用spring框架时的关注点就在WebApplicationInitializer接口中。</p>
+<p>如果个人有能力或者有兴趣的化可以自己通过实现WebApplicationInitializer接口来注册servlet。但是一般我们只需要使用spring进行过一些封装的AbstractAnnotationConfigDispatcherServletInitializer抽象类即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.web.servlet.support;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.lang.Nullable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.ObjectUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.WebApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.support.AnnotationConfigWebApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createRootApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getRootConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">            <span class="keyword">return</span> context;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createServletApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getServletConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getRootConfigClasses();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getServletConfigClasses();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 AbstractAnnotationConfigDispatcherServletInitializer注册容器并初始化上下文</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="配置Filter"><a href="#配置Filter" class="headerlink" title="配置Filter"></a>配置Filter</h4><h5 id="方式1：基于Disparther-Servlet-配置"><a href="#方式1：基于Disparther-Servlet-配置" class="headerlink" title="方式1：基于Disparther Servlet 配置"></a>方式1：基于Disparther Servlet 配置</h5><p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置filter</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="comment">//自己定义的filter 类（数组）</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="方式2：自行实现"><a href="#方式2：自行实现" class="headerlink" title="方式2：自行实现"></a>方式2：自行实现</h5><h4 id="处理Multipart格式的内容信息"><a href="#处理Multipart格式的内容信息" class="headerlink" title="处理Multipart格式的内容信息"></a>处理Multipart格式的内容信息</h4><p>​    1.配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义注册</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//Multipart 配置设置</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> MultipartConfigElement(<span class="string">"temp/medpro/"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.配置MultipartResolver Bean</p>
+<p>MultipartResolver 是springframework.web提供用于处理Multipart的接口规范</p>
+<p>​    1.CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求；               </p>
+<p>​    2.StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span> <span class="function"><span class="keyword">public</span> MultipartResolver <span class="title">multipartResolver</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StandardServletMultipartResolver();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">multipartHandle</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String originalFilename = multipartFile.getOriginalFilename();</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = multipartFile.getBytes();</span><br><span class="line">    String contentType = multipartFile.getContentType();</span><br><span class="line">    InputStream inputStream = multipartFile.getInputStream();</span><br><span class="line">    String name = multipartFile.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -2304,7 +2307,7 @@ Filename_Version-Reversion_Architecture.deb
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">22</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
 
   </li>
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/modelAttribute注解/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/springboot_param_validation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/modelAttribute注解/" class="post-title-link" itemprop="url">modelAttribute注解</a>
+                <a href="/MeBlog/2019/04/29/springboot_param_validation/" class="post-title-link" itemprop="url">SpringBoot 参数校验</a>
               
             
           </h1>
@@ -417,15 +417,65 @@
       
         
           
-            <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
-
-1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
-
-2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
-</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>基础controller</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
+            <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>​JSR-303 实现方案+JSR-349Bean 验证</p>
+<p>JSR-303的实现使用hibernate的实现 @Valid注解</p>
+<p>JSR-349Bean 验证的实现使用spring提供的@Validated注解</p>
+<h3 id="校验案例"><a href="#校验案例" class="headerlink" title="校验案例"></a>校验案例</h3><p>本案例的环境为，springboot2.0.5.RELEASE</p>
+<p>基础代码实现：</p>
+<ol>
+<li><p>导入坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此坐标包含了@Valid 和@Validated</p>
+</li>
+<li><p>创建入口启动类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.utils.IdWorker;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.domain.EntityScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.config.EnableJpaRepositories;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="meta">@ComponentScan</span>(<span class="string">"com.healthengine.department"</span>)</span><br><span class="line"><span class="meta">@EntityScan</span>(<span class="string">"com.healthengine.medpro.department"</span>)</span><br><span class="line"><span class="meta">@EnableJpaRepositories</span>(basePackages = <span class="string">"com.healthengine.department.dao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DepartmentApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(DepartmentApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//雪花算法用来生成id</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IdWorker <span class="title">idWorker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> IdWorker(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：此入口启动类要放在Controller包的同级目录下，因为@SpringBootApplication注解会扫描同级目录及其子目录。此类只放在java目录下是不对的。要放在Java目录下的下级目录下</p>
+<p><img src="http://39.104.171.29:80/image/springBoot-validatd1.png" alt>（正确目录格式）</p>
+<p><img src="http://39.104.171.29:80/image/springBoot-validatd2.png" alt>(错误目录格式)</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>配置文件设置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">9002</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">medpro-department</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/medprotwo</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    database:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    open-in-view:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建controller</p>
+</li>
+</ol>
+<p>案例使用到的java Bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.department.Department;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.Valid;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"co_company"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">594829320797158219L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"版本号不能为空"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String version;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date renewalDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date expirationDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyArea;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyAddress;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String businessLicenseId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String legalRepresentative;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyPhone;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String mailbox;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companySize;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String industry;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String remarks;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String auditState;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer state;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Double balance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line">    <span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line">    <span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"co_department"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"id不能为空"</span>)</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String pid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 企业id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String companyId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门编码，同级部门不可重复</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String manager;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 介绍</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String introduce;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建时间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Date create;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="基础校验（快速尝鲜）"><a href="#基础校验（快速尝鲜）" class="headerlink" title="基础校验（快速尝鲜）"></a>基础校验（快速尝鲜）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象参数校验</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test1"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test1</span><span class="params">(@Validated @RequestBody Company company)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="单个参数校验"><a href="#单个参数校验" class="headerlink" title="单个参数校验"></a>单个参数校验</h4><ol>
+<li><p>在类中加入@Validated</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span>()</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/validation"</span>)</span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValidationTest</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法上对参数使用校验注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/test2"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test2</span><span class="params">(@NotNull(message = <span class="string">"年齡不能為空"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="分组校验"><a href="#分组校验" class="headerlink" title="分组校验"></a>分组校验</h3></li>
+<li><p>创建分组标识接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在要校验的字段上使用校验注解并添加groups属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在方法上使用校验</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test3"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test3</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="嵌套属性校验"><a href="#嵌套属性校验" class="headerlink" title="嵌套属性校验"></a>嵌套属性校验</h3></li>
+<li><p>在要需要嵌套校验的对象上添加@valid</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 部门列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line"><span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在方法上使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Valid @Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="非嵌套属性校验"><a href="#非嵌套属性校验" class="headerlink" title="非嵌套属性校验"></a>非嵌套属性校验</h3></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义校验规则"><a href="#自定义校验规则" class="headerlink" title="自定义校验规则"></a>自定义校验规则</h4><h3 id="校验异常类全局处理"><a href="#校验异常类全局处理" class="headerlink" title="校验异常类全局处理"></a>校验异常类全局处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department.exception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.entity.Result;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.converter.HttpMessageConversionException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.BindingResult;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.FieldError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.ObjectError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.MethodArgumentNotValidException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolation;</span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolationException;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单个参数异常抛出</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(ConstraintViolationException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">constraintViolationException</span><span class="params">(ConstraintViolationException ce)</span></span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(ConstraintViolation violation:ce.getConstraintViolations())&#123;</span><br><span class="line">            sb.append(<span class="string">"异常信息： "</span>+violation.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实体类异常抛出</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(MethodArgumentNotValidException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">validationBodyException</span><span class="params">(MethodArgumentNotValidException exception)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        BindingResult result = exception.getBindingResult();</span><br><span class="line">        <span class="keyword">if</span> (result.hasErrors()) &#123;</span><br><span class="line"></span><br><span class="line">            List&lt;ObjectError&gt; errors = result.getAllErrors();</span><br><span class="line"></span><br><span class="line">            errors.forEach(p -&gt;&#123;</span><br><span class="line"></span><br><span class="line">                FieldError fieldError = (FieldError) p;</span><br><span class="line">                sb.append(<span class="string">"异常字段："</span>+fieldError.getField()+<span class="string">" 异常信息："</span>+fieldError.getDefaultMessage()).append(System.lineSeparator());</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 参数类型转换错误</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception 错误</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 错误信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(HttpMessageConversionException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">parameterTypeException</span><span class="params">(HttpMessageConversionException exception)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,exception.getCause().getLocalizedMessage(),<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="案例后发现的缺陷"><a href="#案例后发现的缺陷" class="headerlink" title="案例后发现的缺陷"></a>案例后发现的缺陷</h3><ol>
+<li><p>使用hibernate参数校验注解后发现，使用Spring jpa 存入数据时也会产生校验。</p>
+<p>目前解决方案，使用注解时为其分组。这样可以解决存入数据库时的校验，当存入数据库前，想做校验需要自己手动编写逻辑。</p>
+</li>
+</ol>
 
           
         
@@ -640,7 +690,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/spring4/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -660,7 +710,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/spring4/" class="post-title-link" itemprop="url">spring4</a>
+                <a href="/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
               
             
           </h1>
@@ -722,35 +772,167 @@
       
         
           
-            <h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2><p>​    运行流程图</p>
-<p><img src="http://39.104.171.29/image/springMvc-generater.png" alt></p>
-<p>dispatcher Servlet 前端控制器（front Controller）核心</p>
-<p>快速尝鲜：</p>
-<h4 id="基于spring-搭建spring-mvc"><a href="#基于spring-搭建spring-mvc" class="headerlink" title="基于spring 搭建spring mvc"></a>基于spring 搭建spring mvc</h4><p>1.将DispatcherServlet 注册到web容器中</p>
-<pre><code>在 Servlet 3. 0 环境 中， 容器 会在 类 路径 中 查找 实现 javax. servlet. ServletContainerInitializer 接口 的 类， 如果 能 发现 的 话， 就会 用 它来 配置 Servlet 容器。
-</code></pre><p>​    Spring 提供 了 这个 接口 的 实现， 名为 SpringServletContainerInitializer。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@HandlesTypes(&#123;WebApplicationInitializer.class&#125;)</span><br><span class="line">public class SpringServletContainerInitializer implements ServletContainerInitializer</span><br></pre></td></tr></table></figure>
-<p>​    其中的HandlesTypes 是什么？</p>
-<p>1.Tomcat的主机容器在添加子容器时，会通过解析.xml并通过类加载器加载@HandlesTypes注解的类</p>
-<p>2.读取@HandlesTypes注解值值。并放入ServletContainerInitializers对应的Set集合中</p>
-<p>3.在ApplicationContext内部启动时会通知ServletContainerInitializers的onStart方法（）。这个onStart方法的第一个参数就是@HandlesTypes注解的值值指定的类集合</p>
-<p>4.在Spring应用中，对ServletContainerInitializers的实现就是SpringServletContainerInitializer，注解指定的类就是WebApplicationInitializer。</p>
-<p>通过上面解读过程我们知道，如果要想使用基于servlet3.0支持注解申明servlet。使用spring框架时的关注点就在WebApplicationInitializer接口中。</p>
-<p>如果个人有能力或者有兴趣的化可以自己通过实现WebApplicationInitializer接口来注册servlet。但是一般我们只需要使用spring进行过一些封装的AbstractAnnotationConfigDispatcherServletInitializer抽象类即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.web.servlet.support;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.lang.Nullable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.ObjectUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.WebApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.support.AnnotationConfigWebApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createRootApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getRootConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">            <span class="keyword">return</span> context;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createServletApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getServletConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getRootConfigClasses();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getServletConfigClasses();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 AbstractAnnotationConfigDispatcherServletInitializer注册容器并初始化上下文</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="配置Filter"><a href="#配置Filter" class="headerlink" title="配置Filter"></a>配置Filter</h4><h5 id="方式1：基于Disparther-Servlet-配置"><a href="#方式1：基于Disparther-Servlet-配置" class="headerlink" title="方式1：基于Disparther Servlet 配置"></a>方式1：基于Disparther Servlet 配置</h5><p>​    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置filter</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="comment">//自己定义的filter 类（数组）</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="方式2：自行实现"><a href="#方式2：自行实现" class="headerlink" title="方式2：自行实现"></a>方式2：自行实现</h5><h4 id="处理Multipart格式的内容信息"><a href="#处理Multipart格式的内容信息" class="headerlink" title="处理Multipart格式的内容信息"></a>处理Multipart格式的内容信息</h4><p>​    1.配置类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义注册</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//Multipart 配置设置</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> MultipartConfigElement(<span class="string">"temp/medpro/"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.配置MultipartResolver Bean</p>
-<p>MultipartResolver 是springframework.web提供用于处理Multipart的接口规范</p>
-<p>​    1.CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求；               </p>
-<p>​    2.StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span> <span class="function"><span class="keyword">public</span> MultipartResolver <span class="title">multipartResolver</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StandardServletMultipartResolver();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.测试代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">multipartHandle</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String originalFilename = multipartFile.getOriginalFilename();</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = multipartFile.getBytes();</span><br><span class="line">    String contentType = multipartFile.getContentType();</span><br><span class="line">    InputStream inputStream = multipartFile.getInputStream();</span><br><span class="line">    String name = multipartFile.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
+<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
+<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
+<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
+<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
+<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
+<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
+<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
+<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
+<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
+<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
+<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
+<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/modelAttribute注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/modelAttribute注解/" class="post-title-link" itemprop="url">modelAttribute注解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
+
+1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
+
+2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
+</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基础controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
 
           
         
@@ -1997,271 +2179,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-命令篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h3><h4 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h4><p><img src="http://39.104.171.29/image/1553455157361.png" alt="1553455157361"></p>
-<h4 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h4><p><img src="http://39.104.171.29/image/1553455753059.png" alt="1553455753059"></p>
-<p>使用 -a 时会看到有的文件名前有.此时表示此文件为隐藏文件。</p>
-<p>使用-l 查看详细信息</p>
-<p><img src="http://39.104.171.29/image/1553456138517.png" alt="1553456138517"></p>
-<p>上面1表示此文件的链接计数</p>
-<p><img src="http://39.104.171.29/image/1553456202080.png" alt="1553456202080"></p>
-<p>上面的root 表示文件的所有者，也就是文件的创建人或负责人，一个文件只能有一个所有者</p>
-<p><img src="http://39.104.171.29/image/1553456372734.png" alt="1553456372734"></p>
-<p>上面表示文件的所属组，一个文件只能拥有一个所有组</p>
-<p>在-l 后追加h -lh 表示人性化显示，使文件的大小更直观、</p>
-<p><img src="http://39.104.171.29/image/1553456551687.png" alt="1553456551687"></p>
-<p>ls -i 可以获取文件的I节点或获取文件的id号</p>
-<p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
-<p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
-<p>cd - 回到上次操作的目录</p>
-<p>cd ~ 回到当前用户的根目录</p>
-<p>cd 回到当前用户的根目录</p>
-<p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
-<p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
-<p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
-<p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
-<p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
-<p>tree 命令以目录树的方式显示文件结构信息</p>
-<p>使用tree 时可能会遇到command not  found ,这时就需要安装此命令</p>
-<p>本人使用的是centos 7 的系统 发现使用yum 无法获取tree的安装包</p>
-<p>所以只能使用源码包安装，于是在<a href="ftp://mama.indstate.edu/linux/tree/" target="_blank" rel="noopener">ftp://mama.indstate.edu/linux/tree/</a> 下载了 源码包</p>
-<p>在/usr/local/src 下使用make 编译了源码包</p>
-<h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
-<p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
-<p>cat 适用于查看简短文件内容，如shell脚本</p>
-<p><img src="http://39.104.171.29/image/1553464171496.png" alt="1553464171496"></p>
-<p><img src="http://39.104.171.29/image/1553464603686.png" alt="1553464603686"></p>
-<p>less 进入后使用 /关键字 可进行反白关键字高亮显示，同时按N键可以跳到下一个关键字，在高亮的关键字后加入！可以取消高亮效果</p>
-<p><img src="http://39.104.171.29/image/1553465266101.png" alt="1553465266101"></p>
-<p><img src="http://39.104.171.29/image/1553465409489.png" alt="1553465409489"></p>
-<p><img src="http://39.104.171.29/image/1553600438679.png" alt="1553600438679"></p>
-<p><img src="http://39.104.171.29/image/1553601846764.png" alt="1553601846764"></p>
-<p>硬链接的生成命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln /tmp/china/changzhi /root/china.hard</span><br></pre></td></tr></table></figure>
-<p>硬链接 共享文件的inode ,但是文件夹不能创建硬链接。</p>
-<h4 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h4><p>权限分为了三类 r w s 读 写 执行</p>
-<p><img src="http://39.104.171.29/image/1553602141983.png" alt="1553602141983"></p>
-<p><img src="http://39.104.171.29/image/1553602447029.png" alt="1553602447029"></p>
-<p><img src="http://39.104.171.29/image/1553603202959.png" alt="1553603202959"></p>
-<p><img src="http://39.104.171.29/image/1553603260245.png" alt="1553603260245"></p>
-<h5 id="其他权限管理命令"><a href="#其他权限管理命令" class="headerlink" title="其他权限管理命令"></a>其他权限管理命令</h5><p><img src="http://39.104.171.29/image/1553605959901.png" alt="1553605959901"></p>
-<p><img src="http://39.104.171.29/image/1553606015581.png" alt="1553606015581"></p>
-<p><img src="http://39.104.171.29/image/1553606075600.png" alt="1553606075600"></p>
-<h4 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h4><h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p><img src="http://39.104.171.29/image/1553749537377.png" alt="1553749537377"></p>
-<p><img src="http://39.104.171.29/image/1553749679807.png" alt="1553749679807"></p>
-<p>-name 加通配符可实现模糊搜索文件</p>
-<p>通配符 * 表示多个字符</p>
-<p>通配符 ？表示单个字符</p>
-<p><img src="http://39.104.171.29/image/1553752715110.png" alt="1553752715110"></p>
-<p><img src="http://39.104.171.29/image/1553752887543.png" alt="1553752887543"></p>
-<p><img src="http://39.104.171.29/image/1553752983831.png" alt="1553752983831"></p>
-<h5 id="其他搜索命令"><a href="#其他搜索命令" class="headerlink" title="其他搜索命令"></a>其他搜索命令</h5><p><img src="http://39.104.171.29/image/1553755683871.png" alt="1553755683871"></p>
-<p>此查询基于文件资料库所以，查询时对比find占用系统资源较少。</p>
-<p>存在缺陷无法查询tmp目录下的文件</p>
-<p>不能实时查询，如果刚创建的数据没有录入文件资料库时。会导致无法查询到文件。此时使用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb</span><br></pre></td></tr></table></figure>
-<p>然后再次使用    locate可查找到文件</p>
-<p><img src="http://39.104.171.29/image/1553756124804.png" alt="1553756124804"></p>
-<p><img src="http://39.104.171.29/image/1553756360865.png" alt="1553756360865"></p>
-<p><img src="http://39.104.171.29/image/1553757094395.png" alt="1553757094395"></p>
-<h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><p><img src="http://39.104.171.29/image/1553757468067.png" alt="1553757468067"></p>
-<p>帮助命令类型 1表示命令，5表示配置文件</p>
-<p>命令名称：whatis</p>
-<p>NAME<br>       whatis - 在 whatis 数据库里查找完整的单词</p>
-<p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
-<p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
-<p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#110;&#x79;&#95;&#116;&#x79;&#64;&#x32;&#x36;&#51;&#x2e;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#116;&#x6f;&#110;&#x79;&#95;&#116;&#x79;&#64;&#x32;&#x36;&#51;&#x2e;&#x6e;&#101;&#116;</a></p>
-<p>[中文版最新更新]<br>       2001/9/8</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p>命令名称：apropos</p>
-<p>NAME<br>       apropos - 在 whatis 数据库中查找字符串</p>
-<p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
-<p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
-<p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#x79;&#x5f;&#x74;&#121;&#x40;&#x32;&#x36;&#51;&#x2e;&#110;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#x79;&#x5f;&#x74;&#121;&#x40;&#x32;&#x36;&#51;&#x2e;&#110;&#101;&#116;</a></p>
-<p>[中文版最新更新]<br>       2001/9/20</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
-<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><p><img src="http://39.104.171.29/image/1553826507188.png" alt="1553826507188"></p>
-<p><img src="http://39.104.171.29/image/1553826897084.png" alt="1553826897084"></p>
-<p><img src="http://39.104.171.29/image/1553826911136.png" alt="1553826911136"></p>
-<p><img src="http://39.104.171.29/image/1553827412666.png" alt="1553827412666"></p>
-<p><img src="http://39.104.171.29/image/1553827301824.png" alt="1553827301824"></p>
-<p><img src="http://39.104.171.29/image/1553828266112.png" alt="1553828266112"></p>
-<h4 id="压缩和解压命令"><a href="#压缩和解压命令" class="headerlink" title="压缩和解压命令"></a>压缩和解压命令</h4><h5 id="压缩格式"><a href="#压缩格式" class="headerlink" title="压缩格式"></a>压缩格式</h5><p>gz  zip  rar    其中 zip 是windos和Linux 都支持的压缩格式</p>
-<h5 id="压缩解压命令使用"><a href="#压缩解压命令使用" class="headerlink" title="压缩解压命令使用"></a>压缩解压命令使用</h5><p><img src="http://39.104.171.29/image/1553831418375.png" alt="1553831418375"></p>
-<p><img src="http://39.104.171.29/image/1553831583899.png" alt="1553831583899"></p>
-<p>gzip的缺陷就是目前只能压缩文件，并且压缩后是不保留源文件的。</p>
-<p><img src="http://39.104.171.29/image/1553831796484.png" alt="1553831796484"></p>
-<p>tar 格式表示打包</p>
-<p><img src="http://39.104.171.29/image/1553832058168.png" alt="1553832058168"></p>
-<p><img src="http://39.104.171.29/image/1553837000891.png" alt="1553837000891"></p>
-<p><img src="http://39.104.171.29/image/1553837160959.png" alt="1553837160959"></p>
-<p><img src="http://39.104.171.29/image/1553837197214.png" alt="1553837197214"></p>
-<p><img src="http://39.104.171.29/image/1553837357376.png" alt="1553837357376"></p>
-<p><img src="http://39.104.171.29/image/1553837563419.png" alt="1553837563419"></p>
-<h4 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h4><p><img src="http://39.104.171.29/image/1553837724986.png" alt="1553837724986"></p>
-<p><img src="http://39.104.171.29/image/1553837906794.png" alt="1553837906794"></p>
-<p><img src="http://39.104.171.29/image/1553838044540.png" alt="1553838044540"></p>
-<p><img src="http://39.104.171.29/image/1553838208557.png" alt="1553838208557"></p>
-<p><img src="http://39.104.171.29/image/1553838404765.png" alt="1553838404765"></p>
-<p>mail 命令操作时需要使用CTRL+D 才可生效，如执邮件的删除功能，需要除了使用delete命令后还需使用</p>
-<p>CTRL+D才可。</p>
-<p>mail 进入使用界面后， h表示查看列表，d表示删除指定的邮件</p>
-<p><img src="http://39.104.171.29/image/1553838607987.png" alt="1553838607987"></p>
-<p><img src="http://39.104.171.29/image/1553838817826.png" alt="1553838817826"></p>
-<p><img src="http://39.104.171.29/image/1553838803865.png" alt="1553838803865"></p>
-<p><img src="http://39.104.171.29/image/1553839077239.png" alt="1553839077239"></p>
-<p><img src="http://39.104.171.29/image/1553841741827.png" alt="1553841741827"></p>
-<p><img src="http://39.104.171.29/image/1553839651829.png" alt="1553839651829"></p>
-<h4 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h4><p><img src="http://39.104.171.29/image/1553842448954.png" alt="1553842448954"></p>
-<h4 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h4><p><img src="http://39.104.171.29/image/1554102568116.png" alt="1554102568116"></p>
-<p><img src="http://39.104.171.29/image/1554102608485.png" alt="1554102608485"></p>
-<p><img src="http://39.104.171.29/image/1554102624441.png" alt="1554102624441"></p>
-<p><img src="http://39.104.171.29/image/1554102670799.png" alt="1554102670799"></p>
-<p><img src="http://39.104.171.29/image/1554102699933.png" alt="1554102699933"></p>
-<p><img src="http://39.104.171.29/image/1554102724817.png" alt="1554102724817"></p>
-<p>修改系统默认运行级别代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 2</span><br></pre></td></tr></table></figure>
-<p><img src="http://39.104.171.29/image/1554102791796.png" alt="1554102791796"> </p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2310,7 +2227,7 @@
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
