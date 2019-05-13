@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">24</span></a>
 
   </li>
 
@@ -319,6 +319,158 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
+<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
+<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
+<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
+<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
+<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
+<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
+<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
+<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
+<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
+<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
+<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
+<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1004,6 +1156,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-用户用户组篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/Linux-用户用户组篇/" class="post-title-link" itemprop="url">Linux-用户用户组篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><p>如何去做用户管理</p>
+<p>越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。</p>
+<p>在Linux中主要是通过用户配置文件来查看和修改用户信息。</p>
+<h2 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h2><h3 id="用户信息文件-etc-passwd"><a href="#用户信息文件-etc-passwd" class="headerlink" title="用户信息文件/etc/passwd"></a>用户信息文件/etc/passwd</h3><p>这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。</p>
+<p>文档解读：</p>
+<p>​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别附有什么含有</p>
+<p>​    1.用户名称</p>
+<p>​    2.密码标识 ，具体密码信息需要进入/etc/shadow查看，并且密码采用SHA512散列加密算法.</p>
+<p>​    3.uid 用户的id标识 0表示超级用户，而且前499已经被系统占用</p>
+<p>​    4.gid 表示用户组id标识 这里指的是用户的初始组</p>
+<p>​    5.用户说明信息</p>
+<p>​    6.用户的home 目录</p>
+<p>​    7.用户登陆后所能执行的shell脚本</p>
+<h3 id="影子文件-etc-shadow"><a href="#影子文件-etc-shadow" class="headerlink" title="影子文件/etc/shadow"></a>影子文件/etc/shadow</h3><p>​    文件中存储了关于用户的密码的一些信息</p>
+<p>​    同样每行表示每个用户的密码信息，每行分为6个字段</p>
+<p>​    1.用户名称</p>
+<p>​    2.密码 经过加密后的，被锁定的密码前会加入！！</p>
+<p>​    3.密码最后一次修改日期</p>
+<p>​    4.密码的两次修改时间间隔（和3做比较）</p>
+<p>​    5.密码的有效期（和3做比较）</p>
+<p>​    6.密码修改到期前的警告天数（和5做比较）</p>
+<h3 id="组织信息文件-etc-group和组密码文件-etc-gshadow"><a href="#组织信息文件-etc-group和组密码文件-etc-gshadow" class="headerlink" title="组织信息文件/etc/group和组密码文件/etc/gshadow"></a>组织信息文件/etc/group和组密码文件/etc/gshadow</h3><p>​    /etc/group 存储了信息用户组的信息</p>
+<p>​    /etc/gshadow 存储了用户组管理员以及密码的一些信息</p>
+<p>​    具体详情 可查阅 man 5 gshadow</p>
+<h2 id="用户管理相关的文件"><a href="#用户管理相关的文件" class="headerlink" title="用户管理相关的文件"></a>用户管理相关的文件</h2><p>​    1.用户的家目录</p>
+<p>​        /home/用户名称 或/root/</p>
+<p>​    2.用户邮箱目录</p>
+<p>​        /var/spool/mail/用户名称</p>
+<p>​    3.用户模板目录</p>
+<p>​        /etc/skel</p>
+<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><p>​    添加用户 useradd [选项] 用户名</p>
+<p>​    指定修改用户密码 passwd  [选项]  用户名</p>
+<p>​    修改用户信息 usermod [选项]  用户名</p>
+<p>​    删除用户 userdel [选项] 用户名</p>
+<p>​    切换用户 su [选项] 用户名</p>
+<p>​        “-” 切换后使用切换用户的环境</p>
+<p>​        “-c” 仅执行一次命令</p>
+<h2 id="用户组管理命令"><a href="#用户组管理命令" class="headerlink" title="用户组管理命令"></a>用户组管理命令</h2><p>​    添加用户组 groupadd [选项] 组名</p>
+<p>​    修改用户组 groupmod [选项] 组名</p>
+<p>​    删除用户组 groupdel [选项] 组名</p>
+<p>​    把用户加入组中 gpasswd 选项 组名</p>
+<p>​        “-a” 用户名 把用户加入组</p>
+<p>​        “-d”用户名 把用户从组中删除</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-软件管理篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1235,187 +1568,6 @@
 <p>###脚本安装包</p>
 <p><img src="http://39.104.171.29/image/1554368570910.png" alt="1554368570910"></p>
 <p><img src="http://39.104.171.29/image/1554368673263.png" alt="1554368673263"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-用户用户组篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/Linux-用户用户组篇/" class="post-title-link" itemprop="url">Linux-用户用户组篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><p>如何去做用户管理</p>
-<p>越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。</p>
-<p>在Linux中主要是通过用户配置文件来查看和修改用户信息。</p>
-<h2 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h2><h3 id="用户信息文件-etc-passwd"><a href="#用户信息文件-etc-passwd" class="headerlink" title="用户信息文件/etc/passwd"></a>用户信息文件/etc/passwd</h3><p>这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。</p>
-<p>文档解读：</p>
-<p>​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别附有什么含有</p>
-<p>​    1.用户名称</p>
-<p>​    2.密码标识 ，具体密码信息需要进入/etc/shadow查看，并且密码采用SHA512散列加密算法.</p>
-<p>​    3.uid 用户的id标识 0表示超级用户，而且前499已经被系统占用</p>
-<p>​    4.gid 表示用户组id标识 这里指的是用户的初始组</p>
-<p>​    5.用户说明信息</p>
-<p>​    6.用户的home 目录</p>
-<p>​    7.用户登陆后所能执行的shell脚本</p>
-<h3 id="影子文件-etc-shadow"><a href="#影子文件-etc-shadow" class="headerlink" title="影子文件/etc/shadow"></a>影子文件/etc/shadow</h3><p>​    文件中存储了关于用户的密码的一些信息</p>
-<p>​    同样每行表示每个用户的密码信息，每行分为6个字段</p>
-<p>​    1.用户名称</p>
-<p>​    2.密码 经过加密后的，被锁定的密码前会加入！！</p>
-<p>​    3.密码最后一次修改日期</p>
-<p>​    4.密码的两次修改时间间隔（和3做比较）</p>
-<p>​    5.密码的有效期（和3做比较）</p>
-<p>​    6.密码修改到期前的警告天数（和5做比较）</p>
-<h3 id="组织信息文件-etc-group和组密码文件-etc-gshadow"><a href="#组织信息文件-etc-group和组密码文件-etc-gshadow" class="headerlink" title="组织信息文件/etc/group和组密码文件/etc/gshadow"></a>组织信息文件/etc/group和组密码文件/etc/gshadow</h3><p>​    /etc/group 存储了信息用户组的信息</p>
-<p>​    /etc/gshadow 存储了用户组管理员以及密码的一些信息</p>
-<p>​    具体详情 可查阅 man 5 gshadow</p>
-<h2 id="用户管理相关的文件"><a href="#用户管理相关的文件" class="headerlink" title="用户管理相关的文件"></a>用户管理相关的文件</h2><p>​    1.用户的家目录</p>
-<p>​        /home/用户名称 或/root/</p>
-<p>​    2.用户邮箱目录</p>
-<p>​        /var/spool/mail/用户名称</p>
-<p>​    3.用户模板目录</p>
-<p>​        /etc/skel</p>
-<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><p>​    添加用户 useradd [选项] 用户名</p>
-<p>​    指定修改用户密码 passwd  [选项]  用户名</p>
-<p>​    修改用户信息 usermod [选项]  用户名</p>
-<p>​    删除用户 userdel [选项] 用户名</p>
-<p>​    切换用户 su [选项] 用户名</p>
-<p>​        “-” 切换后使用切换用户的环境</p>
-<p>​        “-c” 仅执行一次命令</p>
-<h2 id="用户组管理命令"><a href="#用户组管理命令" class="headerlink" title="用户组管理命令"></a>用户组管理命令</h2><p>​    添加用户组 groupadd [选项] 组名</p>
-<p>​    修改用户组 groupmod [选项] 组名</p>
-<p>​    删除用户组 groupdel [选项] 组名</p>
-<p>​    把用户加入组中 gpasswd 选项 组名</p>
-<p>​        “-a” 用户名 把用户加入组</p>
-<p>​        “-d”用户名 把用户从组中删除</p>
 
           
         
@@ -2023,177 +2175,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/gradle-wrapper/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/gradle-wrapper/" class="post-title-link" itemprop="url">Gradle Wrapper</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="关于Gradle-Wrapper"><a href="#关于Gradle-Wrapper" class="headerlink" title="关于Gradle Wrapper"></a>关于Gradle Wrapper</h1><p>推荐的方式执行任何Gradle构建的帮助下Gradle包装器(总之只是“包装器”)。包装是一个脚本,该脚本调用它宣布版本,必要时预先下载它。因此,开发人员可以用Gradle项目迅速而不必遵循手动安装过程节省贵公司的时间和金钱 </p>
-<p><img src="https://docs.gradle.org/current/userguide/img/wrapper-workflow.png" alt></p>
-<p>你将获得以下好处：</p>
-<p>同一版本</p>
-<p>减低了版本统一的维护成本，只需在wrapper 文件下声明处修改版本就可以</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">task wrapper(type: Wrapper) &#123;</span><br><span class="line">    gradleVersion = &apos;1.11&apos; //修改此处版本</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用wrapper-的3中情况"><a href="#使用wrapper-的3中情况" class="headerlink" title="使用wrapper 的3中情况"></a>使用wrapper 的3中情况</h2><h3 id="创建一个新的项目并加入wrapper"><a href="#创建一个新的项目并加入wrapper" class="headerlink" title="创建一个新的项目并加入wrapper"></a>创建一个新的项目并加入wrapper</h3><ol>
-<li><p>在自己指定的工作空间目录下运行如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建指令</p>
-<p>–gradle-version ：用于指定gradle 的版本</p>
-<p>–distribution-type ：用于指定gradle的类型 bin 或 all</p>
-<p>–gradle-distribution-url : 用于指导gradle的下载路径</p>
-<p>–gradle-distribution-sha256-sum ：用于指定编码格式</p>
-<p>案例：创建gradle 版本为5.1.1的all类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper --gradle-version 5.1.1 --distribution-type all</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建后的目录结构图</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├── gradle</span><br><span class="line">│   └── wrapper</span><br><span class="line">│       ├── gradle-wrapper.jar</span><br><span class="line">│       └── gradle-wrapper.properties</span><br><span class="line">├── gradlew</span><br><span class="line">└── gradlew.bat</span><br></pre></td></tr></table></figure>
-<p>gradle-wrapper.jar  wrapper的源文件</p>
-<p>gradle-wrapper.properties  wrapper的版本等配置属性</p>
-<p>gradlew  shell脚本工具</p>
-<p>gradlew.bat windows 批处理工具</p>
-</li>
-</ol>
-<h3 id="运行已经加入wrapper的项目"><a href="#运行已经加入wrapper的项目" class="headerlink" title="运行已经加入wrapper的项目"></a>运行已经加入wrapper的项目</h3><ol>
-<li><p>在项目目录下运行下列代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew.bat build</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="在已有wrapper的gradle项目中更新gradle的版本为最新。"><a href="#在已有wrapper的gradle项目中更新gradle的版本为最新。" class="headerlink" title="在已有wrapper的gradle项目中更新gradle的版本为最新。"></a>在已有wrapper的gradle项目中更新gradle的版本为最新。</h3><p>使用前面的命令可进行更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle wrapper --gradle-version 5.1.1</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2242,7 +2223,7 @@
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
