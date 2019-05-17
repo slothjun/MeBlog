@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">24</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
 
   </li>
 
@@ -319,6 +319,221 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-初识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/Linux-初识/" class="post-title-link" itemprop="url">Linux-初识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><h3 id="Linux-学习方法"><a href="#Linux-学习方法" class="headerlink" title="Linux 学习方法"></a>Linux 学习方法</h3><ol>
+<li>坚持使用命令行</li>
+<li>遇到问题，不要马上问别人。先自行寻找答案<ol>
+<li>解决问题的的智慧： 帮助、文档、示例、查找</li>
+</ol>
+</li>
+<li>忘掉Windows思维方式</li>
+<li>计划、坚持、专注、练习</li>
+</ol>
+<h3 id="Linux系统分区"><a href="#Linux系统分区" class="headerlink" title="Linux系统分区"></a>Linux系统分区</h3><p>1.什么是磁盘分区：</p>
+<p>​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存储进不同的分区。</p>
+<p>example：</p>
+<p>划分柜子，将一个大柜子划分为3个小柜子。这样可以方便使用者。</p>
+<p>分区类型：</p>
+<p>主分区：最多只能有4个（一块硬盘的前提条件下）</p>
+<p>扩展分区：</p>
+<p>​    最多只能有1个（一块硬盘的前提条件下）</p>
+<p>​    主分区加扩展分区最多有4个（一块硬盘的前提条件下）</p>
+<p>​    不能写入数据，只能包含逻辑分区（一块硬盘的前提条件下）</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553220848741.png" alt="1553220848741"></p>
+<p>逻辑分区</p>
+<p>2.格式化</p>
+<p>​    什么是格式化：</p>
+<p>​    格式化 （高级格式化）又称逻辑格式化。它是指根据用户选的的文件系统（FAT16、FAT32、NTFS、EXT3、EXT2、EXT4等）在磁盘的特定区域写入特定数据，在分区中划出一片用于存放文件的分配表、目录表等用于文件管理的磁盘空间。</p>
+<p>Linux默认的文件系统：EXT4</p>
+<p>关键词：</p>
+<p>​    block</p>
+<p>​    inode 号</p>
+<p>3.硬件设备文件名</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553216867850.png" alt="1553216867850"></p>
+<p>4.分区设备文件名</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217099195.png" alt="1553217099195"></p>
+<p>/dev/hda1 代表什么？ /dev 代表了这是系统的设备文件的根目录，hda1中hda表示用户使用的是IDE硬盘，1表示第几个分区（数字标识）</p>
+<p>IDE硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217517403.png" alt="1553217517403"></p>
+<p>理论每秒传输133MB</p>
+<p>SCSI硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217620457.png" alt="1553217620457"></p>
+<p>理论每秒传输200MB</p>
+<p>SATA硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217899946.png" alt="1553217899946"></p>
+<p>sata3代理论每秒传输500MB  </p>
+<p>5.挂载</p>
+<p>​    必须分区</p>
+<p>​        /(根分区)</p>
+<p>​        swap（交换分区、内存2倍）</p>
+<p>​    推荐分区</p>
+<p>​        /boot（启动分区，200MB）</p>
+<p>文件系统结构</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553221402638.png" alt="1553221402638"></p>
+<p>系统分区流程</p>
+<p>​    分区 》格式化 》为分区指定设备文件名 》 挂载</p>
+<h3 id="密码原则："><a href="#密码原则：" class="headerlink" title="密码原则："></a>密码原则：</h3><p>​    复杂性</p>
+<p>​        八位字符以上、大小写字母、数字、符号</p>
+<p>​        不是单词</p>
+<p>​        不是用户的相关信息</p>
+<p>​    易记性</p>
+<p>​    时效性</p>
+<h3 id="安装日志"><a href="#安装日志" class="headerlink" title="安装日志"></a>安装日志</h3><p>​    /root/install.log 存储了安装在系统中的软件包及其版本信息</p>
+<p>​    /root/install.log.syslog 存储了安装过程中留下来的事件信息</p>
+<p>​    /root/anaconda-ks.cfg 以Kickstrat配置文件的格式记录安装过程中设置的选项信息</p>
+<h3 id="linux-关于IP操作的一些命令"><a href="#linux-关于IP操作的一些命令" class="headerlink" title="linux 关于IP操作的一些命令"></a>linux 关于IP操作的一些命令</h3><p>ifconfig ：查看系统网卡信息</p>
+<p>ifconfig eth0 [ip 地址]  :临时配置网卡，系统重启后失效</p>
+<h3 id="Linux-注意事项"><a href="#Linux-注意事项" class="headerlink" title="Linux 注意事项"></a>Linux 注意事项</h3><p>​    严格区分大小写</p>
+<p>​     Linux中所有的内容都是以文件形式保存，包括硬件</p>
+<p>​        硬盘文件是/dev/sd[a-p]</p>
+<p>​        光盘文件是/dev/sr0等</p>
+<p>​    Linux不靠扩展名区分文件类型 </p>
+<p>​    Linux所有存储设备都必须挂载之后用户才能使用,包括硬盘、U盘和光盘</p>
+<p>​    windows下的程序不能直接在Linux中安装和运行 </p>
+<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p>服务器最好重启操作，不要关机操作</p>
+<p>重启时应该关闭服务器</p>
+<p>不要在服务器访问高峰运行高负载命令</p>
+<p>远程配置防火墙时不要把自己踢出服务器</p>
+<p>指定合理的密码规范并定期更新</p>
+<p>合理分配权限</p>
+<p>定期备份重要数据和日志</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -506,7 +721,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-命令篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jodconverter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -526,7 +741,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
+                <a href="/MeBlog/2019/04/29/jodconverter/" class="post-title-link" itemprop="url">jodconverter</a>
               
             
           </h1>
@@ -588,134 +803,63 @@
       
         
           
-            <h3 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h3><h4 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h4><p><img src="http://39.104.171.29/image/1553455157361.png" alt="1553455157361"></p>
-<h4 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h4><p><img src="http://39.104.171.29/image/1553455753059.png" alt="1553455753059"></p>
-<p>使用 -a 时会看到有的文件名前有.此时表示此文件为隐藏文件。</p>
-<p>使用-l 查看详细信息</p>
-<p><img src="http://39.104.171.29/image/1553456138517.png" alt="1553456138517"></p>
-<p>上面1表示此文件的链接计数</p>
-<p><img src="http://39.104.171.29/image/1553456202080.png" alt="1553456202080"></p>
-<p>上面的root 表示文件的所有者，也就是文件的创建人或负责人，一个文件只能有一个所有者</p>
-<p><img src="http://39.104.171.29/image/1553456372734.png" alt="1553456372734"></p>
-<p>上面表示文件的所属组，一个文件只能拥有一个所有组</p>
-<p>在-l 后追加h -lh 表示人性化显示，使文件的大小更直观、</p>
-<p><img src="http://39.104.171.29/image/1553456551687.png" alt="1553456551687"></p>
-<p>ls -i 可以获取文件的I节点或获取文件的id号</p>
-<p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
-<p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
-<p>cd - 回到上次操作的目录</p>
-<p>cd ~ 回到当前用户的根目录</p>
-<p>cd 回到当前用户的根目录</p>
-<p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
-<p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
-<p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
-<p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
-<p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
-<p>tree 命令以目录树的方式显示文件结构信息</p>
-<p>使用tree 时可能会遇到command not  found ,这时就需要安装此命令</p>
-<p>本人使用的是centos 7 的系统 发现使用yum 无法获取tree的安装包</p>
-<p>所以只能使用源码包安装，于是在<a href="ftp://mama.indstate.edu/linux/tree/" target="_blank" rel="noopener">ftp://mama.indstate.edu/linux/tree/</a> 下载了 源码包</p>
-<p>在/usr/local/src 下使用make 编译了源码包</p>
-<h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
-<p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
-<p>cat 适用于查看简短文件内容，如shell脚本</p>
-<p><img src="http://39.104.171.29/image/1553464171496.png" alt="1553464171496"></p>
-<p><img src="http://39.104.171.29/image/1553464603686.png" alt="1553464603686"></p>
-<p>less 进入后使用 /关键字 可进行反白关键字高亮显示，同时按N键可以跳到下一个关键字，在高亮的关键字后加入！可以取消高亮效果</p>
-<p><img src="http://39.104.171.29/image/1553465266101.png" alt="1553465266101"></p>
-<p><img src="http://39.104.171.29/image/1553465409489.png" alt="1553465409489"></p>
-<p><img src="http://39.104.171.29/image/1553600438679.png" alt="1553600438679"></p>
-<p><img src="http://39.104.171.29/image/1553601846764.png" alt="1553601846764"></p>
-<p>硬链接的生成命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln /tmp/china/changzhi /root/china.hard</span><br></pre></td></tr></table></figure>
-<p>硬链接 共享文件的inode ,但是文件夹不能创建硬链接。</p>
-<h4 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h4><p>权限分为了三类 r w s 读 写 执行</p>
-<p><img src="http://39.104.171.29/image/1553602141983.png" alt="1553602141983"></p>
-<p><img src="http://39.104.171.29/image/1553602447029.png" alt="1553602447029"></p>
-<p><img src="http://39.104.171.29/image/1553603202959.png" alt="1553603202959"></p>
-<p><img src="http://39.104.171.29/image/1553603260245.png" alt="1553603260245"></p>
-<h5 id="其他权限管理命令"><a href="#其他权限管理命令" class="headerlink" title="其他权限管理命令"></a>其他权限管理命令</h5><p><img src="http://39.104.171.29/image/1553605959901.png" alt="1553605959901"></p>
-<p><img src="http://39.104.171.29/image/1553606015581.png" alt="1553606015581"></p>
-<p><img src="http://39.104.171.29/image/1553606075600.png" alt="1553606075600"></p>
-<h4 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h4><h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p><img src="http://39.104.171.29/image/1553749537377.png" alt="1553749537377"></p>
-<p><img src="http://39.104.171.29/image/1553749679807.png" alt="1553749679807"></p>
-<p>-name 加通配符可实现模糊搜索文件</p>
-<p>通配符 * 表示多个字符</p>
-<p>通配符 ？表示单个字符</p>
-<p><img src="http://39.104.171.29/image/1553752715110.png" alt="1553752715110"></p>
-<p><img src="http://39.104.171.29/image/1553752887543.png" alt="1553752887543"></p>
-<p><img src="http://39.104.171.29/image/1553752983831.png" alt="1553752983831"></p>
-<h5 id="其他搜索命令"><a href="#其他搜索命令" class="headerlink" title="其他搜索命令"></a>其他搜索命令</h5><p><img src="http://39.104.171.29/image/1553755683871.png" alt="1553755683871"></p>
-<p>此查询基于文件资料库所以，查询时对比find占用系统资源较少。</p>
-<p>存在缺陷无法查询tmp目录下的文件</p>
-<p>不能实时查询，如果刚创建的数据没有录入文件资料库时。会导致无法查询到文件。此时使用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb</span><br></pre></td></tr></table></figure>
-<p>然后再次使用    locate可查找到文件</p>
-<p><img src="http://39.104.171.29/image/1553756124804.png" alt="1553756124804"></p>
-<p><img src="http://39.104.171.29/image/1553756360865.png" alt="1553756360865"></p>
-<p><img src="http://39.104.171.29/image/1553757094395.png" alt="1553757094395"></p>
-<h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><p><img src="http://39.104.171.29/image/1553757468067.png" alt="1553757468067"></p>
-<p>帮助命令类型 1表示命令，5表示配置文件</p>
-<p>命令名称：whatis</p>
-<p>NAME<br>       whatis - 在 whatis 数据库里查找完整的单词</p>
-<p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
-<p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
-<p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#121;&#x40;&#x32;&#54;&#51;&#46;&#x6e;&#x65;&#116;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#121;&#x40;&#x32;&#54;&#51;&#46;&#x6e;&#x65;&#116;</a></p>
-<p>[中文版最新更新]<br>       2001/9/8</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p>命令名称：apropos</p>
-<p>NAME<br>       apropos - 在 whatis 数据库中查找字符串</p>
-<p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
-<p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
-<p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#x6e;&#x79;&#95;&#x74;&#121;&#64;&#50;&#x36;&#51;&#x2e;&#110;&#x65;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#x6e;&#x79;&#95;&#x74;&#121;&#64;&#50;&#x36;&#51;&#x2e;&#110;&#x65;&#116;</a></p>
-<p>[中文版最新更新]<br>       2001/9/20</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
-<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><p><img src="http://39.104.171.29/image/1553826507188.png" alt="1553826507188"></p>
-<p><img src="http://39.104.171.29/image/1553826897084.png" alt="1553826897084"></p>
-<p><img src="http://39.104.171.29/image/1553826911136.png" alt="1553826911136"></p>
-<p><img src="http://39.104.171.29/image/1553827412666.png" alt="1553827412666"></p>
-<p><img src="http://39.104.171.29/image/1553827301824.png" alt="1553827301824"></p>
-<p><img src="http://39.104.171.29/image/1553828266112.png" alt="1553828266112"></p>
-<h4 id="压缩和解压命令"><a href="#压缩和解压命令" class="headerlink" title="压缩和解压命令"></a>压缩和解压命令</h4><h5 id="压缩格式"><a href="#压缩格式" class="headerlink" title="压缩格式"></a>压缩格式</h5><p>gz  zip  rar    其中 zip 是windos和Linux 都支持的压缩格式</p>
-<h5 id="压缩解压命令使用"><a href="#压缩解压命令使用" class="headerlink" title="压缩解压命令使用"></a>压缩解压命令使用</h5><p><img src="http://39.104.171.29/image/1553831418375.png" alt="1553831418375"></p>
-<p><img src="http://39.104.171.29/image/1553831583899.png" alt="1553831583899"></p>
-<p>gzip的缺陷就是目前只能压缩文件，并且压缩后是不保留源文件的。</p>
-<p><img src="http://39.104.171.29/image/1553831796484.png" alt="1553831796484"></p>
-<p>tar 格式表示打包</p>
-<p><img src="http://39.104.171.29/image/1553832058168.png" alt="1553832058168"></p>
-<p><img src="http://39.104.171.29/image/1553837000891.png" alt="1553837000891"></p>
-<p><img src="http://39.104.171.29/image/1553837160959.png" alt="1553837160959"></p>
-<p><img src="http://39.104.171.29/image/1553837197214.png" alt="1553837197214"></p>
-<p><img src="http://39.104.171.29/image/1553837357376.png" alt="1553837357376"></p>
-<p><img src="http://39.104.171.29/image/1553837563419.png" alt="1553837563419"></p>
-<h4 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h4><p><img src="http://39.104.171.29/image/1553837724986.png" alt="1553837724986"></p>
-<p><img src="http://39.104.171.29/image/1553837906794.png" alt="1553837906794"></p>
-<p><img src="http://39.104.171.29/image/1553838044540.png" alt="1553838044540"></p>
-<p><img src="http://39.104.171.29/image/1553838208557.png" alt="1553838208557"></p>
-<p><img src="http://39.104.171.29/image/1553838404765.png" alt="1553838404765"></p>
-<p>mail 命令操作时需要使用CTRL+D 才可生效，如执邮件的删除功能，需要除了使用delete命令后还需使用</p>
-<p>CTRL+D才可。</p>
-<p>mail 进入使用界面后， h表示查看列表，d表示删除指定的邮件</p>
-<p><img src="http://39.104.171.29/image/1553838607987.png" alt="1553838607987"></p>
-<p><img src="http://39.104.171.29/image/1553838817826.png" alt="1553838817826"></p>
-<p><img src="http://39.104.171.29/image/1553838803865.png" alt="1553838803865"></p>
-<p><img src="http://39.104.171.29/image/1553839077239.png" alt="1553839077239"></p>
-<p><img src="http://39.104.171.29/image/1553841741827.png" alt="1553841741827"></p>
-<p><img src="http://39.104.171.29/image/1553839651829.png" alt="1553839651829"></p>
-<h4 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h4><p><img src="http://39.104.171.29/image/1553842448954.png" alt="1553842448954"></p>
-<h4 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h4><p><img src="http://39.104.171.29/image/1554102568116.png" alt="1554102568116"></p>
-<p><img src="http://39.104.171.29/image/1554102608485.png" alt="1554102608485"></p>
-<p><img src="http://39.104.171.29/image/1554102624441.png" alt="1554102624441"></p>
-<p><img src="http://39.104.171.29/image/1554102670799.png" alt="1554102670799"></p>
-<p><img src="http://39.104.171.29/image/1554102699933.png" alt="1554102699933"></p>
-<p><img src="http://39.104.171.29/image/1554102724817.png" alt="1554102724817"></p>
-<p>修改系统默认运行级别代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 2</span><br></pre></td></tr></table></figure>
-<p><img src="http://39.104.171.29/image/1554102791796.png" alt="1554102791796"> </p>
-
+            <h2 id="jodconverter"><a href="#jodconverter" class="headerlink" title="jodconverter"></a>jodconverter</h2><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>​    概念：</p>
+<p>​        jodconverter的全称是 java Document Converter ,它可以在不同的办公室格式之间转换文档。它利用了<a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a>， </p>
+<p>​    <strong>JODConverter</strong>自动执行OpenOffice / LibreOffice支持的所有转换。支持的转化包括： </p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>输入格式</th>
+<th>输出格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本</td>
+<td>DOC，DOCX，ODT，OTT，RTF，TEXT</td>
+<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
+</tr>
+<tr>
+<td>电子表格</td>
+<td>CSV，ODS，OTS，TSV，XLS，XLSX</td>
+<td>CSV，HTML，ODS，OTS，PDF，PNG，TSV，XLS，XLSX</td>
+</tr>
+<tr>
+<td>介绍</td>
+<td>ODP，OTP，PPT，PPTX</td>
+<td>HTML，ODP，OTP，PDF，PNG，PPT，PPTX，SWF</td>
+</tr>
+<tr>
+<td>画画</td>
+<td>ODG，OTG</td>
+<td>ODG，OTG，PDF，PNG，SWF</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>HTML</td>
+<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><p>要使用<strong>JODConverter，</strong>您需要：</p>
+<ul>
+<li>Java运行时环境1.7或更高版本。</li>
+<li><a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a> ; 通常建议使用最新的稳定版本。</li>
+<li>任何可用于Java和Apache OpenOffice / LibreOffice的操作系统（Windows，Linux，Mac OS X，Solaris，FreeBSD等）。请参阅您计划用于操作系统要求的OOo分发的系统要求。<ul>
+<li>Apache OpenOffice <a href="https://www.openoffice.org/dev_docs/source/sys_reqs.html" target="_blank" rel="noopener">系统要求</a>。</li>
+<li>LibreOffice <a href="https://www.libreoffice.org/get-help/system-requirements" target="_blank" rel="noopener">系统要求</a>。</li>
+</ul>
+</li>
+<li>要用作Web应用程序/ Web服务，您还需要一个servlet容器，例如<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">Apache Tomcat</a>。</li>
+</ul>
+<h3 id="组件（配置）"><a href="#组件（配置）" class="headerlink" title="组件（配置）"></a>组件（配置）</h3><h4 id="officeHome"><a href="#officeHome" class="headerlink" title="officeHome"></a>officeHome</h4><p>此属性设置将用于执行文档转换的办公室安装的office主目录。 </p>
+<h4 id="processManager"><a href="#processManager" class="headerlink" title="processManager"></a>processManager</h4><p>当JODConverter需要处理已启动的办公流程时，将使用流程管理器。当JODConverter启动办公室进程时，它必须检索已启动进程的PID，以便以后能够在需要时终止它。</p>
+<p> <em>默认值</em>：默认情况下，JODConverter将根据运行JODConverter的操作系统尝试查找最佳进程管理器。但是，如果在类路径中找到，则可以使用任何实现ProcessManager接口的进程管理器。</p>
+<p>只有在启用了processManager后才可以使用jodconverter进行文件转换</p>
+<p>其余属性请查看此链接<a href="https://github.com/sbraconnier/jodconverter/wiki/Configuration" target="_blank" rel="noopener">https://github.com/sbraconnier/jodconverter/wiki/Configuration</a> </p>
+<h3 id="官方Java中使用dome"><a href="#官方Java中使用dome" class="headerlink" title="官方Java中使用dome"></a>官方Java中使用dome</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">File inputFile = <span class="keyword">new</span> File(<span class="string">"document.doc"</span>);</span><br><span class="line">File outputFile = <span class="keyword">new</span> File(<span class="string">"document.pdf"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an office manager using the default configuration.</span></span><br><span class="line"><span class="comment">// The default port is 2002. Note that when an office manager</span></span><br><span class="line"><span class="comment">// is installed, it will be the one used by default when</span></span><br><span class="line"><span class="comment">// a converter is created.</span></span><br><span class="line"><span class="keyword">final</span> LocalOfficeManager officeManager = LocalOfficeManager.install(); </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an office process and connect to the started instance (on port 2002).</span></span><br><span class="line">    officeManager.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert</span></span><br><span class="line">    JodConverter</span><br><span class="line">             .convert(inputFile)</span><br><span class="line">             .to(outputFile)</span><br><span class="line">             .execute();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Stop the office process</span></span><br><span class="line">    OfficeUtils.stopQuietly(officeManager);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="本人整合springboot使用"><a href="#本人整合springboot使用" class="headerlink" title="本人整合springboot使用"></a>本人整合springboot使用</h3>
           
         
       
@@ -771,7 +915,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Docker/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jwt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -791,7 +935,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/Docker/" class="post-title-link" itemprop="url">Docker</a>
+                <a href="/MeBlog/2019/04/29/jwt/" class="post-title-link" itemprop="url">jwt</a>
               
             
           </h1>
@@ -853,271 +997,26 @@
       
         
           
-            <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>学习目标：</p>
-<ul>
-<li><p>掌握Docker基础知识，能够理解Docker镜像与容器的概念</p>
+            <h2 id="什么是jwt"><a href="#什么是jwt" class="headerlink" title="什么是jwt"></a>什么是jwt</h2><p>​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的<br>信息。在Java世界中通过JJWT实现JWT创建和验证。</p>
+<h2 id="jjwt快速尝鲜"><a href="#jjwt快速尝鲜" class="headerlink" title="jjwt快速尝鲜"></a>jjwt快速尝鲜</h2><ol>
+<li><p>引入坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面使用的坐标是基于apache2.0 下的jwt实现</p>
 </li>
-<li><p>完成Docker安装与启动</p>
+<li><p>使用并测试</p>
+<p>生成token</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">JwtBuilder jwt = Jwts.builder()</span><br><span class="line">                .setId(<span class="string">"123"</span>)</span><br><span class="line">                .setSubject(<span class="string">"老王"</span>)</span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> Date())<span class="comment">//发布时间</span></span><br><span class="line">                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis()+<span class="number">6000</span>))<span class="comment">//到期时间</span></span><br><span class="line">                .signWith(SignatureAlgorithm.HS384,<span class="string">"XXXXX"</span>);<span class="comment">//设置密钥</span></span><br><span class="line">String compact = jwt.compact();<span class="comment">//签约生成token</span></span><br><span class="line">System.out.println(compact);</span><br></pre></td></tr></table></figure>
+<p>解析token</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Claims cla = Jwts.parser()</span><br><span class="line">    .setSigningKey(<span class="string">"XXXXX"</span>)<span class="comment">//设置密钥</span></span><br><span class="line">    .parseClaimsJws(key)<span class="comment">//设置token</span></span><br><span class="line">    .getBody();</span><br></pre></td></tr></table></figure>
+<p>当token认证失败时会抛出ExpiredJwtException异常</p>
+<p>自定义claims</p>
+<p>生成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为了方便测试，我们将过期时间设置为1分钟</span></span><br><span class="line"><span class="keyword">long</span> now = System.currentTimeMillis();<span class="comment">//当前时间</span></span><br><span class="line"><span class="keyword">long</span> exp = now + <span class="number">1000</span>*<span class="number">60</span>;<span class="comment">//过期时间为1分钟</span></span><br><span class="line">JwtBuilder builder= Jwts.builder().setId(<span class="string">"888"</span>)</span><br><span class="line">.setSubject(<span class="string">"小白"</span>)</span><br><span class="line">.setIssuedAt(<span class="keyword">new</span> Date())</span><br><span class="line">.signWith(SignatureAlgorithm.HS256,<span class="string">"itcast"</span>)</span><br><span class="line">.setExpiration(<span class="keyword">new</span> Date(exp))</span><br><span class="line">.claim(<span class="string">"roles"</span>,<span class="string">"admin"</span>) <span class="comment">//自定义claims存储数据</span></span><br><span class="line">.claim(<span class="string">"logo"</span>,<span class="string">"logo.png"</span>);</span><br><span class="line">System.out.println( builder.compact() );</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String</span><br><span class="line">compactJws=<span class="string">"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4ODgiLCJzdWIiOiLlsI_nmb0iLCJpYXQiOjE1MjM0MT</span></span><br><span class="line"><span class="string">czMjMsImV4cCI6MTUyMzQxNzM4Mywicm9sZXMiOiJhZG1pbiIsImxvZ28iOiJsb2dvLnBuZyJ9.b11p4g4rE94r</span></span><br><span class="line"><span class="string">qFhcfzdJTPCORikqP_1zJ1MP8KihYTQ"</span>;</span><br><span class="line">Claims claims =</span><br><span class="line">Jwts.parser().setSigningKey(<span class="string">"itcast"</span>).parseClaimsJws(compactJws).getBody();</span><br><span class="line">System.out.println(<span class="string">"id:"</span>+claims.getId());</span><br><span class="line">System.out.println(<span class="string">"subject:"</span>+claims.getSubject());</span><br><span class="line">System.out.println(<span class="string">"roles:"</span>+claims.get(<span class="string">"roles"</span>));</span><br><span class="line">System.out.println(<span class="string">"logo:"</span>+claims.get(<span class="string">"logo"</span>));</span><br><span class="line">SimpleDateFormat sdf=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">System.out.println(<span class="string">"签发时间:"</span>+sdf.format(claims.getIssuedAt()));</span><br><span class="line">System.out.println(<span class="string">"过期时间:"</span>+sdf.format(claims.getExpiration()));</span><br><span class="line">System.out.println(<span class="string">"当前时间:"</span>+sdf.format(<span class="keyword">new</span> Date()) );</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>掌握Docker镜像与容器相关命令</p>
-</li>
-<li><p>掌握Tomcat Nginx 等软件的常用应用的安装</p>
-</li>
-<li><p>掌握docker迁移与备份相关命令</p>
-</li>
-<li><p>能够运用Dockerfile编写创建容器的脚本</p>
-</li>
-<li><p>能够搭建与使用docker私有仓库</p>
-<p>​</p>
-</li>
-</ul>
-<h1 id="1-Docker简介"><a href="#1-Docker简介" class="headerlink" title="1 Docker简介"></a>1 Docker简介</h1><h2 id="1-1-什么是虚拟化"><a href="#1-1-什么是虚拟化" class="headerlink" title="1.1 什么是虚拟化"></a>1.1 什么是虚拟化</h2><p>​    在计算机中，虚拟化（英语：Virtualization）是一种资源管理技术，是将计算机的各种实体资源，如服务器、网络、内存及存储等，予以抽象、转换后呈现出来，打破实体结构间的不可切割的障碍，使用户可以比原本的组态更好的方式来应用这些资源。这些资源的新虚拟部份是不受现有资源的架设方式，地域或物理组态所限制。一般所指的虚拟化资源包括计算能力和资料存储。</p>
-<p>​    在实际的生产环境中，虚拟化技术主要用来解决高性能的物理硬件产能过剩和老的旧的硬件产能过低的重组重用，透明化底层物理硬件，从而最大化的利用物理硬件   对资源充分利用</p>
-<p>​    虚拟化技术种类很多，例如：软件虚拟化、硬件虚拟化、内存虚拟化、网络虚拟化(vip)、桌面虚拟化、服务虚拟化、虚拟机等等。</p>
-<h2 id="1-2-什么是Docker"><a href="#1-2-什么是Docker" class="headerlink" title="1.2 什么是Docker"></a>1.2 什么是Docker</h2><p>​    Docker 是一个开源项目，诞生于 2013 年初，最初是 dotCloud 公司内部的一个业余项目。它基于 Google 公司推出的 Go 语言实现。 项目后来加入了 Linux 基金会，遵从了 Apache 2.0 协议，项目代码在 <a href="https://github.com/docker/docker" target="_blank" rel="noopener">GitHub</a> 上进行维护。</p>
-<p>​    <img src="http://39.104.171.29/image/1-3.png" alt></p>
-<p>​    Docker 自开源后受到广泛的关注和讨论，以至于 dotCloud 公司后来都改名为 Docker Inc。Redhat 已经在其 RHEL6.5 中集中支持 Docker；Google 也在其 PaaS 产品中广泛应用。</p>
-<p>​    Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。 Docker 的基础是 Linux 容器（LXC）等技术。</p>
-<p>​    在 LXC 的基础上 Docker 进行了进一步的封装，让用户不需要去关心容器的管理，使得操作更为简便。用户操作 Docker 的容器就像操作一个快速轻量级的虚拟机一样简单。</p>
-<p>为什么选择Docker?</p>
-<p>（1）上手快。</p>
-<p>​    用户只需要几分钟，就可以把自己的程序“Docker化”。Docker依赖于“写时复制”（copy-on-write）模型，使修改应用程序也非常迅速，可以说达到“随心所致，代码即改”的境界。    </p>
-<pre><code>随后，就可以创建容器来运行应用程序了。大多数Docker容器只需要不到1秒中即可启动。由于去除了管理程序的开销，Docker容器拥有很高的性能，同时同一台宿主机中也可以运行更多的容器，使用户尽可能的充分利用系统资源。
-</code></pre><p>（2）职责的逻辑分类</p>
-<p>​    使用Docker，开发人员只需要关心容器中运行的应用程序，而运维人员只需要关心如何管理容器。Docker设计的目的就是要加强开发人员写代码的开发环境与应用程序要部署的生产环境一致性。从而降低那种“开发时一切正常，肯定是运维的问题（测试环境都是正常的，上线后出了问题就归结为肯定是运维的问题）”</p>
-<p>（3）快速高效的开发生命周期</p>
-<p>​    Docker的目标之一就是缩短代码从开发、测试到部署、上线运行的周期，让你的应用程序具备可移植性，易于构建，并易于协作。（通俗一点说，Docker就像一个盒子，里面可以装很多物件，如果需要这些物件的可以直接将该大盒子拿走，而不需要从该盒子中一件件的取。）</p>
-<p>（4）鼓励使用面向服务的架构</p>
-<p>​    Docker还鼓励面向服务的体系结构和微服务架构。Docker推荐单个容器只运行一个应用程序或进程，这样就形成了一个分布式的应用程序模型，在这种模型下，应用程序或者服务都可以表示为一系列内部互联的容器，从而使分布式部署应用程序，扩展或调试应用程序都变得非常简单，同时也提高了程序的内省性。（当然，可以在一个容器中运行多个应用程序）</p>
-<h2 id="1-3-容器与虚拟机比较"><a href="#1-3-容器与虚拟机比较" class="headerlink" title="1.3 容器与虚拟机比较"></a>1.3 容器与虚拟机比较</h2><p>​    下面的图片比较了 Docker 和传统虚拟化方式的不同之处，可见容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，而传统方式则是在硬件层面实现。</p>
-<p><img src="http://39.104.171.29/image/1-1.png" alt></p>
-<p>与传统的虚拟机相比，Docker优势体现为启动速度快、占用体积小。</p>
-<h2 id="1-4-Docker-组件"><a href="#1-4-Docker-组件" class="headerlink" title="1.4 Docker 组件"></a>1.4 Docker 组件</h2><h3 id="1-4-1-Docker服务器与客户端"><a href="#1-4-1-Docker服务器与客户端" class="headerlink" title="1.4.1 Docker服务器与客户端"></a>1.4.1 Docker服务器与客户端</h3><p>​    Docker是一个客户端-服务器（C/S）架构程序。Docker客户端只需要向Docker服务器或者守护进程发出请求，服务器或者守护进程将完成所有工作并返回结果。Docker提供了一个命令行工具Docker以及一整套RESTful API。你可以在同一台宿主机上运行Docker守护进程和客户端，也可以从本地的Docker客户端连接到运行在另一台宿主机上的远程Docker守护进程。</p>
-<p><img src="http://39.104.171.29/image/1-2.png" alt></p>
-<h3 id="1-4-2-Docker镜像与容器"><a href="#1-4-2-Docker镜像与容器" class="headerlink" title="1.4.2 Docker镜像与容器"></a>1.4.2 Docker镜像与容器</h3><p>​    镜像是构建Docker的基石。用户基于镜像来运行自己的容器。镜像也是Docker生命周期中的“构建”部分。镜像是基于联合文件系统的一种层式结构，由一系列指令一步一步构建出来。例如：</p>
-<p>添加一个文件；</p>
-<p>执行一个命令；</p>
-<p>打开一个窗口。</p>
-<p>也可以将镜像当作容器的“源代码”。镜像体积很小，非常“便携”，易于分享、存储和更新。</p>
-<p>​    Docker可以帮助你构建和部署容器，你只需要把自己的应用程序或者服务打包放进容器即可。容器是基于镜像启动起来的，容器中可以运行一个或多个进程。我们可以认为，镜像是Docker生命周期中的构建或者打包阶段，而容器则是启动或者执行阶段。  容器基于镜像启动，一旦容器启动完成后，我们就可以登录到容器中安装自己需要的软件或者服务。</p>
-<p>所以Docker容器就是：</p>
-<p>​    一个镜像格式；</p>
-<p>​    一些列标准操作；</p>
-<p>​    一个执行环境。</p>
-<p>​    Docker借鉴了标准集装箱的概念。标准集装箱将货物运往世界各地，Docker将这个模型运用到自己的设计中，唯一不同的是：集装箱运输货物，而Docker运输软件。</p>
-<pre><code>和集装箱一样，Docker在执行上述操作时，并不关心容器中到底装了什么，它不管是web服务器，还是数据库，或者是应用程序服务器什么的。所有的容器都按照相同的方式将内容“装载”进去。
+</ol>
 
-Docker也不关心你要把容器运到何方：我们可以在自己的笔记本中构建容器，上传到Registry，然后下载到一个物理的或者虚拟的服务器来测试，在把容器部署到具体的主机中。像标准集装箱一样，Docker容器方便替换，可以叠加，易于分发，并且尽量通用。
-</code></pre><h3 id="1-4-3-Registry（注册中心）"><a href="#1-4-3-Registry（注册中心）" class="headerlink" title="1.4.3 Registry（注册中心）"></a>1.4.3 Registry（注册中心）</h3><p>​    Docker用Registry来保存用户构建的镜像。Registry分为公共和私有两种。Docker公司运营公共的Registry叫做Docker Hub。用户可以在Docker Hub注册账号，分享并保存自己的镜像（说明：在Docker Hub下载镜像巨慢，可以自己构建私有的Registry）。</p>
-<p>​    <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a></p>
-<h1 id="2-Docker安装与启动"><a href="#2-Docker安装与启动" class="headerlink" title="2 Docker安装与启动"></a>2 Docker安装与启动</h1><h2 id="2-1-安装Docker"><a href="#2-1-安装Docker" class="headerlink" title="2.1 安装Docker"></a>2.1 安装Docker</h2><p>​    Docker官方建议在Ubuntu中安装，因为Docker是基于Ubuntu发布的，而且一般Docker出现的问题Ubuntu是最先更新或者打补丁的。在很多版本的CentOS中是不支持更新最新的一些补丁包的。</p>
-<p>​    由于我们学习的环境都使用的是CentOS，因此这里我们将Docker安装到CentOS上。注意：这里建议安装在CentOS7.x以上的版本，在CentOS6.x的版本中，安装前需要安装其他很多的环境而且Docker很多补丁不支持更新。</p>
-<p>​    请直接挂载课程配套的Centos7.x镜像    </p>
-<p>（1）yum 包更新到最新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br></pre></td></tr></table></figure>
-<p>（2）安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
-<p>（3）设置yum源为阿里云</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
-<p>（4）安装docker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
-<p>（5）安装后查看docker版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br></pre></td></tr></table></figure>
-<h2 id="2-2-设置ustc的镜像"><a href="#2-2-设置ustc的镜像" class="headerlink" title="2.2 设置ustc的镜像"></a>2.2 设置ustc的镜像</h2><p>ustc是老牌的linux镜像服务提供者了，还在遥远的ubuntu 5.04版本的时候就在用。ustc的docker镜像加速器速度很快。ustc docker mirror的优势之一就是不需要注册，是真正的公共服务。</p>
-<p><a href="https://lug.ustc.edu.cn/wiki/mirrors/help/docker" target="_blank" rel="noopener">https://lug.ustc.edu.cn/wiki/mirrors/help/docker</a></p>
-<p>编辑该文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
-<p>在该文件中输入如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-3-Docker的启动与停止"><a href="#2-3-Docker的启动与停止" class="headerlink" title="2.3 Docker的启动与停止"></a>2.3 Docker的启动与停止</h2><p><strong>systemctl</strong>命令是系统服务管理器指令</p>
-<p>启动docker：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
-<p>停止docker：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
-<p>重启docker：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
-<p>查看docker状态：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
-<p>开机启动：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
-<p>查看docker概要信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
-<p>查看docker帮助文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --help</span><br></pre></td></tr></table></figure>
-<h1 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3 常用命令"></a>3 常用命令</h1><h2 id="3-1-镜像相关命令"><a href="#3-1-镜像相关命令" class="headerlink" title="3.1 镜像相关命令"></a>3.1 镜像相关命令</h2><h3 id="3-1-1-查看镜像"><a href="#3-1-1-查看镜像" class="headerlink" title="3.1.1 查看镜像"></a>3.1.1 查看镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
-<p>REPOSITORY：镜像名称</p>
-<p>TAG：镜像标签</p>
-<p>IMAGE ID：镜像ID</p>
-<p>CREATED：镜像的创建日期（不是获取该镜像的日期）</p>
-<p>SIZE：镜像大小</p>
-<p>这些镜像都是存储在Docker宿主机的/var/lib/docker目录下</p>
-<h3 id="3-1-2-搜索镜像"><a href="#3-1-2-搜索镜像" class="headerlink" title="3.1.2 搜索镜像"></a>3.1.2 搜索镜像</h3><p>如果你需要从网络中查找需要的镜像，可以通过以下命令搜索</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search 镜像名称</span><br></pre></td></tr></table></figure>
-<p>NAME：仓库名称</p>
-<p>DESCRIPTION：镜像描述</p>
-<p>STARS：用户评价，反应一个镜像的受欢迎程度</p>
-<p>OFFICIAL：是否官方</p>
-<p>AUTOMATED：自动构建，表示该镜像由Docker Hub自动构建流程创建的</p>
-<h3 id="3-1-3-拉取镜像"><a href="#3-1-3-拉取镜像" class="headerlink" title="3.1.3 拉取镜像"></a>3.1.3 拉取镜像</h3><p>拉取镜像就是从中央仓库中下载镜像到本地</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 镜像名称</span><br></pre></td></tr></table></figure>
-<p>例如，我要下载centos7镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos:7</span><br></pre></td></tr></table></figure>
-<h3 id="3-1-4-删除镜像"><a href="#3-1-4-删除镜像" class="headerlink" title="3.1.4 删除镜像"></a>3.1.4 删除镜像</h3><p>按镜像ID删除镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi 镜像ID</span><br></pre></td></tr></table></figure>
-<p>删除所有镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi `docker images -q`</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-容器相关命令"><a href="#3-2-容器相关命令" class="headerlink" title="3.2 容器相关命令"></a>3.2 容器相关命令</h2><h3 id="3-2-1-查看容器"><a href="#3-2-1-查看容器" class="headerlink" title="3.2.1 查看容器"></a>3.2.1 查看容器</h3><p>查看正在运行的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-<p>查看所有容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps –a</span><br></pre></td></tr></table></figure>
-<p>查看最后一次运行的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps –l</span><br></pre></td></tr></table></figure>
-<p>查看停止的容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -f status=exited</span><br></pre></td></tr></table></figure>
-<h3 id="3-2-2-创建与启动容器"><a href="#3-2-2-创建与启动容器" class="headerlink" title="3.2.2 创建与启动容器"></a>3.2.2 创建与启动容器</h3><p>创建容器常用的参数说明：</p>
-<p>创建容器命令：docker run</p>
-<p> -i：表示运行容器</p>
-<p> -t：表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分配一个伪终端。</p>
-<p> –name :为创建的容器命名。</p>
-<p> -v：表示目录映射关系（前者是宿主机目录，后者是映射到宿主机上的目录），可以使用多个－v做多个目录或文件映射。注意：最好做目录映射，在宿主机上做修改，然后共享到容器上。</p>
-<p> -d：在run后面加上-d参数,则会创建一个守护式容器在后台运行（这样创建容器后不会自动登录容器，如果只加-i -t两个参数，创建后就会自动进去容器）。</p>
-<p> -p：表示端口映射，前者是宿主机端口，后者是容器内的映射端口。可以使用多个-p做多个端口映射</p>
-<p>（1）交互式方式创建容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name=容器名称 镜像名称:标签 /bin/bash</span><br></pre></td></tr></table></figure>
-<p>这时我们通过ps命令查看，发现可以看到启动的容器，状态为启动状态  </p>
-<p>退出当前容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
-<p>（2）守护式方式创建容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di --name=容器名称 镜像名称:标签</span><br></pre></td></tr></table></figure>
-<p>登录守护式容器方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器名称 (或者容器ID)  /bin/bash</span><br></pre></td></tr></table></figure>
-<h3 id="3-2-3-停止与启动容器"><a href="#3-2-3-停止与启动容器" class="headerlink" title="3.2.3 停止与启动容器"></a>3.2.3 停止与启动容器</h3><p>停止容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 容器名称（或者容器ID）</span><br></pre></td></tr></table></figure>
-<p>启动容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器名称（或者容器ID）</span><br></pre></td></tr></table></figure>
-<h3 id="3-2-4-文件拷贝"><a href="#3-2-4-文件拷贝" class="headerlink" title="3.2.4 文件拷贝"></a>3.2.4 文件拷贝</h3><p>如果我们需要将文件拷贝到容器内可以使用cp命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 需要拷贝的文件或目录 容器名称:容器目录</span><br></pre></td></tr></table></figure>
-<p>也可以将文件从容器内拷贝出来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 容器名称:容器目录 需要拷贝的文件或目录</span><br></pre></td></tr></table></figure>
-<h3 id="3-2-5-目录挂载"><a href="#3-2-5-目录挂载" class="headerlink" title="3.2.5 目录挂载"></a>3.2.5 目录挂载</h3><p>我们可以在创建容器的时候，将宿主机的目录与容器内的目录进行映射，这样我们就可以通过修改宿主机某个目录的文件从而去影响容器。<br>创建容器 添加-v参数 后边为   宿主机目录:容器目录，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di -v /usr/local/myhtml:/usr/local/myhtml --name=mycentos3 centos:7</span><br></pre></td></tr></table></figure>
-<p>如果你共享的是多级的目录，可能会出现权限不足的提示。</p>
-<p>这是因为CentOS7中的安全模块selinux把权限禁掉了，我们需要添加参数  –privileged=true  来解决挂载的目录没有权限的问题</p>
-<h3 id="3-2-6-查看容器IP地址"><a href="#3-2-6-查看容器IP地址" class="headerlink" title="3.2.6 查看容器IP地址"></a>3.2.6 查看容器IP地址</h3><p>我们可以通过以下命令查看容器运行的各种数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 容器名称（容器ID）</span><br></pre></td></tr></table></figure>
-<p>也可以直接执行下面的命令直接输出IP地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect --format=&apos;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&apos; 容器名称（容器ID）</span><br></pre></td></tr></table></figure>
-<h3 id="3-2-7-删除容器"><a href="#3-2-7-删除容器" class="headerlink" title="3.2.7 删除容器"></a>3.2.7 删除容器</h3><p>删除指定的容器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm 容器名称（容器ID）</span><br></pre></td></tr></table></figure>
-<h1 id="4-应用部署"><a href="#4-应用部署" class="headerlink" title="4 应用部署"></a>4 应用部署</h1><h2 id="4-1-MySQL部署"><a href="#4-1-MySQL部署" class="headerlink" title="4.1 MySQL部署"></a>4.1 MySQL部署</h2><p>（1）拉取mysql镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos/mysql-57-centos7</span><br></pre></td></tr></table></figure>
-<p>（2）创建容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di --name=tensquare_mysql -p 33306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql</span><br></pre></td></tr></table></figure>
-<p>-p 代表端口映射，格式为  宿主机映射端口:容器运行端口</p>
-<p>-e 代表添加环境变量  MYSQL_ROOT_PASSWORD  是root用户的登陆密码</p>
-<p>（3）远程登录mysql</p>
-<p>连接宿主机的IP  ,指定端口为33306 </p>
-<h2 id="4-2-tomcat部署"><a href="#4-2-tomcat部署" class="headerlink" title="4.2 tomcat部署"></a>4.2 tomcat部署</h2><p>（1）拉取镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull tomcat:7-jre7</span><br></pre></td></tr></table></figure>
-<p>（2）创建容器</p>
-<p>创建容器  -p表示地址映射</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -di --name=mytomcat -p 9000:8080 </span><br><span class="line">-v /usr/local/webapps:/usr/local/tomcat/webapps tomcat:7-jre7</span><br></pre></td></tr></table></figure>
-<h2 id="4-3-Nginx部署"><a href="#4-3-Nginx部署" class="headerlink" title="4.3 Nginx部署"></a>4.3 Nginx部署</h2><p>（1）拉取镜像    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
-<p>（2）创建Nginx容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di --name=mynginx -p 80:80 nginx</span><br></pre></td></tr></table></figure>
-<h2 id="4-4-Redis部署"><a href="#4-4-Redis部署" class="headerlink" title="4.4 Redis部署"></a>4.4 Redis部署</h2><p>（1）拉取镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull redis</span><br></pre></td></tr></table></figure>
-<p>（2）创建容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di --name=myredis -p 6379:6379 redis</span><br></pre></td></tr></table></figure>
-<h1 id="5-迁移与备份"><a href="#5-迁移与备份" class="headerlink" title="5 迁移与备份"></a>5 迁移与备份</h1><h2 id="5-1-容器保存为镜像"><a href="#5-1-容器保存为镜像" class="headerlink" title="5.1 容器保存为镜像"></a>5.1 容器保存为镜像</h2><p>我们可以通过以下命令将容器保存为镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit mynginx mynginx_i</span><br></pre></td></tr></table></figure>
-<h2 id="5-2-镜像备份"><a href="#5-2-镜像备份" class="headerlink" title="5.2 镜像备份"></a>5.2 镜像备份</h2><p>我们可以通过以下命令将镜像保存为tar 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker  save -o mynginx.tar mynginx_i</span><br></pre></td></tr></table></figure>
-<h2 id="5-3-镜像恢复与迁移"><a href="#5-3-镜像恢复与迁移" class="headerlink" title="5.3 镜像恢复与迁移"></a>5.3 镜像恢复与迁移</h2><p>首先我们先删除掉mynginx_img镜像  然后执行此命令进行恢复</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i mynginx.tar</span><br></pre></td></tr></table></figure>
-<p>-i 输入的文件</p>
-<p>执行后再次查看镜像，可以看到镜像已经恢复</p>
-<h1 id="6-Dockerfile"><a href="#6-Dockerfile" class="headerlink" title="6 Dockerfile"></a>6 Dockerfile</h1><h2 id="6-1-什么是Dockerfile"><a href="#6-1-什么是Dockerfile" class="headerlink" title="6.1 什么是Dockerfile"></a>6.1 什么是Dockerfile</h2><p>Dockerfile是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。</p>
-<p>1、对于开发人员：可以为开发团队提供一个完全一致的开发环境；<br>2、对于测试人员：可以直接拿开发时所构建的镜像或者通过Dockerfile文件构建一个新的镜像开始工作了；<br>3、对于运维人员：在部署时，可以实现应用的无缝移植。</p>
-<h2 id="6-2-常用命令"><a href="#6-2-常用命令" class="headerlink" title="6.2 常用命令"></a>6.2 常用命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FROM image_name:tag</td>
-<td>定义了使用哪个基础镜像启动构建流程</td>
-</tr>
-<tr>
-<td>MAINTAINER user_name</td>
-<td>声明镜像的创建者</td>
-</tr>
-<tr>
-<td>ENV key value</td>
-<td>设置环境变量 (可以写多条)</td>
-</tr>
-<tr>
-<td>RUN command</td>
-<td>是Dockerfile的核心部分(可以写多条)</td>
-</tr>
-<tr>
-<td>ADD source_dir/file dest_dir/file</td>
-<td>将宿主机的文件复制到容器内，如果是一个压缩文件，将会在复制后自动解压</td>
-</tr>
-<tr>
-<td>COPY source_dir/file dest_dir/file</td>
-<td>和ADD相似，但是如果有压缩文件并不能解压</td>
-</tr>
-<tr>
-<td>WORKDIR path_dir</td>
-<td>设置工作目录</td>
-</tr>
-</tbody>
-</table>
-<h2 id="6-3-使用脚本创建镜像"><a href="#6-3-使用脚本创建镜像" class="headerlink" title="6.3 使用脚本创建镜像"></a>6.3 使用脚本创建镜像</h2><p>步骤：</p>
-<p>（1）创建目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir –p /usr/local/dockerjdk8</span><br></pre></td></tr></table></figure>
-<p>（2）下载jdk-8u171-linux-x64.tar.gz并上传到服务器（虚拟机）中的/usr/local/dockerjdk8目录</p>
-<p>（3）创建文件Dockerfile  <code>vi Dockerfile</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#依赖镜像名称和ID</span><br><span class="line">FROM centos:7</span><br><span class="line">#指定镜像创建者信息</span><br><span class="line">MAINTAINER ITCAST</span><br><span class="line">#切换工作目录</span><br><span class="line">WORKDIR /usr</span><br><span class="line">RUN mkdir  /usr/local/java</span><br><span class="line">#ADD 是相对路径jar,把java添加到容器中</span><br><span class="line">ADD jdk-8u171-linux-x64.tar.gz /usr/local/java/</span><br><span class="line"></span><br><span class="line">#配置java环境变量</span><br><span class="line">ENV JAVA_HOME /usr/local/java/jdk1.8.0_171</span><br><span class="line">ENV JRE_HOME $JAVA_HOME/jre</span><br><span class="line">ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">ENV PATH $JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
-<p>（4）执行命令构建镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t=&apos;jdk1.8&apos; .</span><br></pre></td></tr></table></figure>
-<p>注意后边的空格和点，不要省略</p>
-<p>（5）查看镜像是否建立完成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
-<h1 id="7-Docker私有仓库"><a href="#7-Docker私有仓库" class="headerlink" title="7 Docker私有仓库"></a>7 Docker私有仓库</h1><h2 id="7-1-私有仓库搭建与配置"><a href="#7-1-私有仓库搭建与配置" class="headerlink" title="7.1 私有仓库搭建与配置"></a>7.1 私有仓库搭建与配置</h2><p>（1）拉取私有仓库镜像（此步省略）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry</span><br></pre></td></tr></table></figure>
-<p>（2）启动私有仓库容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -di --name=registry -p 5000:5000 registry</span><br></pre></td></tr></table></figure>
-<p>（3）打开浏览器 输入地址<a href="http://192.168.184.141:5000/v2/_catalog看到`{&quot;repositories&quot;:[]}`" target="_blank" rel="noopener">http://192.168.184.141:5000/v2/_catalog看到`{&quot;repositories&quot;:[]}`</a> 表示私有仓库搭建成功并且内容为空</p>
-<p>（4）修改daemon.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
-<p>添加以下内容，保存退出。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"insecure-registries"</span>:[<span class="string">"192.168.184.141:5000"</span>]&#125;</span><br></pre></td></tr></table></figure>
-<p>此步用于让 docker信任私有仓库地址</p>
-<p>（5）重启docker 服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
-<h2 id="7-2-镜像上传至私有仓库"><a href="#7-2-镜像上传至私有仓库" class="headerlink" title="7.2 镜像上传至私有仓库"></a>7.2 镜像上传至私有仓库</h2><p>（1）标记此镜像为私有仓库的镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag jdk1.8 192.168.184.141:5000/jdk1.8</span><br></pre></td></tr></table></figure>
-<p>（2）再次启动私服容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start registry</span><br></pre></td></tr></table></figure>
-<p>（3）上传标记的镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push 192.168.184.141:5000/jdk1.8</span><br></pre></td></tr></table></figure>
-<h1 id="8-Docker如何查看容器日志"><a href="#8-Docker如何查看容器日志" class="headerlink" title="8.Docker如何查看容器日志"></a>8.Docker如何查看容器日志</h1><h2 id="8-1-Docker-logs"><a href="#8-1-Docker-logs" class="headerlink" title="8.1 Docker logs"></a>8.1 Docker logs</h2><p>​    使用命令docker logs 容器名即可查看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs 容器名</span><br></pre></td></tr></table></figure>
-<p>​    -f 查看实时日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f 容器名</span><br></pre></td></tr></table></figure>
-<p>​    -t查看日志产生的日期</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -t 容器名</span><br></pre></td></tr></table></figure>
-<p>​    –since : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f -t --since=&quot;2017-05-31&quot; --tail=10 容器名</span><br></pre></td></tr></table></figure>
-<p>​    –tail=10 : 查看最后的10条日志。 </p>
-<h1 id="9-Docker的生命周期"><a href="#9-Docker的生命周期" class="headerlink" title="9.Docker的生命周期"></a>9.Docker的生命周期</h1><p><img src="http://39.104.171.29/image/dockerLifeCycle.jpg" alt></p>
-<h1 id="10-Docker"><a href="#10-Docker" class="headerlink" title="10.Docker"></a>10.Docker</h1>
           
         
       
@@ -1372,7 +1271,7 @@ Docker也不关心你要把容器运到何方：我们可以在自己的笔记�
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
