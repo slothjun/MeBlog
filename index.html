@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">26</span></a>
 
   </li>
 
@@ -319,6 +319,324 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/30/ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/05/30/ajax/" class="post-title-link" itemprop="url">AJAX</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-30 20:54:56" itemprop="dateCreated datePublished" datetime="2019-05-30T20:54:56+08:00">2019-05-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="AJAX-简介"><a href="#AJAX-简介" class="headerlink" title="AJAX 简介"></a>AJAX 简介</h2><p>AJAX 全称 Asynchronous JavaScript and XML</p>
+<p>AJAX = 异步 JavaScript 和 XML。</p>
+<p>AJAX 是一种用于创建快速动态网页的技术。</p>
+<h2 id="AJAX-工作流程图"><a href="#AJAX-工作流程图" class="headerlink" title="AJAX 工作流程图"></a>AJAX 工作流程图</h2><p><img src="http://39.104.171.29/image/ajax.gif" alt></p>
+<h2 id="ajax基于Internet"><a href="#ajax基于Internet" class="headerlink" title="ajax基于Internet"></a>ajax基于Internet</h2><p>AJAX是基于现有的Internet标准，并且联合使用它们：</p>
+<p>  XMLHttpRequest 对象 (异步的与服务器交换数据)<br>  JavaScript/DOM (信息显示/交互)<br>  CSS (给数据定义样式)<br>  XML (作为转换数据的格式)<br>  lamp  AJAX应用程序与浏览器和平台无关的！</p>
+<h2 id="ajax实例"><a href="#ajax实例" class="headerlink" title="ajax实例"></a>ajax实例</h2><h3 id="基础实例"><a href="#基础实例" class="headerlink" title="基础实例"></a>基础实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  function loadXMLDoc()&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">      var xmlhttp;</span></span><br><span class="line"><span class="undefined">      if (window.XMLHttpRequest)&#123;</span></span><br><span class="line"><span class="undefined">        //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line"><span class="undefined">        xmlhttp=new XMLHttpRequest();</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      else&#123;</span></span><br><span class="line"><span class="undefined">        // IE6, IE5 浏览器执行代码</span></span><br><span class="line"><span class="undefined">        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      xmlhttp.onreadystatechange=function()&#123;</span></span><br><span class="line"><span class="undefined">        if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)&#123;</span></span><br><span class="line"><span class="undefined">          document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      xmlhttp.open("GET","https://www.runoob.com/try/ajax/ajax_info.txt",true);</span></span><br><span class="line"><span class="undefined">      xmlhttp.send();</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"loadXMLDoc()"</span>&gt;</span>修改内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>内容解析：</p>
+<p>xmlHttpRequest 请求运行流程 </p>
+<p>1.创建xmlHttpRequest对象</p>
+<p>2.使用xmlHttpRequest对象开启一个请求方式</p>
+<p>3.发送请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建xmlHttpRequest对象</span><br><span class="line">xmlhttp=<span class="keyword">new</span> XMLHttpRequest(); <span class="comment">//创建xmlHttpRequest对象，IE7+, Firefox, Chrome, Opera, Safari 浏览器可执行代码</span></span><br><span class="line"></span><br><span class="line">xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>); <span class="comment">//同样也是创建XMLHttpRequest对象，针对IE 6,5老版本的创建方式</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>使用xmlHttpRequest对象开启一个请求</span><br><span class="line"></span><br><span class="line"><span class="comment">//open(method,url,async) </span></span><br><span class="line"><span class="comment">//    规定请求的类型、URL 以及是否异步处理请求。(开启一个请求)</span></span><br><span class="line"><span class="comment">//    method：请求的类型；GET 或 POST</span></span><br><span class="line"><span class="comment">//    url：文件在服务器上的位置，服务器请求路径</span></span><br><span class="line"><span class="comment">//    async：true（异步）或 false（同步),ajax中此选项一般都是 true</span></span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"https://www.runoob.com/try/ajax/ajax_info.txt"</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//send(string)</span></span><br><span class="line"><span class="comment">//    将请求发送到服务器。</span></span><br><span class="line"><span class="comment">//    string：仅用于 POST 请求,用于添加post请求中的数据</span></span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure></p>
+<h3 id="GET-于-POST-的对比"><a href="#GET-于-POST-的对比" class="headerlink" title="GET 于 POST 的对比"></a>GET 于 POST 的对比</h3><p>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。</p>
+<p>然而，在以下情况中，请使用 POST 请求：</p>
+<p>1.无法使用缓存文件（更新服务器上的文件或数据库）<br>2.向服务器发送大量数据（POST 没有数据量限制）<br>3.发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
+<h3 id="xmlHttpRequest-setRequestHeader-header-value"><a href="#xmlHttpRequest-setRequestHeader-header-value" class="headerlink" title="xmlHttpRequest.setRequestHeader(header,value)"></a>xmlHttpRequest.setRequestHeader(header,value)</h3><p>此方法用于，向请求添加 HTTP 头。</p>
+<p>header: 规定头的名称<br>value: 规定头的值</p>
+<p>例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");</span><br></pre></td></tr></table></figure></p>
+<h3 id="responseText-and-responseXML"><a href="#responseText-and-responseXML" class="headerlink" title="responseText and responseXML"></a>responseText and responseXML</h3><p>responseText 用于获取服务器中的文本信息资源</p>
+<p>responseXML 用于获取服务器中的XML格式资源</p>
+<p>使用实例<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure></p>
+<h3 id="onreadystatechange-事件"><a href="#onreadystatechange-事件" class="headerlink" title="onreadystatechange 事件"></a>onreadystatechange 事件</h3><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</p>
+<p>每当 readyState 改变时，就会触发 onreadystatechange 事件。</p>
+<p>readyState 属性存有 XMLHttpRequest 的状态信息。</p>
+<p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
+<p>onreadystatechange ：存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</p>
+<p>readyState ：</p>
+<pre><code>存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+
+0: 请求未初始化
+
+1: 服务器连接已建立
+
+2: 请求已接收
+
+3: 请求处理中
+
+4: 请求已完成，且响应已就绪
+</code></pre><p>status ：200: OK  HTTP 响应状态码。404 :未找到页面 </p>
+<p>使用实例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    loadXMLDoc(<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)&#123;</span><br><span class="line">          <span class="comment">//要做的事情 todo</span></span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>参考网址：<a href="https://www.runoob.com/ajax/ajax-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/ajax/ajax-tutorial.html</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/22/nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/05/22/nginx/" class="post-title-link" itemprop="url">nginx</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-22 11:42:21" itemprop="dateCreated datePublished" datetime="2019-05-22T11:42:21+08:00">2019-05-22</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="nginx-的安装"><a href="#nginx-的安装" class="headerlink" title="nginx 的安装"></a>nginx 的安装</h2><h3 id="ubuntu-下安装"><a href="#ubuntu-下安装" class="headerlink" title="ubuntu 下安装"></a>ubuntu 下安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure>
+<h2 id="nginx-虚拟主机配置"><a href="#nginx-虚拟主机配置" class="headerlink" title="nginx 虚拟主机配置"></a>nginx 虚拟主机配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">在 http &#123;&#125;中添加</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">        	listen 80; //监听端口</span><br><span class="line">      		server_name www.xuecheng.com; //服务名</span><br><span class="line">        	ssi on; //是否开启ssi</span><br><span class="line">        	ssi_silent_errors on;</span><br><span class="line">        	location / &#123;</span><br><span class="line">                	alias  /home/spiderbao/webStrom_dev/xc-ui-pc-static-portal/;//主机映射的路径</span><br><span class="line">                	index  index.html;</span><br><span class="line">        	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -657,7 +975,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#110;&#x79;&#x5f;&#116;&#x79;&#x40;&#50;&#x36;&#x33;&#x2e;&#x6e;&#x65;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#110;&#x79;&#x5f;&#116;&#x79;&#x40;&#50;&#x36;&#x33;&#x2e;&#x6e;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#121;&#95;&#116;&#121;&#x40;&#50;&#54;&#x33;&#46;&#110;&#101;&#116;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#121;&#95;&#116;&#121;&#x40;&#50;&#54;&#x33;&#46;&#110;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -665,7 +983,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#x6e;&#121;&#x5f;&#116;&#121;&#64;&#50;&#x36;&#51;&#x2e;&#110;&#101;&#x74;" target="_blank" rel="noopener">&#x74;&#111;&#x6e;&#121;&#x5f;&#116;&#121;&#64;&#50;&#x36;&#51;&#x2e;&#110;&#101;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#121;&#x5f;&#x74;&#x79;&#x40;&#x32;&#x36;&#51;&#x2e;&#x6e;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#121;&#x5f;&#x74;&#x79;&#x40;&#x32;&#x36;&#51;&#x2e;&#x6e;&#x65;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
@@ -2087,600 +2405,6 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/远程监控数据获取/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/远程监控数据获取/" class="post-title-link" itemprop="url">监控参数信息列表</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="监控参数信息列表"><a href="#监控参数信息列表" class="headerlink" title="监控参数信息列表"></a>监控参数信息列表</h2><p>阅读示例</p>
-<p>品牌类型</p>
-<p>​    型号</p>
-<p>​        监控参数</p>
-<h3 id="CT"><a href="#CT" class="headerlink" title="CT"></a>CT</h3><h4 id="飞利浦CT"><a href="#飞利浦CT" class="headerlink" title="飞利浦CT"></a>飞利浦CT</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<h4 id="飞利浦-64排CT"><a href="#飞利浦-64排CT" class="headerlink" title="飞利浦 64排CT"></a>飞利浦 64排CT</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<h4 id="GECT-CT660"><a href="#GECT-CT660" class="headerlink" title="GECT CT660"></a>GECT CT660</h4><p>扫描参数 Top 30 </p>
-<p>球管打火次数 </p>
-<p>CT 球管温度 </p>
-<p>滑环失联次数 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<h4 id="Discovery-CT750-HD"><a href="#Discovery-CT750-HD" class="headerlink" title="Discovery CT750 HD"></a>Discovery CT750 HD</h4><p>扫描参数 Top 30 </p>
-<p>球管打火次数 </p>
-<p>CT 球管温度 </p>
-<p>滑环失联次数 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<p>球管统计_ExamUsageTotal </p>
-<p>球管统计_Patient mAs </p>
-<p>球管统计_PatientScanSeconds </p>
-<h4 id="飞利浦-Brilliance16"><a href="#飞利浦-Brilliance16" class="headerlink" title="飞利浦_Brilliance16"></a>飞利浦_Brilliance16</h4><p>扫描参数 Top 30 </p>
-<h4 id="慈铭体检-奥亚医院-飞利浦CT"><a href="#慈铭体检-奥亚医院-飞利浦CT" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦CT"></a>慈铭体检(奥亚医院)-飞利浦CT</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<h4 id="慈铭体检-北京月坛旗舰店-飞利浦CT"><a href="#慈铭体检-北京月坛旗舰店-飞利浦CT" class="headerlink" title="慈铭体检(北京月坛旗舰店)_飞利浦CT"></a>慈铭体检(北京月坛旗舰店)_飞利浦CT</h4><p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeScanSeconds </p>
-<h4 id="16排CT-Bright-Sperd-Elite"><a href="#16排CT-Bright-Sperd-Elite" class="headerlink" title="16排CT Bright Sperd Elite"></a>16排CT Bright Sperd Elite</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管统计_ExamUsageTotal </p>
-<p>球管统计_Patient mAs </p>
-<p>球管统计_PatientScanSeconds </p>
-<h4 id="西门子64排CT-SOMATOM-Definition-As-64"><a href="#西门子64排CT-SOMATOM-Definition-As-64" class="headerlink" title="西门子64排CT SOMATOM Definition As 64"></a>西门子64排CT SOMATOM Definition As 64</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<p>球管参数_SysScanSeconds </p>
-<h4 id="西门子双排CT"><a href="#西门子双排CT" class="headerlink" title="西门子双排CT"></a>西门子双排CT</h4><h4 id="GECT-Optima-CT680"><a href="#GECT-Optima-CT680" class="headerlink" title="GECT-Optima-CT680"></a>GECT-Optima-CT680</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>滑环失联次数 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<p>球管参数_SysScanSeconds </p>
-<p>球管统计_ExamUsageTotal </p>
-<p>球管统计_Patient mAs </p>
-<p>球管统计_PatientScanSeconds </p>
-<h4 id="CT-Discovery-CT750-HD-GE"><a href="#CT-Discovery-CT750-HD-GE" class="headerlink" title="CT Discovery CT750 HD GE"></a>CT Discovery CT750 HD GE</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<p>球管参数_SysScanSeconds </p>
-<p>球管统计_ExamUsageTotal </p>
-<p>球管统计_Patient mAs </p>
-<p>球管统计_PatientScanSeconds </p>
-<h4 id="西门子emotion16"><a href="#西门子emotion16" class="headerlink" title="西门子emotion16"></a>西门子emotion16</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<p>球管参数_SysScanSeconds </p>
-<h4 id="64排螺旋CT"><a href="#64排螺旋CT" class="headerlink" title="64排螺旋CT"></a>64排螺旋CT</h4><p>扫描参数 Top 30 </p>
-<p>CT 球管温度 </p>
-<p>球管参数_NumberOfScans </p>
-<p>球管参数_TubeKWh </p>
-<p>球管参数_TubeScanSeconds </p>
-<p>球管参数_SysScanSeconds </p>
-<h3 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h3><h4 id="韩国怡友牙片机-PaX500ECT"><a href="#韩国怡友牙片机-PaX500ECT" class="headerlink" title="韩国怡友牙片机_PaX500ECT"></a>韩国怡友牙片机_PaX500ECT</h4><h4 id="慈铭体检-奥亚医院-飞利浦DR-B1"><a href="#慈铭体检-奥亚医院-飞利浦DR-B1" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦DR-B1"></a>慈铭体检(奥亚医院)-飞利浦DR-B1</h4><p>探测器温度 </p>
-<p>曝光时间 </p>
-<p>AreaDose </p>
-<h4 id="慈铭体检-奥亚医院-飞利浦DR-1F"><a href="#慈铭体检-奥亚医院-飞利浦DR-1F" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦DR-1F"></a>慈铭体检(奥亚医院)-飞利浦DR-1F</h4><p>曝光时间 </p>
-<p>AreaDose </p>
-<h4 id="慈铭体检-北京月坛旗舰店-飞利浦DR-1"><a href="#慈铭体检-北京月坛旗舰店-飞利浦DR-1" class="headerlink" title="慈铭体检(北京月坛旗舰店)_飞利浦DR-1"></a>慈铭体检(北京月坛旗舰店)_飞利浦DR-1</h4><h4 id="慈铭体检-北京月坛旗舰店-飞利浦DR-2"><a href="#慈铭体检-北京月坛旗舰店-飞利浦DR-2" class="headerlink" title="慈铭体检(北京月坛旗舰店)_飞利浦DR-2"></a>慈铭体检(北京月坛旗舰店)_飞利浦DR-2</h4><h4 id="西门子乳腺机MAMOMAT-Inspiration"><a href="#西门子乳腺机MAMOMAT-Inspiration" class="headerlink" title="西门子乳腺机MAMOMAT Inspiration"></a>西门子乳腺机MAMOMAT Inspiration</h4><p>Total mAs </p>
-<p>患者接触面温度 </p>
-<p>曝光时间 </p>
-<p>Entrance Dose 直方图统计 </p>
-<p>Organ Dose 直方图统计 </p>
-<p>使用Anode/Filter扫描数统计 </p>
-<h4 id="GEDR-DR-F-玲珑DR"><a href="#GEDR-DR-F-玲珑DR" class="headerlink" title="GEDR DR-F 玲珑DR"></a>GEDR DR-F 玲珑DR</h4><h4 id="GE胃肠机PS800"><a href="#GE胃肠机PS800" class="headerlink" title="GE胃肠机PS800"></a>GE胃肠机PS800</h4><h4 id="美国HOLOGIC骨密度仪"><a href="#美国HOLOGIC骨密度仪" class="headerlink" title="美国HOLOGIC骨密度仪"></a>美国HOLOGIC骨密度仪</h4><h4 id="西门子乳腺机-MAMMOMAT-Inspiration"><a href="#西门子乳腺机-MAMMOMAT-Inspiration" class="headerlink" title="西门子乳腺机 MAMMOMAT Inspiration"></a>西门子乳腺机 MAMMOMAT Inspiration</h4><p>Total mAs </p>
-<p>患者接触面温度 </p>
-<p>曝光时间 </p>
-<p>Entrance Dose 直方图统计 </p>
-<p>Organ Dose 直方图统计 </p>
-<p>使用Anode/Filter扫描数统计 </p>
-<h4 id="西门子DR-syngo-VD31A-SL03P08"><a href="#西门子DR-syngo-VD31A-SL03P08" class="headerlink" title="西门子DR syngo VD31A SL03P08"></a>西门子DR syngo VD31A SL03P08</h4><h4 id="日立MZMDR-7600-UniDROC"><a href="#日立MZMDR-7600-UniDROC" class="headerlink" title="日立MZMDR-7600 UniDROC"></a>日立MZMDR-7600 UniDROC</h4><p>探测器温度 </p>
-<h4 id="岛津Sonialvision-safire-Plus-岛津数字胃肠机"><a href="#岛津Sonialvision-safire-Plus-岛津数字胃肠机" class="headerlink" title="岛津Sonialvision safire Plus (岛津数字胃肠机)"></a>岛津Sonialvision safire Plus (岛津数字胃肠机)</h4><h4 id="锐科DR7500"><a href="#锐科DR7500" class="headerlink" title="锐科DR7500"></a>锐科DR7500</h4><p>探测器温度 </p>
-<h4 id="西门子DR-YISO"><a href="#西门子DR-YISO" class="headerlink" title="西门子DR YISO"></a>西门子DR YISO</h4><h3 id="DSA"><a href="#DSA" class="headerlink" title="DSA"></a>DSA</h3><h4 id="西门子DSA-Artis-zee-floor"><a href="#西门子DSA-Artis-zee-floor" class="headerlink" title="西门子DSA Artis zee floor"></a>西门子DSA Artis zee floor</h4><p>FD 温度 </p>
-<h4 id="ArtiszeeIIIbiplaneMN-DSA"><a href="#ArtiszeeIIIbiplaneMN-DSA" class="headerlink" title="ArtiszeeIIIbiplaneMN  DSA"></a>ArtiszeeIIIbiplaneMN  DSA</h4><p>FD 温度 </p>
-<h3 id="MR"><a href="#MR" class="headerlink" title="MR"></a>MR</h3><h4 id="1-5T-Sympnony"><a href="#1-5T-Sympnony" class="headerlink" title="1.5T-Sympnony"></a>1.5T-Sympnony</h4><p>液氦水平 </p>
-<p>磁体屏蔽层温度 </p>
-<h4 id="3-0T-Signa-HDxt"><a href="#3-0T-Signa-HDxt" class="headerlink" title="3.0T-Signa-HDxt"></a>3.0T-Signa-HDxt</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<p>设备间温度 </p>
-<p>设备间湿度 </p>
-<p>扫描腔温度 </p>
-<h4 id="GEMR-MR-HDe"><a href="#GEMR-MR-HDe" class="headerlink" title="GEMR  MR HDe"></a>GEMR  MR HDe</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<p>设备间温度 </p>
-<p>设备间湿度 </p>
-<p>扫描腔温度 </p>
-<h4 id="GEMR-Excite-1-5T"><a href="#GEMR-Excite-1-5T" class="headerlink" title="GEMR  Excite 1.5T"></a>GEMR  Excite 1.5T</h4><h4 id="GEMR-750-3-0T"><a href="#GEMR-750-3-0T" class="headerlink" title="GEMR  750 3.0T"></a>GEMR  750 3.0T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>设备间温度 </p>
-<p>设备间湿度 </p>
-<h4 id="西门子MR-Verio-3-0T"><a href="#西门子MR-Verio-3-0T" class="headerlink" title="西门子MR_Verio 3.0T"></a>西门子MR_Verio 3.0T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>液氦水平(Probe 1 &amp; Probe 2) </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<p>Board Temperature </p>
-<p>CPU Temperature </p>
-<p>PressureHeaterAveragePower </p>
-<h4 id="GE360光纤核磁，1-5T"><a href="#GE360光纤核磁，1-5T" class="headerlink" title="GE360光纤核磁，1.5T"></a>GE360光纤核磁，1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<h4 id="HDe-1-5T"><a href="#HDe-1-5T" class="headerlink" title="HDe 1.5T"></a>HDe 1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<h4 id="HDe-1-5T-1"><a href="#HDe-1-5T-1" class="headerlink" title="HDe 1.5T"></a>HDe 1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<h4 id="飞利浦-Achieva"><a href="#飞利浦-Achieva" class="headerlink" title="飞利浦_Achieva"></a>飞利浦_Achieva</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>设备间温度 </p>
-<p>设备间湿度 </p>
-<p>LCC_PrimaryFlow </p>
-<p>LCC_T1 Temperature </p>
-<p>射频功率系数 </p>
-<p>梯度爬升率 </p>
-<p>射频放大器电源监控 </p>
-<h4 id="ExciteHD-1-5T-MM3"><a href="#ExciteHD-1-5T-MM3" class="headerlink" title="ExciteHD_1.5T_MM3"></a>ExciteHD_1.5T_MM3</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<h4 id="GE-Excite-HDXT-1-5T"><a href="#GE-Excite-HDXT-1-5T" class="headerlink" title="GE Excite HDXT 1.5T"></a>GE Excite HDXT 1.5T</h4><p>设备间温度 </p>
-<p>设备间湿度 </p>
-<p>扫描腔温度 </p>
-<h4 id="GE-光纤360-1-5T"><a href="#GE-光纤360-1-5T" class="headerlink" title="GE 光纤360 1.5T"></a>GE 光纤360 1.5T</h4><h4 id="GE-Hdxt-1-5T"><a href="#GE-Hdxt-1-5T" class="headerlink" title="GE Hdxt 1.5T"></a>GE Hdxt 1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<p>设备间温度 </p>
-<p>设备间湿度 </p>
-<p>扫描腔温度 </p>
-<h4 id="西门子-AVANTO-1-5T"><a href="#西门子-AVANTO-1-5T" class="headerlink" title="西门子_AVANTO-1.5T"></a>西门子_AVANTO-1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<p>PressureHeaterAveragePower </p>
-<h4 id="GEMR"><a href="#GEMR" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<h4 id="GE-Signa-Exaiter-1-5T"><a href="#GE-Signa-Exaiter-1-5T" class="headerlink" title="GE Signa Exaiter 1.5T"></a>GE Signa Exaiter 1.5T</h4><h4 id="GE光纤360-1-5T"><a href="#GE光纤360-1-5T" class="headerlink" title="GE光纤360-1.5T"></a>GE光纤360-1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<h4 id="宁阳县第一人民医院-GEMR"><a href="#宁阳县第一人民医院-GEMR" class="headerlink" title="宁阳县第一人民医院_GEMR"></a>宁阳县第一人民医院_GEMR</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<p>扫描腔温度 </p>
-<h4 id="GEMR-GE-HDE"><a href="#GEMR-GE-HDE" class="headerlink" title="GEMR_GE-HDE"></a>GEMR_GE-HDE</h4><p>扫描腔温度 </p>
-<h4 id="慈铭体检-奥亚医院-飞利浦MR"><a href="#慈铭体检-奥亚医院-飞利浦MR" class="headerlink" title="慈铭体检(奥亚医院)-飞利浦MR"></a>慈铭体检(奥亚医院)-飞利浦MR</h4><p>液氦水平 </p>
-<p>设备间温度 </p>
-<p>LCC_PrimaryFlow </p>
-<p>LCC_T1 Temperature </p>
-<p>射频功率系数 </p>
-<p>梯度爬升率 </p>
-<p>射频放大器电源监控 </p>
-<h4 id="GEMR-光纤355"><a href="#GEMR-光纤355" class="headerlink" title="GEMR-光纤355"></a>GEMR-光纤355</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<h4 id="GEsigna-excite-1-5T"><a href="#GEsigna-excite-1-5T" class="headerlink" title="GEsigna excite   1.5T"></a>GEsigna excite   1.5T</h4><h4 id="西门子MR-Magnetom-Skyra-3-0T"><a href="#西门子MR-Magnetom-Skyra-3-0T" class="headerlink" title="西门子MR Magnetom Skyra 3.0T"></a>西门子MR Magnetom Skyra 3.0T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<p>PressureHeaterAveragePower </p>
-<h4 id="西门子MR-MAGNETOM-ESSENZA-1-5T"><a href="#西门子MR-MAGNETOM-ESSENZA-1-5T" class="headerlink" title="西门子MR MAGNETOM ESSENZA 1.5T"></a>西门子MR MAGNETOM ESSENZA 1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<p>PressureHeaterAveragePower </p>
-<h4 id="GEMR-1"><a href="#GEMR-1" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<h4 id="西门子MR-Essenza1-5T"><a href="#西门子MR-Essenza1-5T" class="headerlink" title="西门子MR-Essenza1.5T"></a>西门子MR-Essenza1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<p>PressureHeaterAveragePower </p>
-<h4 id="西门子0-35T核磁"><a href="#西门子0-35T核磁" class="headerlink" title="西门子0.35T核磁"></a>西门子0.35T核磁</h4><h4 id="GE光纤360-1-5T-MM3"><a href="#GE光纤360-1-5T-MM3" class="headerlink" title="GE光纤360-1.5T_MM3"></a>GE光纤360-1.5T_MM3</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<h4 id="飞利浦MR-Achieva-1-5T"><a href="#飞利浦MR-Achieva-1-5T" class="headerlink" title="飞利浦MR-Achieva_1.5T"></a>飞利浦MR-Achieva_1.5T</h4><p>设备间温度 </p>
-<p>设备间湿度 </p>
-<p>LCC_PrimaryFlow </p>
-<p>LCC_T1 Temperature </p>
-<h4 id="飞利浦MR-1-5T"><a href="#飞利浦MR-1-5T" class="headerlink" title="飞利浦MR-1.5T"></a>飞利浦MR-1.5T</h4><p>液氦水平 </p>
-<p>射频功率系数 </p>
-<p>梯度爬升率 </p>
-<p>射频放大器电源监控 </p>
-<h4 id="GEMR360"><a href="#GEMR360" class="headerlink" title="GEMR360"></a>GEMR360</h4><h4 id="GEMR-2"><a href="#GEMR-2" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>扫描腔温度 </p>
-<h4 id="GEMR-1-5T"><a href="#GEMR-1-5T" class="headerlink" title="GEMR-1.5T"></a>GEMR-1.5T</h4><h4 id="GEMR-3"><a href="#GEMR-3" class="headerlink" title="GEMR"></a>GEMR</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<p>设备间温度 </p>
-<p>设备间湿度 </p>
-<p>扫描腔温度 </p>
-<h4 id="GEMR-MM3"><a href="#GEMR-MM3" class="headerlink" title="GEMR_MM3"></a>GEMR_MM3</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p>冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-<h4 id="GE355核磁-1-5T"><a href="#GE355核磁-1-5T" class="headerlink" title="GE355核磁-1.5T"></a>GE355核磁-1.5T</h4><p>液氦水平 </p>
-<p>液氦压力 </p>
-<p>水温 </p>
-<p>水流 </p>
-<p> 冷头温度 </p>
-<p>磁体屏蔽层温度 </p>
-<p>冷凝腔温度 </p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
-<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
-<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
-<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
-<p>​    动态加载用户的功能模块</p>
-<p>后端</p>
-<p>​    根据用户权限使用API</p>
-<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
-<p>​        问题：数据如何存储便于后期的使用与管理。</p>
-<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
-<p>​    数据传输</p>
-<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
-<p>​        方案：认证+校验</p>
-<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
-<p>​            校验 ：</p>
-<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
-<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
-<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
-<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
-<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2729,7 +2453,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
