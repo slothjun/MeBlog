@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">32</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">37</span></a>
 
   </li>
 
@@ -319,6 +319,1274 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/27/linux系统结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/27/linux系统结构/" class="post-title-link" itemprop="url">Linux-系统结构</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 16:22:57" itemprop="dateCreated datePublished" datetime="2019-08-27T16:22:57+08:00">2019-08-27</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>简单的说Linux系统可分为 Linux内核 + 应用程序</p>
+<p>对于Linux系统的细致划分，可以分为</p>
+<p>Linux 内核</p>
+<p>系统调用</p>
+<p>库函数</p>
+<p>shell</p>
+<p>应用程序</p>
+<h2 id="内核模式与系统调用"><a href="#内核模式与系统调用" class="headerlink" title="内核模式与系统调用"></a>内核模式与系统调用</h2><h3 id="内核模式"><a href="#内核模式" class="headerlink" title="内核模式"></a>内核模式</h3><p>计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。<br>这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。</p>
+<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>应用程序通过内核接口调用内核程序的过程称为系统调用。</p>
+<p>Linux中的系统调用接口大约有200多种，我们可以通过shell查看Linux下的所有系统调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 2 syscalls</span><br></pre></td></tr></table></figure>
+<p>man 中的参数2表示系统调用，不理解的可通过 man man 查看系统帮助文档.</p>
+<p>系统调用常见的有</p>
+<p>read 文件读取</p>
+<p>write 文件写入</p>
+<p>fork 复制当前进程</p>
+<p>wait 等待某个进程完成</p>
+<p>chdir 改变工作目录</p>
+<p>通过系统调用，Linux用户可以体验到内核封装的好处。使得我们不必关系硬件驱动使用的一些底层细节。我更专注与程序的功能和要实现的目的。</p>
+<h3 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h3><p>库函数是什么，个人认为库函数就是系统调用的更上一层的封装。将系统调用的一些指令结合起来写成函数的形式，以方便调用。就像是C语言中的C标准库一样，有了他们程序开发起来更便捷。</p>
+<p>除了C标准库，Linux还有一些其他的库比如 POSIX等</p>
+<h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>shell 是一个交互程序，他是为了普通用户通过shell在不需要自己编程的情况下使用系统的一些资源。</p>
+<h3 id="用户程序"><a href="#用户程序" class="headerlink" title="用户程序"></a>用户程序</h3><p>用户程序是基于编程语言开发后的程序，它也是通过其语言调用系统内核功能来使用系统的一些硬件资源。和库函数不同的是1它是面向用户的，2它针对的功能更专一，使用更方便。</p>
+<p>早期由于Linux程序中大部分用户程序是用C编写的，然而Linux系统内核也是由C编写的。所以我觉得我们有必要了解下C中的函数调用与进程空间</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/26/bash-初识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/26/bash-初识/" class="post-title-link" itemprop="url">bash-初识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-26 16:19:37" itemprop="dateCreated datePublished" datetime="2019-08-26T16:19:37+08:00">2019-08-26</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是bash"><a href="#什么是bash" class="headerlink" title="什么是bash"></a>什么是bash</h2><p>简单的说，bash是一个命令解释工具</p>
+<h2 id="命令的语法以及规范"><a href="#命令的语法以及规范" class="headerlink" title="命令的语法以及规范"></a>命令的语法以及规范</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量和java中的变量所表示的含义大致相同，都是用一个引用表示地址值中的数据。</p>
+<p>待验证：bash的变量只能存储文本。</p>
+<p>变量的赋值方式和Java中变量赋值类似。下面列举几个例子，看后自会明白。</p>
+<p>$var=word 注意等号的左右不能留有空格</p>
+<p>$var=’hello word’</p>
+<p>$var=”hello word”<br>上面两种都可以表示文本中包含空格的输入。不同之处在于，双引号中可以掺入变量，系统会放入变量引用的值。而单引号却只能打印所有输入的文本内容，变量引用也会当做文本。</p>
+<p>$v1=word<br>$var=”hello ${v1}test” ${}中放入的变量可以中缺的被标识并识别，如果不使用${} 表达式的含义将会变为引用v1!的变量此时不会输出 hello Wordtest 而是 hello </p>
+<p>$now=<code>date</code> 注意<code></code>中可以使用命令。查看now echo $now 这时会输出时间</p>
+<p>$date=$now 变量之间也可以互相传值</p>
+<p>$read name 这时Linux会等待用户输入，输入完成后会把输入的值赋值给name</p>
+<h3 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h3><p>bash中的数学计算类似上学时的数学运算，只要吧运算表达式写入$(())中即可</p>
+<p>加法运算 $((3+2))</p>
+<p>减法运算 $((3-2))</p>
+<p>乘法运算 $((3*2))</p>
+<p>除法运算 $((3/2))</p>
+<p>求余运算 $((2%3))</p>
+<p>乘方运算 $((2**3))</p>
+<h3 id="返回代码"><a href="#返回代码" class="headerlink" title="返回代码"></a>返回代码</h3><p>Linux命令执行完后会放回一个值，返回0表示这段命令执行成功<br>$? 可以查看当前命令执行的结果</p>
+<h3 id="；的使用"><a href="#；的使用" class="headerlink" title="；的使用"></a>；的使用</h3><p>命令中使用；可以在一行命令中执行多个命令。如ls;$? 表示打印目录信息并回响命令返回值</p>
+<h3 id="短路与或"><a href="#短路与或" class="headerlink" title="短路与或"></a>短路与或</h3><p>短路与，在多个命令中，后面命令的执行与否取决于之前命令的返回值，当返回值为0时之后的命令才会执行</p>
+<p>如： rm dome.file &amp;&amp; echo “remove dome.file sucess” 当删除过文件dome.file后会输出文本信息，失败后则不输出。</p>
+<p>短路或，短路或正好是短路与的反向解释。当之前的命令失败后后面的命令才会执行，否则不执行</p>
+<p>如：rm dome.file &amp;&amp; echo “remove dome.file fail” 当没有删除文件dome.file后会输出文本信息，否则不会输出任何信息。</p>
+<h2 id="bash-script"><a href="#bash-script" class="headerlink" title="bash script"></a>bash script</h2><h3 id="fist-bash-file"><a href="#fist-bash-file" class="headerlink" title="fist bash file"></a>fist bash file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">echo &quot;Information of $&#123;user&#125; computer&quot; &gt;&gt; log</span><br><span class="line"></span><br><span class="line">lscpu &gt;&gt; log</span><br><span class="line">uname -a &gt;&gt; log</span><br><span class="line">free -h &gt;&gt; log</span><br></pre></td></tr></table></figure>
+<p>这是一个简单的bash脚本，刚刚解释了什么是bash他是一个命令解释器，所以bash脚步就是集多条bash命令的一个文本。<br>这样做的好处是我们可以记录使用命令的逻辑，并多次复用。</p>
+<h3 id="bash中传入参数"><a href="#bash中传入参数" class="headerlink" title="bash中传入参数"></a>bash中传入参数</h3><p>bash 中的参数使用 $0 $1 …表示</p>
+<p>使用例子：</p>
+<p>测试流程 1编辑bashscript 2运行 3显示结果</p>
+<p>1 编辑script<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br></pre></td></tr></table></figure></p>
+<p>2 运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./test_arg.bash hello word</span><br></pre></td></tr></table></figure></p>
+<p>3.显示结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./test_arg.bash</span><br><span class="line">hello</span><br><span class="line">word</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>个人认为函数是对bash脚本的一次封装，通过内部定义函数可以将命令功能分块包装。从而达到脚本内函数的复用</p>
+<h3 id="无参函数示例"><a href="#无参函数示例" class="headerlink" title="无参函数示例"></a>无参函数示例</h3><p>测试流程  1编写脚本 2运行 3展示结果</p>
+<p>1 编写脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function meInfo()&#123;</span><br><span class="line">  date &gt;&gt; log</span><br><span class="line">  lscpu &gt;&gt; log</span><br><span class="line">  uname -a &gt;&gt; log</span><br><span class="line">  free -h &gt;&gt; log</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">meInfo</span><br></pre></td></tr></table></figure></p>
+<p>2 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./test_function.bash</span><br></pre></td></tr></table></figure>
+<p>3 显示结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat log </span><br><span class="line">2019年 08月 26日 星期一 13:52:10 CST</span><br><span class="line">xxxxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxx</span><br><span class="line">x</span><br></pre></td></tr></table></figure></p>
+<h4 id="带参函数示例"><a href="#带参函数示例" class="headerlink" title="带参函数示例"></a>带参函数示例</h4><p>测试流程  1编写脚本 2运行 3展示结果</p>
+<p>1.编写脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function meInfo()&#123;</span><br><span class="line">  date &gt;&gt; $1</span><br><span class="line">  echo &apos;hello&apos; &gt;&gt; $1</span><br><span class="line">  echo &apos;word&apos;  &gt;&gt;  $1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">meInfo melog</span><br><span class="line">meInfo melog2</span><br></pre></td></tr></table></figure></p>
+<p>2 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./test_function.bash</span><br></pre></td></tr></table></figure>
+<p>3 显示结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat melog</span><br><span class="line">2019年 08月 26日 星期一 14:14:37 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat melog2</span><br><span class="line">2019年 08月 26日 星期一 14:14:37 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br></pre></td></tr></table></figure></p>
+<h4 id="跨脚本函数调用"><a href="#跨脚本函数调用" class="headerlink" title="跨脚本函数调用"></a>跨脚本函数调用</h4><p>首先跨脚本函数调用是基于脚本之上的操作，从此也可以看出函数封装的好处。</p>
+<p>跨脚本函数调用主要使用source关键字</p>
+<p>测试流程 1编写脚本 2 运行 3 展示结果</p>
+<p>1 编写脚本</p>
+<p>test_function.bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function meInfo()&#123;</span><br><span class="line">  date &gt;&gt; $1</span><br><span class="line">  echo &apos;hello&apos; &gt;&gt; $1</span><br><span class="line">  echo &apos;word&apos;  &gt;&gt;  $1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">meInfo melog</span><br><span class="line">meInfo melog2</span><br></pre></td></tr></table></figure></p>
+<p>app.bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">source test_function.bash</span><br><span class="line"></span><br><span class="line">meInfo melog3</span><br><span class="line">meInfo log</span><br></pre></td></tr></table></figure></p>
+<p>2 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./app.bash</span><br></pre></td></tr></table></figure>
+<p>3 展示结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat melog melog2 melog3</span><br><span class="line">2019年 08月 26日 星期一 14:30:22 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br><span class="line">2019年 08月 26日 星期一 14:30:22 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br><span class="line">2019年 08月 26日 星期一 14:30:22 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br></pre></td></tr></table></figure>
+<p>可以看到source 引入的test_function.bash 脚本被执行了一遍，注意是整个脚本不单是脚本中的一个函数而是整个脚本。</p>
+<h3 id="逻辑判断"><a href="#逻辑判断" class="headerlink" title="逻辑判断"></a>逻辑判断</h3><p>逻辑判断为的是判断一个函数式运行的真假或一个命令的真假</p>
+<p>案例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ test 3 -gt 2 ;echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<p>因为3大于2（-gt表示大于）所以命令的返回值为0</p>
+<h4 id="关于数值的判断符"><a href="#关于数值的判断符" class="headerlink" title="关于数值的判断符"></a>关于数值的判断符</h4><p>大于 -gt<br>小于 -lt<br>等于 -eq<br>不等于 -ne<br>大于等于 -ge<br>小于等于 -le</p>
+<h4 id="关于文本的判断符"><a href="#关于文本的判断符" class="headerlink" title="关于文本的判断符"></a>关于文本的判断符</h4><p>文本相同 =<br>文本不相同 !=<br>文本按字典排序一个文本在另一个文本之前 &gt;<br>文本按字典排序一个文本在另一个文本之后 &lt;</p>
+<h4 id="关于文件判断符"><a href="#关于文件判断符" class="headerlink" title="关于文件判断符"></a>关于文件判断符</h4><p>检查文件是否存在 -e<br>检查文件是否存在并且是普通文件 -f<br>检查目录是否存在 -d<br>检查软连接是否存在 -l<br>检查文件是否可读 -r<br>检查文件是否可写 -w<br>检查文件是否可以执行 -x</p>
+<h4 id="与或非"><a href="#与或非" class="headerlink" title="与或非"></a>与或非</h4><p>&amp;&amp; || !</p>
+<p>注意 &amp;&amp; || ! 不能联合使用</p>
+<h3 id="选择结构"><a href="#选择结构" class="headerlink" title="选择结构"></a>选择结构</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p>if 选择结构，类似java中的流程控制语句if</p>
+<p>案例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">if [ $user = &apos;root&apos; ]</span><br><span class="line">then </span><br><span class="line">	echo &quot;你是超级用户！&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<p>需要注意语法格式</p>
+<h4 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h4><p>if else ,类似java中的流程控制语句 if else</p>
+<p>案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">if [ $user = &apos;root&apos; ]</span><br><span class="line">then </span><br><span class="line">	echo &quot;你是超级用户！&quot;</span><br><span class="line">else</span><br><span class="line">	echo &quot;你不是超级用户！&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>需要注意语法格式</p>
+<p>if else 嵌套使用，类似java流程控制语句中的if else if else</p>
+<p>案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">if [ $user = &apos;root&apos; ]</span><br><span class="line">then </span><br><span class="line">	echo &quot;你是超级用户！&quot;</span><br><span class="line">else  if [ $user = &apos;laowang&apos; ]</span><br><span class="line">then</span><br><span class="line">	echo &quot;你是老王用户！&quot;</span><br><span class="line">else if [ $user = &apos;spiderbao&apos; ]</span><br><span class="line">then</span><br><span class="line">	echo &apos;你是spidermen的朋友spiderbao!&apos;</span><br><span class="line">else</span><br><span class="line">	echo &apos;我也不知道你是谁！&apos;</span><br><span class="line">fi</span><br><span class="line">fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>格式样式模仿Java的if else if else ，唯一不同处在于结尾fi使用了多少个if就需要添加多少个fi来结尾。毕竟这是一个嵌套语句。</p>
+<h4 id="case"><a href="#case" class="headerlink" title="case"></a>case</h4><p>case 类似java流程控制语句中的switch</p>
+<p>案例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line"></span><br><span class="line">case $user in</span><br><span class="line">	root)</span><br><span class="line">		echo &quot;你是超级管理员用户！&quot;</span><br><span class="line">	;;</span><br><span class="line">	laowang)</span><br><span class="line">		echo &quot;你是老王用户！&quot;</span><br><span class="line">	;;</span><br><span class="line">	spiderbao)</span><br><span class="line">		echo &apos;你是spiderbao用户！&apos;</span><br><span class="line">	;;</span><br><span class="line">	*)</span><br><span class="line">		echo &apos;我也不知道你是谁！&apos;</span><br><span class="line">	;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是 ）中可以填写文本以及通配符<br>通配符</p>
+<ul>
+<li>表示任意个数的任意字符<br>? 表示一个字符的任意字符<br>[] 类似正则表达式中的[]，表示可选范围内的字符，另外[]只占一个字符位 。例如[1-5][a-x] 1a,2b 均匹配</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/26/vim篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/26/vim篇/" class="post-title-link" itemprop="url">vim篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-26 14:08:27" itemprop="dateCreated datePublished" datetime="2019-08-26T14:08:27+08:00">2019-08-26</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="vim文本编辑器"><a href="#vim文本编辑器" class="headerlink" title="vim文本编辑器"></a>vim文本编辑器</h2><h3 id="vim常用操作"><a href="#vim常用操作" class="headerlink" title="vim常用操作"></a>vim常用操作</h3><p>​    <img src="http://39.104.171.29/image/1554102941025.png" alt="1554102941025"></p>
+<p>vim是荷兰一位名叫 Bram Moolenaar  的工程师开发并分享的开源编辑器插件</p>
+<p><img src="http://39.104.171.29/image/1554103011275.png" alt="1554103011275"></p>
+<p><img src="http://39.104.171.29/image/1554103333245.png" alt="1554103333245"></p>
+<p><img src="http://39.104.171.29/image/1554103479882.png" alt="1554103479882"></p>
+<p><img src="http://39.104.171.29/image/1554103628208.png" alt="1554103628208"></p>
+<p><img src="http://39.104.171.29/image/1554104114402.png" alt="1554104114402"></p>
+<p>vim区域复制，进入Ctrl+V 选择要复制的区域后 按y复制 p粘贴</p>
+<p><img src="http://39.104.171.29/image/1554104294187.png" alt="1554104294187"></p>
+<p><img src="http://39.104.171.29/image/1554104229157.png" alt="1554104229157"></p>
+<p><img src="http://39.104.171.29/image/1554104607078.png" alt="1554104607078"></p>
+<h3 id="vim使用技巧"><a href="#vim使用技巧" class="headerlink" title="vim使用技巧"></a>vim使用技巧</h3><p><img src="http://39.104.171.29/image/1554105915669.png" alt="1554105915669"></p>
+<p>上面连续行注释中 /表示隔离符 \表示转移符</p>
+<p>个人用户下编辑添加 .vimrc 文件可以保存一些关于vim的配置和快捷键的使用。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/23/ssh协议/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/23/ssh协议/" class="post-title-link" itemprop="url">ssh协议</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-23 15:25:42" itemprop="dateCreated datePublished" datetime="2019-08-23T15:25:42+08:00">2019-08-23</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Http-headers"><a href="#Http-headers" class="headerlink" title="Http headers"></a>Http headers</h2><h3 id="if-modified-since"><a href="#if-modified-since" class="headerlink" title="if-modified-since"></a>if-modified-since</h3><p>首先他是一个条件式头部信息</p>
+<p>个人认为它用来标识修改的时间，时间指的是上次响应头中的last-modified的时间</p>
+<h3 id="if-match"><a href="#if-match" class="headerlink" title="if-match"></a>if-match</h3><p>首先它是一个条件式头部信息</p>
+<p>GET方式的请求中使用它后，服务器会验证ETag是否匹配，如果不匹配则不返回数据</p>
+<p>PUT等不安全的方法判断同上，不同之处在于不能上传数据或修改数据</p>
+<p>它们比较的算法默认为强比较算法，也就是对比每一个比特位，都相同时认为文件或信息是相同的。如果在ETag前加入“w/”那么比较的算法就会由强比较改为相对宽松的算法</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/05/Linux-权限整合篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/05/Linux-权限整合篇/" class="post-title-link" itemprop="url">Linux-权限整合篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-05 17:27:26" itemprop="dateCreated datePublished" datetime="2019-08-05T17:27:26+08:00">2019-08-05</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基本权限管理"><a href="#基本权限管理" class="headerlink" title="基本权限管理"></a>基本权限管理</h2><h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><p>基本权限管理使用 chmod 命令</p>
+<p>如给一个文件设置属主，所属组，其他的权限如下所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ touch test.txt</span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ chmod 774 test.txt </span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt </span><br><span class="line">-rwxrwxr-- 1 spiderbao spiderbao 0 8月   5 16:29 test.txt*</span><br></pre></td></tr></table></figure></p>
+<p>给文件夹赋予权限同上所示，上面使用数字的方式给权限赋值，4表示读 ，2表示修改，1表示执行</p>
+<h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h3><p>chown 命令可以修改文件的所有者以及所属组</p>
+<p>案例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#修改文件的所属组</span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt </span><br><span class="line">-rwxrwxr-- 1 spiderbao spiderbao 0 8月   5 16:29 test.txt*</span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ sudo chown spiderbao.ftp test.txt </span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt </span><br><span class="line">-rwxrwxr-- 1 spiderbao ftp 0 8月   5 16:29 test.txt*</span><br></pre></td></tr></table></figure>
+<h2 id="umask默认权限管理"><a href="#umask默认权限管理" class="headerlink" title="umask默认权限管理"></a>umask默认权限管理</h2><p>查看系统默认umask<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ umask -S</span><br><span class="line">u=rwx,g=rx,o=rx</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ umask </span><br><span class="line">0022</span><br></pre></td></tr></table></figure></p>
+<p>解析 umaks 0022 代表什么</p>
+<p>其中</p>
+<p>第一位 特殊权限位，如果是1表示文件具有SBIT权限，2表示具有SetGID权限，4表示具有SetUID权限，0表示站位符</p>
+<p>第二位 所属主位，4 （read），2 （write），1（execute）</p>
+<p>第三位 所属组位，4 （read），2 （write），1（execute）</p>
+<p>第四位 其他位，4 （read），2 （write），1（execute）</p>
+<p>默认权限算法</p>
+<p>文件夹的默认最大权限 777<br>文件的最大默认权限 666</p>
+<p>文件的默认值是根据 文件的最大权限值与umask设置的值进行或得出的。</p>
+<p>666 表示 rw-rw-rw- 022 表示 —-w–w- 进行或运算后得 rw r r 所以这个就是系统中创建文件后的默认权限值</p>
+<h2 id="ACL-权限管理"><a href="#ACL-权限管理" class="headerlink" title="ACL 权限管理"></a>ACL 权限管理</h2><p>ACL 的全称是 Access Control List (访问控制列表)</p>
+<p>它可以针对文件设置除基本权限外的 r w x的权限</p>
+<p>举例，现在有一个文件test 是开发小组1共同需要操作所以小组 test拥有 rw的权限，同时文件的创建者拥有rw权限，其他人无权查看test文件的内容，有一天来了以为实习生，由于他刚来不久所以需要拥有test的r权限但是不能拥有w权限这时改基本权限又不太现实。那现在怎么办呢？看看接下来我用ACL权限是如何解决的吧</p>
+<pre><code class="Linux">
+</code></pre>
+<h2 id="SetUID、SetGID、SBIT-权限管理"><a href="#SetUID、SetGID、SBIT-权限管理" class="headerlink" title="SetUID、SetGID、SBIT 权限管理"></a>SetUID、SetGID、SBIT 权限管理</h2><h2 id="chatter-权限"><a href="#chatter-权限" class="headerlink" title="chatter 权限"></a>chatter 权限</h2><h2 id="sudo-权限"><a href="#sudo-权限" class="headerlink" title="sudo 权限"></a>sudo 权限</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/07/18/quartz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/07/18/quartz/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-18 17:01:16" itemprop="dateCreated datePublished" datetime="2019-07-18T17:01:16+08:00">2019-07-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="quartz-简介"><a href="#quartz-简介" class="headerlink" title="quartz 简介"></a>quartz 简介</h2><h2 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h2><h2 id="quartz-快速入门"><a href="#quartz-快速入门" class="headerlink" title="quartz 快速入门"></a>quartz 快速入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">StdSchedulerFactory stdSchedulerFactory = <span class="keyword">new</span> StdSchedulerFactory();<span class="comment">//创建StdSchedulerFactory工厂</span></span><br><span class="line">Scheduler scheduler = stdSchedulerFactory.getScheduler();</span><br><span class="line"></span><br><span class="line">scheduler.start();</span><br><span class="line"></span><br><span class="line">JobDetail job = newJob(HelloJob.class)</span><br><span class="line">        .withIdentity(<span class="string">"myJob"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Trigger trigger = newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"myTrigger"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .startNow()</span><br><span class="line">        <span class="comment">//调度触发执行内容和时间的操作</span></span><br><span class="line">        .withSchedule(simpleSchedule()</span><br><span class="line">            .withIntervalInSeconds(<span class="number">4</span>)</span><br><span class="line">            .repeatForever())</span><br><span class="line">        .build();</span><br><span class="line">scheduler.scheduleJob(job,trigger);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>)&#123;&#125;<span class="comment">//测试用，防止主线程结束</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quartz-常用接口"><a href="#Quartz-常用接口" class="headerlink" title="Quartz 常用接口"></a>Quartz 常用接口</h2><h3 id="Scheduler-与调度程序交"><a href="#Scheduler-与调度程序交" class="headerlink" title="Scheduler (与调度程序交)"></a>Scheduler (与调度程序交)</h3><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><pre><code>开始：SchedulerFactory 创建后开始
+结束：Scheduler调用shutdown结束
+</code></pre><h3 id="Job-调度的内容实现定义"><a href="#Job-调度的内容实现定义" class="headerlink" title="Job (调度的内容实现定义)"></a>Job (调度的内容实现定义)</h3><h3 id="JobDetail-作业实例"><a href="#JobDetail-作业实例" class="headerlink" title="JobDetail (作业实例)"></a>JobDetail (作业实例)</h3><h3 id="Trigger-（触发器）"><a href="#Trigger-（触发器）" class="headerlink" title="Trigger （触发器）"></a>Trigger （触发器）</h3><h4 id="公共属性"><a href="#公共属性" class="headerlink" title="公共属性"></a>公共属性</h4><pre><code>所有类型的trigger都有TriggerKey这个属性，表示trigger的身份；除此之外，trigger还有很多其它的公共属性。这些属性，在构建trigger的时候可以通过TriggerBuilder设置。
+</code></pre><p>trigger的公共属性有：</p>
+<p>jobKey属性：当trigger触发时被执行的job的身份；</p>
+<p>startTime属性：设置trigger第一次触发的时间；该属性的值是java.util.Date类型，表示某个指定的时间点；有些类型的trigger，会在设置的startTime时立即触发，有些类型的trigger，表示其触发是在startTime之后开始生效。比如，现在是1月份，你设置了一个trigger–“在每个月的第5天执行”，然后你将startTime属性设置为4月1号，则该trigger第一次触发会是在几个月以后了(即4月5号)。</p>
+<p>endTime属性：表示trigger失效的时间点。比如，”每月第5天执行”的trigger，如果其endTime是7月1号，则其最后一次执行时间是6月5号。</p>
+<h4 id="优先级（priority）"><a href="#优先级（priority）" class="headerlink" title="优先级（priority）"></a>优先级（priority）</h4><p>如果你的trigger很多(或者Quartz线程池的工作线程太少)，Quartz可能没有足够的资源同时触发所有的trigger；这种情况下，你可能希望控制哪些trigger优先使用Quartz的工作线程，要达到该目的，可以在trigger上设置priority属性。比如，你有N个trigger需要同时触发，但只有Z个工作线程，优先级最高的Z个trigger会被首先触发。如果没有为trigger设置优先级，trigger使用默认优先级，值为5；priority属性的值可以是任意整数，正数、负数都可以。</p>
+<p>注意：只有同时触发的trigger之间才会比较优先级。10:59触发的trigger总是在11:00触发的trigger之前执行。</p>
+<p>注意：如果trigger是可恢复的，在恢复后再调度时，优先级与原trigger是一样的。</p>
+<h4 id="错过触发描述（misfire-instructions）"><a href="#错过触发描述（misfire-instructions）" class="headerlink" title="错过触发描述（misfire instructions）"></a>错过触发描述（misfire instructions）</h4><p>trigger还有一个重要的属性misfire；如果scheduler关闭了，或者Quartz线程池中没有可用的线程来执行job，此时持久性的trigger就会错过(miss)其触发时间，即错过触发(misfire)。不同类型的trigger，有不同的misfire机制。它们默认都使用“智能机制(smart policy)”，即根据trigger的类型和配置动态调整行为。当scheduler启动的时候，查询所有错过触发(misfire)的持久性trigger。然后根据它们各自的misfire机制更新trigger的信息。当你在项目中使用Quartz时，你应该对各种类型的trigger的misfire机制都比较熟悉，这些misfire机制在JavaDoc中有说明</p>
+<h4 id="Simple-Trigger"><a href="#Simple-Trigger" class="headerlink" title="Simple Trigger"></a>Simple Trigger</h4><h3 id="JobBuilder-用于构建JobDetail"><a href="#JobBuilder-用于构建JobDetail" class="headerlink" title="JobBuilder (用于构建JobDetail)"></a>JobBuilder (用于构建JobDetail)</h3><h3 id="TriggerBuilder-用于构建Trigger"><a href="#TriggerBuilder-用于构建Trigger" class="headerlink" title="TriggerBuilder (用于构建Trigger)"></a>TriggerBuilder (用于构建Trigger)</h3><h3 id="Scheduler-Job-Trigger-三者的调用关系"><a href="#Scheduler-Job-Trigger-三者的调用关系" class="headerlink" title="Scheduler Job Trigger 三者的调用关系"></a>Scheduler Job Trigger 三者的调用关系</h3><p>Scheduler 调度计划，如果想要执行调度，需要将Job和Trigger放入<br>scheduler实例化后，可以启动(start)、暂停(stand-by)、停止(shutdown)注意：scheduler被停止后，除非重新实例化，否则不能重新启动；只有当scheduler启动后，即使处于暂停状态也不行，trigger才会被触发</p>
+<p>Job 用来定义工作内容</p>
+<p>Trigger用来定义调度的触发时间，以及绑定工作组</p>
+<h3 id="JobDataMap的使用"><a href="#JobDataMap的使用" class="headerlink" title="JobDataMap的使用"></a>JobDataMap的使用</h3><p>1.Job类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getJobDetail().getJobDataMap();</span><br><span class="line"></span><br><span class="line">      String jobSays = dataMap.getString(<span class="string">"jobSays"</span>);</span><br><span class="line">      <span class="keyword">float</span> myFloatValue = dataMap.getFloat(<span class="string">"myFloatValue"</span>);</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.调度定义时<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define the job and tie it to our DumbJob class</span></span><br><span class="line">JobDetail job = newJob(DumbJob.class)</span><br><span class="line">    .withIdentity(<span class="string">"myJob"</span>, <span class="string">"group1"</span>) <span class="comment">// name "myJob", group "group1"</span></span><br><span class="line">    .usingJobData(<span class="string">"jobSays"</span>, <span class="string">"Hello World!"</span>)</span><br><span class="line">    .usingJobData(<span class="string">"myFloatValue"</span>, <span class="number">3.141f</span>)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></p>
+<h4 id="自动填充jobDataMap参数"><a href="#自动填充jobDataMap参数" class="headerlink" title="自动填充jobDataMap参数"></a>自动填充jobDataMap参数</h4><p>只需要修改Job类，在类中添加map相对应的字段提供set方法即可。如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    String jobSays;</span><br><span class="line">    <span class="keyword">float</span> myFloatValue;</span><br><span class="line">    ArrayList state;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getMergedJobDataMap();  <span class="comment">// Note the difference from the previous example</span></span><br><span class="line"></span><br><span class="line">      state.add(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobSays</span><span class="params">(String jobSays)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.jobSays = jobSays;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyFloatValue</span><span class="params">(<span class="keyword">float</span> myFloatValue)</span> </span>&#123;</span><br><span class="line">      myFloatValue = myFloatValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(ArrayList state)</span> </span>&#123;</span><br><span class="line">      state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h2><p>由于Job类的创建是由Scheduler上的JobFactory 运行时动态创建的，所以个人猜测框架创作人使用了动态代理的技术。所以Job的成员变量与外界的交互就成为了难题。如何实现呢？答案就是在实现Job的类上加入@PersistJobDataAfterExecution注解，这样JobDataMap中的数据就可以与外界交互了。</p>
+<h2 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h2><pre><code>个人目前还没有使用过，w3cschool的官方文档上是这样介绍的：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DisallowConcurrentExecution：将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/07/18/Linux-命令篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/07/18/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-18 17:01:04" itemprop="dateCreated datePublished" datetime="2019-07-18T17:01:04+08:00">2019-07-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h3><h4 id="命令提示符"><a href="#命令提示符" class="headerlink" title="命令提示符"></a>命令提示符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]#</span><br></pre></td></tr></table></figure>
+<p> 如上所示：<br>       [] ：是centos的提示分隔符，没有特殊的意义<br>       root ：表示当前的登录用户<br>       @ ：表示分隔符号，没有特殊的意义<br>       bogon : 表示当前系统的简写<br>       ～ ：表示当前用户所在的目录，～就是当前用户的家(home)目录</p>
+<pre><code># : 命令提示符，可以标识当前登录用户的权限等级，普通用户使用$标识，超级管理员用#标识
+</code></pre><h4 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h4><p><img src="http://39.104.171.29/image/1553455157361.png" alt="1553455157361"></p>
+<p>选项存在2种格式</p>
+<pre><code>1.长格式选项 如：--all 
+2.短格式选项 如：-a
+</code></pre><h4 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h4><p><img src="http://39.104.171.29/image/1553455753059.png" alt="1553455753059"></p>
+<p>使用 -a 时会看到有的文件名前有.此时表示此文件为隐藏文件。</p>
+<p>使用-l 查看详细信息</p>
+<p><img src="http://39.104.171.29/image/1553456138517.png" alt="1553456138517"></p>
+<p>上面1表示此文件的链接计数</p>
+<p><img src="http://39.104.171.29/image/1553456202080.png" alt="1553456202080"></p>
+<p>上面的root 表示文件的所有者，也就是文件的创建人或负责人，一个文件只能有一个所有者</p>
+<p><img src="http://39.104.171.29/image/1553456372734.png" alt="1553456372734"></p>
+<p>上面表示文件的所属组，一个文件只能拥有一个所有组</p>
+<p>在-l 后追加h -lh 表示人性化显示，使文件的大小更直观、</p>
+<p><img src="http://39.104.171.29/image/1553456551687.png" alt="1553456551687"></p>
+<p>ls -i 可以获取文件的I节点或获取文件的id号</p>
+<p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
+<p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
+<p>cd - 回到上次操作的目录</p>
+<p>cd ~ 回到当前用户的根目录</p>
+<p>cd 回到当前用户的根目录</p>
+<p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
+<p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
+<p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
+<p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
+<p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
+<p>tree 命令以目录树的方式显示文件结构信息</p>
+<p>使用tree 时可能会遇到command not  found ,这时就需要安装此命令</p>
+<p>本人使用的是centos 7 的系统 发现使用yum 无法获取tree的安装包</p>
+<p>所以只能使用源码包安装，于是在<a href="ftp://mama.indstate.edu/linux/tree/" target="_blank" rel="noopener">ftp://mama.indstate.edu/linux/tree/</a> 下载了 源码包</p>
+<p>在/usr/local/src 下使用make 编译了源码包</p>
+<h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
+<p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
+<p>cat 适用于查看简短文件内容，如shell脚本</p>
+<p><img src="http://39.104.171.29/image/1553464171496.png" alt="1553464171496"></p>
+<p><img src="http://39.104.171.29/image/1553464603686.png" alt="1553464603686"></p>
+<p>less 进入后使用 /关键字 可进行反白关键字高亮显示，同时按N键可以跳到下一个关键字，在高亮的关键字后加入！可以取消高亮效果</p>
+<p><img src="http://39.104.171.29/image/1553465266101.png" alt="1553465266101"></p>
+<p><img src="http://39.104.171.29/image/1553465409489.png" alt="1553465409489"></p>
+<p><img src="http://39.104.171.29/image/1553600438679.png" alt="1553600438679"></p>
+<p><img src="http://39.104.171.29/image/1553601846764.png" alt="1553601846764"></p>
+<p>硬链接的生成命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln /tmp/china/changzhi /root/china.hard</span><br></pre></td></tr></table></figure>
+<p>硬链接 共享文件的inode ,但是文件夹不能创建硬链接。</p>
+<h4 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h4><p>权限分为了三类 r w s 读 写 执行</p>
+<p><img src="http://39.104.171.29/image/1553602141983.png" alt="1553602141983"></p>
+<p><img src="http://39.104.171.29/image/1553602447029.png" alt="1553602447029"></p>
+<p><img src="http://39.104.171.29/image/1553603202959.png" alt="1553603202959"></p>
+<p><img src="http://39.104.171.29/image/1553603260245.png" alt="1553603260245"></p>
+<h5 id="其他权限管理命令"><a href="#其他权限管理命令" class="headerlink" title="其他权限管理命令"></a>其他权限管理命令</h5><p><img src="http://39.104.171.29/image/1553605959901.png" alt="1553605959901"></p>
+<p><img src="http://39.104.171.29/image/1553606015581.png" alt="1553606015581"></p>
+<p><img src="http://39.104.171.29/image/1553606075600.png" alt="1553606075600"></p>
+<h4 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h4><h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p><img src="http://39.104.171.29/image/1553749537377.png" alt="1553749537377"></p>
+<p><img src="http://39.104.171.29/image/1553749679807.png" alt="1553749679807"></p>
+<p>-name 加通配符可实现模糊搜索文件</p>
+<p>通配符 * 表示多个字符</p>
+<p>通配符 ？表示单个字符</p>
+<p><img src="http://39.104.171.29/image/1553752715110.png" alt="1553752715110"></p>
+<p><img src="http://39.104.171.29/image/1553752887543.png" alt="1553752887543"></p>
+<p><img src="http://39.104.171.29/image/1553752983831.png" alt="1553752983831"></p>
+<h5 id="其他搜索命令"><a href="#其他搜索命令" class="headerlink" title="其他搜索命令"></a>其他搜索命令</h5><p><img src="http://39.104.171.29/image/1553755683871.png" alt="1553755683871"></p>
+<p>此查询基于文件资料库所以，查询时对比find占用系统资源较少。</p>
+<p>存在缺陷无法查询tmp目录下的文件</p>
+<p>不能实时查询，如果刚创建的数据没有录入文件资料库时。会导致无法查询到文件。此时使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb</span><br></pre></td></tr></table></figure>
+<p>然后再次使用    locate可查找到文件</p>
+<p><img src="http://39.104.171.29/image/1553756124804.png" alt="1553756124804"></p>
+<p><img src="http://39.104.171.29/image/1553756360865.png" alt="1553756360865"></p>
+<p><img src="http://39.104.171.29/image/1553757094395.png" alt="1553757094395"></p>
+<h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><p><img src="http://39.104.171.29/image/1553757468067.png" alt="1553757468067"></p>
+<p>帮助命令类型 1表示命令，5表示配置文件</p>
+<p>命令名称：whatis</p>
+<p>NAME<br>       whatis - 在 whatis 数据库里查找完整的单词</p>
+<p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
+<p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
+<p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#121;&#95;&#116;&#x79;&#x40;&#50;&#x36;&#x33;&#46;&#110;&#x65;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#121;&#95;&#116;&#x79;&#x40;&#50;&#x36;&#x33;&#46;&#110;&#x65;&#116;</a></p>
+<p>[中文版最新更新]<br>       2001/9/8</p>
+<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
+<p>命令名称：apropos</p>
+<p>NAME<br>       apropos - 在 whatis 数据库中查找字符串</p>
+<p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
+<p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
+<p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#110;&#121;&#x5f;&#x74;&#x79;&#x40;&#50;&#54;&#51;&#46;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#110;&#121;&#x5f;&#x74;&#x79;&#x40;&#50;&#54;&#51;&#46;&#110;&#x65;&#x74;</a></p>
+<p>[中文版最新更新]<br>       2001/9/20</p>
+<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
+<p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
+<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><p><img src="http://39.104.171.29/image/1553826507188.png" alt="1553826507188"></p>
+<p><img src="http://39.104.171.29/image/1553826897084.png" alt="1553826897084"></p>
+<p><img src="http://39.104.171.29/image/1553826911136.png" alt="1553826911136"></p>
+<p><img src="http://39.104.171.29/image/1553827412666.png" alt="1553827412666"></p>
+<p><img src="http://39.104.171.29/image/1553827301824.png" alt="1553827301824"></p>
+<p><img src="http://39.104.171.29/image/1553828266112.png" alt="1553828266112"></p>
+<h4 id="压缩和解压命令"><a href="#压缩和解压命令" class="headerlink" title="压缩和解压命令"></a>压缩和解压命令</h4><h5 id="压缩格式"><a href="#压缩格式" class="headerlink" title="压缩格式"></a>压缩格式</h5><p>gz  zip  rar    其中 zip 是windos和Linux 都支持的压缩格式</p>
+<h5 id="压缩解压命令使用"><a href="#压缩解压命令使用" class="headerlink" title="压缩解压命令使用"></a>压缩解压命令使用</h5><p><img src="http://39.104.171.29/image/1553831418375.png" alt="1553831418375"></p>
+<p><img src="http://39.104.171.29/image/1553831583899.png" alt="1553831583899"></p>
+<p>gzip的缺陷就是目前只能压缩文件，并且压缩后是不保留源文件的。</p>
+<p><img src="http://39.104.171.29/image/1553831796484.png" alt="1553831796484"></p>
+<p>tar 格式表示打包</p>
+<p><img src="http://39.104.171.29/image/1553832058168.png" alt="1553832058168"></p>
+<p><img src="http://39.104.171.29/image/1553837000891.png" alt="1553837000891"></p>
+<p><img src="http://39.104.171.29/image/1553837160959.png" alt="1553837160959"></p>
+<p>unzip 解压文件时出现乱码如何解决，使用命令 unzip -O CP936 压缩包名称 即可。其中-O表示知道文件的编码集，<br>CP936是IBM code page 中的第936页也就是咋们俗称的GBK。</p>
+<p><img src="http://39.104.171.29/image/1553837197214.png" alt="1553837197214"></p>
+<p><img src="http://39.104.171.29/image/1553837357376.png" alt="1553837357376"></p>
+<p><img src="http://39.104.171.29/image/1553837563419.png" alt="1553837563419"><br>rar 格式的文件解压或压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#安装rar shell脚本</span><br><span class="line"> sudo apt install rar</span><br><span class="line"></span><br><span class="line">rar x 文件名进行解压</span><br><span class="line">更多信息使用 man rar</span><br></pre></td></tr></table></figure></p>
+<h4 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h4><p><img src="http://39.104.171.29/image/1553837724986.png" alt="1553837724986"></p>
+<p><img src="http://39.104.171.29/image/1553837906794.png" alt="1553837906794"></p>
+<p><img src="http://39.104.171.29/image/1553838044540.png" alt="1553838044540"></p>
+<p><img src="http://39.104.171.29/image/1553838208557.png" alt="1553838208557"></p>
+<p><img src="http://39.104.171.29/image/1553838404765.png" alt="1553838404765"></p>
+<p>mail 命令操作时需要使用CTRL+D 才可生效，如执邮件的删除功能，需要除了使用delete命令后还需使用</p>
+<p>CTRL+D才可。</p>
+<p>mail 进入使用界面后， h表示查看列表，d表示删除指定的邮件</p>
+<p><img src="http://39.104.171.29/image/1553838607987.png" alt="1553838607987"></p>
+<p><img src="http://39.104.171.29/image/1553838817826.png" alt="1553838817826"></p>
+<p><img src="http://39.104.171.29/image/1553838803865.png" alt="1553838803865"></p>
+<p><img src="http://39.104.171.29/image/1553839077239.png" alt="1553839077239"></p>
+<p><img src="http://39.104.171.29/image/1553841741827.png" alt="1553841741827"></p>
+<p><img src="http://39.104.171.29/image/1553839651829.png" alt="1553839651829"></p>
+<h4 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h4><p><img src="http://39.104.171.29/image/1553842448954.png" alt="1553842448954"></p>
+<h4 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h4><p><img src="http://39.104.171.29/image/1554102568116.png" alt="1554102568116"></p>
+<p><img src="http://39.104.171.29/image/1554102608485.png" alt="1554102608485"></p>
+<p><img src="http://39.104.171.29/image/1554102624441.png" alt="1554102624441"></p>
+<p><img src="http://39.104.171.29/image/1554102670799.png" alt="1554102670799"></p>
+<p><img src="http://39.104.171.29/image/1554102699933.png" alt="1554102699933"></p>
+<p><img src="http://39.104.171.29/image/1554102724817.png" alt="1554102724817"></p>
+<p>修改系统默认运行级别代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 2</span><br></pre></td></tr></table></figure>
+<p><img src="http://39.104.171.29/image/1554102791796.png" alt="1554102791796"> </p>
+<p>查看系统存储信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/meminfo</span><br></pre></td></tr></table></figure></p>
+<h4 id="工具版本切换"><a href="#工具版本切换" class="headerlink" title="工具版本切换"></a>工具版本切换</h4><p>java jdk版本切换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdk 版本切换：sudo update-alternatives --config java</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -874,1334 +2142,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/27/webGLDay01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/27/webGLDay01/" class="post-title-link" itemprop="url">webGlDay01</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-27 23:42:15" itemprop="dateCreated datePublished" datetime="2019-06-27T23:42:15+08:00">2019-06-27</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="WebGL-简介"><a href="#WebGL-简介" class="headerlink" title="WebGL 简介"></a>WebGL 简介</h2><p>webgl是一项可以在浏览器中流畅展示3D模型和场景的一种技术。<br>它使用JavaScript作为编程语言，调用浏览器支持的3D绘制函数，来实现3D模型和场景的展现。</p>
-<h2 id="为什么浏览器可以实现3D绘制"><a href="#为什么浏览器可以实现3D绘制" class="headerlink" title="为什么浏览器可以实现3D绘制"></a>为什么浏览器可以实现3D绘制</h2><p>因为浏览器实现了opengl es的规范，这套规范可以直接使用指令操作显卡，使显卡渲染3D世界，直接反应到浏览器中。</p>
-<p>操作流程： JavaScript ——&gt; opengl es ——&gt; 显卡</p>
-<h2 id="webgl可以做什么"><a href="#webgl可以做什么" class="headerlink" title="webgl可以做什么"></a>webgl可以做什么</h2><p>只要涉及到3D都有webgl的用武之地。比如游戏、家居、城市地图</p>
-<h2 id="webgl之three-js"><a href="#webgl之three-js" class="headerlink" title="webgl之three.js"></a>webgl之three.js</h2><h3 id="three-js是什么"><a href="#three-js是什么" class="headerlink" title="three.js是什么"></a>three.js是什么</h3><p>three.js是一个封装好的webgl库，使用它可以更便捷的使用webgl.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/27/maven/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/27/maven/" class="post-title-link" itemprop="url">maven</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-27 23:18:10" itemprop="dateCreated datePublished" datetime="2019-06-27T23:18:10+08:00">2019-06-27</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="maven介绍"><a href="#maven介绍" class="headerlink" title="maven介绍"></a>maven介绍</h2><h3 id="什么是maven"><a href="#什么是maven" class="headerlink" title="什么是maven"></a>什么是maven</h3><pre><code>Maven 的正确发音是[ˈmevən],而不是“马瘟”以及其他什么瘟。Maven 在美国是一个口语化的词
-语,代表专家、内行的意思。
-
-maven 是一个项目管理工具,它包含了一个项目对象模型（pom:project object model）一组标准集合,一个项目生命周期（project Lifecycle）,一个依赖管理系统（dependency management system）和用来运行定义在生命周期阶段中插件目标的逻辑
-</code></pre><h3 id="maven-能做什么"><a href="#maven-能做什么" class="headerlink" title="maven 能做什么"></a>maven 能做什么</h3><pre><code>1.引入jar包，可控制jar包冲突问题
-2.编译（java文件编译为字节码）
-3.运行测试用例
-4.打包
-</code></pre><h3 id="maven-的特点"><a href="#maven-的特点" class="headerlink" title="maven 的特点"></a>maven 的特点</h3><h4 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h4><pre><code>根据pom中的坐标将jar包导入项目中，可以做到jar包的复用。
-如将一个junit导入项目使用maven则体现为
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</code></pre><h5 id="依赖传递"><a href="#依赖传递" class="headerlink" title="依赖传递"></a>依赖传递</h5><p>下面从字面依赖和传递两个方面了解依赖传递的概念</p>
-<p>依赖：项目A中引入了项目B,这时我们就可以说A依赖于B</p>
-<p>传递：项目B中依赖了项目C由于A依赖于B,所以根据依赖的关系A也就依赖了项目C</p>
-<p>maven的依赖传递可以方便引入一些项目，但是存在一个问题就是如果一个项目同时依赖2个项目。而依赖的2个项目分别又依赖同一个项目的不同版本。这里由于版本的不同可能会引发一些兼容性问题。我们把这种情况称之为依赖传递冲突。</p>
-<p>maven对这种冲突提供的解决方案如下：</p>
-<p>依赖调节原则：</p>
-<p>1、第一声明者优先原则：在 pom 文件定义依赖,先声明的依赖为准。<br>2、路径近者优先原则:例如:A项目依赖B B依赖C C又依赖D 如果我们在A中申明依赖D的不同版本，那么A项目就会依赖D的声明版本而不是传递的D版本。</p>
-<p>只要我们遵循原则maven会帮我们自动处理依赖 ，但我们如果不想遵循原则就不能解决冲突了吗？答案肯定是可以，毕竟maven是一款优秀的自动化构建工具</p>
-<p>不遵循原则如何解决冲突：</p>
-<p>1.排除依赖<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.itcast.ssm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ssm_service<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>XXX<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>XXX<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>2.锁定版本<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- Mybatis --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>3.可选依赖<br>当坐标被赋予<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>时此坐标不会被传递依赖。</p>
-<p>example：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- Mybatis --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="一键构建"><a href="#一键构建" class="headerlink" title="一键构建"></a>一键构建</h4><pre><code>maven 规范化流程如下图
-</code></pre><p><img src="http://39.104.171.29/image/maven_stream.png" alt><br>    一键构建是指，如果用户需要实现上述流程中的清理，只需要使用maven自带的mvn clean命令即可完成项目的清空。<br>    如果是实现流程中的打包，则使用命令mvn package 即可，并且它还会执行打包前的所有流程项。</p>
-<h3 id="maven-安装后目录解析"><a href="#maven-安装后目录解析" class="headerlink" title="maven 安装后目录解析"></a>maven 安装后目录解析</h3><p>bin:存放了 maven 的命令,比如我们前面用到的 mvn tomcat:run<br>boot:存放了一些 maven 本身的引导程序,如类加载器等<br>conf:存放了 maven 的一些配置文件,如 setting.xml 文件<br>lib:存放了 maven 本身运行所需的一些 jar 包<br>在使用maven前电脑需安装jdk或jre因为maven是用java编写的</p>
-<h3 id="maven-命令"><a href="#maven-命令" class="headerlink" title="maven 命令"></a>maven 命令</h3><p>查看maven的帮助信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~$ mvn -help</span><br></pre></td></tr></table></figure></p>
-<p>maven 查看版本信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~$ mvn -v</span><br><span class="line">Apache Maven 3.6.0</span><br><span class="line">Maven home: xxx</span><br><span class="line">Java version: 1.8.0_191, vendor: Oracle Corporation, runtime: xxx</span><br><span class="line">java-8-openjdk-amd64/jre</span><br><span class="line">Default locale: zh_CN, platform encoding: UTF-8</span><br><span class="line">OS name: &quot;linux&quot;, version: &quot;4.18.0-18-generic&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</span><br></pre></td></tr></table></figure></p>
-<p>compile 编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn complie</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD FAILURE</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  0.145 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:24:23+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[ERROR] Unknown lifecycle phase &quot;complie&quot;. You must specify a valid lifecycle phase or a goal in the format &lt;plugin-prefix&gt;:&lt;goal&gt; or &lt;plugin-group-id&gt;:&lt;plugin-artifact-id&gt;[:&lt;plugin-version&gt;]:&lt;goal&gt;. Available lifecycle phases are: validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-clean, clean, post-clean, pre-site, site, post-site, site-deploy. -&gt; [Help 1]</span><br><span class="line">[ERROR] </span><br><span class="line">[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.</span><br><span class="line">[ERROR] Re-run Maven using the -X switch to enable full debug logging.</span><br><span class="line">[ERROR] </span><br><span class="line">[ERROR] For more information about the errors and possible solutions, please read the following articles:</span><br><span class="line">[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/LifecyclePhaseNotFoundException</span><br></pre></td></tr></table></figure></p>
-<p>mvn complie 打错 改为 compile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn compile</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Changes detected - recompiling the module!</span><br><span class="line">[INFO] Compiling 1 source file to /home/spiderbao/idea_dev/hello_maven/target/classes</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.307 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:26:40+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
-<p>test 测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn test</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Nothing to compile - all classes are up to date</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/test/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello_maven ---</span><br><span class="line">[INFO] No sources to compile</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ hello_maven ---</span><br><span class="line">[INFO] No tests to run.</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.072 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:27:10+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
-<p>由于没有写测试用例所以No tests to run.<br>clean 清空<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn clean</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello_maven ---</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  0.289 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:23:21+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
-<p>package 打包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn package</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Nothing to compile - all classes are up to date</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/test/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello_maven ---</span><br><span class="line">[INFO] No sources to compile</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ hello_maven ---</span><br><span class="line">[INFO] No tests to run.</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-war-plugin:2.2:war (default-war) @ hello_maven ---</span><br><span class="line">[INFO] Packaging webapp</span><br><span class="line">[INFO] Assembling webapp [hello_maven] in [/home/spiderbao/idea_dev/hello_maven/target/hello_maven]</span><br><span class="line">[INFO] Processing war project</span><br><span class="line">[INFO] Copying webapp resources [/home/spiderbao/idea_dev/hello_maven/src/main/webapp]</span><br><span class="line">[INFO] Webapp assembled in [22 msecs]</span><br><span class="line">[INFO] Building war: /home/spiderbao/idea_dev/hello_maven/target/hello_maven.war</span><br><span class="line">[INFO] WEB-INF/web.xml already added, skipping</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.515 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:28:25+08:00</span><br></pre></td></tr></table></figure></p>
-<p>install 安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/idea_dev/hello_maven$ mvn install</span><br><span class="line">[INFO] Scanning for projects...</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] ----------------------&lt; com.itheima:hello_maven &gt;-----------------------</span><br><span class="line">[INFO] Building hello_maven Maven Webapp 1.0-SNAPSHOT</span><br><span class="line">[INFO] --------------------------------[ war ]---------------------------------</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/main/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ hello_maven ---</span><br><span class="line">[INFO] Nothing to compile - all classes are up to date</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ hello_maven ---</span><br><span class="line">[INFO] Using &apos;UTF-8&apos; encoding to copy filtered resources.</span><br><span class="line">[INFO] skip non existing resourceDirectory /home/spiderbao/idea_dev/hello_maven/src/test/resources</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ hello_maven ---</span><br><span class="line">[INFO] No sources to compile</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ hello_maven ---</span><br><span class="line">[INFO] No tests to run.</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-war-plugin:2.2:war (default-war) @ hello_maven ---</span><br><span class="line">[INFO] Packaging webapp</span><br><span class="line">[INFO] Assembling webapp [hello_maven] in [/home/spiderbao/idea_dev/hello_maven/target/hello_maven]</span><br><span class="line">[INFO] Processing war project</span><br><span class="line">[INFO] Copying webapp resources [/home/spiderbao/idea_dev/hello_maven/src/main/webapp]</span><br><span class="line">[INFO] Webapp assembled in [23 msecs]</span><br><span class="line">[INFO] Building war: /home/spiderbao/idea_dev/hello_maven/target/hello_maven.war</span><br><span class="line">[INFO] WEB-INF/web.xml already added, skipping</span><br><span class="line">[INFO] </span><br><span class="line">[INFO] --- maven-install-plugin:2.4:install (default-install) @ hello_maven ---</span><br><span class="line">[INFO] Installing /home/spiderbao/idea_dev/hello_maven/target/hello_maven.war to /home/spiderbao/.m2/repository/com/itheima/hello_maven/1.0-SNAPSHOT/hello_maven-1.0-SNAPSHOT.war</span><br><span class="line">[INFO] Installing /home/spiderbao/idea_dev/hello_maven/pom.xml to /home/spiderbao/.m2/repository/com/itheima/hello_maven/1.0-SNAPSHOT/hello_maven-1.0-SNAPSHOT.pom</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  1.604 s</span><br><span class="line">[INFO] Finished at: 2019-05-08T14:42:26+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
-<h3 id="maven-库"><a href="#maven-库" class="headerlink" title="maven 库"></a>maven 库</h3><p>maven库可以分为3类分别是：</p>
-<h4 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h4><pre><code>本地仓库 :用来存储从远程仓库或中央仓库下载的插件和 jar 包,项目使用一些插件或 jar 包,
-</code></pre><p>优先从本地仓库查找</p>
-<h4 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h4><pre><code>远程仓库:如果本地需要插件或者 jar 包,本地仓库没有,默认去远程仓库下载。
-</code></pre><p>远程仓库可以在互联网内也可以在局域网内。</p>
-<h4 id="中央仓库"><a href="#中央仓库" class="headerlink" title="中央仓库"></a>中央仓库</h4><pre><code>中央仓库 :在 maven 软件中内置一个远程仓库地址 http://repo1.maven.org/maven2 ,它是中
-</code></pre><p>央仓库,服务于整个互联网,它是由 Maven 团队自己维护,里面存储了非常全的 jar 包,它包<br>含了世界上大部分流行的开源项目构件。</p>
-<h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><p>setting 文件主要用来配置maven的一些仓库设置，如本地仓库，远程仓库等。</p>
-<h4 id="全局setting-和用户-setting"><a href="#全局setting-和用户-setting" class="headerlink" title="全局setting 和用户 setting"></a>全局setting 和用户 setting</h4><p>在 maven 安装目录下的有 conf/setting.xml 文件,此 setting.xml 文件用于 maven 的所有 project<br>项目,它作为 maven 的全局配置。<br>如需要个性配置则需要在用户配置中设置,用户配置的 setting.xml 文件默认的位置在: ${user.dir}<br>/.m2/settings.xml 目录中,${user.dir} 指 windows 中的用户目录。或在项目中添加setting.xml<br>maven 会先找用户配置,如果找到则以用户配置文件为准,否则使用全局配置文件。</p>
-<p><img src="http://39.104.171.29/image/maven_001.png" alt></p>
-<h3 id="maven-工程认识"><a href="#maven-工程认识" class="headerlink" title="maven 工程认识"></a>maven 工程认识</h3><p>maven 工程的目录结构如下图</p>
-<p><img src="http://39.104.171.29/image/maven_002.png" alt></p>
-<p>作为一个 maven 工程,它的 src 目录和 pom.xml 是必备的。<br>进入 src 目录后,我们发现它里面的目录结构如下:</p>
-<p><img src="http://39.104.171.29/image/maven_004.png" alt></p>
-<p>src/main/java —— 存放项目的.java 文件<br>src/main/resources —— 存放项目资源文件,如 spring, hibernate 配置文件<br>src/test/java —— 存放所有单元测试.java 文件,如 JUnit 测试类<br>src/test/resources —— 测试资源文件<br>target —— 项目输出位置,编译后的 class 文件会输出到此目录<br>pom.xml——maven 项目核心配置文件<br>注意:如果是普通的 java 项目,那么就没有 webapp 目录。</p>
-<h3 id="maven-指令的生命周期"><a href="#maven-指令的生命周期" class="headerlink" title="maven 指令的生命周期"></a>maven 指令的生命周期</h3><p>maven 对项目构建过程分为三套相互独立的生命周期,请注意这里说的是“三套”,而且“相互独立”,<br>这三套生命周期分别是:</p>
-<p>Clean Lifecycle 在进行真正的构建之前进行一些清理工作。<br>Default Lifecycle 构建的核心部分,编译,测试,打包,部署等等。<br>Site Lifecycle 生成项目报告,站点,发布站点</p>
-<h3 id="maven-概念模型"><a href="#maven-概念模型" class="headerlink" title="maven 概念模型"></a>maven 概念模型</h3><p>Maven 包含了一个项目对象模型 (Project Object Model),一组标准集合,一个项目生命周期(Project<br>Lifecycle),一个依赖管理系统(Dependency Management System),和用来运行定义在生命周期阶段<br>(phase)中插件(plugin)目标(goal)的逻辑。</p>
-<p><img src="http://39.104.171.29/image/maven_005.png" alt></p>
-<p>  项目对象模型 (Project Object Model)<br>一个 maven 工程都有一个 pom.xml 文件,通过 pom.xml 文件定义项目的坐标、项目依赖、项目信息、<br>插件目标等。</p>
-<p>  依赖管理系统(Dependency Management System)<br>通过 maven 的依赖管理对项目所依赖的 jar 包进行统一管理。<br>比如:项目依赖 junit4.9,通过在 pom.xml 中定义 junit4.9 的依赖即使用 junit4.9,如下所示是 junit4.9<br>的依赖定义:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 依赖关系 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 此项目运行使用 junit,所以此项目依赖 junit --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- junit 的项目名称 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- junit 的模块名称 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- junit 版本 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 依赖范围:单元测试时使用 junit --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>   一个项目生命周期(Project Lifecycle)<br>使用 maven 完成项目的构建,项目构建包括:清理、编译、测试、部署等过程,maven 将这些<br>过程规范为一个生命周期,如下所示是生命周期的各各阶段:<br><img src="http://39.104.171.29/image/maven_006.png" alt><br>maven 通过执行一些简单命令即可实现上边生命周期的各各过程,比如执行 mvn compile 执行编译、<br>执行 mvn clean 执行清理。</p>
-<p>   一组标准集合<br>maven 将整个项目管理过程定义一组标准,比如:通过 maven 构建工程有标准的目录结构,有<br>标准的生命周期阶段、依赖管理有标准的坐标定义等。</p>
-<p>  插件(plugin)目标(goal)<br>maven 管理项目生命周期过程都是基于插件完成的</p>
-<h3 id="maven的继承和聚合"><a href="#maven的继承和聚合" class="headerlink" title="maven的继承和聚合"></a>maven的继承和聚合</h3><p>maven的继承</p>
-<p>继承后maven的子模块会拥有父模块的所有pom信息<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ssm_parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.itcast.ssm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>maven的聚合</p>
-<p>我把maven的聚合看做，一个pom件就可以构建指定模块并组合成为一个项目</p>
-<h2 id="maven-坐标的来源方式"><a href="#maven-坐标的来源方式" class="headerlink" title="maven 坐标的来源方式"></a>maven 坐标的来源方式</h2><h3 id="坐标搜索网站"><a href="#坐标搜索网站" class="headerlink" title="坐标搜索网站"></a>坐标搜索网站</h3><p><a href="http://search.maven.org/" target="_blank" rel="noopener">central</a>    or <a href="http://mvnrepository.com/" target="_blank" rel="noopener">mvnrepository</a></p>
-<h2 id="maven-私服搭建及其使用"><a href="#maven-私服搭建及其使用" class="headerlink" title="maven 私服搭建及其使用"></a>maven 私服搭建及其使用</h2><h3 id="maven私服搭建"><a href="#maven私服搭建" class="headerlink" title="maven私服搭建"></a>maven私服搭建</h3><p>下载nexus安装包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　$　　cd /opt</span><br><span class="line"></span><br><span class="line">　　$　　wget http://download.sonatype.com/nexus/oss/nexus-2.10.0-02-bundle.tar.gz</span><br></pre></td></tr></table></figure></p>
-<p>解压并安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　　$　　cd /opt/</span><br><span class="line"></span><br><span class="line">　　$　　tar -zxvf nexus-2.10.0-02-bundle.tar.gz</span><br><span class="line"></span><br><span class="line">　　$　　cd /opt/nexus-2.10.0-02/bin</span><br><span class="line"></span><br><span class="line">　　$　　vim nexus</span><br></pre></td></tr></table></figure></p>
-<p>在 nexus文件中添加RUN_AS_USER用户如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN_AS_USER=root</span><br></pre></td></tr></table></figure></p>
-<p>启动nexus<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　$　　./nexus start</span><br></pre></td></tr></table></figure></p>
-<p>nexus 配置解析：</p>
-<p>查看 nexus 的配置文件 conf/nexus.properties</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Jetty section</span><br><span class="line">application-port=8081 # nexus 的访问端口配置</span><br><span class="line">application-host=0.0.0.0 # nexus 主机监听配置(不用修改)</span><br><span class="line">nexus-webapp=$&#123;bundleBasedir&#125;/nexus</span><br><span class="line">nexus-webapp-context-path=/nexus</span><br><span class="line"># nexus 工程目录</span><br><span class="line"># nexus 的 web 访问路径</span><br><span class="line"># Nexus section</span><br><span class="line">nexus-work=$&#123;bundleBasedir&#125;/../sonatype-work/nexus</span><br><span class="line"># nexus 仓库目录</span><br><span class="line">runtime=$&#123;bundleBasedir&#125;/nexus/WEB-INF # nexus 运行程序目录</span><br></pre></td></tr></table></figure>
-<h3 id="nexus仓库类型"><a href="#nexus仓库类型" class="headerlink" title="nexus仓库类型"></a>nexus仓库类型</h3><p>nexus 的仓库有 4 种类型:</p>
-<p>1.hosted,宿主仓库,部署自己的 jar 到这个类型的仓库,包括 releases 和 snapshot 两部分,Releases 公司内部发布版本仓库、 Snapshots 公司内部测试版本仓库</p>
-<p>2.proxy,代理仓库,用于代理远程的公共仓库,如 maven 中央仓库,用户连接私服,私服自动去中央仓库下载 jar 包或者插件。</p>
-<p>3.group,仓库组,用来合并多个 hosted/proxy 仓库,通常我们配置自己的 maven 连接仓库组。</p>
-<p>4.virtual(虚拟):兼容 Maven1 版本的 jar 或者插件</p>
-<p>nexus 仓库默认在 sonatype-work 目录中</p>
-<h3 id="将项目发布到私服"><a href="#将项目发布到私服" class="headerlink" title="将项目发布到私服"></a>将项目发布到私服</h3><p>1.setting配置添加 server</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>2.项目pom添加仓库<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/repositories/releases/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/repositories/snapshots/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>3.使用maven命令发布</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn deploy</span><br></pre></td></tr></table></figure>
-<h3 id="maven-配置私服下载jar包"><a href="#maven-配置私服下载jar包" class="headerlink" title="maven 配置私服下载jar包"></a>maven 配置私服下载jar包</h3><p>没有配置nexus之前,如果本地仓库没有,去中央仓库下载,通常在企业中会在局域网<br>内部署一台私服服务器,有了私服本地项目首先去本地仓库找 jar,如果没有找到则连接私<br>服从私服下载 jar 包,如果私服没有 jar 包私服同时作为代理服务器从中央仓库下载 jar 包,<br>这样做的好处是一方面由私服对公司项目的依赖 jar 包统一管理,一方面提高下载速度,项<br>目连接私服下载 jar 包的速度要比项目连接中央仓库的速度快的多。</p>
-<p>setting配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--仓库id--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--仓库 id,repositories 可以配置多个仓库,保证 id 不重复--&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--仓库地址,即 nexus 仓库组的地址--&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://localhost:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="将第三方jar导入本地maven"><a href="#将第三方jar导入本地maven" class="headerlink" title="将第三方jar导入本地maven"></a>将第三方jar导入本地maven</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=com.alibaba -DartifactId=fastjson -Dversion=1.1.37</span><br><span class="line">-Dfile= fastjson-1.1.37.jar -Dpackaging=jar</span><br></pre></td></tr></table></figure>
-<p>参数说明<br>DgroupId 和 DartifactId 构成了该 jar 包在 pom.xml 的坐标,项目就是依靠这两个属性定位。<br>自己起名字也行。<br>Dfile 表示需要上传的 jar 包的绝对路径。<br>Durl 私服上仓库的位置,打开 nexus——&gt;repositories 菜单,可以看到该路径。<br>DrepositoryId 服务器的表示 id,在 nexus 的 configuration 可以看到。<br>Dversion 表示版本信息</p>
-<h3 id="将第三方jar导入私服"><a href="#将第三方jar导入私服" class="headerlink" title="将第三方jar导入私服"></a>将第三方jar导入私服</h3><p>1.在setting中配置第三方server<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>thirdparty<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mvn deploy:deploy-file -DgroupId=com.alibaba -DartifactId=fastjson -Dversion=1.1.37</span><br><span class="line">-Dpackaging=jar -Dfile=fastjson-1.1.37.jar</span><br><span class="line">-Durl=http://localhost:8081/nexus/content/repositories/thirdparty/</span><br><span class="line">-DrepositoryId=thirdparty</span><br></pre></td></tr></table></figure>
-<p>参数说明<br>DgroupId 和 DartifactId 构成了该 jar 包在 pom.xml 的坐标,项目就是依靠这两个属性定位。<br>自己起名字也行。<br>Dfile 表示需要上传的 jar 包的绝对路径。<br>Durl 私服上仓库的位置,打开 nexus——&gt;repositories 菜单,可以看到该路径。<br>DrepositoryId 服务器的表示 id,在 nexus 的 configuration 可以看到。<br>Dversion 表示版本信息</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/10/Linux-命令篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/10/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-10 23:04:47" itemprop="dateCreated datePublished" datetime="2019-06-10T23:04:47+08:00">2019-06-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h3><h4 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h4><p><img src="http://39.104.171.29/image/1553455157361.png" alt="1553455157361"></p>
-<h4 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h4><p><img src="http://39.104.171.29/image/1553455753059.png" alt="1553455753059"></p>
-<p>使用 -a 时会看到有的文件名前有.此时表示此文件为隐藏文件。</p>
-<p>使用-l 查看详细信息</p>
-<p><img src="http://39.104.171.29/image/1553456138517.png" alt="1553456138517"></p>
-<p>上面1表示此文件的链接计数</p>
-<p><img src="http://39.104.171.29/image/1553456202080.png" alt="1553456202080"></p>
-<p>上面的root 表示文件的所有者，也就是文件的创建人或负责人，一个文件只能有一个所有者</p>
-<p><img src="http://39.104.171.29/image/1553456372734.png" alt="1553456372734"></p>
-<p>上面表示文件的所属组，一个文件只能拥有一个所有组</p>
-<p>在-l 后追加h -lh 表示人性化显示，使文件的大小更直观、</p>
-<p><img src="http://39.104.171.29/image/1553456551687.png" alt="1553456551687"></p>
-<p>ls -i 可以获取文件的I节点或获取文件的id号</p>
-<p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
-<p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
-<p>cd - 回到上次操作的目录</p>
-<p>cd ~ 回到当前用户的根目录</p>
-<p>cd 回到当前用户的根目录</p>
-<p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
-<p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
-<p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
-<p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
-<p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
-<p>tree 命令以目录树的方式显示文件结构信息</p>
-<p>使用tree 时可能会遇到command not  found ,这时就需要安装此命令</p>
-<p>本人使用的是centos 7 的系统 发现使用yum 无法获取tree的安装包</p>
-<p>所以只能使用源码包安装，于是在<a href="ftp://mama.indstate.edu/linux/tree/" target="_blank" rel="noopener">ftp://mama.indstate.edu/linux/tree/</a> 下载了 源码包</p>
-<p>在/usr/local/src 下使用make 编译了源码包</p>
-<h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
-<p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
-<p>cat 适用于查看简短文件内容，如shell脚本</p>
-<p><img src="http://39.104.171.29/image/1553464171496.png" alt="1553464171496"></p>
-<p><img src="http://39.104.171.29/image/1553464603686.png" alt="1553464603686"></p>
-<p>less 进入后使用 /关键字 可进行反白关键字高亮显示，同时按N键可以跳到下一个关键字，在高亮的关键字后加入！可以取消高亮效果</p>
-<p><img src="http://39.104.171.29/image/1553465266101.png" alt="1553465266101"></p>
-<p><img src="http://39.104.171.29/image/1553465409489.png" alt="1553465409489"></p>
-<p><img src="http://39.104.171.29/image/1553600438679.png" alt="1553600438679"></p>
-<p><img src="http://39.104.171.29/image/1553601846764.png" alt="1553601846764"></p>
-<p>硬链接的生成命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln /tmp/china/changzhi /root/china.hard</span><br></pre></td></tr></table></figure>
-<p>硬链接 共享文件的inode ,但是文件夹不能创建硬链接。</p>
-<h4 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h4><p>权限分为了三类 r w s 读 写 执行</p>
-<p><img src="http://39.104.171.29/image/1553602141983.png" alt="1553602141983"></p>
-<p><img src="http://39.104.171.29/image/1553602447029.png" alt="1553602447029"></p>
-<p><img src="http://39.104.171.29/image/1553603202959.png" alt="1553603202959"></p>
-<p><img src="http://39.104.171.29/image/1553603260245.png" alt="1553603260245"></p>
-<h5 id="其他权限管理命令"><a href="#其他权限管理命令" class="headerlink" title="其他权限管理命令"></a>其他权限管理命令</h5><p><img src="http://39.104.171.29/image/1553605959901.png" alt="1553605959901"></p>
-<p><img src="http://39.104.171.29/image/1553606015581.png" alt="1553606015581"></p>
-<p><img src="http://39.104.171.29/image/1553606075600.png" alt="1553606075600"></p>
-<h4 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h4><h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p><img src="http://39.104.171.29/image/1553749537377.png" alt="1553749537377"></p>
-<p><img src="http://39.104.171.29/image/1553749679807.png" alt="1553749679807"></p>
-<p>-name 加通配符可实现模糊搜索文件</p>
-<p>通配符 * 表示多个字符</p>
-<p>通配符 ？表示单个字符</p>
-<p><img src="http://39.104.171.29/image/1553752715110.png" alt="1553752715110"></p>
-<p><img src="http://39.104.171.29/image/1553752887543.png" alt="1553752887543"></p>
-<p><img src="http://39.104.171.29/image/1553752983831.png" alt="1553752983831"></p>
-<h5 id="其他搜索命令"><a href="#其他搜索命令" class="headerlink" title="其他搜索命令"></a>其他搜索命令</h5><p><img src="http://39.104.171.29/image/1553755683871.png" alt="1553755683871"></p>
-<p>此查询基于文件资料库所以，查询时对比find占用系统资源较少。</p>
-<p>存在缺陷无法查询tmp目录下的文件</p>
-<p>不能实时查询，如果刚创建的数据没有录入文件资料库时。会导致无法查询到文件。此时使用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb</span><br></pre></td></tr></table></figure>
-<p>然后再次使用    locate可查找到文件</p>
-<p><img src="http://39.104.171.29/image/1553756124804.png" alt="1553756124804"></p>
-<p><img src="http://39.104.171.29/image/1553756360865.png" alt="1553756360865"></p>
-<p><img src="http://39.104.171.29/image/1553757094395.png" alt="1553757094395"></p>
-<h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><p><img src="http://39.104.171.29/image/1553757468067.png" alt="1553757468067"></p>
-<p>帮助命令类型 1表示命令，5表示配置文件</p>
-<p>命令名称：whatis</p>
-<p>NAME<br>       whatis - 在 whatis 数据库里查找完整的单词</p>
-<p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
-<p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
-<p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#x79;&#x5f;&#x74;&#121;&#x40;&#x32;&#x36;&#51;&#46;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#x79;&#x5f;&#x74;&#121;&#x40;&#x32;&#x36;&#51;&#46;&#x6e;&#101;&#x74;</a></p>
-<p>[中文版最新更新]<br>       2001/9/8</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p>命令名称：apropos</p>
-<p>NAME<br>       apropos - 在 whatis 数据库中查找字符串</p>
-<p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
-<p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
-<p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#x79;&#x5f;&#x74;&#x79;&#64;&#50;&#54;&#51;&#46;&#110;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#x79;&#x5f;&#x74;&#x79;&#64;&#50;&#54;&#51;&#46;&#110;&#101;&#x74;</a></p>
-<p>[中文版最新更新]<br>       2001/9/20</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
-<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><p><img src="http://39.104.171.29/image/1553826507188.png" alt="1553826507188"></p>
-<p><img src="http://39.104.171.29/image/1553826897084.png" alt="1553826897084"></p>
-<p><img src="http://39.104.171.29/image/1553826911136.png" alt="1553826911136"></p>
-<p><img src="http://39.104.171.29/image/1553827412666.png" alt="1553827412666"></p>
-<p><img src="http://39.104.171.29/image/1553827301824.png" alt="1553827301824"></p>
-<p><img src="http://39.104.171.29/image/1553828266112.png" alt="1553828266112"></p>
-<h4 id="压缩和解压命令"><a href="#压缩和解压命令" class="headerlink" title="压缩和解压命令"></a>压缩和解压命令</h4><h5 id="压缩格式"><a href="#压缩格式" class="headerlink" title="压缩格式"></a>压缩格式</h5><p>gz  zip  rar    其中 zip 是windos和Linux 都支持的压缩格式</p>
-<h5 id="压缩解压命令使用"><a href="#压缩解压命令使用" class="headerlink" title="压缩解压命令使用"></a>压缩解压命令使用</h5><p><img src="http://39.104.171.29/image/1553831418375.png" alt="1553831418375"></p>
-<p><img src="http://39.104.171.29/image/1553831583899.png" alt="1553831583899"></p>
-<p>gzip的缺陷就是目前只能压缩文件，并且压缩后是不保留源文件的。</p>
-<p><img src="http://39.104.171.29/image/1553831796484.png" alt="1553831796484"></p>
-<p>tar 格式表示打包</p>
-<p><img src="http://39.104.171.29/image/1553832058168.png" alt="1553832058168"></p>
-<p><img src="http://39.104.171.29/image/1553837000891.png" alt="1553837000891"></p>
-<p><img src="http://39.104.171.29/image/1553837160959.png" alt="1553837160959"></p>
-<p>unzip 解压文件时出现乱码如何解决，使用命令 unzip -O CP936 压缩包名称 即可。其中-O表示知道文件的编码集，<br>CP936是IBM code page 中的第936页也就是咋们俗称的GBK。</p>
-<p><img src="http://39.104.171.29/image/1553837197214.png" alt="1553837197214"></p>
-<p><img src="http://39.104.171.29/image/1553837357376.png" alt="1553837357376"></p>
-<p><img src="http://39.104.171.29/image/1553837563419.png" alt="1553837563419"><br>rar 格式的文件解压或压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#安装rar shell脚本</span><br><span class="line"> sudo apt install rar</span><br><span class="line"></span><br><span class="line">rar x 文件名进行解压</span><br><span class="line">更多信息使用 man rar</span><br></pre></td></tr></table></figure></p>
-<h4 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h4><p><img src="http://39.104.171.29/image/1553837724986.png" alt="1553837724986"></p>
-<p><img src="http://39.104.171.29/image/1553837906794.png" alt="1553837906794"></p>
-<p><img src="http://39.104.171.29/image/1553838044540.png" alt="1553838044540"></p>
-<p><img src="http://39.104.171.29/image/1553838208557.png" alt="1553838208557"></p>
-<p><img src="http://39.104.171.29/image/1553838404765.png" alt="1553838404765"></p>
-<p>mail 命令操作时需要使用CTRL+D 才可生效，如执邮件的删除功能，需要除了使用delete命令后还需使用</p>
-<p>CTRL+D才可。</p>
-<p>mail 进入使用界面后， h表示查看列表，d表示删除指定的邮件</p>
-<p><img src="http://39.104.171.29/image/1553838607987.png" alt="1553838607987"></p>
-<p><img src="http://39.104.171.29/image/1553838817826.png" alt="1553838817826"></p>
-<p><img src="http://39.104.171.29/image/1553838803865.png" alt="1553838803865"></p>
-<p><img src="http://39.104.171.29/image/1553839077239.png" alt="1553839077239"></p>
-<p><img src="http://39.104.171.29/image/1553841741827.png" alt="1553841741827"></p>
-<p><img src="http://39.104.171.29/image/1553839651829.png" alt="1553839651829"></p>
-<h4 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h4><p><img src="http://39.104.171.29/image/1553842448954.png" alt="1553842448954"></p>
-<h4 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h4><p><img src="http://39.104.171.29/image/1554102568116.png" alt="1554102568116"></p>
-<p><img src="http://39.104.171.29/image/1554102608485.png" alt="1554102608485"></p>
-<p><img src="http://39.104.171.29/image/1554102624441.png" alt="1554102624441"></p>
-<p><img src="http://39.104.171.29/image/1554102670799.png" alt="1554102670799"></p>
-<p><img src="http://39.104.171.29/image/1554102699933.png" alt="1554102699933"></p>
-<p><img src="http://39.104.171.29/image/1554102724817.png" alt="1554102724817"></p>
-<p>修改系统默认运行级别代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 2</span><br></pre></td></tr></table></figure>
-<p><img src="http://39.104.171.29/image/1554102791796.png" alt="1554102791796"> </p>
-<p>查看系统存储信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/meminfo</span><br></pre></td></tr></table></figure></p>
-<h4 id="工具版本切换"><a href="#工具版本切换" class="headerlink" title="工具版本切换"></a>工具版本切换</h4><p>java jdk版本切换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdk 版本切换：sudo update-alternatives --config java</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/10/mongodb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/10/mongodb/" class="post-title-link" itemprop="url">mongodb</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-10 22:56:02" itemprop="dateCreated datePublished" datetime="2019-06-10T22:56:02+08:00">2019-06-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="mongodb入门"><a href="#mongodb入门" class="headerlink" title="mongodb入门"></a>mongodb入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>mongodb是一个基于分布式文件存储的数据库。由c++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-<p>mongoab是一个介于关系型数据库和非关系型数据库之间的产品，是非关系型数据库当中功能丰富，最像关系型数据库的一个产品。它支持的数据格式有json,bson等。他最大的特点是它的查询语法类似于面向对象语言。并且它还支持对数据创建索引。</p>
-<p>下面的图片是百度百科对mongodb的介绍<br><img src="http://39.104.171.29/image/mongodb-1.png" alt></p>
-<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>在mongodb中是通过数据库、集合、文档的方式来管理数据的。下边是mongodb与关系型数据库的一些概念比较图。<br><img src="http://39.104.171.29/image/mongodb-2.png" alt><br>和关系型数据库一样，mongodb允许一个实例创建多个数据库，一个数据库创建多个集合，一个集合创建多个文档</p>
-<h3 id="链接mongodb"><a href="#链接mongodb" class="headerlink" title="链接mongodb"></a>链接mongodb</h3><p>mongodb使用CS架构开发。client shell使用链接命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://39.104.171.29/image/mongodb-3.png" alt></p>
-<h3 id="数据库操作的相关命令"><a href="#数据库操作的相关命令" class="headerlink" title="数据库操作的相关命令"></a>数据库操作的相关命令</h3><h4 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h4><p>show dbs: 查询所有数据库信息<br><img src="http://39.104.171.29/image/mongodb-4.png" alt></p>
-<p>db<br><img src="http://39.104.171.29/image/mongodb-5.png" alt></p>
-<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p>use 库名<br>使用指定的库，没有则创建（注意：当使用一个新建的库，而且没有插入任何数据时。此时的库实际没有被创建。）<br><img src="http://39.104.171.29/image/mongodb-6.png" alt></p>
-<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p>db.dropDatabase<br><img src="http://39.104.171.29/image/mongodb-7.png" alt></p>
-<h3 id="集合相关操作命令"><a href="#集合相关操作命令" class="headerlink" title="集合相关操作命令"></a>集合相关操作命令</h3><h4 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h4><p>db.createConllection(name,options)<br>name:表示集合的名称<br>options:表示创建参数</p>
-<h4 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h4><p>db.<conllection>.drop()</conllection></p>
-<p><collection> 表示选中的集合</collection></p>
-<h3 id="文档先关操作"><a href="#文档先关操作" class="headerlink" title="文档先关操作"></a>文档先关操作</h3><h4 id="集合中插入文档"><a href="#集合中插入文档" class="headerlink" title="集合中插入文档"></a>集合中插入文档</h4><p>db.<collection>.insert(document)</collection></p>
-<p><collection> 表示选中的集合<br>document:表示文档，可以是json类型的数据格式</collection></p>
-<h4 id="集合中修改指定文档信息"><a href="#集合中修改指定文档信息" class="headerlink" title="集合中修改指定文档信息"></a>集合中修改指定文档信息</h4><p>db.<collection>.update(<query>,<update>,<options>)</options></update></query></collection></p>
-<p><collection> 表示选中的集合</collection></p>
-<p><query> 表示 查询条件,相当于sql语句的where</query></p>
-<p><update> 表示 更新文档内容</update></p>
-<p><options> 表示 选项</options></p>
-<h4 id="set修改器"><a href="#set修改器" class="headerlink" title="$set修改器"></a>$set修改器</h4><p>db.test_collection.update({“age”:18},{$set:{“name”:”wan”,”age”:16}},{multi:true})</p>
-<p>test_collection：集合名称</p>
-<p>{“age”:18} ：查询结果</p>
-<p>{$set:{“name”:”wan”,”age”:16}} 修改条件</p>
-<p>{multi:true}：参数 multi 为true时表示修改全部，false时表示修改第一个匹配的文档。默认为false</p>
-<h4 id="集合中移除指定文档"><a href="#集合中移除指定文档" class="headerlink" title="集合中移除指定文档"></a>集合中移除指定文档</h4><p>db.<collection>.remove(<query>)</query></collection></p>
-<p><collection> 表示选中的集合</collection></p>
-<p><query> 表示查询的结果<br>删除前最好先执行查询</query></p>
-<h4 id="集合中搜索指定文档"><a href="#集合中搜索指定文档" class="headerlink" title="集合中搜索指定文档"></a>集合中搜索指定文档</h4><p>db.<collection>.find(query,projection)</collection></p>
-<p><collection> 表示选中的集合<br>query :查询条件<br>projection:投影查询key</collection></p>
-<p>投影查询<br>db.test_collection.find({“age”:18},{name:1,age:1,address:1,_id:0})<br>test_collection:制定的集合<br>{“age”:18} ：查询条件<br>{name:1,age:1,address:1,_id:0} ：投影参数，个人不明白只有_id可以设置为0，如果别的设置为0会报Projection cannot have a mix of inclusion and exclusion.异常</p>
-<h3 id="用户相关操作命令"><a href="#用户相关操作命令" class="headerlink" title="用户相关操作命令"></a>用户相关操作命令</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123;</span><br><span class="line">    user:&quot;spiderBao&quot;,</span><br><span class="line">    pwd:&quot;xxx&quot;,</span><br><span class="line">    roles:[</span><br><span class="line">        &#123;role:&quot;root&quot;,db:&quot;admin&quot;&#125;</span><br><span class="line">    ]</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.updateUser(</span><br><span class="line">    &apos;spiderBao1&apos;,&#123;</span><br><span class="line">        roles:[</span><br><span class="line">        &#123;role:&quot;readWriteAnyDatabase&quot;,db:&quot;admin&quot;&#125;]</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show users</span><br></pre></td></tr></table></figure>
-<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.dropUser(&quot;spiderBao1&quot;)</span><br></pre></td></tr></table></figure>
-<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.changeUserPassword(&quot;test1&quot;,&quot;123&quot;)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/10/Java—日志框架解析-转载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/10/Java—日志框架解析-转载/" class="post-title-link" itemprop="url">Java—日志框架解析-转载</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-10 22:55:27" itemprop="dateCreated datePublished" datetime="2019-06-10T22:55:27+08:00">2019-06-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>作为Java程序员，幸运的是，Java 拥有功能和性能都非常强大的日志库；不幸的是，这样的日志库有不止一个<br>相信每个人都曾经迷失在JUL(Java Util Log), JCL(Commons Logging), Log4j, SLF4J, Logback，<br>Log4j2等等的迷宫中。在我见过的绝大多数项目中，都没有能够良好的配置和使用日志库。这篇文章先讲述Java<br>常见日志库的历史和关系，后续会讲日志使用的最佳实践。让我们从头(Java Util Log)开始说起吧。</p>
-<h3 id="Java-Util-Log"><a href="#Java-Util-Log" class="headerlink" title="Java Util Log"></a>Java Util Log</h3><p>简称JUL，是JDK 中自带的log功能。虽然是官方自带的log lib，JUL的使用确不广泛。主要原因:</p>
-<p>1.JUL从JDK1.4 才开始加入(2002年)，当时各种第三方log lib已经被广泛使用了<br>2.JUL早期存在性能问题，到JDK1.5上才有了不错的进步，但现在和Logback/Log4j2相比还是有所不如<br>3.JUL的功能不如Logback/Log4j2等完善，比如Output Handler就没有Logback/Log4j2的丰富，有<br>时候需要自己来继承定制，又比如默认没有从ClassPath里加载配置文件的功能</p>
-<h3 id="Log4j-1-x"><a href="#Log4j-1-x" class="headerlink" title="Log4j 1.x"></a>Log4j 1.x</h3><p>Log4j 是在 Logback 出现之前被广泛使用的 Log Lib, 由 Gülcü 于2001年发布，后来成为Apache<br>基金会的顶级项目。Log4j 在设计上非常优秀，对后续的 Java Log 框架有长久而深远的影响，也产生了<br>Log4c, Log4s, Log4perl 等到其他语言的移植。Log4j 的短板在于性能，在Logback 和 Log4j2<br>出来之后，Log4j的使用也减少了。</p>
-<h3 id="Commons-Logging"><a href="#Commons-Logging" class="headerlink" title="Commons Logging"></a>Commons Logging</h3><p>简称JCL，是Apache下面的项目。JCL 是一个Log Facade，只提供 Log API，不提供实现，然后有 Adapter<br>来使用 Log4j 或者 JUL 作为Log Implementation。</p>
-<p>就像之前所说，JDK现在带了自己的JUL，然后又有第三方的Log4j等日志库存在，不同的项目可能各自使用了<br>不同的日志库。如果你的项目依赖的其他lib各自使用了不同的日志库，你想控制日志行为，就需要针对每个日<br>志库都写一个配置文件，是不是很酸爽?</p>
-<p>然后这个时候 JCL 就出现了。在程序中日志创建和记录都是用JCL中的接口，在真正运行时，会看当前ClassPath<br>中有什么实现，如果有Log4j 就是用 Log4j, 如果啥都没有就是用 JDK 的 JUL。</p>
-<p>这样，在你的项目中，还有第三方的项目中，大家记录日志都使用 JCL 的接口，然后最终运行程序时，可以按照自<br>己的需求(或者喜好)来选择使用合适的Log Implementation。如果用Log4j, 就添加 Log4j 的jar包进去，然<br>后写一个 Log4j 的配置文件；如果喜欢用JUL，就只需要写个JUL的配置文件。如果有其他的新的日志库出现，也<br>只需要它提供一个Adapter，运行的时候把这个日志库的 jar 包加进去。</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul.jpg" alt></p>
-<p>到这个时候一切看起来都很简单，很美好。接口和实现做了良好的分离，在统一的JCL之下，不改变任何代码，就可以<br>通过配置就换用功能更强大，或者性能更好的日志库实现。</p>
-<p>这种简单美好一直持续到SLF4J出现。</p>
-<h3 id="SLF4J-Logback"><a href="#SLF4J-Logback" class="headerlink" title="SLF4J/Logback"></a>SLF4J/Logback</h3><p>SLF4J(The Simple Logging Facade for Java)和Logback也是Gülcü创立的项目，其创立主要是为了提供更<br>高性能的实现。其中，SLF4j 是类似于JCL 的Log Facade,Logback 是类似于Log4j 的 Log Implementation。</p>
-<p>之前已经说过，Apache 有了个JCL，用来做各种Log lib统一的接口，如果 Gülcü 要搞一个更好的Log实现的话，<br>直接写一个实现就好了，为啥还要搞一个和SLF4J呢?</p>
-<p>原因是Gülcü 认为 JCL 的 API 设计得不好，容易让使用者写出性能有问题的代码。</p>
-<p>比如在用 JCL 输出一个 debug 级别的 log:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br></pre></td></tr></table></figure>
-<p>这个有什么问题呢？一般生产环境 log 级别都会设到 info 或者以上，那这条 log 是不会被输出的。然而不管会不会输出，<br>这其中都会做一个字符串连接操作，然后生产一个新的字符串。如果这条语句在循环或者被调用很多次的函数中，就会多做很多<br>无用的字符串连接，影响性能。</p>
-<p>所以 JCL 的最佳实践推荐这么写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">    logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然而开发者常常忽略这个问题或是觉得麻烦而不愿意这么写。所以SLF4J提供了新的API，方便开发者使用:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url);</span><br></pre></td></tr></table></figure>
-<p>这样的话，在不输出 log 的时候避免了字符串拼接的开销；在输出的时候需要做一个字符串format，代价比手工拼接字符串大一些,<br>但是可以接受。</p>
-<p>而 Logback 则是作为 Log4j 的继承者来开发的，提供了性能更好的实现，异步 logger，Filter等更多的特性。</p>
-<p>现在事情变复杂了。我们有了两个流行的 Log Facade，以及三个流行的 Log Implementation。Gülcü是个追求完美的人，<br>他决定让这些Log之间都能够方便的互相替换，所以做了各种 Adapter 和 Bridge 来连接:</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul-slf4j-logback-slf4j-nop.jpg" alt></p>
-<p>可以看到甚至 Log4j 和 JUL 都可以桥接到SLF4J，再通过 SLF4J 适配到到 Logback!</p>
-<p>在这里需要注意不能搞出循环的桥接，比如下面这些依赖就不能同时存在:</p>
-<p>1.jcl-over-slf4j 和 slf4j-jcl<br>2.log4j-over-slf4j 和 slf4j-log4j12<br>3.jul-to-slf4j 和 slf4j-jdk14</p>
-<p>总感觉事情在变得更麻烦呢！</p>
-<h3 id="Log4j2"><a href="#Log4j2" class="headerlink" title="Log4j2"></a>Log4j2</h3><p>现在有了更好的 SLF4J 和 Logback——你会想事情到这里总该了解了吧，让他们慢慢取代JCL 和 Log4j 好了。</p>
-<p>然而维护 Log4j 的人不这样想，他们不想坐视用户一点点被 SLF4J /Logback 蚕食，继而搞出了 Log4j2。</p>
-<p>Log4j2 和 Log4j1.x 并不兼容，设计上很大程度上模仿了 SLF4J/Logback，性能上也获得了很大的提升。</p>
-<p>Log4j2 也做了 Facade/Implementation 分离的设计，分成了 log4j-api 和 log4j-core。</p>
-<p>现在好了，我们有了三个流行的Log 接口和四个流行的Log实现，如果画出桥接关系的图来回事什么样子呢?</p>
-<p><img src="http://39.104.171.29/image/jcl-slf4j-log4j2-api.jpg" alt></p>
-<p>是不是感觉有点晕呢？同样，在添加依赖的时候，要小心不要搞成循环依赖。对于如今的局面我的日志使用方案是</p>
-<h2 id="个人推荐日志搭配方案"><a href="#个人推荐日志搭配方案" class="headerlink" title="个人推荐日志搭配方案"></a>个人推荐日志搭配方案</h2><h3 id="1-总是使用Log-Facade，而不是具体Log-Implementation"><a href="#1-总是使用Log-Facade，而不是具体Log-Implementation" class="headerlink" title="1. 总是使用Log Facade，而不是具体Log Implementation"></a>1. 总是使用Log Facade，而不是具体Log Implementation</h3><p>正如之前所说的，使用 Log Facade 可以方便的切换具体的日志实现。而且，如果依赖多个项目，使用了不同的Log Facade，<br>还可以方便的通过 Adapter 转接到同一个实现上。如果依赖项目使用了多个不同的日志实现，就麻烦的多了。</p>
-<p>具体来说，现在推荐使用 Log4j-API 或者 SLF4j，不推荐继续使用 JCL。</p>
-<h3 id="2-只添加一个-Log-Implementation依赖"><a href="#2-只添加一个-Log-Implementation依赖" class="headerlink" title="2. 只添加一个 Log Implementation依赖"></a>2. 只添加一个 Log Implementation依赖</h3><p>毫无疑问，项目中应该只使用一个具体的 Log Implementation，建议使用 Logback 或者Log4j2。如果有依赖的项目中，<br>使用的 Log Facade不支持直接使用当前的 Log Implementation，就添加合适的桥接器依赖。具体的桥接关系可以看<br>上一篇文章的图。</p>
-<h3 id="3-具体的日志实现依赖应该设置为optional和使用runtime-scope"><a href="#3-具体的日志实现依赖应该设置为optional和使用runtime-scope" class="headerlink" title="3. 具体的日志实现依赖应该设置为optional和使用runtime scope"></a>3. 具体的日志实现依赖应该设置为optional和使用runtime scope</h3><p>在项目中，Log Implementation的依赖强烈建议设置为runtime scope，并且设置为optional。例如项目中使用了 SLF4J<br>作为 Log Facade，然后想使用 Log4j2 作为 Implementation，那么使用 maven 添加依赖的时候这样设置:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设为optional，依赖不会传递，这样如果你是个lib项目，然后别的项目使用了你这个lib，不会被引入不想要的Log<br>Implementation 依赖；</p>
-<p>Scope设置为runtime，是为了防止开发人员在项目中直接使用Log Implementation中的类，而不适用Log Facade中的类。</p>
-<h3 id="4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖"><a href="#4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖" class="headerlink" title="4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖"></a>4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖</h3><p>这是很常见的一个问题，第三方库的开发者未必会把具体的日志实现或者桥接器的依赖设置为optional，然后你的项目继承了这些<br>依赖——具体的日志实现未必是你想使用的，比如他依赖了Log4j，你想使用Logback，这时就很尴尬。另外，如果不同的第三方依<br>赖使用了不同的桥接器和Log实现，也极容易形成环。</p>
-<p>这种情况下，推荐的处理方法，是使用exclude来排除所有的这些Log实现和桥接器的依赖，只保留第三方库里面对Log Facade的依赖。</p>
-<p>比如阿里的JStorm就没有很好的处理这个问题，依赖jstorm会引入对Logback和log4j-over-slf4j的依赖，如果你想在自己的项目<br>中使用Log4j或其他Log实现的话，就需要加上excludes:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.jstorm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstorm-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-over-slf4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-避免为不会输出的log付出代价-减少对不输出日志的成本"><a href="#5-避免为不会输出的log付出代价-减少对不输出日志的成本" class="headerlink" title="5. 避免为不会输出的log付出代价(减少对不输出日志的成本)"></a>5. 避免为不会输出的log付出代价(减少对不输出日志的成本)</h3><p>Log库都可以灵活的设置输出界别，所以每一条程序中的log，都是有可能不会被输出。这时候要注意不要额外的付出代价。（字符拼接代价）</p>
-<p>先看两个有问题的写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url: "</span> + url);</span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, toJson(request));</span><br></pre></td></tr></table></figure>
-<p>第一条是直接做了字符串拼接，所以即使日志级别高于debug也会做一个字符串连接操作；第二条虽然用了SLF4J/Log4j2中的懒<br>求值方式来避免不必要的字符串拼接开销，但是toJson()这个函数却是都会被调用并且开销更大。</p>
-<p>推荐的写法如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url); <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, () -&gt; toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line">logger.debug(() -&gt; <span class="string">"receive request: "</span> + toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123; <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">    logger.debug(<span class="string">"receive request: "</span> + toJson(request)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-日志格式中最好不要使用行号，函数名等字段"><a href="#6-日志格式中最好不要使用行号，函数名等字段" class="headerlink" title="6. 日志格式中最好不要使用行号，函数名等字段"></a>6. 日志格式中最好不要使用行号，函数名等字段</h3><p>原因是，为了获取语句所在的函数名，或者行号，log库的实现都是获取当前的stacktrace，然后分析取出这些信息，而获取<br>stacktrace的代价是很昂贵的。如果有很多的日志输出，就会占用大量的CPU。在没有特殊需要的情况下，建议不要在日志中<br>输出这些这些字段。</p>
-<h3 id="7-log中不要输出稀奇古怪的字符！"><a href="#7-log中不要输出稀奇古怪的字符！" class="headerlink" title="7. log中不要输出稀奇古怪的字符！"></a>7. log中不要输出稀奇古怪的字符！</h3><p>部分开发人员为了方便看到自己的log，会在log语句中加上醒目的前缀，比如:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"========================start process request============="</span>);</span><br></pre></td></tr></table></figure>
-<p>虽然对于自己来说是方便了，但是如果所有人都这样来做的话，那log输出就没法看了！正确的做法是使用grep（linux 中的shell命令） 来看只自己关心的日志。</p>
-<p>转载处：<a href="https://zhuanlan.zhihu.com/p/24272450" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24272450</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/30/ajax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/05/30/ajax/" class="post-title-link" itemprop="url">AJAX</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-30 20:54:56" itemprop="dateCreated datePublished" datetime="2019-05-30T20:54:56+08:00">2019-05-30</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="AJAX-简介"><a href="#AJAX-简介" class="headerlink" title="AJAX 简介"></a>AJAX 简介</h2><p>AJAX 全称 Asynchronous JavaScript and XML</p>
-<p>AJAX = 异步 JavaScript 和 XML。</p>
-<p>AJAX 是一种用于创建快速动态网页的技术。</p>
-<h2 id="AJAX-工作流程图"><a href="#AJAX-工作流程图" class="headerlink" title="AJAX 工作流程图"></a>AJAX 工作流程图</h2><p><img src="http://39.104.171.29/image/ajax.gif" alt></p>
-<h2 id="ajax基于Internet"><a href="#ajax基于Internet" class="headerlink" title="ajax基于Internet"></a>ajax基于Internet</h2><p>AJAX是基于现有的Internet标准，并且联合使用它们：</p>
-<p>  XMLHttpRequest 对象 (异步的与服务器交换数据)<br>  JavaScript/DOM (信息显示/交互)<br>  CSS (给数据定义样式)<br>  XML (作为转换数据的格式)<br>  lamp  AJAX应用程序与浏览器和平台无关的！</p>
-<h2 id="ajax实例"><a href="#ajax实例" class="headerlink" title="ajax实例"></a>ajax实例</h2><h3 id="基础实例"><a href="#基础实例" class="headerlink" title="基础实例"></a>基础实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  function loadXMLDoc()&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">      var xmlhttp;</span></span><br><span class="line"><span class="undefined">      if (window.XMLHttpRequest)&#123;</span></span><br><span class="line"><span class="undefined">        //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line"><span class="undefined">        xmlhttp=new XMLHttpRequest();</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      else&#123;</span></span><br><span class="line"><span class="undefined">        // IE6, IE5 浏览器执行代码</span></span><br><span class="line"><span class="undefined">        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      xmlhttp.onreadystatechange=function()&#123;</span></span><br><span class="line"><span class="undefined">        if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)&#123;</span></span><br><span class="line"><span class="undefined">          document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      xmlhttp.open("GET","https://www.runoob.com/try/ajax/ajax_info.txt",true);</span></span><br><span class="line"><span class="undefined">      xmlhttp.send();</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"loadXMLDoc()"</span>&gt;</span>修改内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>内容解析：</p>
-<p>xmlHttpRequest 请求运行流程 </p>
-<p>1.创建xmlHttpRequest对象</p>
-<p>2.使用xmlHttpRequest对象开启一个请求方式</p>
-<p>3.发送请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建xmlHttpRequest对象</span><br><span class="line">xmlhttp=<span class="keyword">new</span> XMLHttpRequest(); <span class="comment">//创建xmlHttpRequest对象，IE7+, Firefox, Chrome, Opera, Safari 浏览器可执行代码</span></span><br><span class="line"></span><br><span class="line">xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>); <span class="comment">//同样也是创建XMLHttpRequest对象，针对IE 6,5老版本的创建方式</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>使用xmlHttpRequest对象开启一个请求</span><br><span class="line"></span><br><span class="line"><span class="comment">//open(method,url,async) </span></span><br><span class="line"><span class="comment">//    规定请求的类型、URL 以及是否异步处理请求。(开启一个请求)</span></span><br><span class="line"><span class="comment">//    method：请求的类型；GET 或 POST</span></span><br><span class="line"><span class="comment">//    url：文件在服务器上的位置，服务器请求路径</span></span><br><span class="line"><span class="comment">//    async：true（异步）或 false（同步),ajax中此选项一般都是 true</span></span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"https://www.runoob.com/try/ajax/ajax_info.txt"</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//send(string)</span></span><br><span class="line"><span class="comment">//    将请求发送到服务器。</span></span><br><span class="line"><span class="comment">//    string：仅用于 POST 请求,用于添加post请求中的数据</span></span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure></p>
-<h3 id="GET-于-POST-的对比"><a href="#GET-于-POST-的对比" class="headerlink" title="GET 于 POST 的对比"></a>GET 于 POST 的对比</h3><p>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。</p>
-<p>然而，在以下情况中，请使用 POST 请求：</p>
-<p>1.无法使用缓存文件（更新服务器上的文件或数据库）<br>2.向服务器发送大量数据（POST 没有数据量限制）<br>3.发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
-<h3 id="xmlHttpRequest-setRequestHeader-header-value"><a href="#xmlHttpRequest-setRequestHeader-header-value" class="headerlink" title="xmlHttpRequest.setRequestHeader(header,value)"></a>xmlHttpRequest.setRequestHeader(header,value)</h3><p>此方法用于，向请求添加 HTTP 头。</p>
-<p>header: 规定头的名称<br>value: 规定头的值</p>
-<p>例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");</span><br></pre></td></tr></table></figure></p>
-<h3 id="responseText-and-responseXML"><a href="#responseText-and-responseXML" class="headerlink" title="responseText and responseXML"></a>responseText and responseXML</h3><p>responseText 用于获取服务器中的文本信息资源</p>
-<p>responseXML 用于获取服务器中的XML格式资源</p>
-<p>使用实例<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure></p>
-<h3 id="onreadystatechange-事件"><a href="#onreadystatechange-事件" class="headerlink" title="onreadystatechange 事件"></a>onreadystatechange 事件</h3><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</p>
-<p>每当 readyState 改变时，就会触发 onreadystatechange 事件。</p>
-<p>readyState 属性存有 XMLHttpRequest 的状态信息。</p>
-<p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
-<p>onreadystatechange ：存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</p>
-<p>readyState ：</p>
-<pre><code>存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
-
-0: 请求未初始化
-
-1: 服务器连接已建立
-
-2: 请求已接收
-
-3: 请求处理中
-
-4: 请求已完成，且响应已就绪
-</code></pre><p>status ：200: OK  HTTP 响应状态码。404 :未找到页面 </p>
-<p>使用实例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    loadXMLDoc(<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)&#123;</span><br><span class="line">          <span class="comment">//要做的事情 todo</span></span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>参考网址：<a href="https://www.runoob.com/ajax/ajax-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/ajax/ajax-tutorial.html</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/22/nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/05/22/nginx/" class="post-title-link" itemprop="url">nginx</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-22 11:42:21" itemprop="dateCreated datePublished" datetime="2019-05-22T11:42:21+08:00">2019-05-22</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="nginx-的安装"><a href="#nginx-的安装" class="headerlink" title="nginx 的安装"></a>nginx 的安装</h2><h3 id="ubuntu-下安装"><a href="#ubuntu-下安装" class="headerlink" title="ubuntu 下安装"></a>ubuntu 下安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure>
-<h2 id="nginx-虚拟主机配置"><a href="#nginx-虚拟主机配置" class="headerlink" title="nginx 虚拟主机配置"></a>nginx 虚拟主机配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">在 http &#123;&#125;中添加</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">        	listen 80; //监听端口</span><br><span class="line">      		server_name www.xuecheng.com; //服务名</span><br><span class="line">        	ssi on; //是否开启ssi</span><br><span class="line">        	ssi_silent_errors on;</span><br><span class="line">        	location / &#123;</span><br><span class="line">                	alias  /home/spiderbao/webStrom_dev/xc-ui-pc-static-portal/;//主机映射的路径</span><br><span class="line">                	index  index.html;</span><br><span class="line">        	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2250,7 +2190,7 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
