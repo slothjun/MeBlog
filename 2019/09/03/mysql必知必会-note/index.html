@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/MeBlog/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="了解sql数据库基础术语什么是数据库数据库是一个以某种有组织的方式存储的数据集合。所以本人认为数据库是一个管理数据的概念。 表表是某种特定类型数据的结构化清单。 模式模式 是关于数据库和表的布局及特性的信息 列列 column 表中的一个字段，所有表是由一个或多个列组成。 数据类型数据类型 datatype 表示所容许的数据类型。每个表的列都有相应的数据类型，它限制了列中存储的数据。数据类型对于数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql必知必会-note">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/09/03/mysql必知必会-note/index.html">
+<meta property="og:site_name" content="WenLiangBaoBlog">
+<meta property="og:description" content="了解sql数据库基础术语什么是数据库数据库是一个以某种有组织的方式存储的数据集合。所以本人认为数据库是一个管理数据的概念。 表表是某种特定类型数据的结构化清单。 模式模式 是关于数据库和表的布局及特性的信息 列列 column 表中的一个字段，所有表是由一个或多个列组成。 数据类型数据类型 datatype 表示所容许的数据类型。每个表的列都有相应的数据类型，它限制了列中存储的数据。数据类型对于数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-03T08:20:06.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql必知必会-note">
+<meta name="twitter:description" content="了解sql数据库基础术语什么是数据库数据库是一个以某种有组织的方式存储的数据集合。所以本人认为数据库是一个管理数据的概念。 表表是某种特定类型数据的结构化清单。 模式模式 是关于数据库和表的布局及特性的信息 列列 column 表中的一个字段，所有表是由一个或多个列组成。 数据类型数据类型 datatype 表示所容许的数据类型。每个表的列都有相应的数据类型，它限制了列中存储的数据。数据类型对于数">
+
+
+
+
+
+
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/09/03/mysql必知必会-note/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>mysql必知必会-note | WenLiangBaoBlog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?634fa4157d9129d4fc7c51fd0e0849f8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/MeBlog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WenLiangBaoBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">38</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/03/mysql必知必会-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql必知必会-note
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-03 16:20:06" itemprop="dateCreated datePublished" datetime="2019-09-03T16:20:06+08:00">2019-09-03</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="了解sql"><a href="#了解sql" class="headerlink" title="了解sql"></a>了解sql</h2><h3 id="数据库基础术语"><a href="#数据库基础术语" class="headerlink" title="数据库基础术语"></a>数据库基础术语</h3><h4 id="什么是数据库"><a href="#什么是数据库" class="headerlink" title="什么是数据库"></a>什么是数据库</h4><p>数据库是一个以某种有组织的方式存储的数据集合。所以本人认为数据库是一个管理数据的概念。</p>
+<h4 id="表"><a href="#表" class="headerlink" title="表"></a>表</h4><p>表是某种特定类型数据的结构化清单。</p>
+<h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><p>模式 是关于数据库和表的布局及特性的信息</p>
+<h4 id="列"><a href="#列" class="headerlink" title="列"></a>列</h4><p>列 column 表中的一个字段，所有表是由一个或多个列组成。</p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>数据类型 datatype 表示所容许的数据类型。每个表的列都有相应的数据类型，它限制了列中存储的数据。数据类型对于数据的排序，和优化磁盘使用方面起到了重要的作用。</p>
+<h4 id="行"><a href="#行" class="headerlink" title="行"></a>行</h4><p>行 row 表中的一行记录。</p>
+<h4 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h4><p>主键 primarykey 由一列或列表示。它们与普通的列不同，它们具有其值具有表中唯一性切不为null的特性。</p>
+<h4 id="什么是sql"><a href="#什么是sql" class="headerlink" title="什么是sql"></a>什么是sql</h4><p>sql 的全称是structured query language （结构化查询语言）它是一个专门用来跟数据库通讯的语言。</p>
+<p>sql具有的特定及优点如下</p>
+<p>1.互通性 sql 不是某个DBMS厂商的专属语言，所以使用sql可以操作大多数DBMS产品 如MySQL</p>
+<p>2.简单易学。sql的大多数功能由一个或几个关键字组成，所以学习成本较低。</p>
+<p>3.在保持语法简单的情况下，做到了功能强大操作灵活。</p>
+<h2 id="mysql简介"><a href="#mysql简介" class="headerlink" title="mysql简介"></a>mysql简介</h2><h3 id="什么是MySQL"><a href="#什么是MySQL" class="headerlink" title="什么是MySQL"></a>什么是MySQL</h3><p>首先MySQL它是一种DBMS产品，DBMS是databaseManageSystem 的简称。其次MySQL具有如下特性</p>
+<p>1.成本底，由于MySQL是开源产品所以企业商业是不需要支付费用的。</p>
+<p>2.性能，MySQL在DBMS系列产品中的性能优越</p>
+<p>3.可信赖，就像Linux内核一样。MySQL的开源使得其的使用者和维护者增多。</p>
+<p>4.简单易用</p>
+<h3 id="DBMS产品分类"><a href="#DBMS产品分类" class="headerlink" title="DBMS产品分类"></a>DBMS产品分类</h3><p>DBMS产品可以大致分为2类，一类是基于共享文件系统如File Maker 等。另一类是基于客户机与服务器的如MySQL、Oracle等</p>
+<h3 id="MySQL工具（客户端）"><a href="#MySQL工具（客户端）" class="headerlink" title="MySQL工具（客户端）"></a>MySQL工具（客户端）</h3><p>MySQL workbench</p>
+<p>mysql命令行（自带）</p>
+<h2 id="使用MySQL"><a href="#使用MySQL" class="headerlink" title="使用MySQL"></a>使用MySQL</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接一般用于像 MySQL workbench 这样的工具或程序代码中。</p>
+<p>链接案例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:3306</span><br></pre></td></tr></table></figure>
+<p>其中 root表示用户名</p>
+<p>localhost 表示IP地址</p>
+<p>3306 表示服务端口</p>
+<h3 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h3><p>登录数据库后使用MySQL命令行工具选择切换数据库可以使用关键字USE实现</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> 存在的数据库名称</span><br></pre></td></tr></table></figure>
+<h3 id="关于SHOW的一些操作"><a href="#关于SHOW的一些操作" class="headerlink" title="关于SHOW的一些操作"></a>关于SHOW的一些操作</h3><p>显示所有的数据库名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW DATABASES;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| crashcourse        |</span><br><span class="line">| fileupload         |</span><br><span class="line">| maven_study        |</span><br><span class="line">| mybatis_study      |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>显示数据库中的所有表名称，注意：此时需要使用USE选择要查看的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; USE crashcourse;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line">+-----------------------+</span><br><span class="line">| Tables_in_crashcourse |</span><br><span class="line">+-----------------------+</span><br><span class="line">| customers             |</span><br><span class="line">| orderitems            |</span><br><span class="line">| orders                |</span><br><span class="line">| productnotes          |</span><br><span class="line">| products              |</span><br><span class="line">| vendors               |</span><br><span class="line">+-----------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>显示表中列column的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW COLUMNS FROM orders;</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| Field      | Type     | Null | Key | Default | Extra          |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| order_num  | int(11)  | NO   | PRI | NULL    | auto_increment |</span><br><span class="line">| order_date | datetime | NO   |     | NULL    |                |</span><br><span class="line">| cust_id    | int(11)  | NO   | MUL | NULL    |                |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>此查询还有一个快捷方式就是 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DESCRIBE orders;</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| Field      | Type     | Null | Key | Default | Extra          |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| order_num  | int(11)  | NO   | PRI | NULL    | auto_increment |</span><br><span class="line">| order_date | datetime | NO   |     | NULL    |                |</span><br><span class="line">| cust_id    | int(11)  | NO   | MUL | NULL    |                |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>DESCRIBE 是 SHOW COLUMNS FROM的一种快捷方式</p>
+<p>显示数据库创建语句或表的创建语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW CREATE DATABASE crashcourse;</span><br><span class="line">+-------------+---------------------------------------------------------------------------------------+</span><br><span class="line">| Database    | Create Database                                                                       |</span><br><span class="line">+-------------+---------------------------------------------------------------------------------------+</span><br><span class="line">| crashcourse | CREATE DATABASE `crashcourse` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */ |</span><br><span class="line">+-------------+---------------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW CREATE TABLE order;</span><br><span class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;order&apos; at line 1</span><br><span class="line">mysql&gt; SHOW CREATE TABLE orders;</span><br><span class="line">+--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                          |</span><br><span class="line">+--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| orders | CREATE TABLE `orders` (</span><br><span class="line">  `order_num` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `order_date` datetime NOT NULL,</span><br><span class="line">  `cust_id` int(11) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`order_num`),</span><br><span class="line">  KEY `fk_orders_customers` (`cust_id`),</span><br><span class="line">  CONSTRAINT `fk_orders_customers` FOREIGN KEY (`cust_id`) REFERENCES `customers` (`cust_id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=20010 DEFAULT CHARSET=utf8 COLLATE=utf8_bin |</span><br><span class="line">+--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>关于SHOW的一些命令可以通过 HELP SHOW获取</p>
+<h2 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h2><h3 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="SELECT语句"></a>SELECT语句</h3><p>select是sql中最常用的查询语句</p>
+<h4 id="检索单个列"><a href="#检索单个列" class="headerlink" title="检索单个列"></a>检索单个列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products;</span><br><span class="line">+----------------+</span><br><span class="line">| prod_name      |</span><br><span class="line">+----------------+</span><br><span class="line">| .5 ton anvil   |</span><br><span class="line">| 1 ton anvil    |</span><br><span class="line">| 2 ton anvil    |</span><br><span class="line">| Detonator      |</span><br><span class="line">| Bird seed      |</span><br><span class="line">| Carrots        |</span><br><span class="line">| Fuses          |</span><br><span class="line">| JetPack 1000   |</span><br><span class="line">| JetPack 2000   |</span><br><span class="line">| Oil can        |</span><br><span class="line">| Safe           |</span><br><span class="line">| Sling          |</span><br><span class="line">| TNT (1 stick)  |</span><br><span class="line">| TNT (5 sticks) |</span><br><span class="line">+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>本次查询只是单纯的检索了单个列的数据，没有对数据做过滤和排序。</p>
+<p>个人认为过滤不是必须的，但排序是必须的。因为不指定排序的数据顺序是不可控的。</p>
+<h4 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_name,prod_price FROM products;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| prod_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| ANV01   | .5 ton anvil   |       5.99 |</span><br><span class="line">| ANV02   | 1 ton anvil    |       9.99 |</span><br><span class="line">| ANV03   | 2 ton anvil    |      14.99 |</span><br><span class="line">| DTNTR   | Detonator      |      13.00 |</span><br><span class="line">| FB      | Bird seed      |      10.00 |</span><br><span class="line">| FC      | Carrots        |       2.50 |</span><br><span class="line">| FU1     | Fuses          |       3.42 |</span><br><span class="line">| JP1000  | JetPack 1000   |      35.00 |</span><br><span class="line">| JP2000  | JetPack 2000   |      55.00 |</span><br><span class="line">| OL1     | Oil can        |       8.99 |</span><br><span class="line">| SAFE    | Safe           |      50.00 |</span><br><span class="line">| SLING   | Sling          |       4.49 |</span><br><span class="line">| TNT1    | TNT (1 stick)  |       2.50 |</span><br><span class="line">| TNT2    | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>注意多个列间使用,分割最后一个不需要加入,不然会出现语法错误</p>
+<p>如果现在需要检索表中的所有列，可以使用通配符<code>*</code>代替列名。</p>
+<h4 id="检索数据去重"><a href="#检索数据去重" class="headerlink" title="检索数据去重"></a>检索数据去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id FROM products;</span><br><span class="line">+---------+</span><br><span class="line">| vend_id |</span><br><span class="line">+---------+</span><br><span class="line">|    1001 |</span><br><span class="line">|    1001 |</span><br><span class="line">|    1001 |</span><br><span class="line">|    1002 |</span><br><span class="line">|    1002 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1005 |</span><br><span class="line">|    1005 |</span><br><span class="line">+---------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT DISTINCT vend_id FROM products;</span><br><span class="line">+---------+</span><br><span class="line">| vend_id |</span><br><span class="line">+---------+</span><br><span class="line">|    1001 |</span><br><span class="line">|    1002 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1005 |</span><br><span class="line">+---------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>第一次select 查询获取了products.vend_id的所有数据<br>第二次select 查询内容同上但是加入了DISTINCT关键字对数据进行了去重。</p>
+<p>DISTINCT使用注意事项</p>
+<p>1.不能对部分列使用，如 prod_id,DISTINCT vend_id。</p>
+<p>2.DISTINCT 位于 SELECT 后 列前 ，所有的被检索的列将都具有去重功能。</p>
+<h4 id="检索限制输出"><a href="#检索限制输出" class="headerlink" title="检索限制输出"></a>检索限制输出</h4><p>想要控制输出就使用 limit关键字如下</p>
+<p>输出查询结果的前5行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products LIMIT 5;</span><br><span class="line">+--------------+</span><br><span class="line">| prod_name    |</span><br><span class="line">+--------------+</span><br><span class="line">| .5 ton anvil |</span><br><span class="line">| 1 ton anvil  |</span><br><span class="line">| 2 ton anvil  |</span><br><span class="line">| Detonator    |</span><br><span class="line">| Bird seed    |</span><br><span class="line">+--------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>从第1行开始显示3行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products LIMIT 1,3;</span><br><span class="line">+-------------+</span><br><span class="line">| prod_name   |</span><br><span class="line">+-------------+</span><br><span class="line">| 1 ton anvil |</span><br><span class="line">| 2 ton anvil |</span><br><span class="line">| Detonator   |</span><br><span class="line">+-------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="使用完全限定"><a href="#使用完全限定" class="headerlink" title="使用完全限定"></a>使用完全限定</h4><p>之前的查询语句中使用的都是先对表名，举个对比的例子如下</p>
+<p>未使用完全限定的查询语句</p>
+<p>SELECT prod_name FROM products LIMIT 1,3</p>
+<p>使用完全限定的查询语句</p>
+<p>SELECT products.prod_name FROM crashcourse.products LIMIT 1,3</p>
+<p>使用完全限定时语句更严谨。推荐使用！</p>
+<h2 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h2><h3 id="单列排序数据"><a href="#单列排序数据" class="headerlink" title="单列排序数据"></a>单列排序数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products ORDER BY prod_name;</span><br><span class="line">+----------------+</span><br><span class="line">| prod_name      |</span><br><span class="line">+----------------+</span><br><span class="line">| .5 ton anvil   |</span><br><span class="line">| 1 ton anvil    |</span><br><span class="line">| 2 ton anvil    |</span><br><span class="line">| Bird seed      |</span><br><span class="line">| Carrots        |</span><br><span class="line">| Detonator      |</span><br><span class="line">| Fuses          |</span><br><span class="line">| JetPack 1000   |</span><br><span class="line">| JetPack 2000   |</span><br><span class="line">| Oil can        |</span><br><span class="line">| Safe           |</span><br><span class="line">| Sling          |</span><br><span class="line">| TNT (1 stick)  |</span><br><span class="line">| TNT (5 sticks) |</span><br><span class="line">+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>根据products.prod_name 按字母升序排序。</p>
+<h3 id="多列排序顺序"><a href="#多列排序顺序" class="headerlink" title="多列排序顺序"></a>多列排序顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name;</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| prod_id | prod_price | prod_name      |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| FC      |       2.50 | Carrots        |</span><br><span class="line">| TNT1    |       2.50 | TNT (1 stick)  |</span><br><span class="line">| FU1     |       3.42 | Fuses          |</span><br><span class="line">| SLING   |       4.49 | Sling          |</span><br><span class="line">| ANV01   |       5.99 | .5 ton anvil   |</span><br><span class="line">| OL1     |       8.99 | Oil can        |</span><br><span class="line">| ANV02   |       9.99 | 1 ton anvil    |</span><br><span class="line">| FB      |      10.00 | Bird seed      |</span><br><span class="line">| TNT2    |      10.00 | TNT (5 sticks) |</span><br><span class="line">| DTNTR   |      13.00 | Detonator      |</span><br><span class="line">| ANV03   |      14.99 | 2 ton anvil    |</span><br><span class="line">| JP1000  |      35.00 | JetPack 1000   |</span><br><span class="line">| SAFE    |      50.00 | Safe           |</span><br><span class="line">| JP2000  |      55.00 | JetPack 2000   |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>上述例子中的输出，仅在多行拥有相同的prod_price值时，才对产品prod_name进行排序。如果prod_price的值都是唯一的就不会使用prod_name的条件进行排序</p>
+<h3 id="排序的方向"><a href="#排序的方向" class="headerlink" title="排序的方向"></a>排序的方向</h3><p>默认排序的方向是升序，相反降序的案例如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC;</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| prod_id | prod_price | prod_name      |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| JP2000  |      55.00 | JetPack 2000   |</span><br><span class="line">| SAFE    |      50.00 | Safe           |</span><br><span class="line">| JP1000  |      35.00 | JetPack 1000   |</span><br><span class="line">| ANV03   |      14.99 | 2 ton anvil    |</span><br><span class="line">| DTNTR   |      13.00 | Detonator      |</span><br><span class="line">| FB      |      10.00 | Bird seed      |</span><br><span class="line">| TNT2    |      10.00 | TNT (5 sticks) |</span><br><span class="line">| ANV02   |       9.99 | 1 ton anvil    |</span><br><span class="line">| OL1     |       8.99 | Oil can        |</span><br><span class="line">| ANV01   |       5.99 | .5 ton anvil   |</span><br><span class="line">| SLING   |       4.49 | Sling          |</span><br><span class="line">| FU1     |       3.42 | Fuses          |</span><br><span class="line">| FC      |       2.50 | Carrots        |</span><br><span class="line">| TNT1    |       2.50 | TNT (1 stick)  |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>另外 DESC 不同于 DISTINCT 它可用于不同的条件列，只需要在每个列后加入DESC即可。</p>
+<p>SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC,prod_name;</p>
+<p>表示按价格降序排序，如果有价格相同的按商品名称升序排序。</p>
+<h2 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h2><h3 id="where子语句"><a href="#where子语句" class="headerlink" title="where子语句"></a>where子语句</h3><p>where子语句可以添加一些查询条件，过滤数据。</p>
+<h4 id="根据where-操作符过滤"><a href="#根据where-操作符过滤" class="headerlink" title="根据where 操作符过滤"></a>根据where 操作符过滤</h4><p>where操作符如下</p>
+<p>=    等于</p>
+<p>&lt;&gt;    不等于</p>
+<p>!=    不等于</p>
+<p>&lt;    小于</p>
+<p>&lt;=    小于等于</p>
+<blockquote>
+<p>   大于</p>
+</blockquote>
+<blockquote>
+<p>=    大于等于</p>
+</blockquote>
+<p>BETWEEN    在指定两个值之间，包括指定的值</p>
+<h4 id="BETWEEN-使用"><a href="#BETWEEN-使用" class="headerlink" title="BETWEEN 使用"></a>BETWEEN 使用</h4><p>获取价格在5-10元的商品<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name,prod_price FROM products WHERE prod_price BETWEEN 5 AND 10 ORDER BY prod_price DESC;</span><br><span class="line">+----------------+------------+</span><br><span class="line">| prod_name      | prod_price |</span><br><span class="line">+----------------+------------+</span><br><span class="line">| Bird seed      |      10.00 |</span><br><span class="line">| TNT (5 sticks) |      10.00 |</span><br><span class="line">| 1 ton anvil    |       9.99 |</span><br><span class="line">| Oil can        |       8.99 |</span><br><span class="line">| .5 ton anvil   |       5.99 |</span><br><span class="line">+----------------+------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<h4 id="空值null过滤"><a href="#空值null过滤" class="headerlink" title="空值null过滤"></a>空值null过滤</h4><p>获取商品价格为null 的所有商品</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products WHERE prod_price IS NULL;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>获取商品价格不为null 的所有商品</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products WHERE prod_price IS NOT NULL;</span><br><span class="line">+----------------+</span><br><span class="line">| prod_name      |</span><br><span class="line">+----------------+</span><br><span class="line">| .5 ton anvil   |</span><br><span class="line">| 1 ton anvil    |</span><br><span class="line">| 2 ton anvil    |</span><br><span class="line">| Detonator      |</span><br><span class="line">| Bird seed      |</span><br><span class="line">| Carrots        |</span><br><span class="line">| Fuses          |</span><br><span class="line">| JetPack 1000   |</span><br><span class="line">| JetPack 2000   |</span><br><span class="line">| Oil can        |</span><br><span class="line">| Safe           |</span><br><span class="line">| Sling          |</span><br><span class="line">| TNT (1 stick)  |</span><br><span class="line">| TNT (5 sticks) |</span><br><span class="line">+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="AND-OR-IN-NOT-操作符"><a href="#AND-OR-IN-NOT-操作符" class="headerlink" title="AND OR IN NOT 操作符"></a>AND OR IN NOT 操作符</h2><p>操作符（operator）的定义：用来联结或改变WHERE字句中的关键字。也称为逻辑操作符</p>
+<h3 id="AND"><a href="#AND" class="headerlink" title="AND"></a>AND</h3><p>相当于语句中的并且，用作条件追加。</p>
+<p>查询厂商id为1003 并且价格大于等于10</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_id,prod_price,prod_name FROM products WHERE vend_id = 1003 AND prod_price &gt;= 10 ORDER BY prod_name;</span><br><span class="line">+---------+---------+------------+----------------+</span><br><span class="line">| vend_id | prod_id | prod_price | prod_name      |</span><br><span class="line">+---------+---------+------------+----------------+</span><br><span class="line">|    1003 | FB      |      10.00 | Bird seed      |</span><br><span class="line">|    1003 | DTNTR   |      13.00 | Detonator      |</span><br><span class="line">|    1003 | SAFE    |      50.00 | Safe           |</span><br><span class="line">|    1003 | TNT2    |      10.00 | TNT (5 sticks) |</span><br><span class="line">+---------+---------+------------+----------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>AND 可以在一次查询中多次使用</p>
+<h3 id="OR"><a href="#OR" class="headerlink" title="OR"></a>OR</h3><p>相当于语句中或者，用于条件选择。</p>
+<p>查询厂商id为1003或1002的商品信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE vend_id = 1003 OR vend_id = 1002 ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Carrots        |       2.50 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1002 | Fuses          |       3.42 |</span><br><span class="line">|    1002 | Oil can        |       8.99 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | Sling          |       4.49 |</span><br><span class="line">|    1003 | TNT (1 stick)  |       2.50 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>OR 可以在一次查询中多次使用</p>
+<h3 id="AND-OR-联合使用"><a href="#AND-OR-联合使用" class="headerlink" title="AND OR 联合使用"></a>AND OR 联合使用</h3><p>使用时需要注意优先级问题。</p>
+<p>MySQL中默认 AND 与 OR 同时出现时 AND 优先被执行。</p>
+<p>误区案例</p>
+<p>查询厂商为1002或1003的价格大于等于10的商品<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE vend_id = 1002 OR vend_id = 1003 AND prod_price &gt;= 10 ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1002 | Fuses          |       3.42 |</span><br><span class="line">|    1002 | Oil can        |       8.99 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>此时发现 价格 为 3.42 和 8.99的商品被查出。原因是上面所说的优先级导致的。</p>
+<p>误区解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE (vend_id = 1002 OR vend_id = 1003) AND prod_price &gt;= 10 ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>当OR条件加入（）时它的优先级就大于了AND,就像是数学运算的优先级问题一样被（）解决。</p>
+<p>AND 和 OR 同时使用的场景下建议使用（）。</p>
+<h3 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h3><p>IN 用来指定条件范围<br>使用OR操作符过滤数据的一些案例，同样使用IN也可以完成</p>
+<p>查询厂商id为1003或1002的商品信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE vend_id IN (1002,1003) ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Carrots        |       2.50 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1002 | Fuses          |       3.42 |</span><br><span class="line">|    1002 | Oil can        |       8.99 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | Sling          |       4.49 |</span><br><span class="line">|    1003 | TNT (1 stick)  |       2.50 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>IN与OR比较具有的优点如下</p>
+<p>1.语法更清晰简洁</p>
+<p>2.在使用IN时操作符优先级问题会减少</p>
+<p>3.执行更快</p>
+<p>4.IN可以包含其他的SELECT语句。使得能够动态创建WHERE字句</p>
+<h3 id="NOT"><a href="#NOT" class="headerlink" title="NOT"></a>NOT</h3><p>WHERE 字句中的NOT操作符有且只能有一个，功能是否定之后所跟的任何条件。</p>
+<p>查询厂商id不是1002,1003的所有商品信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name,prod_price FROM products WHERE vend_id NOT IN (1002,1003) ORDER BY prod_name;</span><br><span class="line">+--------------+------------+</span><br><span class="line">| prod_name    | prod_price |</span><br><span class="line">+--------------+------------+</span><br><span class="line">| .5 ton anvil |       5.99 |</span><br><span class="line">| 1 ton anvil  |       9.99 |</span><br><span class="line">| 2 ton anvil  |      14.99 |</span><br><span class="line">| JetPack 1000 |      35.00 |</span><br><span class="line">| JetPack 2000 |      55.00 |</span><br><span class="line">+--------------+------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>NOT支持的取反的操作符有 IN、BETWEEN、EXISTS。</p>
+<h2 id="通配符进行过滤"><a href="#通配符进行过滤" class="headerlink" title="通配符进行过滤"></a>通配符进行过滤</h2><h3 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h3><p>LIKE 是开启通配符匹配的关键字。</p>
+<p>通配符号 % _</p>
+<p>%表示匹配任意字符<br>_表示匹配一个字符</p>
+<p>查询商品名称中包含 anvil<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &apos;%anvil&apos;;</span><br><span class="line">+---------+--------------+</span><br><span class="line">| prod_id | prod_name    |</span><br><span class="line">+---------+--------------+</span><br><span class="line">| ANV01   | .5 ton anvil |</span><br><span class="line">| ANV02   | 1 ton anvil  |</span><br><span class="line">| ANV03   | 2 ton anvil  |</span><br><span class="line">+---------+--------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &apos;_ ton anvil&apos;;</span><br><span class="line">+---------+-------------+</span><br><span class="line">| prod_id | prod_name   |</span><br><span class="line">+---------+-------------+</span><br><span class="line">| ANV02   | 1 ton anvil |</span><br><span class="line">| ANV03   | 2 ton anvil |</span><br><span class="line">+---------+-------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>使用通配符的技巧</p>
+<p>1.不要过度使用通配符，会造成数据库运算压力。</p>
+<p>2.在明确需要使用通配符时，除非绝对有必要，否则不要把他们用在搜索模式的开始处。把通配符置于搜索模式的开始处，搜索起来是最慢的。</p>
+<p>3.仔细注意通配符的位置。</p>
+<h2 id="使用正则表达式进行搜索"><a href="#使用正则表达式进行搜索" class="headerlink" title="使用正则表达式进行搜索"></a>使用正则表达式进行搜索</h2><p>MySQL开启使用正则表达式的关键字符是 REGEXP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products WHERE prod_name REGEXP &apos;.000&apos; ORDER BY prod_name;</span><br><span class="line">+--------------+</span><br><span class="line">| prod_name    |</span><br><span class="line">+--------------+</span><br><span class="line">| JetPack 1000 |</span><br><span class="line">| JetPack 2000 |</span><br><span class="line">+--------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h2><h3 id="计算字段"><a href="#计算字段" class="headerlink" title="计算字段"></a>计算字段</h3><p>计算字段是原先表中不存在的字段，通过使用数据库函数或计算后并重命名的字段。</p>
+<h4 id="拼接字段"><a href="#拼接字段" class="headerlink" title="拼接字段"></a>拼接字段</h4><p>vendors 表中厂商名称和地址是分离的。客户端需要获取一个vend—title的字段。格式是这样的 vend_name (vend_country)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT Concat(Trim(vend_name),&apos; (&apos;,Trim(vend_country),&apos;)&apos;) AS vend_title FROM vendors ORDER BY vend_name;</span><br><span class="line">+-------------------------+</span><br><span class="line">| vend_title              |</span><br><span class="line">+-------------------------+</span><br><span class="line">| ACME (USA)              |</span><br><span class="line">| Anvils R Us (USA)       |</span><br><span class="line">| Furball Inc. (USA)      |</span><br><span class="line">| Jet Set (England)       |</span><br><span class="line">| Jouets Et Ours (France) |</span><br><span class="line">| LT Supplies (USA)       |</span><br><span class="line">+-------------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>其中函数 Concat 用于链接多个字符串</p>
+<p>Trim函数用于去除字段左右的空格</p>
+<p>AS 关键字用于起别名 alias</p>
+<h4 id="执行算数计算"><a href="#执行算数计算" class="headerlink" title="执行算数计算"></a>执行算数计算</h4><p>在表查询中，需要添加一个字段，这个字段来至于表中2个字段的乘积</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,quantity,item_price,quantity*item_price AS expended_price FROM orderitems ORDER BY expended_price;</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">| prod_id | quantity | item_price | expended_price |</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">| SLING   |        1 |       4.49 |           4.49 |</span><br><span class="line">| OL1     |        1 |       8.99 |           8.99 |</span><br><span class="line">| FB      |        1 |      10.00 |          10.00 |</span><br><span class="line">| FB      |        1 |      10.00 |          10.00 |</span><br><span class="line">| ANV03   |        1 |      14.99 |          14.99 |</span><br><span class="line">| ANV02   |        3 |       9.99 |          29.97 |</span><br><span class="line">| TNT2    |        5 |      10.00 |          50.00 |</span><br><span class="line">| JP2000  |        1 |      55.00 |          55.00 |</span><br><span class="line">| ANV01   |       10 |       5.99 |          59.90 |</span><br><span class="line">| FC      |       50 |       2.50 |         125.00 |</span><br><span class="line">| TNT2    |      100 |      10.00 |        1000.00 |</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">11 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="测试计算"><a href="#测试计算" class="headerlink" title="测试计算"></a>测试计算</h3><p>使用 SELECT 函数 或运算即可</p>
+<p>测试now函数获取当前时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT NOW();</span><br><span class="line">+---------------------+</span><br><span class="line">| NOW()               |</span><br><span class="line">+---------------------+</span><br><span class="line">| 2019-09-03 16:07:01 |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>测试 3*5<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 3*5;</span><br><span class="line">+-----+</span><br><span class="line">| 3*5 |</span><br><span class="line">+-----+</span><br><span class="line">|  15 |</span><br><span class="line">+-----+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WenLiangBao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2019/09/03/mysql必知必会-note/" title="mysql必知必会-note">https://slothjun.github.io/MeBlog/2019/09/03/mysql必知必会-note/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2019/08/27/linux系统结构/" rel="next" title="Linux-系统结构">
+                <i class="fa fa-chevron-left"></i> Linux-系统结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="WenLiangBao">
+            
+              <p class="site-author-name" itemprop="name">WenLiangBao</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)吾日三省吾身，必成其业</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/MeBlog/archives/">
+                
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解sql"><span class="nav-number">1.</span> <span class="nav-text">了解sql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库基础术语"><span class="nav-number">1.1.</span> <span class="nav-text">数据库基础术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是数据库"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表"><span class="nav-number">1.1.2.</span> <span class="nav-text">表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式"><span class="nav-number">1.1.3.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列"><span class="nav-number">1.1.4.</span> <span class="nav-text">列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型"><span class="nav-number">1.1.5.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行"><span class="nav-number">1.1.6.</span> <span class="nav-text">行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主键"><span class="nav-number">1.1.7.</span> <span class="nav-text">主键</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是sql"><span class="nav-number">1.1.8.</span> <span class="nav-text">什么是sql</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql简介"><span class="nav-number">2.</span> <span class="nav-text">mysql简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是MySQL"><span class="nav-number">2.1.</span> <span class="nav-text">什么是MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBMS产品分类"><span class="nav-number">2.2.</span> <span class="nav-text">DBMS产品分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL工具（客户端）"><span class="nav-number">2.3.</span> <span class="nav-text">MySQL工具（客户端）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用MySQL"><span class="nav-number">3.</span> <span class="nav-text">使用MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">3.1.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择数据库"><span class="nav-number">3.2.</span> <span class="nav-text">选择数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于SHOW的一些操作"><span class="nav-number">3.3.</span> <span class="nav-text">关于SHOW的一些操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索数据"><span class="nav-number">4.</span> <span class="nav-text">检索数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SELECT语句"><span class="nav-number">4.1.</span> <span class="nav-text">SELECT语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检索单个列"><span class="nav-number">4.1.1.</span> <span class="nav-text">检索单个列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检索多个列"><span class="nav-number">4.1.2.</span> <span class="nav-text">检索多个列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检索数据去重"><span class="nav-number">4.1.3.</span> <span class="nav-text">检索数据去重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检索限制输出"><span class="nav-number">4.1.4.</span> <span class="nav-text">检索限制输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用完全限定"><span class="nav-number">4.1.5.</span> <span class="nav-text">使用完全限定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序检索数据"><span class="nav-number">5.</span> <span class="nav-text">排序检索数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单列排序数据"><span class="nav-number">5.1.</span> <span class="nav-text">单列排序数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多列排序顺序"><span class="nav-number">5.2.</span> <span class="nav-text">多列排序顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序的方向"><span class="nav-number">5.3.</span> <span class="nav-text">排序的方向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤数据"><span class="nav-number">6.</span> <span class="nav-text">过滤数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#where子语句"><span class="nav-number">6.1.</span> <span class="nav-text">where子语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据where-操作符过滤"><span class="nav-number">6.1.1.</span> <span class="nav-text">根据where 操作符过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BETWEEN-使用"><span class="nav-number">6.1.2.</span> <span class="nav-text">BETWEEN 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空值null过滤"><span class="nav-number">6.1.3.</span> <span class="nav-text">空值null过滤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND-OR-IN-NOT-操作符"><span class="nav-number">7.</span> <span class="nav-text">AND OR IN NOT 操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AND"><span class="nav-number">7.1.</span> <span class="nav-text">AND</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OR"><span class="nav-number">7.2.</span> <span class="nav-text">OR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AND-OR-联合使用"><span class="nav-number">7.3.</span> <span class="nav-text">AND OR 联合使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN"><span class="nav-number">7.4.</span> <span class="nav-text">IN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOT"><span class="nav-number">7.5.</span> <span class="nav-text">NOT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符进行过滤"><span class="nav-number">8.</span> <span class="nav-text">通配符进行过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIKE"><span class="nav-number">8.1.</span> <span class="nav-text">LIKE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用正则表达式进行搜索"><span class="nav-number">9.</span> <span class="nav-text">使用正则表达式进行搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建计算字段"><span class="nav-number">10.</span> <span class="nav-text">创建计算字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算字段"><span class="nav-number">10.1.</span> <span class="nav-text">计算字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拼接字段"><span class="nav-number">10.1.1.</span> <span class="nav-text">拼接字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行算数计算"><span class="nav-number">10.1.2.</span> <span class="nav-text">执行算数计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试计算"><span class="nav-number">10.2.</span> <span class="nav-text">测试计算</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WenLiangBao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '756ca4e66e7a3ba50532',
+    clientSecret: '840c7ad727c8f03ae56aee11949a8ac37a06ead1',
+    repo: 'BlogComments',
+    owner: 'slothjun',
+    admin: ['slothjun'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/MeBlog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
