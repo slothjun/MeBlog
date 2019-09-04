@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/python-入门篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
+                <a href="/MeBlog/2019/04/29/python-入门篇/" class="post-title-link" itemprop="url">python-入门篇.md</a>
               
             
           </h1>
@@ -417,21 +417,27 @@
       
         
           
-            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
-<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
-<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
-<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
-<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
-<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
-<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
-<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
-<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
-<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
-<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
-<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
-<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
+            <h2 id="python的来源"><a href="#python的来源" class="headerlink" title="python的来源"></a>python的来源</h2><p>​    python是著名的“Guido van Rossum”在1989年圣诞节期间开发的编程语言</p>
+<p>  现在，全世界差不多有600多种编程语言，但流行的编程语言也就那么20来种。如果你听说过TIOBE排行榜，你就能知道编程语言的大致流行程度。这是最近10年最常用的10种编程语言的变化图：</p>
+<p>  <img src="https://cdn.liaoxuefeng.com/cdn/files/attachments/00138595453161126cc9f11f1d441b0934661239528fa55000/0" alt></p>
+<p>  总的来说，这几种编程语言各有千秋。C语言是可以用来编写操作系统的贴近硬件的语言，所以，C语言适合开发那些追求运行速度、充分发挥硬件性能的程序。而Python是用来编写应用程序的高级编程语言。</p>
+<p>  当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。</p>
+<p>  Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。</p>
+<p>  除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。</p>
+<p>  许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。</p>
+<h2 id="python-的优点"><a href="#python-的优点" class="headerlink" title="python 的优点"></a>python 的优点</h2><p>  龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。</p>
+<p>  总的来说，Python的哲学就是简单优雅，尽量写容易看明白的代码，尽量写少的代码。如果一个资深程序员向你炫耀他写的晦涩难懂、动不动就几万行的代码，你可以尽情地嘲笑他。</p>
+<p>  那Python适合开发哪些类型的应用呢？</p>
+<p>  首选是网络应用，包括网站、后台服务等等；</p>
+<p>  其次是许多日常需要的小工具，包括系统管理员需要的脚本任务等等；</p>
+<p>  另外就是把其他语言开发的程序再包装起来，方便使用。</p>
+<p>##Python的缺点</p>
+<p>  任何编程语言都有缺点，Python也不例外。优点说过了，那Python有哪些缺点呢？</p>
+<p>第一个缺点就是运行速度慢，和C程序相比非常慢，因为Python是解释型语言，你的代码在执行时会一行一行地翻译成CPU能理解的机器码，这个翻译过程非常耗时，所以很慢。而C程序是运行前直接编译成CPU能执行的机器码，所以非常快。</p>
+<p>但是大量的应用程序不需要这么快的运行速度，因为用户根本感觉不出来。例如开发一个下载MP3的网络应用程序，C程序的运行时间需要0.001秒，而Python程序的运行时间需要0.1秒，慢了100倍，但由于网络更慢，需要等待1秒，你想，用户能感觉到1.001秒和1.1秒的区别吗？这就好比F1赛车和普通的出租车在北京三环路上行驶的道理一样，虽然F1赛车理论时速高达400公里，但由于三环路堵车的时速只有20公里，因此，作为乘客，你感觉的时速永远是20公里。</p>
+<h2 id="python交互模式"><a href="#python交互模式" class="headerlink" title="python交互模式"></a>python交互模式</h2><p>  使用当前系统的命令模式，输入python3即可进入交互模式，输入exit()可退出python交互式模式。<br>  交互式模式可以直接显示代码运行的结果。但是之前输入的代码退出交互式模式后不能存到硬盘中</p>
+<h2 id="命令行执行-py文件"><a href="#命令行执行-py文件" class="headerlink" title="命令行执行.py文件"></a>命令行执行.py文件</h2><p>  命令行模式下，进入要执行的.py文件同目录下，输入python3 文件名即可运行</p>
+
           
         
       
@@ -955,163 +961,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jwt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/jwt/" class="post-title-link" itemprop="url">jwt</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="什么是jwt"><a href="#什么是jwt" class="headerlink" title="什么是jwt"></a>什么是jwt</h2><p>​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的<br>信息。在Java世界中通过JJWT实现JWT创建和验证。</p>
-<h2 id="jjwt快速尝鲜"><a href="#jjwt快速尝鲜" class="headerlink" title="jjwt快速尝鲜"></a>jjwt快速尝鲜</h2><ol>
-<li><p>引入坐标</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>上面使用的坐标是基于apache2.0 下的jwt实现</p>
-</li>
-<li><p>使用并测试</p>
-<p>生成token</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">JwtBuilder jwt = Jwts.builder()</span><br><span class="line">                .setId(<span class="string">"123"</span>)</span><br><span class="line">                .setSubject(<span class="string">"老王"</span>)</span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> Date())<span class="comment">//发布时间</span></span><br><span class="line">                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis()+<span class="number">6000</span>))<span class="comment">//到期时间</span></span><br><span class="line">                .signWith(SignatureAlgorithm.HS384,<span class="string">"XXXXX"</span>);<span class="comment">//设置密钥</span></span><br><span class="line">String compact = jwt.compact();<span class="comment">//签约生成token</span></span><br><span class="line">System.out.println(compact);</span><br></pre></td></tr></table></figure>
-<p>解析token</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Claims cla = Jwts.parser()</span><br><span class="line">    .setSigningKey(<span class="string">"XXXXX"</span>)<span class="comment">//设置密钥</span></span><br><span class="line">    .parseClaimsJws(key)<span class="comment">//设置token</span></span><br><span class="line">    .getBody();</span><br></pre></td></tr></table></figure>
-<p>当token认证失败时会抛出ExpiredJwtException异常</p>
-<p>自定义claims</p>
-<p>生成</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为了方便测试，我们将过期时间设置为1分钟</span></span><br><span class="line"><span class="keyword">long</span> now = System.currentTimeMillis();<span class="comment">//当前时间</span></span><br><span class="line"><span class="keyword">long</span> exp = now + <span class="number">1000</span>*<span class="number">60</span>;<span class="comment">//过期时间为1分钟</span></span><br><span class="line">JwtBuilder builder= Jwts.builder().setId(<span class="string">"888"</span>)</span><br><span class="line">.setSubject(<span class="string">"小白"</span>)</span><br><span class="line">.setIssuedAt(<span class="keyword">new</span> Date())</span><br><span class="line">.signWith(SignatureAlgorithm.HS256,<span class="string">"itcast"</span>)</span><br><span class="line">.setExpiration(<span class="keyword">new</span> Date(exp))</span><br><span class="line">.claim(<span class="string">"roles"</span>,<span class="string">"admin"</span>) <span class="comment">//自定义claims存储数据</span></span><br><span class="line">.claim(<span class="string">"logo"</span>,<span class="string">"logo.png"</span>);</span><br><span class="line">System.out.println( builder.compact() );</span><br></pre></td></tr></table></figure>
-<p>解析</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String</span><br><span class="line">compactJws=<span class="string">"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4ODgiLCJzdWIiOiLlsI_nmb0iLCJpYXQiOjE1MjM0MT</span></span><br><span class="line"><span class="string">czMjMsImV4cCI6MTUyMzQxNzM4Mywicm9sZXMiOiJhZG1pbiIsImxvZ28iOiJsb2dvLnBuZyJ9.b11p4g4rE94r</span></span><br><span class="line"><span class="string">qFhcfzdJTPCORikqP_1zJ1MP8KihYTQ"</span>;</span><br><span class="line">Claims claims =</span><br><span class="line">Jwts.parser().setSigningKey(<span class="string">"itcast"</span>).parseClaimsJws(compactJws).getBody();</span><br><span class="line">System.out.println(<span class="string">"id:"</span>+claims.getId());</span><br><span class="line">System.out.println(<span class="string">"subject:"</span>+claims.getSubject());</span><br><span class="line">System.out.println(<span class="string">"roles:"</span>+claims.get(<span class="string">"roles"</span>));</span><br><span class="line">System.out.println(<span class="string">"logo:"</span>+claims.get(<span class="string">"logo"</span>));</span><br><span class="line">SimpleDateFormat sdf=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">System.out.println(<span class="string">"签发时间:"</span>+sdf.format(claims.getIssuedAt()));</span><br><span class="line">System.out.println(<span class="string">"过期时间:"</span>+sdf.format(claims.getExpiration()));</span><br><span class="line">System.out.println(<span class="string">"当前时间:"</span>+sdf.format(<span class="keyword">new</span> Date()) );</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jodconverter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1251,6 +1100,221 @@
 <p>其余属性请查看此链接<a href="https://github.com/sbraconnier/jodconverter/wiki/Configuration" target="_blank" rel="noopener">https://github.com/sbraconnier/jodconverter/wiki/Configuration</a> </p>
 <h3 id="官方Java中使用dome"><a href="#官方Java中使用dome" class="headerlink" title="官方Java中使用dome"></a>官方Java中使用dome</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">File inputFile = <span class="keyword">new</span> File(<span class="string">"document.doc"</span>);</span><br><span class="line">File outputFile = <span class="keyword">new</span> File(<span class="string">"document.pdf"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an office manager using the default configuration.</span></span><br><span class="line"><span class="comment">// The default port is 2002. Note that when an office manager</span></span><br><span class="line"><span class="comment">// is installed, it will be the one used by default when</span></span><br><span class="line"><span class="comment">// a converter is created.</span></span><br><span class="line"><span class="keyword">final</span> LocalOfficeManager officeManager = LocalOfficeManager.install(); </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an office process and connect to the started instance (on port 2002).</span></span><br><span class="line">    officeManager.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert</span></span><br><span class="line">    JodConverter</span><br><span class="line">             .convert(inputFile)</span><br><span class="line">             .to(outputFile)</span><br><span class="line">             .execute();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Stop the office process</span></span><br><span class="line">    OfficeUtils.stopQuietly(officeManager);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="本人整合springboot使用"><a href="#本人整合springboot使用" class="headerlink" title="本人整合springboot使用"></a>本人整合springboot使用</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-初识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/Linux-初识/" class="post-title-link" itemprop="url">Linux-初识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><h3 id="Linux-学习方法"><a href="#Linux-学习方法" class="headerlink" title="Linux 学习方法"></a>Linux 学习方法</h3><ol>
+<li>坚持使用命令行</li>
+<li>遇到问题，不要马上问别人。先自行寻找答案<ol>
+<li>解决问题的的智慧： 帮助、文档、示例、查找</li>
+</ol>
+</li>
+<li>忘掉Windows思维方式</li>
+<li>计划、坚持、专注、练习</li>
+</ol>
+<h3 id="Linux系统分区"><a href="#Linux系统分区" class="headerlink" title="Linux系统分区"></a>Linux系统分区</h3><p>1.什么是磁盘分区：</p>
+<p>​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存储进不同的分区。</p>
+<p>example：</p>
+<p>划分柜子，将一个大柜子划分为3个小柜子。这样可以方便使用者。</p>
+<p>分区类型：</p>
+<p>主分区：最多只能有4个（一块硬盘的前提条件下）</p>
+<p>扩展分区：</p>
+<p>​    最多只能有1个（一块硬盘的前提条件下）</p>
+<p>​    主分区加扩展分区最多有4个（一块硬盘的前提条件下）</p>
+<p>​    不能写入数据，只能包含逻辑分区（一块硬盘的前提条件下）</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553220848741.png" alt="1553220848741"></p>
+<p>逻辑分区</p>
+<p>2.格式化</p>
+<p>​    什么是格式化：</p>
+<p>​    格式化 （高级格式化）又称逻辑格式化。它是指根据用户选的的文件系统（FAT16、FAT32、NTFS、EXT3、EXT2、EXT4等）在磁盘的特定区域写入特定数据，在分区中划出一片用于存放文件的分配表、目录表等用于文件管理的磁盘空间。</p>
+<p>Linux默认的文件系统：EXT4</p>
+<p>关键词：</p>
+<p>​    block</p>
+<p>​    inode 号</p>
+<p>3.硬件设备文件名</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553216867850.png" alt="1553216867850"></p>
+<p>4.分区设备文件名</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217099195.png" alt="1553217099195"></p>
+<p>/dev/hda1 代表什么？ /dev 代表了这是系统的设备文件的根目录，hda1中hda表示用户使用的是IDE硬盘，1表示第几个分区（数字标识）</p>
+<p>IDE硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217517403.png" alt="1553217517403"></p>
+<p>理论每秒传输133MB</p>
+<p>SCSI硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217620457.png" alt="1553217620457"></p>
+<p>理论每秒传输200MB</p>
+<p>SATA硬盘接口：</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217899946.png" alt="1553217899946"></p>
+<p>sata3代理论每秒传输500MB  </p>
+<p>5.挂载</p>
+<p>​    必须分区</p>
+<p>​        /(根分区)</p>
+<p>​        swap（交换分区、内存2倍）</p>
+<p>​    推荐分区</p>
+<p>​        /boot（启动分区，200MB）</p>
+<p>文件系统结构</p>
+<p><img src="C:\Users\sloth\AppData\Local\Temp\1553221402638.png" alt="1553221402638"></p>
+<p>系统分区流程</p>
+<p>​    分区 》格式化 》为分区指定设备文件名 》 挂载</p>
+<h3 id="密码原则："><a href="#密码原则：" class="headerlink" title="密码原则："></a>密码原则：</h3><p>​    复杂性</p>
+<p>​        八位字符以上、大小写字母、数字、符号</p>
+<p>​        不是单词</p>
+<p>​        不是用户的相关信息</p>
+<p>​    易记性</p>
+<p>​    时效性</p>
+<h3 id="安装日志"><a href="#安装日志" class="headerlink" title="安装日志"></a>安装日志</h3><p>​    /root/install.log 存储了安装在系统中的软件包及其版本信息</p>
+<p>​    /root/install.log.syslog 存储了安装过程中留下来的事件信息</p>
+<p>​    /root/anaconda-ks.cfg 以Kickstrat配置文件的格式记录安装过程中设置的选项信息</p>
+<h3 id="linux-关于IP操作的一些命令"><a href="#linux-关于IP操作的一些命令" class="headerlink" title="linux 关于IP操作的一些命令"></a>linux 关于IP操作的一些命令</h3><p>ifconfig ：查看系统网卡信息</p>
+<p>ifconfig eth0 [ip 地址]  :临时配置网卡，系统重启后失效</p>
+<h3 id="Linux-注意事项"><a href="#Linux-注意事项" class="headerlink" title="Linux 注意事项"></a>Linux 注意事项</h3><p>​    严格区分大小写</p>
+<p>​     Linux中所有的内容都是以文件形式保存，包括硬件</p>
+<p>​        硬盘文件是/dev/sd[a-p]</p>
+<p>​        光盘文件是/dev/sr0等</p>
+<p>​    Linux不靠扩展名区分文件类型 </p>
+<p>​    Linux所有存储设备都必须挂载之后用户才能使用,包括硬盘、U盘和光盘</p>
+<p>​    windows下的程序不能直接在Linux中安装和运行 </p>
+<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p>服务器最好重启操作，不要关机操作</p>
+<p>重启时应该关闭服务器</p>
+<p>不要在服务器访问高峰运行高负载命令</p>
+<p>远程配置防火墙时不要把自己踢出服务器</p>
+<p>指定合理的密码规范并定期更新</p>
+<p>合理分配权限</p>
+<p>定期备份重要数据和日志</p>
+
           
         
       
@@ -1477,7 +1541,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-初识/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jwt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -1497,7 +1561,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/Linux-初识/" class="post-title-link" itemprop="url">Linux-初识</a>
+                <a href="/MeBlog/2019/04/29/jwt/" class="post-title-link" itemprop="url">jwt</a>
               
             
           </h1>
@@ -1559,83 +1623,25 @@
       
         
           
-            <h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><h3 id="Linux-学习方法"><a href="#Linux-学习方法" class="headerlink" title="Linux 学习方法"></a>Linux 学习方法</h3><ol>
-<li>坚持使用命令行</li>
-<li>遇到问题，不要马上问别人。先自行寻找答案<ol>
-<li>解决问题的的智慧： 帮助、文档、示例、查找</li>
-</ol>
+            <h2 id="什么是jwt"><a href="#什么是jwt" class="headerlink" title="什么是jwt"></a>什么是jwt</h2><p>​    JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的<br>信息。在Java世界中通过JJWT实现JWT创建和验证。</p>
+<h2 id="jjwt快速尝鲜"><a href="#jjwt快速尝鲜" class="headerlink" title="jjwt快速尝鲜"></a>jjwt快速尝鲜</h2><ol>
+<li><p>引入坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面使用的坐标是基于apache2.0 下的jwt实现</p>
 </li>
-<li>忘掉Windows思维方式</li>
-<li>计划、坚持、专注、练习</li>
+<li><p>使用并测试</p>
+<p>生成token</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">JwtBuilder jwt = Jwts.builder()</span><br><span class="line">                .setId(<span class="string">"123"</span>)</span><br><span class="line">                .setSubject(<span class="string">"老王"</span>)</span><br><span class="line">                .setIssuedAt(<span class="keyword">new</span> Date())<span class="comment">//发布时间</span></span><br><span class="line">                .setExpiration(<span class="keyword">new</span> Date(System.currentTimeMillis()+<span class="number">6000</span>))<span class="comment">//到期时间</span></span><br><span class="line">                .signWith(SignatureAlgorithm.HS384,<span class="string">"XXXXX"</span>);<span class="comment">//设置密钥</span></span><br><span class="line">String compact = jwt.compact();<span class="comment">//签约生成token</span></span><br><span class="line">System.out.println(compact);</span><br></pre></td></tr></table></figure>
+<p>解析token</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Claims cla = Jwts.parser()</span><br><span class="line">    .setSigningKey(<span class="string">"XXXXX"</span>)<span class="comment">//设置密钥</span></span><br><span class="line">    .parseClaimsJws(key)<span class="comment">//设置token</span></span><br><span class="line">    .getBody();</span><br></pre></td></tr></table></figure>
+<p>当token认证失败时会抛出ExpiredJwtException异常</p>
+<p>自定义claims</p>
+<p>生成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为了方便测试，我们将过期时间设置为1分钟</span></span><br><span class="line"><span class="keyword">long</span> now = System.currentTimeMillis();<span class="comment">//当前时间</span></span><br><span class="line"><span class="keyword">long</span> exp = now + <span class="number">1000</span>*<span class="number">60</span>;<span class="comment">//过期时间为1分钟</span></span><br><span class="line">JwtBuilder builder= Jwts.builder().setId(<span class="string">"888"</span>)</span><br><span class="line">.setSubject(<span class="string">"小白"</span>)</span><br><span class="line">.setIssuedAt(<span class="keyword">new</span> Date())</span><br><span class="line">.signWith(SignatureAlgorithm.HS256,<span class="string">"itcast"</span>)</span><br><span class="line">.setExpiration(<span class="keyword">new</span> Date(exp))</span><br><span class="line">.claim(<span class="string">"roles"</span>,<span class="string">"admin"</span>) <span class="comment">//自定义claims存储数据</span></span><br><span class="line">.claim(<span class="string">"logo"</span>,<span class="string">"logo.png"</span>);</span><br><span class="line">System.out.println( builder.compact() );</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String</span><br><span class="line">compactJws=<span class="string">"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4ODgiLCJzdWIiOiLlsI_nmb0iLCJpYXQiOjE1MjM0MT</span></span><br><span class="line"><span class="string">czMjMsImV4cCI6MTUyMzQxNzM4Mywicm9sZXMiOiJhZG1pbiIsImxvZ28iOiJsb2dvLnBuZyJ9.b11p4g4rE94r</span></span><br><span class="line"><span class="string">qFhcfzdJTPCORikqP_1zJ1MP8KihYTQ"</span>;</span><br><span class="line">Claims claims =</span><br><span class="line">Jwts.parser().setSigningKey(<span class="string">"itcast"</span>).parseClaimsJws(compactJws).getBody();</span><br><span class="line">System.out.println(<span class="string">"id:"</span>+claims.getId());</span><br><span class="line">System.out.println(<span class="string">"subject:"</span>+claims.getSubject());</span><br><span class="line">System.out.println(<span class="string">"roles:"</span>+claims.get(<span class="string">"roles"</span>));</span><br><span class="line">System.out.println(<span class="string">"logo:"</span>+claims.get(<span class="string">"logo"</span>));</span><br><span class="line">SimpleDateFormat sdf=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>);</span><br><span class="line">System.out.println(<span class="string">"签发时间:"</span>+sdf.format(claims.getIssuedAt()));</span><br><span class="line">System.out.println(<span class="string">"过期时间:"</span>+sdf.format(claims.getExpiration()));</span><br><span class="line">System.out.println(<span class="string">"当前时间:"</span>+sdf.format(<span class="keyword">new</span> Date()) );</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h3 id="Linux系统分区"><a href="#Linux系统分区" class="headerlink" title="Linux系统分区"></a>Linux系统分区</h3><p>1.什么是磁盘分区：</p>
-<p>​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存储进不同的分区。</p>
-<p>example：</p>
-<p>划分柜子，将一个大柜子划分为3个小柜子。这样可以方便使用者。</p>
-<p>分区类型：</p>
-<p>主分区：最多只能有4个（一块硬盘的前提条件下）</p>
-<p>扩展分区：</p>
-<p>​    最多只能有1个（一块硬盘的前提条件下）</p>
-<p>​    主分区加扩展分区最多有4个（一块硬盘的前提条件下）</p>
-<p>​    不能写入数据，只能包含逻辑分区（一块硬盘的前提条件下）</p>
-<p><img src="C:\Users\sloth\AppData\Local\Temp\1553220848741.png" alt="1553220848741"></p>
-<p>逻辑分区</p>
-<p>2.格式化</p>
-<p>​    什么是格式化：</p>
-<p>​    格式化 （高级格式化）又称逻辑格式化。它是指根据用户选的的文件系统（FAT16、FAT32、NTFS、EXT3、EXT2、EXT4等）在磁盘的特定区域写入特定数据，在分区中划出一片用于存放文件的分配表、目录表等用于文件管理的磁盘空间。</p>
-<p>Linux默认的文件系统：EXT4</p>
-<p>关键词：</p>
-<p>​    block</p>
-<p>​    inode 号</p>
-<p>3.硬件设备文件名</p>
-<p><img src="C:\Users\sloth\AppData\Local\Temp\1553216867850.png" alt="1553216867850"></p>
-<p>4.分区设备文件名</p>
-<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217099195.png" alt="1553217099195"></p>
-<p>/dev/hda1 代表什么？ /dev 代表了这是系统的设备文件的根目录，hda1中hda表示用户使用的是IDE硬盘，1表示第几个分区（数字标识）</p>
-<p>IDE硬盘接口：</p>
-<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217517403.png" alt="1553217517403"></p>
-<p>理论每秒传输133MB</p>
-<p>SCSI硬盘接口：</p>
-<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217620457.png" alt="1553217620457"></p>
-<p>理论每秒传输200MB</p>
-<p>SATA硬盘接口：</p>
-<p><img src="C:\Users\sloth\AppData\Local\Temp\1553217899946.png" alt="1553217899946"></p>
-<p>sata3代理论每秒传输500MB  </p>
-<p>5.挂载</p>
-<p>​    必须分区</p>
-<p>​        /(根分区)</p>
-<p>​        swap（交换分区、内存2倍）</p>
-<p>​    推荐分区</p>
-<p>​        /boot（启动分区，200MB）</p>
-<p>文件系统结构</p>
-<p><img src="C:\Users\sloth\AppData\Local\Temp\1553221402638.png" alt="1553221402638"></p>
-<p>系统分区流程</p>
-<p>​    分区 》格式化 》为分区指定设备文件名 》 挂载</p>
-<h3 id="密码原则："><a href="#密码原则：" class="headerlink" title="密码原则："></a>密码原则：</h3><p>​    复杂性</p>
-<p>​        八位字符以上、大小写字母、数字、符号</p>
-<p>​        不是单词</p>
-<p>​        不是用户的相关信息</p>
-<p>​    易记性</p>
-<p>​    时效性</p>
-<h3 id="安装日志"><a href="#安装日志" class="headerlink" title="安装日志"></a>安装日志</h3><p>​    /root/install.log 存储了安装在系统中的软件包及其版本信息</p>
-<p>​    /root/install.log.syslog 存储了安装过程中留下来的事件信息</p>
-<p>​    /root/anaconda-ks.cfg 以Kickstrat配置文件的格式记录安装过程中设置的选项信息</p>
-<h3 id="linux-关于IP操作的一些命令"><a href="#linux-关于IP操作的一些命令" class="headerlink" title="linux 关于IP操作的一些命令"></a>linux 关于IP操作的一些命令</h3><p>ifconfig ：查看系统网卡信息</p>
-<p>ifconfig eth0 [ip 地址]  :临时配置网卡，系统重启后失效</p>
-<h3 id="Linux-注意事项"><a href="#Linux-注意事项" class="headerlink" title="Linux 注意事项"></a>Linux 注意事项</h3><p>​    严格区分大小写</p>
-<p>​     Linux中所有的内容都是以文件形式保存，包括硬件</p>
-<p>​        硬盘文件是/dev/sd[a-p]</p>
-<p>​        光盘文件是/dev/sr0等</p>
-<p>​    Linux不靠扩展名区分文件类型 </p>
-<p>​    Linux所有存储设备都必须挂载之后用户才能使用,包括硬盘、U盘和光盘</p>
-<p>​    windows下的程序不能直接在Linux中安装和运行 </p>
-<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p>服务器最好重启操作，不要关机操作</p>
-<p>重启时应该关闭服务器</p>
-<p>不要在服务器访问高峰运行高负载命令</p>
-<p>远程配置防火墙时不要把自己踢出服务器</p>
-<p>指定合理的密码规范并定期更新</p>
-<p>合理分配权限</p>
-<p>定期备份重要数据和日志</p>
 
           
         
