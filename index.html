@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">38</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">40</span></a>
 
   </li>
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/04/mysql必知必会-note/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/28/Linux-命令篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/09/04/mysql必知必会-note/" class="post-title-link" itemprop="url">mysql必知必会-note</a>
+                <a href="/MeBlog/2019/09/28/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
               
             
           </h1>
@@ -380,7 +380,581 @@
                 
               
 
-              <time title="创建时间：2019-09-04 15:35:39" itemprop="dateCreated datePublished" datetime="2019-09-04T15:35:39+08:00">2019-09-04</time>
+              <time title="创建时间：2019-09-28 22:00:12" itemprop="dateCreated datePublished" datetime="2019-09-28T22:00:12+08:00">2019-09-28</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h3><h4 id="命令提示符"><a href="#命令提示符" class="headerlink" title="命令提示符"></a>命令提示符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]#</span><br></pre></td></tr></table></figure>
+<p> 如上所示：<br>       [] ：是centos的提示分隔符，没有特殊的意义<br>       root ：表示当前的登录用户<br>       @ ：表示分隔符号，没有特殊的意义<br>       bogon : 表示当前系统的简写<br>       ～ ：表示当前用户所在的目录，～就是当前用户的家(home)目录</p>
+<pre><code># : 命令提示符，可以标识当前登录用户的权限等级，普通用户使用$标识，超级管理员用#标识
+</code></pre><h4 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h4><p><img src="http://39.104.171.29/image/1553455157361.png" alt="1553455157361"></p>
+<p>选项存在2种格式</p>
+<pre><code>1.长格式选项 如：--all 
+2.短格式选项 如：-a
+</code></pre><h4 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h4><p><img src="http://39.104.171.29/image/1553455753059.png" alt="1553455753059"></p>
+<p>使用 -a 时会看到有的文件名前有.此时表示此文件为隐藏文件。</p>
+<p>使用-l 查看详细信息</p>
+<p><img src="http://39.104.171.29/image/1553456138517.png" alt="1553456138517"></p>
+<p>上面1表示此文件的链接计数</p>
+<p><img src="http://39.104.171.29/image/1553456202080.png" alt="1553456202080"></p>
+<p>上面的root 表示文件的所有者，也就是文件的创建人或负责人，一个文件只能有一个所有者</p>
+<p><img src="http://39.104.171.29/image/1553456372734.png" alt="1553456372734"></p>
+<p>上面表示文件的所属组，一个文件只能拥有一个所有组</p>
+<p>在-l 后追加h -lh 表示人性化显示，使文件的大小更直观、</p>
+<p><img src="http://39.104.171.29/image/1553456551687.png" alt="1553456551687"></p>
+<p>ls -i 可以获取文件的I节点或获取文件的id号</p>
+<p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
+<p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
+<p>cd - 回到上次操作的目录</p>
+<p>cd ~ 回到当前用户的根目录</p>
+<p>cd 回到当前用户的根目录</p>
+<p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
+<p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
+<p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
+<p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
+<p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
+<p>tree 命令以目录树的方式显示文件结构信息</p>
+<p>使用tree 时可能会遇到command not  found ,这时就需要安装此命令</p>
+<p>本人使用的是centos 7 的系统 发现使用yum 无法获取tree的安装包</p>
+<p>所以只能使用源码包安装，于是在<a href="ftp://mama.indstate.edu/linux/tree/" target="_blank" rel="noopener">ftp://mama.indstate.edu/linux/tree/</a> 下载了 源码包</p>
+<p>在/usr/local/src 下使用make 编译了源码包</p>
+<h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
+<p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
+<p>cat 适用于查看简短文件内容，如shell脚本</p>
+<p><img src="http://39.104.171.29/image/1553464171496.png" alt="1553464171496"></p>
+<p><img src="http://39.104.171.29/image/1553464603686.png" alt="1553464603686"></p>
+<p>less 进入后使用 /关键字 可进行反白关键字高亮显示，同时按N键可以跳到下一个关键字，在高亮的关键字后加入！可以取消高亮效果</p>
+<p><img src="http://39.104.171.29/image/1553465266101.png" alt="1553465266101"></p>
+<p><img src="http://39.104.171.29/image/1553465409489.png" alt="1553465409489"></p>
+<p><img src="http://39.104.171.29/image/1553600438679.png" alt="1553600438679"></p>
+<p><img src="http://39.104.171.29/image/1553601846764.png" alt="1553601846764"></p>
+<p>硬链接的生成命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln /tmp/china/changzhi /root/china.hard</span><br></pre></td></tr></table></figure>
+<p>硬链接 共享文件的inode ,但是文件夹不能创建硬链接。</p>
+<h4 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h4><p>权限分为了三类 r w s 读 写 执行</p>
+<p><img src="http://39.104.171.29/image/1553602141983.png" alt="1553602141983"></p>
+<p><img src="http://39.104.171.29/image/1553602447029.png" alt="1553602447029"></p>
+<p><img src="http://39.104.171.29/image/1553603202959.png" alt="1553603202959"></p>
+<p><img src="http://39.104.171.29/image/1553603260245.png" alt="1553603260245"></p>
+<h5 id="其他权限管理命令"><a href="#其他权限管理命令" class="headerlink" title="其他权限管理命令"></a>其他权限管理命令</h5><p><img src="http://39.104.171.29/image/1553605959901.png" alt="1553605959901"></p>
+<p><img src="http://39.104.171.29/image/1553606015581.png" alt="1553606015581"></p>
+<p><img src="http://39.104.171.29/image/1553606075600.png" alt="1553606075600"></p>
+<h4 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h4><h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p><img src="http://39.104.171.29/image/1553749537377.png" alt="1553749537377"></p>
+<p><img src="http://39.104.171.29/image/1553749679807.png" alt="1553749679807"></p>
+<p>-name 加通配符可实现模糊搜索文件</p>
+<p>通配符 * 表示多个字符</p>
+<p>通配符 ？表示单个字符</p>
+<p><img src="http://39.104.171.29/image/1553752715110.png" alt="1553752715110"></p>
+<p><img src="http://39.104.171.29/image/1553752887543.png" alt="1553752887543"></p>
+<p><img src="http://39.104.171.29/image/1553752983831.png" alt="1553752983831"></p>
+<h5 id="其他搜索命令"><a href="#其他搜索命令" class="headerlink" title="其他搜索命令"></a>其他搜索命令</h5><p><img src="http://39.104.171.29/image/1553755683871.png" alt="1553755683871"></p>
+<p>此查询基于文件资料库所以，查询时对比find占用系统资源较少。</p>
+<p>存在缺陷无法查询tmp目录下的文件</p>
+<p>不能实时查询，如果刚创建的数据没有录入文件资料库时。会导致无法查询到文件。此时使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb</span><br></pre></td></tr></table></figure>
+<p>然后再次使用    locate可查找到文件</p>
+<p><img src="http://39.104.171.29/image/1553756124804.png" alt="1553756124804"></p>
+<p><img src="http://39.104.171.29/image/1553756360865.png" alt="1553756360865"></p>
+<p><img src="http://39.104.171.29/image/1553757094395.png" alt="1553757094395"></p>
+<h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><p><img src="http://39.104.171.29/image/1553757468067.png" alt="1553757468067"></p>
+<p>帮助命令类型 1表示命令，5表示配置文件</p>
+<p>命令名称：whatis</p>
+<p>NAME<br>       whatis - 在 whatis 数据库里查找完整的单词</p>
+<p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
+<p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
+<p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#x36;&#x33;&#46;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#x36;&#x33;&#46;&#x6e;&#101;&#x74;</a></p>
+<p>[中文版最新更新]<br>       2001/9/8</p>
+<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
+<p>命令名称：apropos</p>
+<p>NAME<br>       apropos - 在 whatis 数据库中查找字符串</p>
+<p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
+<p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
+<p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#x6e;&#x79;&#x5f;&#x74;&#x79;&#x40;&#50;&#x36;&#51;&#46;&#110;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#x6e;&#x79;&#x5f;&#x74;&#x79;&#x40;&#50;&#x36;&#51;&#46;&#110;&#101;&#116;</a></p>
+<p>[中文版最新更新]<br>       2001/9/20</p>
+<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
+<p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
+<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><p><img src="http://39.104.171.29/image/1553826507188.png" alt="1553826507188"></p>
+<p><img src="http://39.104.171.29/image/1553826897084.png" alt="1553826897084"></p>
+<p><img src="http://39.104.171.29/image/1553826911136.png" alt="1553826911136"></p>
+<p><img src="http://39.104.171.29/image/1553827412666.png" alt="1553827412666"></p>
+<p><img src="http://39.104.171.29/image/1553827301824.png" alt="1553827301824"></p>
+<p><img src="http://39.104.171.29/image/1553828266112.png" alt="1553828266112"></p>
+<h4 id="压缩和解压命令"><a href="#压缩和解压命令" class="headerlink" title="压缩和解压命令"></a>压缩和解压命令</h4><h5 id="压缩格式"><a href="#压缩格式" class="headerlink" title="压缩格式"></a>压缩格式</h5><p>gz  zip  rar    其中 zip 是windos和Linux 都支持的压缩格式</p>
+<h5 id="压缩解压命令使用"><a href="#压缩解压命令使用" class="headerlink" title="压缩解压命令使用"></a>压缩解压命令使用</h5><p><img src="http://39.104.171.29/image/1553831418375.png" alt="1553831418375"></p>
+<p><img src="http://39.104.171.29/image/1553831583899.png" alt="1553831583899"></p>
+<p>gzip的缺陷就是目前只能压缩文件，并且压缩后是不保留源文件的。</p>
+<p><img src="http://39.104.171.29/image/1553831796484.png" alt="1553831796484"></p>
+<p>tar 格式表示打包</p>
+<p><img src="http://39.104.171.29/image/1553832058168.png" alt="1553832058168"></p>
+<p><img src="http://39.104.171.29/image/1553837000891.png" alt="1553837000891"></p>
+<p><img src="http://39.104.171.29/image/1553837160959.png" alt="1553837160959"></p>
+<p>unzip 解压文件时出现乱码如何解决，使用命令 unzip -O CP936 压缩包名称 即可。其中-O表示知道文件的编码集，<br>CP936是IBM code page 中的第936页也就是咋们俗称的GBK。</p>
+<p><img src="http://39.104.171.29/image/1553837197214.png" alt="1553837197214"></p>
+<p><img src="http://39.104.171.29/image/1553837357376.png" alt="1553837357376"></p>
+<p><img src="http://39.104.171.29/image/1553837563419.png" alt="1553837563419"><br>rar 格式的文件解压或压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#安装rar shell脚本</span><br><span class="line"> sudo apt install rar</span><br><span class="line"></span><br><span class="line">rar x 文件名进行解压</span><br><span class="line">更多信息使用 man rar</span><br></pre></td></tr></table></figure></p>
+<h4 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h4><p><img src="http://39.104.171.29/image/1553837724986.png" alt="1553837724986"></p>
+<p><img src="http://39.104.171.29/image/1553837906794.png" alt="1553837906794"></p>
+<p><img src="http://39.104.171.29/image/1553838044540.png" alt="1553838044540"></p>
+<p><img src="http://39.104.171.29/image/1553838208557.png" alt="1553838208557"></p>
+<p><img src="http://39.104.171.29/image/1553838404765.png" alt="1553838404765"></p>
+<p>mail 命令操作时需要使用CTRL+D 才可生效，如执邮件的删除功能，需要除了使用delete命令后还需使用</p>
+<p>CTRL+D才可。</p>
+<p>mail 进入使用界面后， h表示查看列表，d表示删除指定的邮件</p>
+<p><img src="http://39.104.171.29/image/1553838607987.png" alt="1553838607987"></p>
+<p><img src="http://39.104.171.29/image/1553838817826.png" alt="1553838817826"></p>
+<p><img src="http://39.104.171.29/image/1553838803865.png" alt="1553838803865"></p>
+<p><img src="http://39.104.171.29/image/1553839077239.png" alt="1553839077239"></p>
+<p><img src="http://39.104.171.29/image/1553841741827.png" alt="1553841741827"></p>
+<p><img src="http://39.104.171.29/image/1553839651829.png" alt="1553839651829"></p>
+<h4 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h4><p><img src="http://39.104.171.29/image/1553842448954.png" alt="1553842448954"></p>
+<h4 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h4><p><img src="http://39.104.171.29/image/1554102568116.png" alt="1554102568116"></p>
+<p><img src="http://39.104.171.29/image/1554102608485.png" alt="1554102608485"></p>
+<p><img src="http://39.104.171.29/image/1554102624441.png" alt="1554102624441"></p>
+<p><img src="http://39.104.171.29/image/1554102670799.png" alt="1554102670799"></p>
+<p><img src="http://39.104.171.29/image/1554102699933.png" alt="1554102699933"></p>
+<p><img src="http://39.104.171.29/image/1554102724817.png" alt="1554102724817"></p>
+<p>修改系统默认运行级别代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 2</span><br></pre></td></tr></table></figure>
+<p><img src="http://39.104.171.29/image/1554102791796.png" alt="1554102791796"> </p>
+<p>查看系统存储信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/meminfo</span><br></pre></td></tr></table></figure></p>
+<h4 id="工具版本切换"><a href="#工具版本切换" class="headerlink" title="工具版本切换"></a>工具版本切换</h4><p>java jdk版本切换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdk 版本切换：sudo update-alternatives --config java</span><br></pre></td></tr></table></figure></p>
+<h4 id="查看系统进程"><a href="#查看系统进程" class="headerlink" title="查看系统进程"></a>查看系统进程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux |grep java</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/27/Anaconda工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/09/27/Anaconda工具/" class="post-title-link" itemprop="url">Anaconda 工具</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-27 11:22:43" itemprop="dateCreated datePublished" datetime="2019-09-27T11:22:43+08:00">2019-09-27</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h3 id="version-环境切换"><a href="#version-环境切换" class="headerlink" title="version 环境切换"></a>version 环境切换</h3><h4 id="列出当前Anaconda-python拥有的环境列表"><a href="#列出当前Anaconda-python拥有的环境列表" class="headerlink" title="列出当前Anaconda python拥有的环境列表"></a>列出当前Anaconda python拥有的环境列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(python36) spiderbao@spiderbao-CW65S:~$ conda info -e</span><br><span class="line"># conda environments:</span><br><span class="line">#</span><br><span class="line">base                     /home/spiderbao/anaconda3</span><br><span class="line">python36              *  /home/spiderbao/anaconda3/envs/python36</span><br></pre></td></tr></table></figure>
+<p>其中base 为安装Anaconda 所默认安装的</p>
+<h4 id="查看当前Python的版本"><a href="#查看当前Python的版本" class="headerlink" title="查看当前Python的版本"></a>查看当前Python的版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(python36) spiderbao@spiderbao-CW65S:~$ python -V</span><br><span class="line">Python 3.6.9 :: Anaconda, Inc.</span><br></pre></td></tr></table></figure>
+<h4 id="安装新的Python-版本"><a href="#安装新的Python-版本" class="headerlink" title="安装新的Python 版本"></a>安装新的Python 版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name python36 python=3.6</span><br></pre></td></tr></table></figure>
+<p>其中 python36 为别名</p>
+<p>新版本安装完后一些常用的库和包需要手动安装</p>
+<h4 id="切换Python-版本"><a href="#切换Python-版本" class="headerlink" title="切换Python 版本"></a>切换Python 版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate python36</span><br></pre></td></tr></table></figure>
+<p>其中Python36 为别名</p>
+<h4 id="切换会之前的环境"><a href="#切换会之前的环境" class="headerlink" title="切换会之前的环境"></a>切换会之前的环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+<h4 id="删除指定的版本环境"><a href="#删除指定的版本环境" class="headerlink" title="删除指定的版本环境"></a>删除指定的版本环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name python34 --all</span><br></pre></td></tr></table></figure>
+<p>其中python34 为别名</p>
+<h4 id="手动安装常用的库和包"><a href="#手动安装常用的库和包" class="headerlink" title="手动安装常用的库和包"></a>手动安装常用的库和包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda install numpy</span><br><span class="line"></span><br><span class="line">conda install scipy</span><br><span class="line"></span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/18/Python带我飞-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/09/18/Python带我飞-note/" class="post-title-link" itemprop="url">python带我飞-note</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-18 09:39:59" itemprop="dateCreated datePublished" datetime="2019-09-18T09:39:59+08:00">2019-09-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="第二篇-进阶"><a href="#第二篇-进阶" class="headerlink" title="第二篇 进阶"></a>第二篇 进阶</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量是编程语言中最基础的术语，用来指计算机中存储的可变数据。如下例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Val = <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<h4 id="变量的规则"><a href="#变量的规则" class="headerlink" title="变量的规则"></a>变量的规则</h4><p>类型不同，存储功能不同</p>
+<p>申明变量无需定义变量类型，直接赋值即可</p>
+<p>如何做到直接赋值，原因是Python内部对变量进行了对象封装，并且它具有三个重要的属性id,type,value</p>
+<h4 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h4><p>Python3中的类型划分为6种：</p>
+<p>number 数字可以划分为 int float bool complex 等</p>
+<p>string 字符串</p>
+<p>tuple 元组</p>
+<p>sets 集合</p>
+<p>dictionaries 字典</p>
+<h4 id="变量类型的帮助函数"><a href="#变量类型的帮助函数" class="headerlink" title="变量类型的帮助函数"></a>变量类型的帮助函数</h4><p>dir 用来查询类型的所有属性。如dir(number)</p>
+<p>help 用来查询类型具体的说明文档。如help(number)</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/10/mysql必知必会-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/09/10/mysql必知必会-note/" class="post-title-link" itemprop="url">mysql必知必会-note</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-10 17:15:27" itemprop="dateCreated datePublished" datetime="2019-09-10T17:15:27+08:00">2019-09-10</time>
             
 
             
@@ -651,7 +1225,218 @@
 <p>2.获取customers表中每个顾客的订单总数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT cust_name,cust_state,(SELECT COUNT(*) FROM orders WHERE customers.cust_id = orders.cust_id) AS orders FROM customers ORDER BY cust_name;</span><br><span class="line">+----------------+------------+--------+</span><br><span class="line">| cust_name      | cust_state | orders |</span><br><span class="line">+----------------+------------+--------+</span><br><span class="line">| Coyote Inc.    | MI         |      2 |</span><br><span class="line">| E Fudd         | IL         |      1 |</span><br><span class="line">| Mouse House    | OH         |      0 |</span><br><span class="line">| Wascals        | IN         |      1 |</span><br><span class="line">| Yosemite Place | AZ         |      1 |</span><br><span class="line">+----------------+------------+--------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 <p>使用子查询的诀窍是分步骤循序渐进的运行（编写）sql</p>
+<h2 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h2><p>联结表就是将一些关系表联结起来，获取数据。</p>
+<h3 id="关系表"><a href="#关系表" class="headerlink" title="关系表"></a>关系表</h3><p>关系表简单说就是2张表之间存在关联性。它具有以下优点</p>
+<p>1.因为每张表都是根据其特性建立的，所以它不允许出现重复的字段。复用性强</p>
+<p>2.可以细粒度的利用字段进行查询过滤</p>
+<p>3.操作简单，一次操作多次引用</p>
+<p>联结案例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_name,prod_name,prod_price FROM vendors,products WHERE vendors.vend_id = products.vend_id ORDER BY vend_name,prod_name;</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| vend_name   | prod_name      | prod_price |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| ACME        | Bird seed      |      10.00 |</span><br><span class="line">| ACME        | Carrots        |       2.50 |</span><br><span class="line">| ACME        | Detonator      |      13.00 |</span><br><span class="line">| ACME        | Safe           |      50.00 |</span><br><span class="line">| ACME        | Sling          |       4.49 |</span><br><span class="line">| ACME        | TNT (1 stick)  |       2.50 |</span><br><span class="line">| ACME        | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Anvils R Us | .5 ton anvil   |       5.99 |</span><br><span class="line">| Anvils R Us | 1 ton anvil    |       9.99 |</span><br><span class="line">| Anvils R Us | 2 ton anvil    |      14.99 |</span><br><span class="line">| Jet Set     | JetPack 1000   |      35.00 |</span><br><span class="line">| Jet Set     | JetPack 2000   |      55.00 |</span><br><span class="line">| LT Supplies | Fuses          |       3.42 |</span><br><span class="line">| LT Supplies | Oil can        |       8.99 |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="内联结"><a href="#内联结" class="headerlink" title="内联结"></a>内联结</h3><h4 id="笛卡尔集"><a href="#笛卡尔集" class="headerlink" title="笛卡尔集"></a>笛卡尔集</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_name,prod_name,prod_price FROM vendors,products ORDER BY vend_name,prod_name;</span><br><span class="line">+----------------+----------------+------------+</span><br><span class="line">| vend_name      | prod_name      | prod_price |</span><br><span class="line">+----------------+----------------+------------+</span><br><span class="line">| ACME           | .5 ton anvil   |       5.99 |</span><br><span class="line">| ACME           | 1 ton anvil    |       9.99 |</span><br><span class="line">| ACME           | 2 ton anvil    |      14.99 |</span><br><span class="line">| ACME           | Bird seed      |      10.00 |</span><br><span class="line">| ACME           | Carrots        |       2.50 |</span><br><span class="line">| ACME           | Detonator      |      13.00 |</span><br><span class="line">| ACME           | Fuses          |       3.42 |</span><br><span class="line">| ACME           | JetPack 1000   |      35.00 |</span><br><span class="line">| ACME           | JetPack 2000   |      55.00 |</span><br><span class="line">| ACME           | Oil can        |       8.99 |</span><br><span class="line">| ACME           | Safe           |      50.00 |</span><br><span class="line">| ACME           | Sling          |       4.49 |</span><br><span class="line">| ACME           | TNT (1 stick)  |       2.50 |</span><br><span class="line">| ACME           | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Anvils R Us    | .5 ton anvil   |       5.99 |</span><br><span class="line">| Anvils R Us    | 1 ton anvil    |       9.99 |</span><br><span class="line">| Anvils R Us    | 2 ton anvil    |      14.99 |</span><br><span class="line">| Anvils R Us    | Bird seed      |      10.00 |</span><br><span class="line">| Anvils R Us    | Carrots        |       2.50 |</span><br><span class="line">| Anvils R Us    | Detonator      |      13.00 |</span><br><span class="line">| Anvils R Us    | Fuses          |       3.42 |</span><br><span class="line">| Anvils R Us    | JetPack 1000   |      35.00 |</span><br><span class="line">| Anvils R Us    | JetPack 2000   |      55.00 |</span><br><span class="line">| Anvils R Us    | Oil can        |       8.99 |</span><br><span class="line">| Anvils R Us    | Safe           |      50.00 |</span><br><span class="line">| Anvils R Us    | Sling          |       4.49 |</span><br><span class="line">| Anvils R Us    | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Anvils R Us    | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Furball Inc.   | .5 ton anvil   |       5.99 |</span><br><span class="line">| Furball Inc.   | 1 ton anvil    |       9.99 |</span><br><span class="line">| Furball Inc.   | 2 ton anvil    |      14.99 |</span><br><span class="line">| Furball Inc.   | Bird seed      |      10.00 |</span><br><span class="line">| Furball Inc.   | Carrots        |       2.50 |</span><br><span class="line">| Furball Inc.   | Detonator      |      13.00 |</span><br><span class="line">| Furball Inc.   | Fuses          |       3.42 |</span><br><span class="line">| Furball Inc.   | JetPack 1000   |      35.00 |</span><br><span class="line">| Furball Inc.   | JetPack 2000   |      55.00 |</span><br><span class="line">| Furball Inc.   | Oil can        |       8.99 |</span><br><span class="line">| Furball Inc.   | Safe           |      50.00 |</span><br><span class="line">| Furball Inc.   | Sling          |       4.49 |</span><br><span class="line">| Furball Inc.   | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Furball Inc.   | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Jet Set        | .5 ton anvil   |       5.99 |</span><br><span class="line">| Jet Set        | 1 ton anvil    |       9.99 |</span><br><span class="line">| Jet Set        | 2 ton anvil    |      14.99 |</span><br><span class="line">| Jet Set        | Bird seed      |      10.00 |</span><br><span class="line">| Jet Set        | Carrots        |       2.50 |</span><br><span class="line">| Jet Set        | Detonator      |      13.00 |</span><br><span class="line">| Jet Set        | Fuses          |       3.42 |</span><br><span class="line">| Jet Set        | JetPack 1000   |      35.00 |</span><br><span class="line">| Jet Set        | JetPack 2000   |      55.00 |</span><br><span class="line">| Jet Set        | Oil can        |       8.99 |</span><br><span class="line">| Jet Set        | Safe           |      50.00 |</span><br><span class="line">| Jet Set        | Sling          |       4.49 |</span><br><span class="line">| Jet Set        | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Jet Set        | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Jouets Et Ours | .5 ton anvil   |       5.99 |</span><br><span class="line">| Jouets Et Ours | 1 ton anvil    |       9.99 |</span><br><span class="line">| Jouets Et Ours | 2 ton anvil    |      14.99 |</span><br><span class="line">| Jouets Et Ours | Bird seed      |      10.00 |</span><br><span class="line">| Jouets Et Ours | Carrots        |       2.50 |</span><br><span class="line">| Jouets Et Ours | Detonator      |      13.00 |</span><br><span class="line">| Jouets Et Ours | Fuses          |       3.42 |</span><br><span class="line">| Jouets Et Ours | JetPack 1000   |      35.00 |</span><br><span class="line">| Jouets Et Ours | JetPack 2000   |      55.00 |</span><br><span class="line">| Jouets Et Ours | Oil can        |       8.99 |</span><br><span class="line">| Jouets Et Ours | Safe           |      50.00 |</span><br><span class="line">| Jouets Et Ours | Sling          |       4.49 |</span><br><span class="line">| Jouets Et Ours | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Jouets Et Ours | TNT (5 sticks) |      10.00 |</span><br><span class="line">| LT Supplies    | .5 ton anvil   |       5.99 |</span><br><span class="line">| LT Supplies    | 1 ton anvil    |       9.99 |</span><br><span class="line">| LT Supplies    | 2 ton anvil    |      14.99 |</span><br><span class="line">| LT Supplies    | Bird seed      |      10.00 |</span><br><span class="line">| LT Supplies    | Carrots        |       2.50 |</span><br><span class="line">| LT Supplies    | Detonator      |      13.00 |</span><br><span class="line">| LT Supplies    | Fuses          |       3.42 |</span><br><span class="line">| LT Supplies    | JetPack 1000   |      35.00 |</span><br><span class="line">| LT Supplies    | JetPack 2000   |      55.00 |</span><br><span class="line">| LT Supplies    | Oil can        |       8.99 |</span><br><span class="line">| LT Supplies    | Safe           |      50.00 |</span><br><span class="line">| LT Supplies    | Sling          |       4.49 |</span><br><span class="line">| LT Supplies    | TNT (1 stick)  |       2.50 |</span><br><span class="line">| LT Supplies    | TNT (5 sticks) |      10.00 |</span><br><span class="line">+----------------+----------------+------------+</span><br><span class="line">84 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="inner-join-ANSI-SQL语法"><a href="#inner-join-ANSI-SQL语法" class="headerlink" title="inner join(ANSI SQL语法)"></a>inner join(ANSI SQL语法)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_name,prod_name,prod_price FROM vendors INNER JOIN products ON vendors.vend_id = products.vend_id;</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| vend_name   | prod_name      | prod_price |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| Anvils R Us | .5 ton anvil   |       5.99 |</span><br><span class="line">| Anvils R Us | 1 ton anvil    |       9.99 |</span><br><span class="line">| Anvils R Us | 2 ton anvil    |      14.99 |</span><br><span class="line">| LT Supplies | Fuses          |       3.42 |</span><br><span class="line">| LT Supplies | Oil can        |       8.99 |</span><br><span class="line">| ACME        | Detonator      |      13.00 |</span><br><span class="line">| ACME        | Bird seed      |      10.00 |</span><br><span class="line">| ACME        | Carrots        |       2.50 |</span><br><span class="line">| ACME        | Safe           |      50.00 |</span><br><span class="line">| ACME        | Sling          |       4.49 |</span><br><span class="line">| ACME        | TNT (1 stick)  |       2.50 |</span><br><span class="line">| ACME        | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Jet Set     | JetPack 1000   |      35.00 |</span><br><span class="line">| Jet Set     | JetPack 2000   |      55.00 |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>当两个表中vend_id都同时存在并对应的数据</p>
+<h3 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h3><p>联结会影响数据库性能，所以使用联结时要尽量避免出现不必要的表联结。</p>
+<h2 id="高级联结"><a href="#高级联结" class="headerlink" title="高级联结"></a>高级联结</h2><h3 id="不同类型的联结"><a href="#不同类型的联结" class="headerlink" title="不同类型的联结"></a>不同类型的联结</h3><h4 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h4><p>单个表使用别名被联结后获取数据的情况属于自联结</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT p1.prod_id,p1.prod_name FROM products as p1 INNER JOIN products as p2 ON p1.vend_id = p2.vend_id WHERE p2.prod_id = &apos;DTNTR&apos; ORDER BY p1.prod_name;</span><br><span class="line">+---------+----------------+</span><br><span class="line">| prod_id | prod_name      |</span><br><span class="line">+---------+----------------+</span><br><span class="line">| FB      | Bird seed      |</span><br><span class="line">| FC      | Carrots        |</span><br><span class="line">| DTNTR   | Detonator      |</span><br><span class="line">| SAFE    | Safe           |</span><br><span class="line">| SLING   | Sling          |</span><br><span class="line">| TNT1    | TNT (1 stick)  |</span><br><span class="line">| TNT2    | TNT (5 sticks) |</span><br><span class="line">+---------+----------------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>自联结的好处是，它可以替代子查询完成相同的操作。并且比子查询性能要高</p>
+<h4 id="自然联结"><a href="#自然联结" class="headerlink" title="自然联结"></a>自然联结</h4><p>明确联结后检索的列，并且不重复的的情况属于自然联结</p>
+<p>之前的大多数联结案例都属于自然联结</p>
+<h4 id="外部联结"><a href="#外部联结" class="headerlink" title="外部联结"></a>外部联结</h4><p>外部联结分为做联结和右联结</p>
+<h3 id="使用联结的注意事项"><a href="#使用联结的注意事项" class="headerlink" title="使用联结的注意事项"></a>使用联结的注意事项</h3><p>1.联结的时候，联结类型要考虑清楚</p>
+<p>2.联结条件很重要，所以也需要深思。不提供条件的话会出现笛卡尔集</p>
+<h2 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h2><p>组合查询就是将多条sql查询组合后使用。前提是这两条sql语句检索的列必须一致。</p>
+<h3 id="创建组合查询"><a href="#创建组合查询" class="headerlink" title="创建组合查询"></a>创建组合查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;=5 UNION SELECT vend_id,prod_id,prod_price FROM products WHERE vend_id IN (1001,1002);</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">| vend_id | prod_id | prod_price |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">|    1003 | FC      |       2.50 |</span><br><span class="line">|    1002 | FU1     |       3.42 |</span><br><span class="line">|    1003 | SLING   |       4.49 |</span><br><span class="line">|    1003 | TNT1    |       2.50 |</span><br><span class="line">|    1001 | ANV01   |       5.99 |</span><br><span class="line">|    1001 | ANV02   |       9.99 |</span><br><span class="line">|    1001 | ANV03   |      14.99 |</span><br><span class="line">|    1002 | OL1     |       8.99 |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>组合查询使用注意事项</p>
+<ol>
+<li><p>组合查询中SELECT最少为2条</p>
+</li>
+<li><p>组合查询中每条查询语句中检索的列必须相同，顺序可以不一样。数据类型是数据库支持的类型</p>
+</li>
+<li><p>组合查询ORDER by要用在最后.</p>
+</li>
+<li><p>组合查询会自动过滤重复的数据。如果不想被过滤可以使用 union all 如下面的例子</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;=5 UNION ALL SELECT vend_id,prod_id,prod_price FROM products WHERE vend_id IN (1001,1002);</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">| vend_id | prod_id | prod_price |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">|    1003 | FC      |       2.50 |</span><br><span class="line">|    1002 | FU1     |       3.42 |</span><br><span class="line">|    1003 | SLING   |       4.49 |</span><br><span class="line">|    1003 | TNT1    |       2.50 |</span><br><span class="line">|    1001 | ANV01   |       5.99 |</span><br><span class="line">|    1001 | ANV02   |       9.99 |</span><br><span class="line">|    1001 | ANV03   |      14.99 |</span><br><span class="line">|    1002 | FU1     |       3.42 |</span><br><span class="line">|    1002 | OL1     |       8.99 |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="全文本搜索"><a href="#全文本搜索" class="headerlink" title="全文本搜索"></a>全文本搜索</h2><p>由于本章内容myISAM 引擎不支持中文所以不做笔记介绍</p>
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><h3 id="插入完整一行"><a href="#插入完整一行" class="headerlink" title="插入完整一行"></a>插入完整一行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO customers VALUES(null,&apos;Pep E. LaPew&apos;,&apos;100 Main Street&apos;,&apos;Los Angeles&apos;,&apos;CA&apos;,&apos;90046&apos;,&apos;USA&apos;,null,null);</span><br><span class="line">Query OK, 1 row affected (0.04 sec)</span><br></pre></td></tr></table></figure>
+<h4 id="提高性能降低insert的优先级"><a href="#提高性能降低insert的优先级" class="headerlink" title="提高性能降低insert的优先级"></a>提高性能降低insert的优先级</h4><p>如果数据检索是最重要的，在insert into 将加入 low_priority可降低insert语句的优先级。这样别的用户的查询语句就有可能被优先执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert low_priority into</span><br></pre></td></tr></table></figure>
+<h3 id="插入多个行"><a href="#插入多个行" class="headerlink" title="插入多个行"></a>插入多个行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO customers(cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country) values(&apos;Pep e. LaPew&apos;,&apos;100 Main Street&apos;,&apos;Los Angeles&apos;,&apos;CA&apos;,&apos;90046&apos;,&apos;USA&apos;),(&apos;M.martian&apos;,&apos;42 Galaxy Way&apos;,&apos;New York&apos;,&apos;Ny&apos;,&apos;11213&apos;,&apos;USA&apos;);</span><br><span class="line">Query OK, 2 rows affected (0.06 sec)</span><br><span class="line">Records: 2  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
+<h3 id="插入检索后的行"><a href="#插入检索后的行" class="headerlink" title="插入检索后的行"></a>插入检索后的行</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> customers(</span><br><span class="line">	cust_id,</span><br><span class="line">	cust_contact,</span><br><span class="line">	cust_email,</span><br><span class="line">	cust_name,</span><br><span class="line">	cust_address,</span><br><span class="line">	cust_city,</span><br><span class="line">	cust_country)</span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">	cust_id,</span><br><span class="line">	cust_contact,</span><br><span class="line">	cust_email,</span><br><span class="line">	cust_name,</span><br><span class="line">	cust_address,</span><br><span class="line">	cust_city,cust_country </span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">	custnew;</span><br></pre></td></tr></table></figure>
+<h3 id="插入时的注意事项"><a href="#插入时的注意事项" class="headerlink" title="插入时的注意事项"></a>插入时的注意事项</h3><ol>
+<li>插入数据时应该明确指定要插入的列</li>
+</ol>
+<h2 id="更新和删除数据"><a href="#更新和删除数据" class="headerlink" title="更新和删除数据"></a>更新和删除数据</h2><h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; UPDATE customers SET cust_email = &apos;elmer@fudd.com&apos; WHERE cust_id = 10005;</span><br><span class="line">Query OK, 1 row affected (0.09 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br></pre></td></tr></table></figure>
+<h3 id="IGNORE"><a href="#IGNORE" class="headerlink" title="IGNORE"></a>IGNORE</h3><p>如果update更新多行，并且更新中如果一行或多行出现错误时，会取消整个update操作。使用ignore可以忽略错误行完成修改更新。(谨慎使用，个人认为它打破了sql执行时数据的一致性)</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DELETE FROM customers Where cust_id = 10006;</span><br><span class="line">Query OK, 1 row affected (0.06 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="删除表内所有数据"><a href="#删除表内所有数据" class="headerlink" title="删除表内所有数据"></a>删除表内所有数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; truncate table custnew1;</span><br><span class="line">Query OK, 0 rows affected (0.24 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="update-和-delete使用注意事项"><a href="#update-和-delete使用注意事项" class="headerlink" title="update 和 delete使用注意事项"></a>update 和 delete使用注意事项</h3><ol>
+<li><p>更新或删除数据时要考虑where条件，除非操作是针对全表内容的</p>
+</li>
+<li><p>更新或删除的where条件，操作前要在SELECT 中查询并确认</p>
+</li>
+</ol>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/10/quartz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/09/10/quartz/" class="post-title-link" itemprop="url">quartz-初始</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-10 08:52:31" itemprop="dateCreated datePublished" datetime="2019-09-10T08:52:31+08:00">2019-09-10</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="quartz-简介"><a href="#quartz-简介" class="headerlink" title="quartz 简介"></a>quartz 简介</h2><h2 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h2><h2 id="quartz-快速入门"><a href="#quartz-快速入门" class="headerlink" title="quartz 快速入门"></a>quartz 快速入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">StdSchedulerFactory stdSchedulerFactory = <span class="keyword">new</span> StdSchedulerFactory();<span class="comment">//创建StdSchedulerFactory工厂</span></span><br><span class="line">Scheduler scheduler = stdSchedulerFactory.getScheduler();</span><br><span class="line"></span><br><span class="line">scheduler.start();</span><br><span class="line"></span><br><span class="line">JobDetail job = newJob(HelloJob.class)</span><br><span class="line">        .withIdentity(<span class="string">"myJob"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Trigger trigger = newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"myTrigger"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .startNow()</span><br><span class="line">        <span class="comment">//调度触发执行内容和时间的操作</span></span><br><span class="line">        .withSchedule(simpleSchedule()</span><br><span class="line">            .withIntervalInSeconds(<span class="number">4</span>)</span><br><span class="line">            .repeatForever())</span><br><span class="line">        .build();</span><br><span class="line">scheduler.scheduleJob(job,trigger);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>)&#123;&#125;<span class="comment">//测试用，防止主线程结束</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quartz-常用接口"><a href="#Quartz-常用接口" class="headerlink" title="Quartz 常用接口"></a>Quartz 常用接口</h2><h3 id="Scheduler-与调度程序交"><a href="#Scheduler-与调度程序交" class="headerlink" title="Scheduler (与调度程序交)"></a>Scheduler (与调度程序交)</h3><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><pre><code>开始：SchedulerFactory 创建后开始
+结束：Scheduler调用shutdown结束
+</code></pre><h3 id="Job-调度的内容实现定义"><a href="#Job-调度的内容实现定义" class="headerlink" title="Job (调度的内容实现定义)"></a>Job (调度的内容实现定义)</h3><h3 id="JobDetail-作业实例"><a href="#JobDetail-作业实例" class="headerlink" title="JobDetail (作业实例)"></a>JobDetail (作业实例)</h3><h3 id="Trigger-（触发器）"><a href="#Trigger-（触发器）" class="headerlink" title="Trigger （触发器）"></a>Trigger （触发器）</h3><h4 id="公共属性"><a href="#公共属性" class="headerlink" title="公共属性"></a>公共属性</h4><pre><code>所有类型的trigger都有TriggerKey这个属性，表示trigger的身份；除此之外，trigger还有很多其它的公共属性。这些属性，在构建trigger的时候可以通过TriggerBuilder设置。
+</code></pre><p>trigger的公共属性有：</p>
+<p>jobKey属性：当trigger触发时被执行的job的身份；</p>
+<p>startTime属性：设置trigger第一次触发的时间；该属性的值是java.util.Date类型，表示某个指定的时间点；有些类型的trigger，会在设置的startTime时立即触发，有些类型的trigger，表示其触发是在startTime之后开始生效。比如，现在是1月份，你设置了一个trigger–“在每个月的第5天执行”，然后你将startTime属性设置为4月1号，则该trigger第一次触发会是在几个月以后了(即4月5号)。</p>
+<p>endTime属性：表示trigger失效的时间点。比如，”每月第5天执行”的trigger，如果其endTime是7月1号，则其最后一次执行时间是6月5号。</p>
+<h4 id="优先级（priority）"><a href="#优先级（priority）" class="headerlink" title="优先级（priority）"></a>优先级（priority）</h4><p>如果你的trigger很多(或者Quartz线程池的工作线程太少)，Quartz可能没有足够的资源同时触发所有的trigger；这种情况下，你可能希望控制哪些trigger优先使用Quartz的工作线程，要达到该目的，可以在trigger上设置priority属性。比如，你有N个trigger需要同时触发，但只有Z个工作线程，优先级最高的Z个trigger会被首先触发。如果没有为trigger设置优先级，trigger使用默认优先级，值为5；priority属性的值可以是任意整数，正数、负数都可以。</p>
+<p>注意：只有同时触发的trigger之间才会比较优先级。10:59触发的trigger总是在11:00触发的trigger之前执行。</p>
+<p>注意：如果trigger是可恢复的，在恢复后再调度时，优先级与原trigger是一样的。</p>
+<h4 id="错过触发描述（misfire-instructions）"><a href="#错过触发描述（misfire-instructions）" class="headerlink" title="错过触发描述（misfire instructions）"></a>错过触发描述（misfire instructions）</h4><p>trigger还有一个重要的属性misfire；如果scheduler关闭了，或者Quartz线程池中没有可用的线程来执行job，此时持久性的trigger就会错过(miss)其触发时间，即错过触发(misfire)。不同类型的trigger，有不同的misfire机制。它们默认都使用“智能机制(smart policy)”，即根据trigger的类型和配置动态调整行为。当scheduler启动的时候，查询所有错过触发(misfire)的持久性trigger。然后根据它们各自的misfire机制更新trigger的信息。当你在项目中使用Quartz时，你应该对各种类型的trigger的misfire机制都比较熟悉，这些misfire机制在JavaDoc中有说明</p>
+<h4 id="Simple-Trigger"><a href="#Simple-Trigger" class="headerlink" title="Simple Trigger"></a>Simple Trigger</h4><h3 id="JobBuilder-用于构建JobDetail"><a href="#JobBuilder-用于构建JobDetail" class="headerlink" title="JobBuilder (用于构建JobDetail)"></a>JobBuilder (用于构建JobDetail)</h3><h3 id="TriggerBuilder-用于构建Trigger"><a href="#TriggerBuilder-用于构建Trigger" class="headerlink" title="TriggerBuilder (用于构建Trigger)"></a>TriggerBuilder (用于构建Trigger)</h3><h3 id="Scheduler-Job-Trigger-三者的调用关系"><a href="#Scheduler-Job-Trigger-三者的调用关系" class="headerlink" title="Scheduler Job Trigger 三者的调用关系"></a>Scheduler Job Trigger 三者的调用关系</h3><p>Scheduler 调度计划，如果想要执行调度，需要将Job和Trigger放入<br>scheduler实例化后，可以启动(start)、暂停(stand-by)、停止(shutdown)注意：scheduler被停止后，除非重新实例化，否则不能重新启动；只有当scheduler启动后，即使处于暂停状态也不行，trigger才会被触发</p>
+<p>Job 用来定义工作内容</p>
+<p>Trigger用来定义调度的触发时间，以及绑定工作组</p>
+<h3 id="JobDataMap的使用"><a href="#JobDataMap的使用" class="headerlink" title="JobDataMap的使用"></a>JobDataMap的使用</h3><p>1.Job类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getJobDetail().getJobDataMap();</span><br><span class="line"></span><br><span class="line">      String jobSays = dataMap.getString(<span class="string">"jobSays"</span>);</span><br><span class="line">      <span class="keyword">float</span> myFloatValue = dataMap.getFloat(<span class="string">"myFloatValue"</span>);</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.调度定义时<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define the job and tie it to our DumbJob class</span></span><br><span class="line">JobDetail job = newJob(DumbJob.class)</span><br><span class="line">    .withIdentity(<span class="string">"myJob"</span>, <span class="string">"group1"</span>) <span class="comment">// name "myJob", group "group1"</span></span><br><span class="line">    .usingJobData(<span class="string">"jobSays"</span>, <span class="string">"Hello World!"</span>)</span><br><span class="line">    .usingJobData(<span class="string">"myFloatValue"</span>, <span class="number">3.141f</span>)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></p>
+<h4 id="自动填充jobDataMap参数"><a href="#自动填充jobDataMap参数" class="headerlink" title="自动填充jobDataMap参数"></a>自动填充jobDataMap参数</h4><p>只需要修改Job类，在类中添加map相对应的字段提供set方法即可。如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    String jobSays;</span><br><span class="line">    <span class="keyword">float</span> myFloatValue;</span><br><span class="line">    ArrayList state;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getMergedJobDataMap();  <span class="comment">// Note the difference from the previous example</span></span><br><span class="line"></span><br><span class="line">      state.add(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobSays</span><span class="params">(String jobSays)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.jobSays = jobSays;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyFloatValue</span><span class="params">(<span class="keyword">float</span> myFloatValue)</span> </span>&#123;</span><br><span class="line">      myFloatValue = myFloatValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(ArrayList state)</span> </span>&#123;</span><br><span class="line">      state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h2><p>由于Job类的创建是由Scheduler上的JobFactory 运行时动态创建的，所以个人猜测框架创作人使用了动态代理的技术。所以Job的成员变量与外界的交互就成为了难题。如何实现呢？答案就是在实现Job的类上加入@PersistJobDataAfterExecution注解，这样JobDataMap中的数据就可以与外界交互了。</p>
+<h2 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h2><pre><code>个人目前还没有使用过，w3cschool的官方文档上是这样介绍的：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DisallowConcurrentExecution：将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1527,718 +2312,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/07/18/quartz/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/07/18/quartz/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-18 17:01:16" itemprop="dateCreated datePublished" datetime="2019-07-18T17:01:16+08:00">2019-07-18</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="quartz-简介"><a href="#quartz-简介" class="headerlink" title="quartz 简介"></a>quartz 简介</h2><h2 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h2><h2 id="quartz-快速入门"><a href="#quartz-快速入门" class="headerlink" title="quartz 快速入门"></a>quartz 快速入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">StdSchedulerFactory stdSchedulerFactory = <span class="keyword">new</span> StdSchedulerFactory();<span class="comment">//创建StdSchedulerFactory工厂</span></span><br><span class="line">Scheduler scheduler = stdSchedulerFactory.getScheduler();</span><br><span class="line"></span><br><span class="line">scheduler.start();</span><br><span class="line"></span><br><span class="line">JobDetail job = newJob(HelloJob.class)</span><br><span class="line">        .withIdentity(<span class="string">"myJob"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Trigger trigger = newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"myTrigger"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .startNow()</span><br><span class="line">        <span class="comment">//调度触发执行内容和时间的操作</span></span><br><span class="line">        .withSchedule(simpleSchedule()</span><br><span class="line">            .withIntervalInSeconds(<span class="number">4</span>)</span><br><span class="line">            .repeatForever())</span><br><span class="line">        .build();</span><br><span class="line">scheduler.scheduleJob(job,trigger);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>)&#123;&#125;<span class="comment">//测试用，防止主线程结束</span></span><br></pre></td></tr></table></figure>
-<h2 id="Quartz-常用接口"><a href="#Quartz-常用接口" class="headerlink" title="Quartz 常用接口"></a>Quartz 常用接口</h2><h3 id="Scheduler-与调度程序交"><a href="#Scheduler-与调度程序交" class="headerlink" title="Scheduler (与调度程序交)"></a>Scheduler (与调度程序交)</h3><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><pre><code>开始：SchedulerFactory 创建后开始
-结束：Scheduler调用shutdown结束
-</code></pre><h3 id="Job-调度的内容实现定义"><a href="#Job-调度的内容实现定义" class="headerlink" title="Job (调度的内容实现定义)"></a>Job (调度的内容实现定义)</h3><h3 id="JobDetail-作业实例"><a href="#JobDetail-作业实例" class="headerlink" title="JobDetail (作业实例)"></a>JobDetail (作业实例)</h3><h3 id="Trigger-（触发器）"><a href="#Trigger-（触发器）" class="headerlink" title="Trigger （触发器）"></a>Trigger （触发器）</h3><h4 id="公共属性"><a href="#公共属性" class="headerlink" title="公共属性"></a>公共属性</h4><pre><code>所有类型的trigger都有TriggerKey这个属性，表示trigger的身份；除此之外，trigger还有很多其它的公共属性。这些属性，在构建trigger的时候可以通过TriggerBuilder设置。
-</code></pre><p>trigger的公共属性有：</p>
-<p>jobKey属性：当trigger触发时被执行的job的身份；</p>
-<p>startTime属性：设置trigger第一次触发的时间；该属性的值是java.util.Date类型，表示某个指定的时间点；有些类型的trigger，会在设置的startTime时立即触发，有些类型的trigger，表示其触发是在startTime之后开始生效。比如，现在是1月份，你设置了一个trigger–“在每个月的第5天执行”，然后你将startTime属性设置为4月1号，则该trigger第一次触发会是在几个月以后了(即4月5号)。</p>
-<p>endTime属性：表示trigger失效的时间点。比如，”每月第5天执行”的trigger，如果其endTime是7月1号，则其最后一次执行时间是6月5号。</p>
-<h4 id="优先级（priority）"><a href="#优先级（priority）" class="headerlink" title="优先级（priority）"></a>优先级（priority）</h4><p>如果你的trigger很多(或者Quartz线程池的工作线程太少)，Quartz可能没有足够的资源同时触发所有的trigger；这种情况下，你可能希望控制哪些trigger优先使用Quartz的工作线程，要达到该目的，可以在trigger上设置priority属性。比如，你有N个trigger需要同时触发，但只有Z个工作线程，优先级最高的Z个trigger会被首先触发。如果没有为trigger设置优先级，trigger使用默认优先级，值为5；priority属性的值可以是任意整数，正数、负数都可以。</p>
-<p>注意：只有同时触发的trigger之间才会比较优先级。10:59触发的trigger总是在11:00触发的trigger之前执行。</p>
-<p>注意：如果trigger是可恢复的，在恢复后再调度时，优先级与原trigger是一样的。</p>
-<h4 id="错过触发描述（misfire-instructions）"><a href="#错过触发描述（misfire-instructions）" class="headerlink" title="错过触发描述（misfire instructions）"></a>错过触发描述（misfire instructions）</h4><p>trigger还有一个重要的属性misfire；如果scheduler关闭了，或者Quartz线程池中没有可用的线程来执行job，此时持久性的trigger就会错过(miss)其触发时间，即错过触发(misfire)。不同类型的trigger，有不同的misfire机制。它们默认都使用“智能机制(smart policy)”，即根据trigger的类型和配置动态调整行为。当scheduler启动的时候，查询所有错过触发(misfire)的持久性trigger。然后根据它们各自的misfire机制更新trigger的信息。当你在项目中使用Quartz时，你应该对各种类型的trigger的misfire机制都比较熟悉，这些misfire机制在JavaDoc中有说明</p>
-<h4 id="Simple-Trigger"><a href="#Simple-Trigger" class="headerlink" title="Simple Trigger"></a>Simple Trigger</h4><h3 id="JobBuilder-用于构建JobDetail"><a href="#JobBuilder-用于构建JobDetail" class="headerlink" title="JobBuilder (用于构建JobDetail)"></a>JobBuilder (用于构建JobDetail)</h3><h3 id="TriggerBuilder-用于构建Trigger"><a href="#TriggerBuilder-用于构建Trigger" class="headerlink" title="TriggerBuilder (用于构建Trigger)"></a>TriggerBuilder (用于构建Trigger)</h3><h3 id="Scheduler-Job-Trigger-三者的调用关系"><a href="#Scheduler-Job-Trigger-三者的调用关系" class="headerlink" title="Scheduler Job Trigger 三者的调用关系"></a>Scheduler Job Trigger 三者的调用关系</h3><p>Scheduler 调度计划，如果想要执行调度，需要将Job和Trigger放入<br>scheduler实例化后，可以启动(start)、暂停(stand-by)、停止(shutdown)注意：scheduler被停止后，除非重新实例化，否则不能重新启动；只有当scheduler启动后，即使处于暂停状态也不行，trigger才会被触发</p>
-<p>Job 用来定义工作内容</p>
-<p>Trigger用来定义调度的触发时间，以及绑定工作组</p>
-<h3 id="JobDataMap的使用"><a href="#JobDataMap的使用" class="headerlink" title="JobDataMap的使用"></a>JobDataMap的使用</h3><p>1.Job类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getJobDetail().getJobDataMap();</span><br><span class="line"></span><br><span class="line">      String jobSays = dataMap.getString(<span class="string">"jobSays"</span>);</span><br><span class="line">      <span class="keyword">float</span> myFloatValue = dataMap.getFloat(<span class="string">"myFloatValue"</span>);</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.调度定义时<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define the job and tie it to our DumbJob class</span></span><br><span class="line">JobDetail job = newJob(DumbJob.class)</span><br><span class="line">    .withIdentity(<span class="string">"myJob"</span>, <span class="string">"group1"</span>) <span class="comment">// name "myJob", group "group1"</span></span><br><span class="line">    .usingJobData(<span class="string">"jobSays"</span>, <span class="string">"Hello World!"</span>)</span><br><span class="line">    .usingJobData(<span class="string">"myFloatValue"</span>, <span class="number">3.141f</span>)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></p>
-<h4 id="自动填充jobDataMap参数"><a href="#自动填充jobDataMap参数" class="headerlink" title="自动填充jobDataMap参数"></a>自动填充jobDataMap参数</h4><p>只需要修改Job类，在类中添加map相对应的字段提供set方法即可。如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    String jobSays;</span><br><span class="line">    <span class="keyword">float</span> myFloatValue;</span><br><span class="line">    ArrayList state;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getMergedJobDataMap();  <span class="comment">// Note the difference from the previous example</span></span><br><span class="line"></span><br><span class="line">      state.add(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobSays</span><span class="params">(String jobSays)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.jobSays = jobSays;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyFloatValue</span><span class="params">(<span class="keyword">float</span> myFloatValue)</span> </span>&#123;</span><br><span class="line">      myFloatValue = myFloatValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(ArrayList state)</span> </span>&#123;</span><br><span class="line">      state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h2><p>由于Job类的创建是由Scheduler上的JobFactory 运行时动态创建的，所以个人猜测框架创作人使用了动态代理的技术。所以Job的成员变量与外界的交互就成为了难题。如何实现呢？答案就是在实现Job的类上加入@PersistJobDataAfterExecution注解，这样JobDataMap中的数据就可以与外界交互了。</p>
-<h2 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h2><pre><code>个人目前还没有使用过，w3cschool的官方文档上是这样介绍的：
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DisallowConcurrentExecution：将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/07/18/Linux-命令篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/07/18/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-18 17:01:04" itemprop="dateCreated datePublished" datetime="2019-07-18T17:01:04+08:00">2019-07-18</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h3><h4 id="命令提示符"><a href="#命令提示符" class="headerlink" title="命令提示符"></a>命令提示符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@bogon ~]#</span><br></pre></td></tr></table></figure>
-<p> 如上所示：<br>       [] ：是centos的提示分隔符，没有特殊的意义<br>       root ：表示当前的登录用户<br>       @ ：表示分隔符号，没有特殊的意义<br>       bogon : 表示当前系统的简写<br>       ～ ：表示当前用户所在的目录，～就是当前用户的家(home)目录</p>
-<pre><code># : 命令提示符，可以标识当前登录用户的权限等级，普通用户使用$标识，超级管理员用#标识
-</code></pre><h4 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h4><p><img src="http://39.104.171.29/image/1553455157361.png" alt="1553455157361"></p>
-<p>选项存在2种格式</p>
-<pre><code>1.长格式选项 如：--all 
-2.短格式选项 如：-a
-</code></pre><h4 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h4><p><img src="http://39.104.171.29/image/1553455753059.png" alt="1553455753059"></p>
-<p>使用 -a 时会看到有的文件名前有.此时表示此文件为隐藏文件。</p>
-<p>使用-l 查看详细信息</p>
-<p><img src="http://39.104.171.29/image/1553456138517.png" alt="1553456138517"></p>
-<p>上面1表示此文件的链接计数</p>
-<p><img src="http://39.104.171.29/image/1553456202080.png" alt="1553456202080"></p>
-<p>上面的root 表示文件的所有者，也就是文件的创建人或负责人，一个文件只能有一个所有者</p>
-<p><img src="http://39.104.171.29/image/1553456372734.png" alt="1553456372734"></p>
-<p>上面表示文件的所属组，一个文件只能拥有一个所有组</p>
-<p>在-l 后追加h -lh 表示人性化显示，使文件的大小更直观、</p>
-<p><img src="http://39.104.171.29/image/1553456551687.png" alt="1553456551687"></p>
-<p>ls -i 可以获取文件的I节点或获取文件的id号</p>
-<p><img src="http://39.104.171.29/image/1553457241923.png" alt="1553457241923"></p>
-<p><img src="http://39.104.171.29/image/1553457569457.png" alt="1553457569457"></p>
-<p>cd - 回到上次操作的目录</p>
-<p>cd ~ 回到当前用户的根目录</p>
-<p>cd 回到当前用户的根目录</p>
-<p><img src="http://39.104.171.29/image/1553457832770.png" alt="1553457832770"></p>
-<p><img src="http://39.104.171.29/image/1553457956595.png" alt="1553457956595"></p>
-<p><img src="http://39.104.171.29/image/1553458096340.png" alt="1553458096340"></p>
-<p><img src="http://39.104.171.29/image/1553458587530.png" alt="1553458587530"></p>
-<p><img src="http://39.104.171.29/image/1553458964678.png" alt="1553458964678"></p>
-<p>tree 命令以目录树的方式显示文件结构信息</p>
-<p>使用tree 时可能会遇到command not  found ,这时就需要安装此命令</p>
-<p>本人使用的是centos 7 的系统 发现使用yum 无法获取tree的安装包</p>
-<p>所以只能使用源码包安装，于是在<a href="ftp://mama.indstate.edu/linux/tree/" target="_blank" rel="noopener">ftp://mama.indstate.edu/linux/tree/</a> 下载了 源码包</p>
-<p>在/usr/local/src 下使用make 编译了源码包</p>
-<h4 id="文件处理命令"><a href="#文件处理命令" class="headerlink" title="文件处理命令"></a>文件处理命令</h4><p><img src="http://39.104.171.29/image/1553463374927.png" alt="1553463374927"></p>
-<p><img src="http://39.104.171.29/image/1553463888804.png" alt="1553463888804"></p>
-<p>cat 适用于查看简短文件内容，如shell脚本</p>
-<p><img src="http://39.104.171.29/image/1553464171496.png" alt="1553464171496"></p>
-<p><img src="http://39.104.171.29/image/1553464603686.png" alt="1553464603686"></p>
-<p>less 进入后使用 /关键字 可进行反白关键字高亮显示，同时按N键可以跳到下一个关键字，在高亮的关键字后加入！可以取消高亮效果</p>
-<p><img src="http://39.104.171.29/image/1553465266101.png" alt="1553465266101"></p>
-<p><img src="http://39.104.171.29/image/1553465409489.png" alt="1553465409489"></p>
-<p><img src="http://39.104.171.29/image/1553600438679.png" alt="1553600438679"></p>
-<p><img src="http://39.104.171.29/image/1553601846764.png" alt="1553601846764"></p>
-<p>硬链接的生成命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln /tmp/china/changzhi /root/china.hard</span><br></pre></td></tr></table></figure>
-<p>硬链接 共享文件的inode ,但是文件夹不能创建硬链接。</p>
-<h4 id="权限管理命令"><a href="#权限管理命令" class="headerlink" title="权限管理命令"></a>权限管理命令</h4><p>权限分为了三类 r w s 读 写 执行</p>
-<p><img src="http://39.104.171.29/image/1553602141983.png" alt="1553602141983"></p>
-<p><img src="http://39.104.171.29/image/1553602447029.png" alt="1553602447029"></p>
-<p><img src="http://39.104.171.29/image/1553603202959.png" alt="1553603202959"></p>
-<p><img src="http://39.104.171.29/image/1553603260245.png" alt="1553603260245"></p>
-<h5 id="其他权限管理命令"><a href="#其他权限管理命令" class="headerlink" title="其他权限管理命令"></a>其他权限管理命令</h5><p><img src="http://39.104.171.29/image/1553605959901.png" alt="1553605959901"></p>
-<p><img src="http://39.104.171.29/image/1553606015581.png" alt="1553606015581"></p>
-<p><img src="http://39.104.171.29/image/1553606075600.png" alt="1553606075600"></p>
-<h4 id="文件搜索命令"><a href="#文件搜索命令" class="headerlink" title="文件搜索命令"></a>文件搜索命令</h4><h5 id="find"><a href="#find" class="headerlink" title="find"></a>find</h5><p><img src="http://39.104.171.29/image/1553749537377.png" alt="1553749537377"></p>
-<p><img src="http://39.104.171.29/image/1553749679807.png" alt="1553749679807"></p>
-<p>-name 加通配符可实现模糊搜索文件</p>
-<p>通配符 * 表示多个字符</p>
-<p>通配符 ？表示单个字符</p>
-<p><img src="http://39.104.171.29/image/1553752715110.png" alt="1553752715110"></p>
-<p><img src="http://39.104.171.29/image/1553752887543.png" alt="1553752887543"></p>
-<p><img src="http://39.104.171.29/image/1553752983831.png" alt="1553752983831"></p>
-<h5 id="其他搜索命令"><a href="#其他搜索命令" class="headerlink" title="其他搜索命令"></a>其他搜索命令</h5><p><img src="http://39.104.171.29/image/1553755683871.png" alt="1553755683871"></p>
-<p>此查询基于文件资料库所以，查询时对比find占用系统资源较少。</p>
-<p>存在缺陷无法查询tmp目录下的文件</p>
-<p>不能实时查询，如果刚创建的数据没有录入文件资料库时。会导致无法查询到文件。此时使用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb</span><br></pre></td></tr></table></figure>
-<p>然后再次使用    locate可查找到文件</p>
-<p><img src="http://39.104.171.29/image/1553756124804.png" alt="1553756124804"></p>
-<p><img src="http://39.104.171.29/image/1553756360865.png" alt="1553756360865"></p>
-<p><img src="http://39.104.171.29/image/1553757094395.png" alt="1553757094395"></p>
-<h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><p><img src="http://39.104.171.29/image/1553757468067.png" alt="1553757468067"></p>
-<p>帮助命令类型 1表示命令，5表示配置文件</p>
-<p>命令名称：whatis</p>
-<p>NAME<br>       whatis - 在 whatis 数据库里查找完整的单词</p>
-<p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
-<p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
-<p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#121;&#95;&#x74;&#x79;&#64;&#x32;&#54;&#x33;&#46;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#121;&#95;&#x74;&#x79;&#64;&#x32;&#54;&#x33;&#46;&#x6e;&#101;&#x74;</a></p>
-<p>[中文版最新更新]<br>       2001/9/8</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p>命令名称：apropos</p>
-<p>NAME<br>       apropos - 在 whatis 数据库中查找字符串</p>
-<p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
-<p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
-<p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#x79;&#95;&#x74;&#x79;&#x40;&#x32;&#x36;&#51;&#x2e;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#x79;&#95;&#x74;&#x79;&#x40;&#x32;&#x36;&#51;&#x2e;&#x6e;&#101;&#x74;</a></p>
-<p>[中文版最新更新]<br>       2001/9/20</p>
-<p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
-<p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
-<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><p><img src="http://39.104.171.29/image/1553826507188.png" alt="1553826507188"></p>
-<p><img src="http://39.104.171.29/image/1553826897084.png" alt="1553826897084"></p>
-<p><img src="http://39.104.171.29/image/1553826911136.png" alt="1553826911136"></p>
-<p><img src="http://39.104.171.29/image/1553827412666.png" alt="1553827412666"></p>
-<p><img src="http://39.104.171.29/image/1553827301824.png" alt="1553827301824"></p>
-<p><img src="http://39.104.171.29/image/1553828266112.png" alt="1553828266112"></p>
-<h4 id="压缩和解压命令"><a href="#压缩和解压命令" class="headerlink" title="压缩和解压命令"></a>压缩和解压命令</h4><h5 id="压缩格式"><a href="#压缩格式" class="headerlink" title="压缩格式"></a>压缩格式</h5><p>gz  zip  rar    其中 zip 是windos和Linux 都支持的压缩格式</p>
-<h5 id="压缩解压命令使用"><a href="#压缩解压命令使用" class="headerlink" title="压缩解压命令使用"></a>压缩解压命令使用</h5><p><img src="http://39.104.171.29/image/1553831418375.png" alt="1553831418375"></p>
-<p><img src="http://39.104.171.29/image/1553831583899.png" alt="1553831583899"></p>
-<p>gzip的缺陷就是目前只能压缩文件，并且压缩后是不保留源文件的。</p>
-<p><img src="http://39.104.171.29/image/1553831796484.png" alt="1553831796484"></p>
-<p>tar 格式表示打包</p>
-<p><img src="http://39.104.171.29/image/1553832058168.png" alt="1553832058168"></p>
-<p><img src="http://39.104.171.29/image/1553837000891.png" alt="1553837000891"></p>
-<p><img src="http://39.104.171.29/image/1553837160959.png" alt="1553837160959"></p>
-<p>unzip 解压文件时出现乱码如何解决，使用命令 unzip -O CP936 压缩包名称 即可。其中-O表示知道文件的编码集，<br>CP936是IBM code page 中的第936页也就是咋们俗称的GBK。</p>
-<p><img src="http://39.104.171.29/image/1553837197214.png" alt="1553837197214"></p>
-<p><img src="http://39.104.171.29/image/1553837357376.png" alt="1553837357376"></p>
-<p><img src="http://39.104.171.29/image/1553837563419.png" alt="1553837563419"><br>rar 格式的文件解压或压缩<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#安装rar shell脚本</span><br><span class="line"> sudo apt install rar</span><br><span class="line"></span><br><span class="line">rar x 文件名进行解压</span><br><span class="line">更多信息使用 man rar</span><br></pre></td></tr></table></figure></p>
-<h4 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h4><p><img src="http://39.104.171.29/image/1553837724986.png" alt="1553837724986"></p>
-<p><img src="http://39.104.171.29/image/1553837906794.png" alt="1553837906794"></p>
-<p><img src="http://39.104.171.29/image/1553838044540.png" alt="1553838044540"></p>
-<p><img src="http://39.104.171.29/image/1553838208557.png" alt="1553838208557"></p>
-<p><img src="http://39.104.171.29/image/1553838404765.png" alt="1553838404765"></p>
-<p>mail 命令操作时需要使用CTRL+D 才可生效，如执邮件的删除功能，需要除了使用delete命令后还需使用</p>
-<p>CTRL+D才可。</p>
-<p>mail 进入使用界面后， h表示查看列表，d表示删除指定的邮件</p>
-<p><img src="http://39.104.171.29/image/1553838607987.png" alt="1553838607987"></p>
-<p><img src="http://39.104.171.29/image/1553838817826.png" alt="1553838817826"></p>
-<p><img src="http://39.104.171.29/image/1553838803865.png" alt="1553838803865"></p>
-<p><img src="http://39.104.171.29/image/1553839077239.png" alt="1553839077239"></p>
-<p><img src="http://39.104.171.29/image/1553841741827.png" alt="1553841741827"></p>
-<p><img src="http://39.104.171.29/image/1553839651829.png" alt="1553839651829"></p>
-<h4 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h4><p><img src="http://39.104.171.29/image/1553842448954.png" alt="1553842448954"></p>
-<h4 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h4><p><img src="http://39.104.171.29/image/1554102568116.png" alt="1554102568116"></p>
-<p><img src="http://39.104.171.29/image/1554102608485.png" alt="1554102608485"></p>
-<p><img src="http://39.104.171.29/image/1554102624441.png" alt="1554102624441"></p>
-<p><img src="http://39.104.171.29/image/1554102670799.png" alt="1554102670799"></p>
-<p><img src="http://39.104.171.29/image/1554102699933.png" alt="1554102699933"></p>
-<p><img src="http://39.104.171.29/image/1554102724817.png" alt="1554102724817"></p>
-<p>修改系统默认运行级别代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 2</span><br></pre></td></tr></table></figure>
-<p><img src="http://39.104.171.29/image/1554102791796.png" alt="1554102791796"> </p>
-<p>查看系统存储信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/meminfo</span><br></pre></td></tr></table></figure></p>
-<h4 id="工具版本切换"><a href="#工具版本切换" class="headerlink" title="工具版本切换"></a>工具版本切换</h4><p>java jdk版本切换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdk 版本切换：sudo update-alternatives --config java</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/07/03/Ubuntu-add-apt-repository/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/07/03/Ubuntu-add-apt-repository/" class="post-title-link" itemprop="url">Ubuntu add-apt-repository</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-03 19:30:44" itemprop="dateCreated datePublished" datetime="2019-07-03T19:30:44+08:00">2019-07-03</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><h3 id="来自于Ubuntu自带文档上的介绍："><a href="#来自于Ubuntu自带文档上的介绍：" class="headerlink" title="来自于Ubuntu自带文档上的介绍："></a>来自于Ubuntu自带文档上的介绍：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">add-apt-repository is a script which adds an external APT repository to</span><br><span class="line">      either  /etc/apt/sources.list  or a file in /etc/apt/sources.list.d/ or</span><br><span class="line">      removes an already existing repository.</span><br><span class="line"></span><br><span class="line">      The options supported by add-apt-repository are:</span><br><span class="line"></span><br><span class="line">      -h, --help Show help message and exit</span><br><span class="line"></span><br><span class="line">      -m, --massive-debug Print a lot of debug  information  to  the  command</span><br><span class="line">      line</span><br><span class="line"></span><br><span class="line">      -r, --remove Remove the specified repository</span><br><span class="line"></span><br><span class="line">      -y, --yes Assume yes to all queries</span><br><span class="line"></span><br><span class="line">      -u, --update After adding the repository, update the package cache with</span><br><span class="line">      packages from this repository (avoids need to apt-get update)</span><br><span class="line"></span><br><span class="line">      -k, --keyserver Use a custom keyserver URL instead of the default</span><br><span class="line"></span><br><span class="line">      -s, --enable-source Allow downloading of the source packages  from  the</span><br><span class="line">      repository</span><br></pre></td></tr></table></figure>
-<h3 id="来自百度百科的介绍："><a href="#来自百度百科的介绍：" class="headerlink" title="来自百度百科的介绍："></a>来自百度百科的介绍：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add-apt-repository的提供方python-software-properties ，平台是Ubuntu Karmic (9.10)。</span><br><span class="line">在 Ubuntu Karmic (9.10) 我们可以使用 &quot;add-apt-repository&quot; 脚本添加 ppa 到当前的库中并且自动导入公钥.</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/07/03/wget/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/07/03/wget/" class="post-title-link" itemprop="url">Linux-wget</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-03 19:29:36" itemprop="dateCreated datePublished" datetime="2019-07-03T19:29:36+08:00">2019-07-03</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>简介：</p>
-<p>来自 <a href="https://www.jianshu.com/p/2e2ba8ecc22a" target="_blank" rel="noopener">https://www.jianshu.com/p/2e2ba8ecc22a</a> 用户的摘录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget是linux上的命令行的下载工具。这是一个GPL许可证下的自由软件。wget支持HTTP和FTP协议，支持代理服务器和断点续传功能，能够自动递归远程主机的目录，找到合乎条件的文件并将其下载到本地硬盘上；如果必要，wget将恰当地转换页面中的超级连接以在本地生成可浏览的镜像。由于没有交互式界面，wget可在后台运行，截获并忽略HANGUP信号，因此在用户推出登录以后，仍可继续运行。通常，wget用于成批量地下载Internet网站上的文件，或制作远程网站的镜像。</span><br><span class="line"></span><br><span class="line">作者：JeffYU</span><br><span class="line">链接：https://www.jianshu.com/p/2e2ba8ecc22a</span><br><span class="line">来源：简书</span><br><span class="line">简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2287,7 +2360,7 @@
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

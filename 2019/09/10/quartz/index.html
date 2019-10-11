@@ -96,24 +96,24 @@
 
 
 
-  <meta name="description" content="简单的说Linux系统可分为 Linux内核 + 应用程序 对于Linux系统的细致划分，可以分为 Linux 内核 系统调用 库函数 shell 应用程序 内核模式与系统调用内核模式计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。 系统调用">
+  <meta name="description" content="quartz 简介maven坐标quartz 快速入门12345678910111213141516171819StdSchedulerFactory stdSchedulerFactory = new StdSchedulerFactory();//创建StdSchedulerFactory工厂Scheduler scheduler = stdSchedulerFactory.getSchedu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux-系统结构">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/index.html">
+<meta property="og:title" content="quartz-初始">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/09/10/quartz/index.html">
 <meta property="og:site_name" content="WenLiangBaoBlog">
-<meta property="og:description" content="简单的说Linux系统可分为 Linux内核 + 应用程序 对于Linux系统的细致划分，可以分为 Linux 内核 系统调用 库函数 shell 应用程序 内核模式与系统调用内核模式计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。 系统调用">
+<meta property="og:description" content="quartz 简介maven坐标quartz 快速入门12345678910111213141516171819StdSchedulerFactory stdSchedulerFactory = new StdSchedulerFactory();//创建StdSchedulerFactory工厂Scheduler scheduler = stdSchedulerFactory.getSchedu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-27T08:22:57.393Z">
+<meta property="og:updated_time" content="2019-09-10T00:52:31.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux-系统结构">
-<meta name="twitter:description" content="简单的说Linux系统可分为 Linux内核 + 应用程序 对于Linux系统的细致划分，可以分为 Linux 内核 系统调用 库函数 shell 应用程序 内核模式与系统调用内核模式计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。 系统调用">
+<meta name="twitter:title" content="quartz-初始">
+<meta name="twitter:description" content="quartz 简介maven坐标quartz 快速入门12345678910111213141516171819StdSchedulerFactory stdSchedulerFactory = new StdSchedulerFactory();//创建StdSchedulerFactory工厂Scheduler scheduler = stdSchedulerFactory.getSchedu">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/09/10/quartz/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>Linux-系统结构 | WenLiangBaoBlog</title>
+  <title>quartz-初始 | WenLiangBaoBlog</title>
   
 
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/27/linux系统结构/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/10/quartz/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -352,7 +352,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux-系统结构
+          <h1 class="post-title" itemprop="name headline">quartz-初始
 
               
             
@@ -378,7 +378,7 @@
                 
               
 
-              <time title="创建时间：2019-08-27 16:22:57" itemprop="dateCreated datePublished" datetime="2019-08-27T16:22:57+08:00">2019-08-27</time>
+              <time title="创建时间：2019-09-10 08:52:31" itemprop="dateCreated datePublished" datetime="2019-09-10T08:52:31+08:00">2019-09-10</time>
             
 
             
@@ -413,31 +413,28 @@
       
 
       
-        <p>简单的说Linux系统可分为 Linux内核 + 应用程序</p>
-<p>对于Linux系统的细致划分，可以分为</p>
-<p>Linux 内核</p>
-<p>系统调用</p>
-<p>库函数</p>
-<p>shell</p>
-<p>应用程序</p>
-<h2 id="内核模式与系统调用"><a href="#内核模式与系统调用" class="headerlink" title="内核模式与系统调用"></a>内核模式与系统调用</h2><h3 id="内核模式"><a href="#内核模式" class="headerlink" title="内核模式"></a>内核模式</h3><p>计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。<br>这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。</p>
-<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>应用程序通过内核接口调用内核程序的过程称为系统调用。</p>
-<p>Linux中的系统调用接口大约有200多种，我们可以通过shell查看Linux下的所有系统调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 2 syscalls</span><br></pre></td></tr></table></figure>
-<p>man 中的参数2表示系统调用，不理解的可通过 man man 查看系统帮助文档.</p>
-<p>系统调用常见的有</p>
-<p>read 文件读取</p>
-<p>write 文件写入</p>
-<p>fork 复制当前进程</p>
-<p>wait 等待某个进程完成</p>
-<p>chdir 改变工作目录</p>
-<p>通过系统调用，Linux用户可以体验到内核封装的好处。使得我们不必关系硬件驱动使用的一些底层细节。我更专注与程序的功能和要实现的目的。</p>
-<h3 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h3><p>库函数是什么，个人认为库函数就是系统调用的更上一层的封装。将系统调用的一些指令结合起来写成函数的形式，以方便调用。就像是C语言中的C标准库一样，有了他们程序开发起来更便捷。</p>
-<p>除了C标准库，Linux还有一些其他的库比如 POSIX等</p>
-<h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>shell 是一个交互程序，他是为了普通用户通过shell在不需要自己编程的情况下使用系统的一些资源。</p>
-<h3 id="用户程序"><a href="#用户程序" class="headerlink" title="用户程序"></a>用户程序</h3><p>用户程序是基于编程语言开发后的程序，它也是通过其语言调用系统内核功能来使用系统的一些硬件资源。和库函数不同的是1它是面向用户的，2它针对的功能更专一，使用更方便。</p>
-<p>早期由于Linux程序中大部分用户程序是用C编写的，然而Linux系统内核也是由C编写的。所以我觉得我们有必要了解下C中的函数调用与进程空间</p>
-
+        <h2 id="quartz-简介"><a href="#quartz-简介" class="headerlink" title="quartz 简介"></a>quartz 简介</h2><h2 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h2><h2 id="quartz-快速入门"><a href="#quartz-快速入门" class="headerlink" title="quartz 快速入门"></a>quartz 快速入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">StdSchedulerFactory stdSchedulerFactory = <span class="keyword">new</span> StdSchedulerFactory();<span class="comment">//创建StdSchedulerFactory工厂</span></span><br><span class="line">Scheduler scheduler = stdSchedulerFactory.getScheduler();</span><br><span class="line"></span><br><span class="line">scheduler.start();</span><br><span class="line"></span><br><span class="line">JobDetail job = newJob(HelloJob.class)</span><br><span class="line">        .withIdentity(<span class="string">"myJob"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Trigger trigger = newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"myTrigger"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .startNow()</span><br><span class="line">        <span class="comment">//调度触发执行内容和时间的操作</span></span><br><span class="line">        .withSchedule(simpleSchedule()</span><br><span class="line">            .withIntervalInSeconds(<span class="number">4</span>)</span><br><span class="line">            .repeatForever())</span><br><span class="line">        .build();</span><br><span class="line">scheduler.scheduleJob(job,trigger);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>)&#123;&#125;<span class="comment">//测试用，防止主线程结束</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quartz-常用接口"><a href="#Quartz-常用接口" class="headerlink" title="Quartz 常用接口"></a>Quartz 常用接口</h2><h3 id="Scheduler-与调度程序交"><a href="#Scheduler-与调度程序交" class="headerlink" title="Scheduler (与调度程序交)"></a>Scheduler (与调度程序交)</h3><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><pre><code>开始：SchedulerFactory 创建后开始
+结束：Scheduler调用shutdown结束
+</code></pre><h3 id="Job-调度的内容实现定义"><a href="#Job-调度的内容实现定义" class="headerlink" title="Job (调度的内容实现定义)"></a>Job (调度的内容实现定义)</h3><h3 id="JobDetail-作业实例"><a href="#JobDetail-作业实例" class="headerlink" title="JobDetail (作业实例)"></a>JobDetail (作业实例)</h3><h3 id="Trigger-（触发器）"><a href="#Trigger-（触发器）" class="headerlink" title="Trigger （触发器）"></a>Trigger （触发器）</h3><h4 id="公共属性"><a href="#公共属性" class="headerlink" title="公共属性"></a>公共属性</h4><pre><code>所有类型的trigger都有TriggerKey这个属性，表示trigger的身份；除此之外，trigger还有很多其它的公共属性。这些属性，在构建trigger的时候可以通过TriggerBuilder设置。
+</code></pre><p>trigger的公共属性有：</p>
+<p>jobKey属性：当trigger触发时被执行的job的身份；</p>
+<p>startTime属性：设置trigger第一次触发的时间；该属性的值是java.util.Date类型，表示某个指定的时间点；有些类型的trigger，会在设置的startTime时立即触发，有些类型的trigger，表示其触发是在startTime之后开始生效。比如，现在是1月份，你设置了一个trigger–“在每个月的第5天执行”，然后你将startTime属性设置为4月1号，则该trigger第一次触发会是在几个月以后了(即4月5号)。</p>
+<p>endTime属性：表示trigger失效的时间点。比如，”每月第5天执行”的trigger，如果其endTime是7月1号，则其最后一次执行时间是6月5号。</p>
+<h4 id="优先级（priority）"><a href="#优先级（priority）" class="headerlink" title="优先级（priority）"></a>优先级（priority）</h4><p>如果你的trigger很多(或者Quartz线程池的工作线程太少)，Quartz可能没有足够的资源同时触发所有的trigger；这种情况下，你可能希望控制哪些trigger优先使用Quartz的工作线程，要达到该目的，可以在trigger上设置priority属性。比如，你有N个trigger需要同时触发，但只有Z个工作线程，优先级最高的Z个trigger会被首先触发。如果没有为trigger设置优先级，trigger使用默认优先级，值为5；priority属性的值可以是任意整数，正数、负数都可以。</p>
+<p>注意：只有同时触发的trigger之间才会比较优先级。10:59触发的trigger总是在11:00触发的trigger之前执行。</p>
+<p>注意：如果trigger是可恢复的，在恢复后再调度时，优先级与原trigger是一样的。</p>
+<h4 id="错过触发描述（misfire-instructions）"><a href="#错过触发描述（misfire-instructions）" class="headerlink" title="错过触发描述（misfire instructions）"></a>错过触发描述（misfire instructions）</h4><p>trigger还有一个重要的属性misfire；如果scheduler关闭了，或者Quartz线程池中没有可用的线程来执行job，此时持久性的trigger就会错过(miss)其触发时间，即错过触发(misfire)。不同类型的trigger，有不同的misfire机制。它们默认都使用“智能机制(smart policy)”，即根据trigger的类型和配置动态调整行为。当scheduler启动的时候，查询所有错过触发(misfire)的持久性trigger。然后根据它们各自的misfire机制更新trigger的信息。当你在项目中使用Quartz时，你应该对各种类型的trigger的misfire机制都比较熟悉，这些misfire机制在JavaDoc中有说明</p>
+<h4 id="Simple-Trigger"><a href="#Simple-Trigger" class="headerlink" title="Simple Trigger"></a>Simple Trigger</h4><h3 id="JobBuilder-用于构建JobDetail"><a href="#JobBuilder-用于构建JobDetail" class="headerlink" title="JobBuilder (用于构建JobDetail)"></a>JobBuilder (用于构建JobDetail)</h3><h3 id="TriggerBuilder-用于构建Trigger"><a href="#TriggerBuilder-用于构建Trigger" class="headerlink" title="TriggerBuilder (用于构建Trigger)"></a>TriggerBuilder (用于构建Trigger)</h3><h3 id="Scheduler-Job-Trigger-三者的调用关系"><a href="#Scheduler-Job-Trigger-三者的调用关系" class="headerlink" title="Scheduler Job Trigger 三者的调用关系"></a>Scheduler Job Trigger 三者的调用关系</h3><p>Scheduler 调度计划，如果想要执行调度，需要将Job和Trigger放入<br>scheduler实例化后，可以启动(start)、暂停(stand-by)、停止(shutdown)注意：scheduler被停止后，除非重新实例化，否则不能重新启动；只有当scheduler启动后，即使处于暂停状态也不行，trigger才会被触发</p>
+<p>Job 用来定义工作内容</p>
+<p>Trigger用来定义调度的触发时间，以及绑定工作组</p>
+<h3 id="JobDataMap的使用"><a href="#JobDataMap的使用" class="headerlink" title="JobDataMap的使用"></a>JobDataMap的使用</h3><p>1.Job类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getJobDetail().getJobDataMap();</span><br><span class="line"></span><br><span class="line">      String jobSays = dataMap.getString(<span class="string">"jobSays"</span>);</span><br><span class="line">      <span class="keyword">float</span> myFloatValue = dataMap.getFloat(<span class="string">"myFloatValue"</span>);</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.调度定义时<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define the job and tie it to our DumbJob class</span></span><br><span class="line">JobDetail job = newJob(DumbJob.class)</span><br><span class="line">    .withIdentity(<span class="string">"myJob"</span>, <span class="string">"group1"</span>) <span class="comment">// name "myJob", group "group1"</span></span><br><span class="line">    .usingJobData(<span class="string">"jobSays"</span>, <span class="string">"Hello World!"</span>)</span><br><span class="line">    .usingJobData(<span class="string">"myFloatValue"</span>, <span class="number">3.141f</span>)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></p>
+<h4 id="自动填充jobDataMap参数"><a href="#自动填充jobDataMap参数" class="headerlink" title="自动填充jobDataMap参数"></a>自动填充jobDataMap参数</h4><p>只需要修改Job类，在类中添加map相对应的字段提供set方法即可。如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    String jobSays;</span><br><span class="line">    <span class="keyword">float</span> myFloatValue;</span><br><span class="line">    ArrayList state;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getMergedJobDataMap();  <span class="comment">// Note the difference from the previous example</span></span><br><span class="line"></span><br><span class="line">      state.add(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobSays</span><span class="params">(String jobSays)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.jobSays = jobSays;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyFloatValue</span><span class="params">(<span class="keyword">float</span> myFloatValue)</span> </span>&#123;</span><br><span class="line">      myFloatValue = myFloatValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(ArrayList state)</span> </span>&#123;</span><br><span class="line">      state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h2><p>由于Job类的创建是由Scheduler上的JobFactory 运行时动态创建的，所以个人猜测框架创作人使用了动态代理的技术。所以Job的成员变量与外界的交互就成为了难题。如何实现呢？答案就是在实现Job的类上加入@PersistJobDataAfterExecution注解，这样JobDataMap中的数据就可以与外界交互了。</p>
+<h2 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h2><pre><code>个人目前还没有使用过，w3cschool的官方文档上是这样介绍的：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DisallowConcurrentExecution：将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -471,7 +468,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/" title="Linux-系统结构">https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/</a>
+    <a href="https://slothjun.github.io/MeBlog/2019/09/10/quartz/" title="quartz-初始">https://slothjun.github.io/MeBlog/2019/09/10/quartz/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -491,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MeBlog/2019/08/26/bash-初识/" rel="next" title="bash-初识">
-                <i class="fa fa-chevron-left"></i> bash-初识
+              <a href="/MeBlog/2019/08/27/linux系统结构/" rel="next" title="Linux-系统结构">
+                <i class="fa fa-chevron-left"></i> Linux-系统结构
               </a>
             
           </div>
@@ -501,8 +498,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/MeBlog/2019/09/10/quartz/" rel="prev" title="quartz-初始">
-                quartz-初始 <i class="fa fa-chevron-right"></i>
+              <a href="/MeBlog/2019/09/10/mysql必知必会-note/" rel="prev" title="mysql必知必会-note">
+                mysql必知必会-note <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -628,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内核模式与系统调用"><span class="nav-number">1.</span> <span class="nav-text">内核模式与系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内核模式"><span class="nav-number">1.1.</span> <span class="nav-text">内核模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统调用"><span class="nav-number">1.2.</span> <span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库函数"><span class="nav-number">1.3.</span> <span class="nav-text">库函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell"><span class="nav-number">1.4.</span> <span class="nav-text">shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户程序"><span class="nav-number">1.5.</span> <span class="nav-text">用户程序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#quartz-简介"><span class="nav-number">1.</span> <span class="nav-text">quartz 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maven坐标"><span class="nav-number">2.</span> <span class="nav-text">maven坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quartz-快速入门"><span class="nav-number">3.</span> <span class="nav-text">quartz 快速入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quartz-常用接口"><span class="nav-number">4.</span> <span class="nav-text">Quartz 常用接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduler-与调度程序交"><span class="nav-number">4.1.</span> <span class="nav-text">Scheduler (与调度程序交)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期"><span class="nav-number">4.1.1.</span> <span class="nav-text">生命周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Job-调度的内容实现定义"><span class="nav-number">4.2.</span> <span class="nav-text">Job (调度的内容实现定义)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JobDetail-作业实例"><span class="nav-number">4.3.</span> <span class="nav-text">JobDetail (作业实例)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trigger-（触发器）"><span class="nav-number">4.4.</span> <span class="nav-text">Trigger （触发器）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公共属性"><span class="nav-number">4.4.1.</span> <span class="nav-text">公共属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级（priority）"><span class="nav-number">4.4.2.</span> <span class="nav-text">优先级（priority）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错过触发描述（misfire-instructions）"><span class="nav-number">4.4.3.</span> <span class="nav-text">错过触发描述（misfire instructions）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-Trigger"><span class="nav-number">4.4.4.</span> <span class="nav-text">Simple Trigger</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JobBuilder-用于构建JobDetail"><span class="nav-number">4.5.</span> <span class="nav-text">JobBuilder (用于构建JobDetail)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TriggerBuilder-用于构建Trigger"><span class="nav-number">4.6.</span> <span class="nav-text">TriggerBuilder (用于构建Trigger)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scheduler-Job-Trigger-三者的调用关系"><span class="nav-number">4.7.</span> <span class="nav-text">Scheduler Job Trigger 三者的调用关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JobDataMap的使用"><span class="nav-number">4.8.</span> <span class="nav-text">JobDataMap的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自动填充jobDataMap参数"><span class="nav-number">4.8.1.</span> <span class="nav-text">自动填充jobDataMap参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PersistJobDataAfterExecution"><span class="nav-number">5.</span> <span class="nav-text">@PersistJobDataAfterExecution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DisallowConcurrentExecution"><span class="nav-number">6.</span> <span class="nav-text">@DisallowConcurrentExecution</span></a></li></ol></div>
             
 
           </div>

@@ -96,24 +96,24 @@
 
 
 
-  <meta name="description" content="简单的说Linux系统可分为 Linux内核 + 应用程序 对于Linux系统的细致划分，可以分为 Linux 内核 系统调用 库函数 shell 应用程序 内核模式与系统调用内核模式计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。 系统调用">
+  <meta name="description" content="第二篇 进阶变量变量是编程语言中最基础的术语，用来指计算机中存储的可变数据。如下例子 1Val = &quot;hello&quot; 变量的规则类型不同，存储功能不同 申明变量无需定义变量类型，直接赋值即可 如何做到直接赋值，原因是Python内部对变量进行了对象封装，并且它具有三个重要的属性id,type,value 变量的类型Python3中的类型划分为6种： number 数字可以划分为 int float">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux-系统结构">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/index.html">
+<meta property="og:title" content="python带我飞-note">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/09/18/Python带我飞-note/index.html">
 <meta property="og:site_name" content="WenLiangBaoBlog">
-<meta property="og:description" content="简单的说Linux系统可分为 Linux内核 + 应用程序 对于Linux系统的细致划分，可以分为 Linux 内核 系统调用 库函数 shell 应用程序 内核模式与系统调用内核模式计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。 系统调用">
+<meta property="og:description" content="第二篇 进阶变量变量是编程语言中最基础的术语，用来指计算机中存储的可变数据。如下例子 1Val = &quot;hello&quot; 变量的规则类型不同，存储功能不同 申明变量无需定义变量类型，直接赋值即可 如何做到直接赋值，原因是Python内部对变量进行了对象封装，并且它具有三个重要的属性id,type,value 变量的类型Python3中的类型划分为6种： number 数字可以划分为 int float">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-27T08:22:57.393Z">
+<meta property="og:updated_time" content="2019-09-18T01:39:59.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux-系统结构">
-<meta name="twitter:description" content="简单的说Linux系统可分为 Linux内核 + 应用程序 对于Linux系统的细致划分，可以分为 Linux 内核 系统调用 库函数 shell 应用程序 内核模式与系统调用内核模式计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。 系统调用">
+<meta name="twitter:title" content="python带我飞-note">
+<meta name="twitter:description" content="第二篇 进阶变量变量是编程语言中最基础的术语，用来指计算机中存储的可变数据。如下例子 1Val = &quot;hello&quot; 变量的规则类型不同，存储功能不同 申明变量无需定义变量类型，直接赋值即可 如何做到直接赋值，原因是Python内部对变量进行了对象封装，并且它具有三个重要的属性id,type,value 变量的类型Python3中的类型划分为6种： number 数字可以划分为 int float">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/09/18/Python带我飞-note/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>Linux-系统结构 | WenLiangBaoBlog</title>
+  <title>python带我飞-note | WenLiangBaoBlog</title>
   
 
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/27/linux系统结构/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/18/Python带我飞-note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -352,7 +352,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux-系统结构
+          <h1 class="post-title" itemprop="name headline">python带我飞-note
 
               
             
@@ -378,7 +378,7 @@
                 
               
 
-              <time title="创建时间：2019-08-27 16:22:57" itemprop="dateCreated datePublished" datetime="2019-08-27T16:22:57+08:00">2019-08-27</time>
+              <time title="创建时间：2019-09-18 09:39:59" itemprop="dateCreated datePublished" datetime="2019-09-18T09:39:59+08:00">2019-09-18</time>
             
 
             
@@ -413,30 +413,19 @@
       
 
       
-        <p>简单的说Linux系统可分为 Linux内核 + 应用程序</p>
-<p>对于Linux系统的细致划分，可以分为</p>
-<p>Linux 内核</p>
-<p>系统调用</p>
-<p>库函数</p>
-<p>shell</p>
-<p>应用程序</p>
-<h2 id="内核模式与系统调用"><a href="#内核模式与系统调用" class="headerlink" title="内核模式与系统调用"></a>内核模式与系统调用</h2><h3 id="内核模式"><a href="#内核模式" class="headerlink" title="内核模式"></a>内核模式</h3><p>计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。<br>这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。</p>
-<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>应用程序通过内核接口调用内核程序的过程称为系统调用。</p>
-<p>Linux中的系统调用接口大约有200多种，我们可以通过shell查看Linux下的所有系统调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 2 syscalls</span><br></pre></td></tr></table></figure>
-<p>man 中的参数2表示系统调用，不理解的可通过 man man 查看系统帮助文档.</p>
-<p>系统调用常见的有</p>
-<p>read 文件读取</p>
-<p>write 文件写入</p>
-<p>fork 复制当前进程</p>
-<p>wait 等待某个进程完成</p>
-<p>chdir 改变工作目录</p>
-<p>通过系统调用，Linux用户可以体验到内核封装的好处。使得我们不必关系硬件驱动使用的一些底层细节。我更专注与程序的功能和要实现的目的。</p>
-<h3 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h3><p>库函数是什么，个人认为库函数就是系统调用的更上一层的封装。将系统调用的一些指令结合起来写成函数的形式，以方便调用。就像是C语言中的C标准库一样，有了他们程序开发起来更便捷。</p>
-<p>除了C标准库，Linux还有一些其他的库比如 POSIX等</p>
-<h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>shell 是一个交互程序，他是为了普通用户通过shell在不需要自己编程的情况下使用系统的一些资源。</p>
-<h3 id="用户程序"><a href="#用户程序" class="headerlink" title="用户程序"></a>用户程序</h3><p>用户程序是基于编程语言开发后的程序，它也是通过其语言调用系统内核功能来使用系统的一些硬件资源。和库函数不同的是1它是面向用户的，2它针对的功能更专一，使用更方便。</p>
-<p>早期由于Linux程序中大部分用户程序是用C编写的，然而Linux系统内核也是由C编写的。所以我觉得我们有必要了解下C中的函数调用与进程空间</p>
+        <h2 id="第二篇-进阶"><a href="#第二篇-进阶" class="headerlink" title="第二篇 进阶"></a>第二篇 进阶</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量是编程语言中最基础的术语，用来指计算机中存储的可变数据。如下例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Val = <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<h4 id="变量的规则"><a href="#变量的规则" class="headerlink" title="变量的规则"></a>变量的规则</h4><p>类型不同，存储功能不同</p>
+<p>申明变量无需定义变量类型，直接赋值即可</p>
+<p>如何做到直接赋值，原因是Python内部对变量进行了对象封装，并且它具有三个重要的属性id,type,value</p>
+<h4 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h4><p>Python3中的类型划分为6种：</p>
+<p>number 数字可以划分为 int float bool complex 等</p>
+<p>string 字符串</p>
+<p>tuple 元组</p>
+<p>sets 集合</p>
+<p>dictionaries 字典</p>
+<h4 id="变量类型的帮助函数"><a href="#变量类型的帮助函数" class="headerlink" title="变量类型的帮助函数"></a>变量类型的帮助函数</h4><p>dir 用来查询类型的所有属性。如dir(number)</p>
+<p>help 用来查询类型具体的说明文档。如help(number)</p>
 
       
     </div>
@@ -471,7 +460,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/" title="Linux-系统结构">https://slothjun.github.io/MeBlog/2019/08/27/linux系统结构/</a>
+    <a href="https://slothjun.github.io/MeBlog/2019/09/18/Python带我飞-note/" title="python带我飞-note">https://slothjun.github.io/MeBlog/2019/09/18/Python带我飞-note/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -491,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MeBlog/2019/08/26/bash-初识/" rel="next" title="bash-初识">
-                <i class="fa fa-chevron-left"></i> bash-初识
+              <a href="/MeBlog/2019/09/10/mysql必知必会-note/" rel="next" title="mysql必知必会-note">
+                <i class="fa fa-chevron-left"></i> mysql必知必会-note
               </a>
             
           </div>
@@ -501,8 +490,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/MeBlog/2019/09/10/quartz/" rel="prev" title="quartz-初始">
-                quartz-初始 <i class="fa fa-chevron-right"></i>
+              <a href="/MeBlog/2019/09/27/Anaconda工具/" rel="prev" title="Anaconda 工具">
+                Anaconda 工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -628,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内核模式与系统调用"><span class="nav-number">1.</span> <span class="nav-text">内核模式与系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内核模式"><span class="nav-number">1.1.</span> <span class="nav-text">内核模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统调用"><span class="nav-number">1.2.</span> <span class="nav-text">系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库函数"><span class="nav-number">1.3.</span> <span class="nav-text">库函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell"><span class="nav-number">1.4.</span> <span class="nav-text">shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户程序"><span class="nav-number">1.5.</span> <span class="nav-text">用户程序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二篇-进阶"><span class="nav-number">1.</span> <span class="nav-text">第二篇 进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">1.1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的规则"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量的规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的类型"><span class="nav-number">1.1.2.</span> <span class="nav-text">变量的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量类型的帮助函数"><span class="nav-number">1.1.3.</span> <span class="nav-text">变量类型的帮助函数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
