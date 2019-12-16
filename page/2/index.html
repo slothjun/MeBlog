@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">40</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">45</span></a>
 
   </li>
 
@@ -319,6 +319,841 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/27/linux系统结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/27/linux系统结构/" class="post-title-link" itemprop="url">Linux-系统结构</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 16:22:57" itemprop="dateCreated datePublished" datetime="2019-08-27T16:22:57+08:00">2019-08-27</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>简单的说Linux系统可分为 Linux内核 + 应用程序</p>
+<p>对于Linux系统的细致划分，可以分为</p>
+<p>Linux 内核</p>
+<p>系统调用</p>
+<p>库函数</p>
+<p>shell</p>
+<p>应用程序</p>
+<h2 id="内核模式与系统调用"><a href="#内核模式与系统调用" class="headerlink" title="内核模式与系统调用"></a>内核模式与系统调用</h2><h3 id="内核模式"><a href="#内核模式" class="headerlink" title="内核模式"></a>内核模式</h3><p>计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。<br>这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。</p>
+<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>应用程序通过内核接口调用内核程序的过程称为系统调用。</p>
+<p>Linux中的系统调用接口大约有200多种，我们可以通过shell查看Linux下的所有系统调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 2 syscalls</span><br></pre></td></tr></table></figure>
+<p>man 中的参数2表示系统调用，不理解的可通过 man man 查看系统帮助文档.</p>
+<p>系统调用常见的有</p>
+<p>read 文件读取</p>
+<p>write 文件写入</p>
+<p>fork 复制当前进程</p>
+<p>wait 等待某个进程完成</p>
+<p>chdir 改变工作目录</p>
+<p>通过系统调用，Linux用户可以体验到内核封装的好处。使得我们不必关系硬件驱动使用的一些底层细节。我更专注与程序的功能和要实现的目的。</p>
+<h3 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h3><p>库函数是什么，个人认为库函数就是系统调用的更上一层的封装。将系统调用的一些指令结合起来写成函数的形式，以方便调用。就像是C语言中的C标准库一样，有了他们程序开发起来更便捷。</p>
+<p>除了C标准库，Linux还有一些其他的库比如 POSIX等</p>
+<h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>shell 是一个交互程序，他是为了普通用户通过shell在不需要自己编程的情况下使用系统的一些资源。</p>
+<h3 id="用户程序"><a href="#用户程序" class="headerlink" title="用户程序"></a>用户程序</h3><p>用户程序是基于编程语言开发后的程序，它也是通过其语言调用系统内核功能来使用系统的一些硬件资源。和库函数不同的是1它是面向用户的，2它针对的功能更专一，使用更方便。</p>
+<p>早期由于Linux程序中大部分用户程序是用C编写的，然而Linux系统内核也是由C编写的。所以我觉得我们有必要了解下C中的函数调用与进程空间</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/26/bash-初识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/26/bash-初识/" class="post-title-link" itemprop="url">bash-初识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-26 16:19:37" itemprop="dateCreated datePublished" datetime="2019-08-26T16:19:37+08:00">2019-08-26</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是bash"><a href="#什么是bash" class="headerlink" title="什么是bash"></a>什么是bash</h2><p>简单的说，bash是一个命令解释工具</p>
+<h2 id="命令的语法以及规范"><a href="#命令的语法以及规范" class="headerlink" title="命令的语法以及规范"></a>命令的语法以及规范</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量和java中的变量所表示的含义大致相同，都是用一个引用表示地址值中的数据。</p>
+<p>待验证：bash的变量只能存储文本。</p>
+<p>变量的赋值方式和Java中变量赋值类似。下面列举几个例子，看后自会明白。</p>
+<p>$var=word 注意等号的左右不能留有空格</p>
+<p>$var=’hello word’</p>
+<p>$var=”hello word”<br>上面两种都可以表示文本中包含空格的输入。不同之处在于，双引号中可以掺入变量，系统会放入变量引用的值。而单引号却只能打印所有输入的文本内容，变量引用也会当做文本。</p>
+<p>$v1=word<br>$var=”hello ${v1}test” ${}中放入的变量可以中缺的被标识并识别，如果不使用${} 表达式的含义将会变为引用v1!的变量此时不会输出 hello Wordtest 而是 hello </p>
+<p>$now=<code>date</code> 注意<code></code>中可以使用命令。查看now echo $now 这时会输出时间</p>
+<p>$date=$now 变量之间也可以互相传值</p>
+<p>$read name 这时Linux会等待用户输入，输入完成后会把输入的值赋值给name</p>
+<h3 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h3><p>bash中的数学计算类似上学时的数学运算，只要吧运算表达式写入$(())中即可</p>
+<p>加法运算 $((3+2))</p>
+<p>减法运算 $((3-2))</p>
+<p>乘法运算 $((3*2))</p>
+<p>除法运算 $((3/2))</p>
+<p>求余运算 $((2%3))</p>
+<p>乘方运算 $((2**3))</p>
+<h3 id="返回代码"><a href="#返回代码" class="headerlink" title="返回代码"></a>返回代码</h3><p>Linux命令执行完后会放回一个值，返回0表示这段命令执行成功<br>$? 可以查看当前命令执行的结果</p>
+<h3 id="；的使用"><a href="#；的使用" class="headerlink" title="；的使用"></a>；的使用</h3><p>命令中使用；可以在一行命令中执行多个命令。如ls;$? 表示打印目录信息并回响命令返回值</p>
+<h3 id="短路与或"><a href="#短路与或" class="headerlink" title="短路与或"></a>短路与或</h3><p>短路与，在多个命令中，后面命令的执行与否取决于之前命令的返回值，当返回值为0时之后的命令才会执行</p>
+<p>如： rm dome.file &amp;&amp; echo “remove dome.file sucess” 当删除过文件dome.file后会输出文本信息，失败后则不输出。</p>
+<p>短路或，短路或正好是短路与的反向解释。当之前的命令失败后后面的命令才会执行，否则不执行</p>
+<p>如：rm dome.file &amp;&amp; echo “remove dome.file fail” 当没有删除文件dome.file后会输出文本信息，否则不会输出任何信息。</p>
+<h2 id="bash-script"><a href="#bash-script" class="headerlink" title="bash script"></a>bash script</h2><h3 id="fist-bash-file"><a href="#fist-bash-file" class="headerlink" title="fist bash file"></a>fist bash file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">echo &quot;Information of $&#123;user&#125; computer&quot; &gt;&gt; log</span><br><span class="line"></span><br><span class="line">lscpu &gt;&gt; log</span><br><span class="line">uname -a &gt;&gt; log</span><br><span class="line">free -h &gt;&gt; log</span><br></pre></td></tr></table></figure>
+<p>这是一个简单的bash脚本，刚刚解释了什么是bash他是一个命令解释器，所以bash脚步就是集多条bash命令的一个文本。<br>这样做的好处是我们可以记录使用命令的逻辑，并多次复用。</p>
+<h3 id="bash中传入参数"><a href="#bash中传入参数" class="headerlink" title="bash中传入参数"></a>bash中传入参数</h3><p>bash 中的参数使用 $0 $1 …表示</p>
+<p>使用例子：</p>
+<p>测试流程 1编辑bashscript 2运行 3显示结果</p>
+<p>1 编辑script<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">echo $0</span><br><span class="line">echo $1</span><br><span class="line">echo $2</span><br></pre></td></tr></table></figure></p>
+<p>2 运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./test_arg.bash hello word</span><br></pre></td></tr></table></figure></p>
+<p>3.显示结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./test_arg.bash</span><br><span class="line">hello</span><br><span class="line">word</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>个人认为函数是对bash脚本的一次封装，通过内部定义函数可以将命令功能分块包装。从而达到脚本内函数的复用</p>
+<h3 id="无参函数示例"><a href="#无参函数示例" class="headerlink" title="无参函数示例"></a>无参函数示例</h3><p>测试流程  1编写脚本 2运行 3展示结果</p>
+<p>1 编写脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function meInfo()&#123;</span><br><span class="line">  date &gt;&gt; log</span><br><span class="line">  lscpu &gt;&gt; log</span><br><span class="line">  uname -a &gt;&gt; log</span><br><span class="line">  free -h &gt;&gt; log</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">meInfo</span><br></pre></td></tr></table></figure></p>
+<p>2 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./test_function.bash</span><br></pre></td></tr></table></figure>
+<p>3 显示结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat log </span><br><span class="line">2019年 08月 26日 星期一 13:52:10 CST</span><br><span class="line">xxxxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxxxxx</span><br><span class="line">xxxxxxxxxxxxx</span><br><span class="line">x</span><br></pre></td></tr></table></figure></p>
+<h4 id="带参函数示例"><a href="#带参函数示例" class="headerlink" title="带参函数示例"></a>带参函数示例</h4><p>测试流程  1编写脚本 2运行 3展示结果</p>
+<p>1.编写脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function meInfo()&#123;</span><br><span class="line">  date &gt;&gt; $1</span><br><span class="line">  echo &apos;hello&apos; &gt;&gt; $1</span><br><span class="line">  echo &apos;word&apos;  &gt;&gt;  $1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">meInfo melog</span><br><span class="line">meInfo melog2</span><br></pre></td></tr></table></figure></p>
+<p>2 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./test_function.bash</span><br></pre></td></tr></table></figure>
+<p>3 显示结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat melog</span><br><span class="line">2019年 08月 26日 星期一 14:14:37 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat melog2</span><br><span class="line">2019年 08月 26日 星期一 14:14:37 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br></pre></td></tr></table></figure></p>
+<h4 id="跨脚本函数调用"><a href="#跨脚本函数调用" class="headerlink" title="跨脚本函数调用"></a>跨脚本函数调用</h4><p>首先跨脚本函数调用是基于脚本之上的操作，从此也可以看出函数封装的好处。</p>
+<p>跨脚本函数调用主要使用source关键字</p>
+<p>测试流程 1编写脚本 2 运行 3 展示结果</p>
+<p>1 编写脚本</p>
+<p>test_function.bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">function meInfo()&#123;</span><br><span class="line">  date &gt;&gt; $1</span><br><span class="line">  echo &apos;hello&apos; &gt;&gt; $1</span><br><span class="line">  echo &apos;word&apos;  &gt;&gt;  $1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">meInfo melog</span><br><span class="line">meInfo melog2</span><br></pre></td></tr></table></figure></p>
+<p>app.bash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">source test_function.bash</span><br><span class="line"></span><br><span class="line">meInfo melog3</span><br><span class="line">meInfo log</span><br></pre></td></tr></table></figure></p>
+<p>2 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ ./app.bash</span><br></pre></td></tr></table></figure>
+<p>3 展示结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ cat melog melog2 melog3</span><br><span class="line">2019年 08月 26日 星期一 14:30:22 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br><span class="line">2019年 08月 26日 星期一 14:30:22 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br><span class="line">2019年 08月 26日 星期一 14:30:22 CST</span><br><span class="line">hello</span><br><span class="line">word</span><br></pre></td></tr></table></figure>
+<p>可以看到source 引入的test_function.bash 脚本被执行了一遍，注意是整个脚本不单是脚本中的一个函数而是整个脚本。</p>
+<h3 id="逻辑判断"><a href="#逻辑判断" class="headerlink" title="逻辑判断"></a>逻辑判断</h3><p>逻辑判断为的是判断一个函数式运行的真假或一个命令的真假</p>
+<p>案例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/my-bash$ test 3 -gt 2 ;echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<p>因为3大于2（-gt表示大于）所以命令的返回值为0</p>
+<h4 id="关于数值的判断符"><a href="#关于数值的判断符" class="headerlink" title="关于数值的判断符"></a>关于数值的判断符</h4><p>大于 -gt<br>小于 -lt<br>等于 -eq<br>不等于 -ne<br>大于等于 -ge<br>小于等于 -le</p>
+<h4 id="关于文本的判断符"><a href="#关于文本的判断符" class="headerlink" title="关于文本的判断符"></a>关于文本的判断符</h4><p>文本相同 =<br>文本不相同 !=<br>文本按字典排序一个文本在另一个文本之前 &gt;<br>文本按字典排序一个文本在另一个文本之后 &lt;</p>
+<h4 id="关于文件判断符"><a href="#关于文件判断符" class="headerlink" title="关于文件判断符"></a>关于文件判断符</h4><p>检查文件是否存在 -e<br>检查文件是否存在并且是普通文件 -f<br>检查目录是否存在 -d<br>检查软连接是否存在 -l<br>检查文件是否可读 -r<br>检查文件是否可写 -w<br>检查文件是否可以执行 -x</p>
+<h4 id="与或非"><a href="#与或非" class="headerlink" title="与或非"></a>与或非</h4><p>&amp;&amp; || !</p>
+<p>注意 &amp;&amp; || ! 不能联合使用</p>
+<h3 id="选择结构"><a href="#选择结构" class="headerlink" title="选择结构"></a>选择结构</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p>if 选择结构，类似java中的流程控制语句if</p>
+<p>案例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">if [ $user = &apos;root&apos; ]</span><br><span class="line">then </span><br><span class="line">	echo &quot;你是超级用户！&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<p>需要注意语法格式</p>
+<h4 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h4><p>if else ,类似java中的流程控制语句 if else</p>
+<p>案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">if [ $user = &apos;root&apos; ]</span><br><span class="line">then </span><br><span class="line">	echo &quot;你是超级用户！&quot;</span><br><span class="line">else</span><br><span class="line">	echo &quot;你不是超级用户！&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>需要注意语法格式</p>
+<p>if else 嵌套使用，类似java流程控制语句中的if else if else</p>
+<p>案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line">if [ $user = &apos;root&apos; ]</span><br><span class="line">then </span><br><span class="line">	echo &quot;你是超级用户！&quot;</span><br><span class="line">else  if [ $user = &apos;laowang&apos; ]</span><br><span class="line">then</span><br><span class="line">	echo &quot;你是老王用户！&quot;</span><br><span class="line">else if [ $user = &apos;spiderbao&apos; ]</span><br><span class="line">then</span><br><span class="line">	echo &apos;你是spidermen的朋友spiderbao!&apos;</span><br><span class="line">else</span><br><span class="line">	echo &apos;我也不知道你是谁！&apos;</span><br><span class="line">fi</span><br><span class="line">fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>格式样式模仿Java的if else if else ，唯一不同处在于结尾fi使用了多少个if就需要添加多少个fi来结尾。毕竟这是一个嵌套语句。</p>
+<h4 id="case"><a href="#case" class="headerlink" title="case"></a>case</h4><p>case 类似java流程控制语句中的switch</p>
+<p>案例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">user=`whoami`</span><br><span class="line"></span><br><span class="line">case $user in</span><br><span class="line">	root)</span><br><span class="line">		echo &quot;你是超级管理员用户！&quot;</span><br><span class="line">	;;</span><br><span class="line">	laowang)</span><br><span class="line">		echo &quot;你是老王用户！&quot;</span><br><span class="line">	;;</span><br><span class="line">	spiderbao)</span><br><span class="line">		echo &apos;你是spiderbao用户！&apos;</span><br><span class="line">	;;</span><br><span class="line">	*)</span><br><span class="line">		echo &apos;我也不知道你是谁！&apos;</span><br><span class="line">	;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是 ）中可以填写文本以及通配符<br>通配符</p>
+<ul>
+<li>表示任意个数的任意字符<br>? 表示一个字符的任意字符<br>[] 类似正则表达式中的[]，表示可选范围内的字符，另外[]只占一个字符位 。例如[1-5][a-x] 1a,2b 均匹配</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/26/vim篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/26/vim篇/" class="post-title-link" itemprop="url">vim篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-26 14:08:27" itemprop="dateCreated datePublished" datetime="2019-08-26T14:08:27+08:00">2019-08-26</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="vim文本编辑器"><a href="#vim文本编辑器" class="headerlink" title="vim文本编辑器"></a>vim文本编辑器</h2><h3 id="vim常用操作"><a href="#vim常用操作" class="headerlink" title="vim常用操作"></a>vim常用操作</h3><p>​    <img src="http://39.104.171.29/image/1554102941025.png" alt="1554102941025"></p>
+<p>vim是荷兰一位名叫 Bram Moolenaar  的工程师开发并分享的开源编辑器插件</p>
+<p><img src="http://39.104.171.29/image/1554103011275.png" alt="1554103011275"></p>
+<p><img src="http://39.104.171.29/image/1554103333245.png" alt="1554103333245"></p>
+<p><img src="http://39.104.171.29/image/1554103479882.png" alt="1554103479882"></p>
+<p><img src="http://39.104.171.29/image/1554103628208.png" alt="1554103628208"></p>
+<p><img src="http://39.104.171.29/image/1554104114402.png" alt="1554104114402"></p>
+<p>vim区域复制，进入Ctrl+V 选择要复制的区域后 按y复制 p粘贴</p>
+<p><img src="http://39.104.171.29/image/1554104294187.png" alt="1554104294187"></p>
+<p><img src="http://39.104.171.29/image/1554104229157.png" alt="1554104229157"></p>
+<p><img src="http://39.104.171.29/image/1554104607078.png" alt="1554104607078"></p>
+<h3 id="vim使用技巧"><a href="#vim使用技巧" class="headerlink" title="vim使用技巧"></a>vim使用技巧</h3><p><img src="http://39.104.171.29/image/1554105915669.png" alt="1554105915669"></p>
+<p>上面连续行注释中 /表示隔离符 \表示转移符</p>
+<p>个人用户下编辑添加 .vimrc 文件可以保存一些关于vim的配置和快捷键的使用。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/23/ssh协议/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/23/ssh协议/" class="post-title-link" itemprop="url">ssh协议</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-23 15:25:42" itemprop="dateCreated datePublished" datetime="2019-08-23T15:25:42+08:00">2019-08-23</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Http-headers"><a href="#Http-headers" class="headerlink" title="Http headers"></a>Http headers</h2><h3 id="if-modified-since"><a href="#if-modified-since" class="headerlink" title="if-modified-since"></a>if-modified-since</h3><p>首先他是一个条件式头部信息</p>
+<p>个人认为它用来标识修改的时间，时间指的是上次响应头中的last-modified的时间</p>
+<h3 id="if-match"><a href="#if-match" class="headerlink" title="if-match"></a>if-match</h3><p>首先它是一个条件式头部信息</p>
+<p>GET方式的请求中使用它后，服务器会验证ETag是否匹配，如果不匹配则不返回数据</p>
+<p>PUT等不安全的方法判断同上，不同之处在于不能上传数据或修改数据</p>
+<p>它们比较的算法默认为强比较算法，也就是对比每一个比特位，都相同时认为文件或信息是相同的。如果在ETag前加入“w/”那么比较的算法就会由强比较改为相对宽松的算法</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/05/Linux-权限整合篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/05/Linux-权限整合篇/" class="post-title-link" itemprop="url">Linux-权限整合篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-05 17:27:26" itemprop="dateCreated datePublished" datetime="2019-08-05T17:27:26+08:00">2019-08-05</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基本权限管理"><a href="#基本权限管理" class="headerlink" title="基本权限管理"></a>基本权限管理</h2><h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><p>基本权限管理使用 chmod 命令</p>
+<p>如给一个文件设置属主，所属组，其他的权限如下所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ touch test.txt</span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ chmod 774 test.txt </span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt </span><br><span class="line">-rwxrwxr-- 1 spiderbao spiderbao 0 8月   5 16:29 test.txt*</span><br></pre></td></tr></table></figure></p>
+<p>给文件夹赋予权限同上所示，上面使用数字的方式给权限赋值，4表示读 ，2表示修改，1表示执行</p>
+<h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h3><p>chown 命令可以修改文件的所有者以及所属组</p>
+<p>案例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#修改文件的所属组</span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt </span><br><span class="line">-rwxrwxr-- 1 spiderbao spiderbao 0 8月   5 16:29 test.txt*</span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ sudo chown spiderbao.ftp test.txt </span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt </span><br><span class="line">-rwxrwxr-- 1 spiderbao ftp 0 8月   5 16:29 test.txt*</span><br></pre></td></tr></table></figure>
+<h2 id="umask默认权限管理"><a href="#umask默认权限管理" class="headerlink" title="umask默认权限管理"></a>umask默认权限管理</h2><p>查看系统默认umask<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ umask -S</span><br><span class="line">u=rwx,g=rx,o=rx</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/桌面$ umask </span><br><span class="line">0022</span><br></pre></td></tr></table></figure></p>
+<p>解析 umaks 0022 代表什么</p>
+<p>其中</p>
+<p>第一位 特殊权限位，如果是1表示文件具有SBIT权限，2表示具有SetGID权限，4表示具有SetUID权限，0表示站位符</p>
+<p>第二位 所属主位，4 （read），2 （write），1（execute）</p>
+<p>第三位 所属组位，4 （read），2 （write），1（execute）</p>
+<p>第四位 其他位，4 （read），2 （write），1（execute）</p>
+<p>默认权限算法</p>
+<p>文件夹的默认最大权限 777<br>文件的最大默认权限 666</p>
+<p>文件的默认值是根据 文件的最大权限值与umask设置的值进行或得出的。</p>
+<p>666 表示 rw-rw-rw- 022 表示 —-w–w- 进行或运算后得 rw r r 所以这个就是系统中创建文件后的默认权限值</p>
+<h2 id="ACL-权限管理"><a href="#ACL-权限管理" class="headerlink" title="ACL 权限管理"></a>ACL 权限管理</h2><p>ACL 的全称是 Access Control List (访问控制列表)</p>
+<p>它可以针对文件设置除基本权限外的 r w x的权限</p>
+<p>举例，现在有一个文件test 是开发小组1共同需要操作所以小组 test拥有 rw的权限，同时文件的创建者拥有rw权限，其他人无权查看test文件的内容，有一天来了以为实习生，由于他刚来不久所以需要拥有test的r权限但是不能拥有w权限这时改基本权限又不太现实。那现在怎么办呢？看看接下来我用ACL权限是如何解决的吧</p>
+<pre><code class="Linux">
+</code></pre>
+<h2 id="SetUID、SetGID、SBIT-权限管理"><a href="#SetUID、SetGID、SBIT-权限管理" class="headerlink" title="SetUID、SetGID、SBIT 权限管理"></a>SetUID、SetGID、SBIT 权限管理</h2><h2 id="chatter-权限"><a href="#chatter-权限" class="headerlink" title="chatter 权限"></a>chatter 权限</h2><h2 id="sudo-权限"><a href="#sudo-权限" class="headerlink" title="sudo 权限"></a>sudo 权限</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1247,865 +2082,11 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/10/mongodb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/10/mongodb/" class="post-title-link" itemprop="url">mongodb</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-10 22:56:02" itemprop="dateCreated datePublished" datetime="2019-06-10T22:56:02+08:00">2019-06-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="mongodb入门"><a href="#mongodb入门" class="headerlink" title="mongodb入门"></a>mongodb入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>mongodb是一个基于分布式文件存储的数据库。由c++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-<p>mongoab是一个介于关系型数据库和非关系型数据库之间的产品，是非关系型数据库当中功能丰富，最像关系型数据库的一个产品。它支持的数据格式有json,bson等。他最大的特点是它的查询语法类似于面向对象语言。并且它还支持对数据创建索引。</p>
-<p>下面的图片是百度百科对mongodb的介绍<br><img src="http://39.104.171.29/image/mongodb-1.png" alt></p>
-<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>在mongodb中是通过数据库、集合、文档的方式来管理数据的。下边是mongodb与关系型数据库的一些概念比较图。<br><img src="http://39.104.171.29/image/mongodb-2.png" alt><br>和关系型数据库一样，mongodb允许一个实例创建多个数据库，一个数据库创建多个集合，一个集合创建多个文档</p>
-<h3 id="链接mongodb"><a href="#链接mongodb" class="headerlink" title="链接mongodb"></a>链接mongodb</h3><p>mongodb使用CS架构开发。client shell使用链接命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://39.104.171.29/image/mongodb-3.png" alt></p>
-<h3 id="数据库操作的相关命令"><a href="#数据库操作的相关命令" class="headerlink" title="数据库操作的相关命令"></a>数据库操作的相关命令</h3><h4 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h4><p>show dbs: 查询所有数据库信息<br><img src="http://39.104.171.29/image/mongodb-4.png" alt></p>
-<p>db<br><img src="http://39.104.171.29/image/mongodb-5.png" alt></p>
-<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p>use 库名<br>使用指定的库，没有则创建（注意：当使用一个新建的库，而且没有插入任何数据时。此时的库实际没有被创建。）<br><img src="http://39.104.171.29/image/mongodb-6.png" alt></p>
-<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p>db.dropDatabase<br><img src="http://39.104.171.29/image/mongodb-7.png" alt></p>
-<h3 id="集合相关操作命令"><a href="#集合相关操作命令" class="headerlink" title="集合相关操作命令"></a>集合相关操作命令</h3><h4 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h4><p>db.createConllection(name,options)<br>name:表示集合的名称<br>options:表示创建参数</p>
-<h4 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h4><p>db.<conllection>.drop()</conllection></p>
-<p><collection> 表示选中的集合</collection></p>
-<h3 id="文档先关操作"><a href="#文档先关操作" class="headerlink" title="文档先关操作"></a>文档先关操作</h3><h4 id="集合中插入文档"><a href="#集合中插入文档" class="headerlink" title="集合中插入文档"></a>集合中插入文档</h4><p>db.<collection>.insert(document)</collection></p>
-<p><collection> 表示选中的集合<br>document:表示文档，可以是json类型的数据格式</collection></p>
-<h4 id="集合中修改指定文档信息"><a href="#集合中修改指定文档信息" class="headerlink" title="集合中修改指定文档信息"></a>集合中修改指定文档信息</h4><p>db.<collection>.update(<query>,<update>,<options>)</options></update></query></collection></p>
-<p><collection> 表示选中的集合</collection></p>
-<p><query> 表示 查询条件,相当于sql语句的where</query></p>
-<p><update> 表示 更新文档内容</update></p>
-<p><options> 表示 选项</options></p>
-<h4 id="set修改器"><a href="#set修改器" class="headerlink" title="$set修改器"></a>$set修改器</h4><p>db.test_collection.update({“age”:18},{$set:{“name”:”wan”,”age”:16}},{multi:true})</p>
-<p>test_collection：集合名称</p>
-<p>{“age”:18} ：查询结果</p>
-<p>{$set:{“name”:”wan”,”age”:16}} 修改条件</p>
-<p>{multi:true}：参数 multi 为true时表示修改全部，false时表示修改第一个匹配的文档。默认为false</p>
-<h4 id="集合中移除指定文档"><a href="#集合中移除指定文档" class="headerlink" title="集合中移除指定文档"></a>集合中移除指定文档</h4><p>db.<collection>.remove(<query>)</query></collection></p>
-<p><collection> 表示选中的集合</collection></p>
-<p><query> 表示查询的结果<br>删除前最好先执行查询</query></p>
-<h4 id="集合中搜索指定文档"><a href="#集合中搜索指定文档" class="headerlink" title="集合中搜索指定文档"></a>集合中搜索指定文档</h4><p>db.<collection>.find(query,projection)</collection></p>
-<p><collection> 表示选中的集合<br>query :查询条件<br>projection:投影查询key</collection></p>
-<p>投影查询<br>db.test_collection.find({“age”:18},{name:1,age:1,address:1,_id:0})<br>test_collection:制定的集合<br>{“age”:18} ：查询条件<br>{name:1,age:1,address:1,_id:0} ：投影参数，个人不明白只有_id可以设置为0，如果别的设置为0会报Projection cannot have a mix of inclusion and exclusion.异常</p>
-<h3 id="用户相关操作命令"><a href="#用户相关操作命令" class="headerlink" title="用户相关操作命令"></a>用户相关操作命令</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123;</span><br><span class="line">    user:&quot;spiderBao&quot;,</span><br><span class="line">    pwd:&quot;xxx&quot;,</span><br><span class="line">    roles:[</span><br><span class="line">        &#123;role:&quot;root&quot;,db:&quot;admin&quot;&#125;</span><br><span class="line">    ]</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.updateUser(</span><br><span class="line">    &apos;spiderBao1&apos;,&#123;</span><br><span class="line">        roles:[</span><br><span class="line">        &#123;role:&quot;readWriteAnyDatabase&quot;,db:&quot;admin&quot;&#125;]</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show users</span><br></pre></td></tr></table></figure>
-<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.dropUser(&quot;spiderBao1&quot;)</span><br></pre></td></tr></table></figure>
-<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.changeUserPassword(&quot;test1&quot;,&quot;123&quot;)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/10/Java—日志框架解析-转载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/10/Java—日志框架解析-转载/" class="post-title-link" itemprop="url">Java—日志框架解析-转载</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-10 22:55:27" itemprop="dateCreated datePublished" datetime="2019-06-10T22:55:27+08:00">2019-06-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>作为Java程序员，幸运的是，Java 拥有功能和性能都非常强大的日志库；不幸的是，这样的日志库有不止一个<br>相信每个人都曾经迷失在JUL(Java Util Log), JCL(Commons Logging), Log4j, SLF4J, Logback，<br>Log4j2等等的迷宫中。在我见过的绝大多数项目中，都没有能够良好的配置和使用日志库。这篇文章先讲述Java<br>常见日志库的历史和关系，后续会讲日志使用的最佳实践。让我们从头(Java Util Log)开始说起吧。</p>
-<h3 id="Java-Util-Log"><a href="#Java-Util-Log" class="headerlink" title="Java Util Log"></a>Java Util Log</h3><p>简称JUL，是JDK 中自带的log功能。虽然是官方自带的log lib，JUL的使用确不广泛。主要原因:</p>
-<p>1.JUL从JDK1.4 才开始加入(2002年)，当时各种第三方log lib已经被广泛使用了<br>2.JUL早期存在性能问题，到JDK1.5上才有了不错的进步，但现在和Logback/Log4j2相比还是有所不如<br>3.JUL的功能不如Logback/Log4j2等完善，比如Output Handler就没有Logback/Log4j2的丰富，有<br>时候需要自己来继承定制，又比如默认没有从ClassPath里加载配置文件的功能</p>
-<h3 id="Log4j-1-x"><a href="#Log4j-1-x" class="headerlink" title="Log4j 1.x"></a>Log4j 1.x</h3><p>Log4j 是在 Logback 出现之前被广泛使用的 Log Lib, 由 Gülcü 于2001年发布，后来成为Apache<br>基金会的顶级项目。Log4j 在设计上非常优秀，对后续的 Java Log 框架有长久而深远的影响，也产生了<br>Log4c, Log4s, Log4perl 等到其他语言的移植。Log4j 的短板在于性能，在Logback 和 Log4j2<br>出来之后，Log4j的使用也减少了。</p>
-<h3 id="Commons-Logging"><a href="#Commons-Logging" class="headerlink" title="Commons Logging"></a>Commons Logging</h3><p>简称JCL，是Apache下面的项目。JCL 是一个Log Facade，只提供 Log API，不提供实现，然后有 Adapter<br>来使用 Log4j 或者 JUL 作为Log Implementation。</p>
-<p>就像之前所说，JDK现在带了自己的JUL，然后又有第三方的Log4j等日志库存在，不同的项目可能各自使用了<br>不同的日志库。如果你的项目依赖的其他lib各自使用了不同的日志库，你想控制日志行为，就需要针对每个日<br>志库都写一个配置文件，是不是很酸爽?</p>
-<p>然后这个时候 JCL 就出现了。在程序中日志创建和记录都是用JCL中的接口，在真正运行时，会看当前ClassPath<br>中有什么实现，如果有Log4j 就是用 Log4j, 如果啥都没有就是用 JDK 的 JUL。</p>
-<p>这样，在你的项目中，还有第三方的项目中，大家记录日志都使用 JCL 的接口，然后最终运行程序时，可以按照自<br>己的需求(或者喜好)来选择使用合适的Log Implementation。如果用Log4j, 就添加 Log4j 的jar包进去，然<br>后写一个 Log4j 的配置文件；如果喜欢用JUL，就只需要写个JUL的配置文件。如果有其他的新的日志库出现，也<br>只需要它提供一个Adapter，运行的时候把这个日志库的 jar 包加进去。</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul.jpg" alt></p>
-<p>到这个时候一切看起来都很简单，很美好。接口和实现做了良好的分离，在统一的JCL之下，不改变任何代码，就可以<br>通过配置就换用功能更强大，或者性能更好的日志库实现。</p>
-<p>这种简单美好一直持续到SLF4J出现。</p>
-<h3 id="SLF4J-Logback"><a href="#SLF4J-Logback" class="headerlink" title="SLF4J/Logback"></a>SLF4J/Logback</h3><p>SLF4J(The Simple Logging Facade for Java)和Logback也是Gülcü创立的项目，其创立主要是为了提供更<br>高性能的实现。其中，SLF4j 是类似于JCL 的Log Facade,Logback 是类似于Log4j 的 Log Implementation。</p>
-<p>之前已经说过，Apache 有了个JCL，用来做各种Log lib统一的接口，如果 Gülcü 要搞一个更好的Log实现的话，<br>直接写一个实现就好了，为啥还要搞一个和SLF4J呢?</p>
-<p>原因是Gülcü 认为 JCL 的 API 设计得不好，容易让使用者写出性能有问题的代码。</p>
-<p>比如在用 JCL 输出一个 debug 级别的 log:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br></pre></td></tr></table></figure>
-<p>这个有什么问题呢？一般生产环境 log 级别都会设到 info 或者以上，那这条 log 是不会被输出的。然而不管会不会输出，<br>这其中都会做一个字符串连接操作，然后生产一个新的字符串。如果这条语句在循环或者被调用很多次的函数中，就会多做很多<br>无用的字符串连接，影响性能。</p>
-<p>所以 JCL 的最佳实践推荐这么写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">    logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然而开发者常常忽略这个问题或是觉得麻烦而不愿意这么写。所以SLF4J提供了新的API，方便开发者使用:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url);</span><br></pre></td></tr></table></figure>
-<p>这样的话，在不输出 log 的时候避免了字符串拼接的开销；在输出的时候需要做一个字符串format，代价比手工拼接字符串大一些,<br>但是可以接受。</p>
-<p>而 Logback 则是作为 Log4j 的继承者来开发的，提供了性能更好的实现，异步 logger，Filter等更多的特性。</p>
-<p>现在事情变复杂了。我们有了两个流行的 Log Facade，以及三个流行的 Log Implementation。Gülcü是个追求完美的人，<br>他决定让这些Log之间都能够方便的互相替换，所以做了各种 Adapter 和 Bridge 来连接:</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul-slf4j-logback-slf4j-nop.jpg" alt></p>
-<p>可以看到甚至 Log4j 和 JUL 都可以桥接到SLF4J，再通过 SLF4J 适配到到 Logback!</p>
-<p>在这里需要注意不能搞出循环的桥接，比如下面这些依赖就不能同时存在:</p>
-<p>1.jcl-over-slf4j 和 slf4j-jcl<br>2.log4j-over-slf4j 和 slf4j-log4j12<br>3.jul-to-slf4j 和 slf4j-jdk14</p>
-<p>总感觉事情在变得更麻烦呢！</p>
-<h3 id="Log4j2"><a href="#Log4j2" class="headerlink" title="Log4j2"></a>Log4j2</h3><p>现在有了更好的 SLF4J 和 Logback——你会想事情到这里总该了解了吧，让他们慢慢取代JCL 和 Log4j 好了。</p>
-<p>然而维护 Log4j 的人不这样想，他们不想坐视用户一点点被 SLF4J /Logback 蚕食，继而搞出了 Log4j2。</p>
-<p>Log4j2 和 Log4j1.x 并不兼容，设计上很大程度上模仿了 SLF4J/Logback，性能上也获得了很大的提升。</p>
-<p>Log4j2 也做了 Facade/Implementation 分离的设计，分成了 log4j-api 和 log4j-core。</p>
-<p>现在好了，我们有了三个流行的Log 接口和四个流行的Log实现，如果画出桥接关系的图来回事什么样子呢?</p>
-<p><img src="http://39.104.171.29/image/jcl-slf4j-log4j2-api.jpg" alt></p>
-<p>是不是感觉有点晕呢？同样，在添加依赖的时候，要小心不要搞成循环依赖。对于如今的局面我的日志使用方案是</p>
-<h2 id="个人推荐日志搭配方案"><a href="#个人推荐日志搭配方案" class="headerlink" title="个人推荐日志搭配方案"></a>个人推荐日志搭配方案</h2><h3 id="1-总是使用Log-Facade，而不是具体Log-Implementation"><a href="#1-总是使用Log-Facade，而不是具体Log-Implementation" class="headerlink" title="1. 总是使用Log Facade，而不是具体Log Implementation"></a>1. 总是使用Log Facade，而不是具体Log Implementation</h3><p>正如之前所说的，使用 Log Facade 可以方便的切换具体的日志实现。而且，如果依赖多个项目，使用了不同的Log Facade，<br>还可以方便的通过 Adapter 转接到同一个实现上。如果依赖项目使用了多个不同的日志实现，就麻烦的多了。</p>
-<p>具体来说，现在推荐使用 Log4j-API 或者 SLF4j，不推荐继续使用 JCL。</p>
-<h3 id="2-只添加一个-Log-Implementation依赖"><a href="#2-只添加一个-Log-Implementation依赖" class="headerlink" title="2. 只添加一个 Log Implementation依赖"></a>2. 只添加一个 Log Implementation依赖</h3><p>毫无疑问，项目中应该只使用一个具体的 Log Implementation，建议使用 Logback 或者Log4j2。如果有依赖的项目中，<br>使用的 Log Facade不支持直接使用当前的 Log Implementation，就添加合适的桥接器依赖。具体的桥接关系可以看<br>上一篇文章的图。</p>
-<h3 id="3-具体的日志实现依赖应该设置为optional和使用runtime-scope"><a href="#3-具体的日志实现依赖应该设置为optional和使用runtime-scope" class="headerlink" title="3. 具体的日志实现依赖应该设置为optional和使用runtime scope"></a>3. 具体的日志实现依赖应该设置为optional和使用runtime scope</h3><p>在项目中，Log Implementation的依赖强烈建议设置为runtime scope，并且设置为optional。例如项目中使用了 SLF4J<br>作为 Log Facade，然后想使用 Log4j2 作为 Implementation，那么使用 maven 添加依赖的时候这样设置:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设为optional，依赖不会传递，这样如果你是个lib项目，然后别的项目使用了你这个lib，不会被引入不想要的Log<br>Implementation 依赖；</p>
-<p>Scope设置为runtime，是为了防止开发人员在项目中直接使用Log Implementation中的类，而不适用Log Facade中的类。</p>
-<h3 id="4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖"><a href="#4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖" class="headerlink" title="4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖"></a>4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖</h3><p>这是很常见的一个问题，第三方库的开发者未必会把具体的日志实现或者桥接器的依赖设置为optional，然后你的项目继承了这些<br>依赖——具体的日志实现未必是你想使用的，比如他依赖了Log4j，你想使用Logback，这时就很尴尬。另外，如果不同的第三方依<br>赖使用了不同的桥接器和Log实现，也极容易形成环。</p>
-<p>这种情况下，推荐的处理方法，是使用exclude来排除所有的这些Log实现和桥接器的依赖，只保留第三方库里面对Log Facade的依赖。</p>
-<p>比如阿里的JStorm就没有很好的处理这个问题，依赖jstorm会引入对Logback和log4j-over-slf4j的依赖，如果你想在自己的项目<br>中使用Log4j或其他Log实现的话，就需要加上excludes:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.jstorm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstorm-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-over-slf4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-避免为不会输出的log付出代价-减少对不输出日志的成本"><a href="#5-避免为不会输出的log付出代价-减少对不输出日志的成本" class="headerlink" title="5. 避免为不会输出的log付出代价(减少对不输出日志的成本)"></a>5. 避免为不会输出的log付出代价(减少对不输出日志的成本)</h3><p>Log库都可以灵活的设置输出界别，所以每一条程序中的log，都是有可能不会被输出。这时候要注意不要额外的付出代价。（字符拼接代价）</p>
-<p>先看两个有问题的写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url: "</span> + url);</span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, toJson(request));</span><br></pre></td></tr></table></figure>
-<p>第一条是直接做了字符串拼接，所以即使日志级别高于debug也会做一个字符串连接操作；第二条虽然用了SLF4J/Log4j2中的懒<br>求值方式来避免不必要的字符串拼接开销，但是toJson()这个函数却是都会被调用并且开销更大。</p>
-<p>推荐的写法如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url); <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, () -&gt; toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line">logger.debug(() -&gt; <span class="string">"receive request: "</span> + toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123; <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">    logger.debug(<span class="string">"receive request: "</span> + toJson(request)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-日志格式中最好不要使用行号，函数名等字段"><a href="#6-日志格式中最好不要使用行号，函数名等字段" class="headerlink" title="6. 日志格式中最好不要使用行号，函数名等字段"></a>6. 日志格式中最好不要使用行号，函数名等字段</h3><p>原因是，为了获取语句所在的函数名，或者行号，log库的实现都是获取当前的stacktrace，然后分析取出这些信息，而获取<br>stacktrace的代价是很昂贵的。如果有很多的日志输出，就会占用大量的CPU。在没有特殊需要的情况下，建议不要在日志中<br>输出这些这些字段。</p>
-<h3 id="7-log中不要输出稀奇古怪的字符！"><a href="#7-log中不要输出稀奇古怪的字符！" class="headerlink" title="7. log中不要输出稀奇古怪的字符！"></a>7. log中不要输出稀奇古怪的字符！</h3><p>部分开发人员为了方便看到自己的log，会在log语句中加上醒目的前缀，比如:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"========================start process request============="</span>);</span><br></pre></td></tr></table></figure>
-<p>虽然对于自己来说是方便了，但是如果所有人都这样来做的话，那log输出就没法看了！正确的做法是使用grep（linux 中的shell命令） 来看只自己关心的日志。</p>
-<p>转载处：<a href="https://zhuanlan.zhihu.com/p/24272450" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24272450</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/30/ajax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/05/30/ajax/" class="post-title-link" itemprop="url">AJAX</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-30 20:54:56" itemprop="dateCreated datePublished" datetime="2019-05-30T20:54:56+08:00">2019-05-30</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="AJAX-简介"><a href="#AJAX-简介" class="headerlink" title="AJAX 简介"></a>AJAX 简介</h2><p>AJAX 全称 Asynchronous JavaScript and XML</p>
-<p>AJAX = 异步 JavaScript 和 XML。</p>
-<p>AJAX 是一种用于创建快速动态网页的技术。</p>
-<h2 id="AJAX-工作流程图"><a href="#AJAX-工作流程图" class="headerlink" title="AJAX 工作流程图"></a>AJAX 工作流程图</h2><p><img src="http://39.104.171.29/image/ajax.gif" alt></p>
-<h2 id="ajax基于Internet"><a href="#ajax基于Internet" class="headerlink" title="ajax基于Internet"></a>ajax基于Internet</h2><p>AJAX是基于现有的Internet标准，并且联合使用它们：</p>
-<p>  XMLHttpRequest 对象 (异步的与服务器交换数据)<br>  JavaScript/DOM (信息显示/交互)<br>  CSS (给数据定义样式)<br>  XML (作为转换数据的格式)<br>  lamp  AJAX应用程序与浏览器和平台无关的！</p>
-<h2 id="ajax实例"><a href="#ajax实例" class="headerlink" title="ajax实例"></a>ajax实例</h2><h3 id="基础实例"><a href="#基础实例" class="headerlink" title="基础实例"></a>基础实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  function loadXMLDoc()&#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">      var xmlhttp;</span></span><br><span class="line"><span class="undefined">      if (window.XMLHttpRequest)&#123;</span></span><br><span class="line"><span class="undefined">        //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line"><span class="undefined">        xmlhttp=new XMLHttpRequest();</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      else&#123;</span></span><br><span class="line"><span class="undefined">        // IE6, IE5 浏览器执行代码</span></span><br><span class="line"><span class="undefined">        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      xmlhttp.onreadystatechange=function()&#123;</span></span><br><span class="line"><span class="undefined">        if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)&#123;</span></span><br><span class="line"><span class="undefined">          document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">      xmlhttp.open("GET","https://www.runoob.com/try/ajax/ajax_info.txt",true);</span></span><br><span class="line"><span class="undefined">      xmlhttp.send();</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myDiv"</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"loadXMLDoc()"</span>&gt;</span>修改内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>内容解析：</p>
-<p>xmlHttpRequest 请求运行流程 </p>
-<p>1.创建xmlHttpRequest对象</p>
-<p>2.使用xmlHttpRequest对象开启一个请求方式</p>
-<p>3.发送请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建xmlHttpRequest对象</span><br><span class="line">xmlhttp=<span class="keyword">new</span> XMLHttpRequest(); <span class="comment">//创建xmlHttpRequest对象，IE7+, Firefox, Chrome, Opera, Safari 浏览器可执行代码</span></span><br><span class="line"></span><br><span class="line">xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>); <span class="comment">//同样也是创建XMLHttpRequest对象，针对IE 6,5老版本的创建方式</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>使用xmlHttpRequest对象开启一个请求</span><br><span class="line"></span><br><span class="line"><span class="comment">//open(method,url,async) </span></span><br><span class="line"><span class="comment">//    规定请求的类型、URL 以及是否异步处理请求。(开启一个请求)</span></span><br><span class="line"><span class="comment">//    method：请求的类型；GET 或 POST</span></span><br><span class="line"><span class="comment">//    url：文件在服务器上的位置，服务器请求路径</span></span><br><span class="line"><span class="comment">//    async：true（异步）或 false（同步),ajax中此选项一般都是 true</span></span><br><span class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"https://www.runoob.com/try/ajax/ajax_info.txt"</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//send(string)</span></span><br><span class="line"><span class="comment">//    将请求发送到服务器。</span></span><br><span class="line"><span class="comment">//    string：仅用于 POST 请求,用于添加post请求中的数据</span></span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure></p>
-<h3 id="GET-于-POST-的对比"><a href="#GET-于-POST-的对比" class="headerlink" title="GET 于 POST 的对比"></a>GET 于 POST 的对比</h3><p>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。</p>
-<p>然而，在以下情况中，请使用 POST 请求：</p>
-<p>1.无法使用缓存文件（更新服务器上的文件或数据库）<br>2.向服务器发送大量数据（POST 没有数据量限制）<br>3.发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
-<h3 id="xmlHttpRequest-setRequestHeader-header-value"><a href="#xmlHttpRequest-setRequestHeader-header-value" class="headerlink" title="xmlHttpRequest.setRequestHeader(header,value)"></a>xmlHttpRequest.setRequestHeader(header,value)</h3><p>此方法用于，向请求添加 HTTP 头。</p>
-<p>header: 规定头的名称<br>value: 规定头的值</p>
-<p>例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");</span><br></pre></td></tr></table></figure></p>
-<h3 id="responseText-and-responseXML"><a href="#responseText-and-responseXML" class="headerlink" title="responseText and responseXML"></a>responseText and responseXML</h3><p>responseText 用于获取服务器中的文本信息资源</p>
-<p>responseXML 用于获取服务器中的XML格式资源</p>
-<p>使用实例<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</span><br></pre></td></tr></table></figure></p>
-<h3 id="onreadystatechange-事件"><a href="#onreadystatechange-事件" class="headerlink" title="onreadystatechange 事件"></a>onreadystatechange 事件</h3><p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。</p>
-<p>每当 readyState 改变时，就会触发 onreadystatechange 事件。</p>
-<p>readyState 属性存有 XMLHttpRequest 的状态信息。</p>
-<p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
-<p>onreadystatechange ：存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</p>
-<p>readyState ：</p>
-<pre><code>存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
-
-0: 请求未初始化
-
-1: 服务器连接已建立
-
-2: 请求已接收
-
-3: 请求处理中
-
-4: 请求已完成，且响应已就绪
-</code></pre><p>status ：200: OK  HTTP 响应状态码。404 :未找到页面 </p>
-<p>使用实例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    loadXMLDoc(<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)&#123;</span><br><span class="line">          <span class="comment">//要做的事情 todo</span></span><br><span class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>参考网址：<a href="https://www.runoob.com/ajax/ajax-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/ajax/ajax-tutorial.html</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/22/nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/05/22/nginx/" class="post-title-link" itemprop="url">nginx</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-22 11:42:21" itemprop="dateCreated datePublished" datetime="2019-05-22T11:42:21+08:00">2019-05-22</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="nginx-的安装"><a href="#nginx-的安装" class="headerlink" title="nginx 的安装"></a>nginx 的安装</h2><h3 id="ubuntu-下安装"><a href="#ubuntu-下安装" class="headerlink" title="ubuntu 下安装"></a>ubuntu 下安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure>
-<h2 id="nginx-虚拟主机配置"><a href="#nginx-虚拟主机配置" class="headerlink" title="nginx 虚拟主机配置"></a>nginx 虚拟主机配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">在 http &#123;&#125;中添加</span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">        	listen 80; //监听端口</span><br><span class="line">      		server_name www.xuecheng.com; //服务名</span><br><span class="line">        	ssi on; //是否开启ssi</span><br><span class="line">        	ssi_silent_errors on;</span><br><span class="line">        	location / &#123;</span><br><span class="line">                	alias  /home/spiderbao/webStrom_dev/xc-ui-pc-static-portal/;//主机映射的路径</span><br><span class="line">                	index  index.html;</span><br><span class="line">        	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/17/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/05/17/git/" class="post-title-link" itemprop="url">git</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-17 17:10:25" itemprop="dateCreated datePublished" datetime="2019-05-17T17:10:25+08:00">2019-05-17</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="为什么使用git"><a href="#为什么使用git" class="headerlink" title="为什么使用git"></a>为什么使用git</h2><p>这个问题的答案就在于，集中式版本控制和分布式版本控制的的区别。</p>
-<p>那么怎样算得上集中式版本控制呢？</p>
-<p>比如说SVN就是集中式版本控制系统，版本库是集中放在中央服务器的,而干活的时候,用的都是自己的电脑,所以首先要从中央服务器哪里得到最新的版本,然后干活,干完后,需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作,如果在局域网还可以,带宽够大,速度够快,如果在互联网下,如果网速慢的话,就郁闷了。</p>
-<p><img src="http://39.104.171.29/image/svn-1.png" alt="svn-active-stream"></p>
-<p>集中式版本控制存在如下缺陷： 依赖网络性强，由于只使用一个中央服务器，所以会有单点问题。</p>
-<p>以上说了集中式版本控制，那么分布式版本控制工具又是怎么样的呢？</p>
-<p>分布式版本控制的代表就是git</p>
-<p>Git 是分布式版本控制系统,那么它就没有中央服务器,每个人的电脑就是一个完整的版本库,这样,工作的时候就不需要联网了,因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库,那多个人如何协作呢?比如说自己在电脑上改了文件A,其他人也在电脑上改了文件A,这时,你们两之间只需把各自的修改推送给对方,就可以互相看到对方的修改了。下图就是分布式版本控制工具管理方式:</p>
-<p><img src="http://39.104.171.29/image/git-1.png" alt="git-active-stream"></p>
-<p>分布式版本控制：解决了集中式版本控制的单点问题，和网络依赖性问题，适用于互联网多地区协同开发，但是在只是在局域网下开发，个人认为还是使用svn会更方便，git虽然性能优越但是使用上没有SVN简便。</p>
-<h2 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h2><p>同生活中的许多伟大事件一样,Git 诞生于一个极富纷争大举创新的年代。Linux 内核<br>开源项目有着为数众广的参与者。绝大多数的 Linux 内核维护工作都花在了提交补丁和保<br>存归档的繁琐事务上(1991-2002 年间)。到 2002 年,整个项目组开始启用分布式版本<br>控制系统 BitKeeper 来管理和维护代码。<br>到 2005 年的时候,开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结<br>束,他们收回了免费使用 BitKeeper 的权力。这就迫使 Linux 开源社区(特别是 Linux 的<br>缔造者 Linus Torvalds )不得不吸取教训,只有开发一套属于自己的版本控制系统才不至于<br>重蹈覆辙。他们对新的系统订了若干目标:<br>• 速度<br>• 简单的设计<br>• 对非线性开发模式的强力支持(允许上千个并行开发的分支)<br>• 完全分布式<br>• 有能力高效管理类似 Linux 内核一样的超大规模项目(速度和数据量)</p>
-<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>一般工作流程如下:<br>1.从远程仓库中克隆 Git 资源作为本地仓库。<br>2.从本地仓库中 checkout 代码然后进行代码修改<br>3.在提交前先将代码提交到暂存区。<br>4.提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。<br>5.在修改完成后,需要和团队成员共享代码时,可以将代码 push 到远程仓库。<br>下图展示了 Git 的工作流程:</p>
-<p><img src="http://39.104.171.29/image/git-2.png" alt="git-active-stream"></p>
-<h3 id="git-的工作目录介绍"><a href="#git-的工作目录介绍" class="headerlink" title="git 的工作目录介绍"></a>git 的工作目录介绍</h3><p><img src="http://39.104.171.29/image/git-3.png" alt="git-active-stream"></p>
-<p>其中 ./git 文件夹下就是git的本地仓库</p>
-<h2 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init 要初始的文件夹路径</span><br></pre></td></tr></table></figure>
-<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 要加入的文件</span><br></pre></td></tr></table></figure>
-<h3 id="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"><a href="#将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中" class="headerlink" title="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"></a>将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中</h3><p>将缓存区域文件添加到本地仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
-<p>将本地仓库推送到远程仓库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push ssh://git@39.xxx.171.29/home/git/git_study</span><br><span class="line">fatal: 当前分支 master 没有对应的上游分支。</span><br><span class="line">为推送当前分支并建立与远程上游的跟踪，使用</span><br><span class="line"></span><br><span class="line">    git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">Permission denied, please try again.</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">对象计数中: 6, 完成.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">压缩对象中: 100% (3/3), 完成.</span><br><span class="line">写入对象中: 100% (6/6), 523 bytes | 523.00 KiB/s, 完成.</span><br><span class="line">Total 6 (delta 0), reused 0 (delta 0)</span><br><span class="line">To ssh://39.XXX.171.29/home/git/git_study</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">分支 &apos;master&apos; 设置为跟踪来自 &apos;ssh://git@39.XXX.171.29/home/git/git_study&apos; 的远程分支 &apos;master&apos;。</span><br></pre></td></tr></table></figure></p>
-<h3 id="查看修改历史"><a href="#查看修改历史" class="headerlink" title="查看修改历史"></a>查看修改历史</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git log</span><br><span class="line">commit 4cb2b4f87b03b6cf3301b000a3e14c44027e3f42 (HEAD -&gt; master)</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:28:44 2019 +0800</span><br><span class="line"></span><br><span class="line">    第二次修改</span><br><span class="line"></span><br><span class="line">commit 1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:21:19 2019 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br></pre></td></tr></table></figure>
-<h3 id="还原修改"><a href="#还原修改" class="headerlink" title="还原修改"></a>还原修改</h3><p>reset 还原，还原后历史版本不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git reset --hard  1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">HEAD 现在位于 1910c01 first commit</span><br></pre></td></tr></table></figure></p>
-<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git rm test </span><br><span class="line">rm &apos;test&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="忽略文件或文件夹"><a href="#忽略文件或文件夹" class="headerlink" title="忽略文件或文件夹"></a>忽略文件或文件夹</h3><p>在文件目录下创建gitignore 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure></p>
-<p>忽略语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">空行或是以 # 开头的行即注释行将被忽略。</span><br><span class="line">可以在前面添加正斜杠 / 来避免递归,下面的例子中可以很明白的看出来与下一条的区别。</span><br><span class="line">可以在后面添加正斜杠 / 来忽略文件夹,例如 build/ 即忽略 build 文件夹。</span><br><span class="line">可以使用 ! 来否定忽略,即比如在前面用了 *.apk ,然后使用 !a.apk ,则这个 a.apk 不会</span><br><span class="line">被忽略。</span><br><span class="line">* 用来匹配零个或多个字符,如 *.[oa] 忽略所有以&quot;.o&quot;或&quot;.a&quot;结尾, *~ 忽略所有以 ~ 结尾</span><br><span class="line">的文件(这种文件通常被许多编辑器标记为临时文件); [] 用来匹配括号内的任一字符,</span><br><span class="line">如 [abc] ,也可以在括号内加连接符,如 [0-9] 匹配 0 至 9 的数; ? 用来匹配单个字符。</span><br><span class="line">看了这么多,还是应该来个栗子:</span><br><span class="line"># 忽略 .a 文件</span><br><span class="line">*.a</span><br><span class="line"># 但否定忽略 lib.a, 尽管已经在前面忽略了 .a 文件</span><br><span class="line">!lib.a</span><br><span class="line"># 仅在当前目录下忽略 TODO 文件, 但不包括子目录下的 subdir/TODO</span><br><span class="line">/TODO</span><br><span class="line"># 忽略 build/ 文件夹下的所有文件</span><br><span class="line">build/</span><br><span class="line"># 忽略 doc/notes.txt, 不包括 doc/server/arch.txt</span><br><span class="line">doc/*.txt</span><br><span class="line"># 忽略所有的 .pdf 文件 在 doc/ directory 下的</span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
-<h3 id="解决文件冲突"><a href="#解决文件冲突" class="headerlink" title="解决文件冲突"></a>解决文件冲突</h3><p>编辑有冲突后的文件，再次提交即可</p>
-<h3 id="文件更新或拉取"><a href="#文件更新或拉取" class="headerlink" title="文件更新或拉取"></a>文件更新或拉取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ git clone ssh://git@39.xxx.xxx.29/home/git/git_study</span><br><span class="line">正克隆到 &apos;git_study&apos;...</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">remote: Counting objects: 13, done.</span><br><span class="line">remote: Compressing objects: 100% (7/7), done.</span><br><span class="line">remote: Total 13 (delta 0), reused 0 (delta 0)</span><br><span class="line">接收对象中: 100% (13/13), 完成.</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ cd git_study/</span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit/git_study$ git pull</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">已经是最新的。</span><br></pre></td></tr></table></figure>
-<h2 id="git分支管理"><a href="#git分支管理" class="headerlink" title="git分支管理"></a>git分支管理</h2><h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 新分支名称</span><br></pre></td></tr></table></figure>
-<h3 id="选择分支"><a href="#选择分支" class="headerlink" title="选择分支"></a>选择分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名称</span><br></pre></td></tr></table></figure>
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git merge mybatis </span><br><span class="line">更新 8c65eb0..458de41</span><br><span class="line">Fast-forward</span><br><span class="line"> xiaoli | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 xiaoli</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/MeBlog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/">1</a><span class="page-number current">2</span><a class="page-number" href="/MeBlog/page/3/">3</a><a class="page-number" href="/MeBlog/page/4/">4</a><a class="extend next" rel="next" href="/MeBlog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/MeBlog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/">1</a><span class="page-number current">2</span><a class="page-number" href="/MeBlog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/MeBlog/page/5/">5</a><a class="extend next" rel="next" href="/MeBlog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2149,7 +2130,7 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
