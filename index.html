@@ -335,6 +335,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/01/06/spring4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2020/01/06/spring4/" class="post-title-link" itemprop="url">spring4 读后笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-06 17:39:11" itemprop="dateCreated datePublished" datetime="2020-01-06T17:39:11+08:00">2020-01-06</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h2><h2 id="作者"><a href="#作者" class="headerlink" title="作者"></a>作者</h2><p>spring 的作者叫做 Rob johnson</p>
+<h2 id="最初创建的目标"><a href="#最初创建的目标" class="headerlink" title="最初创建的目标"></a>最初创建的目标</h2><p>spring 创建的初期主要是为了解决企业级应用开发的复杂性</p>
+<h2 id="spring-的根本使命"><a href="#spring-的根本使命" class="headerlink" title="spring 的根本使命"></a>spring 的根本使命</h2><p>简化JAVA开发</p>
+<h2 id="支撑spring-使命实现的4个关键策略"><a href="#支撑spring-使命实现的4个关键策略" class="headerlink" title="支撑spring 使命实现的4个关键策略"></a>支撑spring 使命实现的4个关键策略</h2><p>基于pojo的轻量级和最小侵入性编程<br>通过依赖注入和面相接口实现松耦合<br>基于切面和惯例进行声明式编程<br>通过切面和模板减少样板式代码</p>
+<h3 id="pojo示例代码"><a href="#pojo示例代码" class="headerlink" title="pojo示例代码"></a>pojo示例代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWordBean</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello word!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="构造器模式"><a href="#构造器模式" class="headerlink" title="构造器模式"></a>构造器模式</h3><p>将一个事物运行的流程确定，用一个类表示，如上面的braveKnight类<br>将事物中多变的部分抽取出来，如执行的任务quest</p>
+<h3 id="这样做的好处"><a href="#这样做的好处" class="headerlink" title="这样做的好处"></a>这样做的好处</h3><p>代码将松耦合<br>这样一来我们不用发愁骑士每次执行一个新的任务就需要重新创建一个骑士，而只需要新建一个需要执行的任务类并且实现quest接口即可</p>
+<h3 id="DI-dependency-injection"><a href="#DI-dependency-injection" class="headerlink" title="DI(dependency injection)"></a>DI(dependency injection)</h3><h4 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h4><pre><code>github 上查看 https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome4
+</code></pre><h4 id="Java注解声明式装配"><a href="#Java注解声明式装配" class="headerlink" title="Java注解声明式装配"></a>Java注解声明式装配</h4><pre><code>github 上查看 https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome5
+</code></pre><h4 id="xml装配bean"><a href="#xml装配bean" class="headerlink" title="xml装配bean"></a>xml装配bean</h4><h4 id="导入和混合装配"><a href="#导入和混合装配" class="headerlink" title="导入和混合装配"></a>导入和混合装配</h4><h3 id="injection-的方式"><a href="#injection-的方式" class="headerlink" title="injection 的方式"></a>injection 的方式</h3><p>xml 方式<br>基于JAVA注解配置</p>
+<h3 id="spring-是通过什么装载这些配置后的类的"><a href="#spring-是通过什么装载这些配置后的类的" class="headerlink" title="spring 是通过什么装载这些配置后的类的"></a>spring 是通过什么装载这些配置后的类的</h3><p>spring通过应用上下文来实现应用装载配置<br>spring提供了多种上下文的实现，也就是说spring可以通过多种不同的方式来实现应用类的装载和配置</p>
+<h3 id="关于dependency-injection-的更过信息可以查看《dependency-injection》"><a href="#关于dependency-injection-的更过信息可以查看《dependency-injection》" class="headerlink" title="关于dependency injection 的更过信息可以查看《dependency injection》"></a>关于dependency injection 的更过信息可以查看《dependency injection》</h3><p>总结 关于依赖注入和面相接口编程，本事阐述的核心思想是基于 装饰器模式+spring的多样化配置方式+spring 装载配置的核心接口（application context）</p>
+<h3 id="AOP面向切面"><a href="#AOP面向切面" class="headerlink" title="AOP面向切面"></a>AOP面向切面</h3><h4 id="spring实现AOP的的方式"><a href="#spring实现AOP的的方式" class="headerlink" title="spring实现AOP的的方式"></a>spring实现AOP的的方式</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"minstrel"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"embark"</span> <span class="attr">expression</span>=<span class="string">"execution(void *.*.embarkOnQuest(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span> <span class="attr">method</span>=<span class="string">"afterQuest"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span> <span class="attr">method</span>=<span class="string">"beforeQuest"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>基于XML配置</p>
+<h3 id="sping-容器（基于IOC思想）"><a href="#sping-容器（基于IOC思想）" class="headerlink" title="sping 容器（基于IOC思想）"></a>sping 容器（基于IOC思想）</h3><p>spring 容器负责创建，装配，配置bean。并管理bean的整个生命周期</p>
+<h4 id="spring-自带的容器实现"><a href="#spring-自带的容器实现" class="headerlink" title="spring 自带的容器实现"></a>spring 自带的容器实现</h4><p>总体可归纳为2种类型</p>
+<h5 id="bean工厂（由org-springframework-beans-factory-BeanFactory定义）"><a href="#bean工厂（由org-springframework-beans-factory-BeanFactory定义）" class="headerlink" title="bean工厂（由org.springframework.beans.factory.BeanFactory定义）"></a>bean工厂（由org.springframework.beans.factory.BeanFactory定义）</h5><p>提供基本的DI支持</p>
+<h5 id="应用上下文（由org-springframework-context-ApplicationContext定义）"><a href="#应用上下文（由org-springframework-context-ApplicationContext定义）" class="headerlink" title="应用上下文（由org.springframework.context.ApplicationContext定义）"></a>应用上下文（由org.springframework.context.ApplicationContext定义）</h5><p>基于BeanFactory构建，提供应用框架级别的服务<br>AnnotationConfigApplicationContext 从一个或多个基于java配置类中加载spring应用上下文<br>AnnotationConfigWebApplicationContext 从一个或多个基于java的配置类中加载SpringWeb应用上下文<br>ClassPathXmlApplicationContext 从类路径下的一个或多个xml配置文件中加载spring应用上下文<br>FileSystemXmlapplicationContext 从文件系统中的一个或多个xml配置文件中加载spring应用上下文<br>XmlWebApplicationContext 从Web应用下的一个或多个xml配置文件中加载应用上下文</p>
+<h4 id="bean的生命周期"><a href="#bean的生命周期" class="headerlink" title="bean的生命周期"></a>bean的生命周期</h4><p><img src="http://39.104.171.29/image/springBeanLife.jpg" alt></p>
+<h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2><p>​    运行流程图</p>
+<p><img src="http://39.104.171.29/image/springMvc-generater.png" alt></p>
+<p>dispatcher Servlet 前端控制器（front Controller）核心</p>
+<p>快速尝鲜：</p>
+<h4 id="基于spring-搭建spring-mvc"><a href="#基于spring-搭建spring-mvc" class="headerlink" title="基于spring 搭建spring mvc"></a>基于spring 搭建spring mvc</h4><p>1.将DispatcherServlet 注册到web容器中</p>
+<pre><code>在 Servlet 3. 0 环境 中， 容器 会在 类 路径 中 查找 实现 javax. servlet. ServletContainerInitializer 接口 的 类， 如果 能 发现 的 话， 就会 用 它来 配置 Servlet 容器。
+</code></pre><p>​    Spring 提供 了 这个 接口 的 实现， 名为 SpringServletContainerInitializer。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@HandlesTypes(&#123;WebApplicationInitializer.class&#125;)</span><br><span class="line">public class SpringServletContainerInitializer implements ServletContainerInitializer</span><br></pre></td></tr></table></figure>
+<p>​    其中的HandlesTypes 是什么？</p>
+<p>1.Tomcat的主机容器在添加子容器时，会通过解析.xml并通过类加载器加载@HandlesTypes注解的类</p>
+<p>2.读取@HandlesTypes注解值值。并放入ServletContainerInitializers对应的Set集合中</p>
+<p>3.在ApplicationContext内部启动时会通知ServletContainerInitializers的onStart方法（）。这个onStart方法的第一个参数就是@HandlesTypes注解的值值指定的类集合</p>
+<p>4.在Spring应用中，对ServletContainerInitializers的实现就是SpringServletContainerInitializer，注解指定的类就是WebApplicationInitializer。</p>
+<p>通过上面解读过程我们知道，如果要想使用基于servlet3.0支持注解申明servlet。使用spring框架时的关注点就在WebApplicationInitializer接口中。</p>
+<p>如果个人有能力或者有兴趣的化可以自己通过实现WebApplicationInitializer接口来注册servlet。但是一般我们只需要使用spring进行过一些封装的AbstractAnnotationConfigDispatcherServletInitializer抽象类即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.web.servlet.support;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.lang.Nullable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.ObjectUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.WebApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.support.AnnotationConfigWebApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createRootApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getRootConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">            <span class="keyword">return</span> context;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> WebApplicationContext <span class="title">createServletApplicationContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        AnnotationConfigWebApplicationContext context = <span class="keyword">new</span> AnnotationConfigWebApplicationContext();</span><br><span class="line">        Class&lt;?&gt;[] configClasses = <span class="keyword">this</span>.getServletConfigClasses();</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(configClasses)) &#123;</span><br><span class="line">            context.register(configClasses);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getRootConfigClasses();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> Class&lt;?&gt;[] getServletConfigClasses();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 AbstractAnnotationConfigDispatcherServletInitializer注册容器并初始化上下文</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="配置Filter"><a href="#配置Filter" class="headerlink" title="配置Filter"></a>配置Filter</h4><h5 id="方式1：基于Disparther-Servlet-配置"><a href="#方式1：基于Disparther-Servlet-配置" class="headerlink" title="方式1：基于Disparther Servlet 配置"></a>方式1：基于Disparther Servlet 配置</h5><p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置filter</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="comment">//自己定义的filter 类（数组）</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="方式2：自行实现"><a href="#方式2：自行实现" class="headerlink" title="方式2：自行实现"></a>方式2：自行实现</h5><h4 id="处理Multipart格式的内容信息"><a href="#处理Multipart格式的内容信息" class="headerlink" title="处理Multipart格式的内容信息"></a>处理Multipart格式的内容信息</h4><p>​    1.配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.common.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.MultipartConfigElement;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletContext;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRegistration;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfigAchieve</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置ContextLoaderListener 的上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来配置springMvc 中Dispatcher Servlet 上下文</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置容器请求的映射路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义注册</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//Multipart 配置设置</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> MultipartConfigElement(<span class="string">"temp/medpro/"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.配置MultipartResolver Bean</p>
+<p>MultipartResolver 是springframework.web提供用于处理Multipart的接口规范</p>
+<p>​    1.CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求；               </p>
+<p>​    2.StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span> <span class="function"><span class="keyword">public</span> MultipartResolver <span class="title">multipartResolver</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StandardServletMultipartResolver();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">multipartHandle</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String originalFilename = multipartFile.getOriginalFilename();</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = multipartFile.getBytes();</span><br><span class="line">    String contentType = multipartFile.getContentType();</span><br><span class="line">    InputStream inputStream = multipartFile.getInputStream();</span><br><span class="line">    String name = multipartFile.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/11/30/中国近现代史-note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1220,7 +1406,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#x79;&#95;&#x74;&#x79;&#x40;&#50;&#54;&#x33;&#x2e;&#x6e;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#x79;&#95;&#x74;&#x79;&#x40;&#50;&#54;&#x33;&#x2e;&#x6e;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#x79;&#95;&#x74;&#121;&#x40;&#x32;&#54;&#51;&#x2e;&#x6e;&#x65;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#x79;&#95;&#x74;&#121;&#x40;&#x32;&#54;&#51;&#x2e;&#x6e;&#x65;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -1228,7 +1414,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#110;&#x79;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#110;&#x79;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#110;&#121;&#x5f;&#116;&#121;&#x40;&#50;&#x36;&#51;&#46;&#110;&#101;&#116;" target="_blank" rel="noopener">&#116;&#111;&#110;&#121;&#x5f;&#116;&#121;&#x40;&#50;&#x36;&#51;&#46;&#110;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
@@ -2042,165 +2228,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/10/quartz/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/09/10/quartz/" class="post-title-link" itemprop="url">quartz-初始</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-10 08:52:31" itemprop="dateCreated datePublished" datetime="2019-09-10T08:52:31+08:00">2019-09-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="quartz-简介"><a href="#quartz-简介" class="headerlink" title="quartz 简介"></a>quartz 简介</h2><h2 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h2><h2 id="quartz-快速入门"><a href="#quartz-快速入门" class="headerlink" title="quartz 快速入门"></a>quartz 快速入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">StdSchedulerFactory stdSchedulerFactory = <span class="keyword">new</span> StdSchedulerFactory();<span class="comment">//创建StdSchedulerFactory工厂</span></span><br><span class="line">Scheduler scheduler = stdSchedulerFactory.getScheduler();</span><br><span class="line"></span><br><span class="line">scheduler.start();</span><br><span class="line"></span><br><span class="line">JobDetail job = newJob(HelloJob.class)</span><br><span class="line">        .withIdentity(<span class="string">"myJob"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Trigger trigger = newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"myTrigger"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .startNow()</span><br><span class="line">        <span class="comment">//调度触发执行内容和时间的操作</span></span><br><span class="line">        .withSchedule(simpleSchedule()</span><br><span class="line">            .withIntervalInSeconds(<span class="number">4</span>)</span><br><span class="line">            .repeatForever())</span><br><span class="line">        .build();</span><br><span class="line">scheduler.scheduleJob(job,trigger);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>)&#123;&#125;<span class="comment">//测试用，防止主线程结束</span></span><br></pre></td></tr></table></figure>
-<h2 id="Quartz-常用接口"><a href="#Quartz-常用接口" class="headerlink" title="Quartz 常用接口"></a>Quartz 常用接口</h2><h3 id="Scheduler-与调度程序交"><a href="#Scheduler-与调度程序交" class="headerlink" title="Scheduler (与调度程序交)"></a>Scheduler (与调度程序交)</h3><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><pre><code>开始：SchedulerFactory 创建后开始
-结束：Scheduler调用shutdown结束
-</code></pre><h3 id="Job-调度的内容实现定义"><a href="#Job-调度的内容实现定义" class="headerlink" title="Job (调度的内容实现定义)"></a>Job (调度的内容实现定义)</h3><h3 id="JobDetail-作业实例"><a href="#JobDetail-作业实例" class="headerlink" title="JobDetail (作业实例)"></a>JobDetail (作业实例)</h3><h3 id="Trigger-（触发器）"><a href="#Trigger-（触发器）" class="headerlink" title="Trigger （触发器）"></a>Trigger （触发器）</h3><h4 id="公共属性"><a href="#公共属性" class="headerlink" title="公共属性"></a>公共属性</h4><pre><code>所有类型的trigger都有TriggerKey这个属性，表示trigger的身份；除此之外，trigger还有很多其它的公共属性。这些属性，在构建trigger的时候可以通过TriggerBuilder设置。
-</code></pre><p>trigger的公共属性有：</p>
-<p>jobKey属性：当trigger触发时被执行的job的身份；</p>
-<p>startTime属性：设置trigger第一次触发的时间；该属性的值是java.util.Date类型，表示某个指定的时间点；有些类型的trigger，会在设置的startTime时立即触发，有些类型的trigger，表示其触发是在startTime之后开始生效。比如，现在是1月份，你设置了一个trigger–“在每个月的第5天执行”，然后你将startTime属性设置为4月1号，则该trigger第一次触发会是在几个月以后了(即4月5号)。</p>
-<p>endTime属性：表示trigger失效的时间点。比如，”每月第5天执行”的trigger，如果其endTime是7月1号，则其最后一次执行时间是6月5号。</p>
-<h4 id="优先级（priority）"><a href="#优先级（priority）" class="headerlink" title="优先级（priority）"></a>优先级（priority）</h4><p>如果你的trigger很多(或者Quartz线程池的工作线程太少)，Quartz可能没有足够的资源同时触发所有的trigger；这种情况下，你可能希望控制哪些trigger优先使用Quartz的工作线程，要达到该目的，可以在trigger上设置priority属性。比如，你有N个trigger需要同时触发，但只有Z个工作线程，优先级最高的Z个trigger会被首先触发。如果没有为trigger设置优先级，trigger使用默认优先级，值为5；priority属性的值可以是任意整数，正数、负数都可以。</p>
-<p>注意：只有同时触发的trigger之间才会比较优先级。10:59触发的trigger总是在11:00触发的trigger之前执行。</p>
-<p>注意：如果trigger是可恢复的，在恢复后再调度时，优先级与原trigger是一样的。</p>
-<h4 id="错过触发描述（misfire-instructions）"><a href="#错过触发描述（misfire-instructions）" class="headerlink" title="错过触发描述（misfire instructions）"></a>错过触发描述（misfire instructions）</h4><p>trigger还有一个重要的属性misfire；如果scheduler关闭了，或者Quartz线程池中没有可用的线程来执行job，此时持久性的trigger就会错过(miss)其触发时间，即错过触发(misfire)。不同类型的trigger，有不同的misfire机制。它们默认都使用“智能机制(smart policy)”，即根据trigger的类型和配置动态调整行为。当scheduler启动的时候，查询所有错过触发(misfire)的持久性trigger。然后根据它们各自的misfire机制更新trigger的信息。当你在项目中使用Quartz时，你应该对各种类型的trigger的misfire机制都比较熟悉，这些misfire机制在JavaDoc中有说明</p>
-<h4 id="Simple-Trigger"><a href="#Simple-Trigger" class="headerlink" title="Simple Trigger"></a>Simple Trigger</h4><h3 id="JobBuilder-用于构建JobDetail"><a href="#JobBuilder-用于构建JobDetail" class="headerlink" title="JobBuilder (用于构建JobDetail)"></a>JobBuilder (用于构建JobDetail)</h3><h3 id="TriggerBuilder-用于构建Trigger"><a href="#TriggerBuilder-用于构建Trigger" class="headerlink" title="TriggerBuilder (用于构建Trigger)"></a>TriggerBuilder (用于构建Trigger)</h3><h3 id="Scheduler-Job-Trigger-三者的调用关系"><a href="#Scheduler-Job-Trigger-三者的调用关系" class="headerlink" title="Scheduler Job Trigger 三者的调用关系"></a>Scheduler Job Trigger 三者的调用关系</h3><p>Scheduler 调度计划，如果想要执行调度，需要将Job和Trigger放入<br>scheduler实例化后，可以启动(start)、暂停(stand-by)、停止(shutdown)注意：scheduler被停止后，除非重新实例化，否则不能重新启动；只有当scheduler启动后，即使处于暂停状态也不行，trigger才会被触发</p>
-<p>Job 用来定义工作内容</p>
-<p>Trigger用来定义调度的触发时间，以及绑定工作组</p>
-<h3 id="JobDataMap的使用"><a href="#JobDataMap的使用" class="headerlink" title="JobDataMap的使用"></a>JobDataMap的使用</h3><p>1.Job类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getJobDetail().getJobDataMap();</span><br><span class="line"></span><br><span class="line">      String jobSays = dataMap.getString(<span class="string">"jobSays"</span>);</span><br><span class="line">      <span class="keyword">float</span> myFloatValue = dataMap.getFloat(<span class="string">"myFloatValue"</span>);</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>2.调度定义时<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define the job and tie it to our DumbJob class</span></span><br><span class="line">JobDetail job = newJob(DumbJob.class)</span><br><span class="line">    .withIdentity(<span class="string">"myJob"</span>, <span class="string">"group1"</span>) <span class="comment">// name "myJob", group "group1"</span></span><br><span class="line">    .usingJobData(<span class="string">"jobSays"</span>, <span class="string">"Hello World!"</span>)</span><br><span class="line">    .usingJobData(<span class="string">"myFloatValue"</span>, <span class="number">3.141f</span>)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></p>
-<h4 id="自动填充jobDataMap参数"><a href="#自动填充jobDataMap参数" class="headerlink" title="自动填充jobDataMap参数"></a>自动填充jobDataMap参数</h4><p>只需要修改Job类，在类中添加map相对应的字段提供set方法即可。如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    String jobSays;</span><br><span class="line">    <span class="keyword">float</span> myFloatValue;</span><br><span class="line">    ArrayList state;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getMergedJobDataMap();  <span class="comment">// Note the difference from the previous example</span></span><br><span class="line"></span><br><span class="line">      state.add(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobSays</span><span class="params">(String jobSays)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.jobSays = jobSays;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyFloatValue</span><span class="params">(<span class="keyword">float</span> myFloatValue)</span> </span>&#123;</span><br><span class="line">      myFloatValue = myFloatValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(ArrayList state)</span> </span>&#123;</span><br><span class="line">      state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h2><p>由于Job类的创建是由Scheduler上的JobFactory 运行时动态创建的，所以个人猜测框架创作人使用了动态代理的技术。所以Job的成员变量与外界的交互就成为了难题。如何实现呢？答案就是在实现Job的类上加入@PersistJobDataAfterExecution注解，这样JobDataMap中的数据就可以与外界交互了。</p>
-<h2 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h2><pre><code>个人目前还没有使用过，w3cschool的官方文档上是这样介绍的：
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DisallowConcurrentExecution：将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2303,7 +2330,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
