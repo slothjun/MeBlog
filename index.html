@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">45</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
 
   </li>
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/01/06/spring4/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/01/14/spring4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/01/06/spring4/" class="post-title-link" itemprop="url">spring4 读后笔记</a>
+                <a href="/MeBlog/2020/01/14/spring4/" class="post-title-link" itemprop="url">spring4 读后笔记</a>
               
             
           </h1>
@@ -380,7 +380,7 @@
                 
               
 
-              <time title="创建时间：2020-01-06 17:39:11" itemprop="dateCreated datePublished" datetime="2020-01-06T17:39:11+08:00">2020-01-06</time>
+              <time title="创建时间：2020-01-14 13:21:09" itemprop="dateCreated datePublished" datetime="2020-01-14T13:21:09+08:00">2020-01-14</time>
             
 
             
@@ -426,7 +426,13 @@
 <h3 id="这样做的好处"><a href="#这样做的好处" class="headerlink" title="这样做的好处"></a>这样做的好处</h3><p>代码将松耦合<br>这样一来我们不用发愁骑士每次执行一个新的任务就需要重新创建一个骑士，而只需要新建一个需要执行的任务类并且实现quest接口即可</p>
 <h3 id="DI-dependency-injection"><a href="#DI-dependency-injection" class="headerlink" title="DI(dependency injection)"></a>DI(dependency injection)</h3><h4 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h4><pre><code>github 上查看 https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome4
 </code></pre><h4 id="Java注解声明式装配"><a href="#Java注解声明式装配" class="headerlink" title="Java注解声明式装配"></a>Java注解声明式装配</h4><pre><code>github 上查看 https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome5
-</code></pre><h4 id="xml装配bean"><a href="#xml装配bean" class="headerlink" title="xml装配bean"></a>xml装配bean</h4><h4 id="导入和混合装配"><a href="#导入和混合装配" class="headerlink" title="导入和混合装配"></a>导入和混合装配</h4><h3 id="injection-的方式"><a href="#injection-的方式" class="headerlink" title="injection 的方式"></a>injection 的方式</h3><p>xml 方式<br>基于JAVA注解配置</p>
+</code></pre><h4 id="xml装配bean"><a href="#xml装配bean" class="headerlink" title="xml装配bean"></a>xml装配bean</h4><pre><code>C命名空间中的标签无法装配集合。
+代码：github 上查看 https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome6
+</code></pre><h4 id="导入和混合装配"><a href="#导入和混合装配" class="headerlink" title="导入和混合装配"></a>导入和混合装配</h4><p>代码：github 上查看 <a href="https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome7" target="_blank" rel="noopener">https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome7</a></p>
+<h5 id="注解混合xml或注解"><a href="#注解混合xml或注解" class="headerlink" title="注解混合xml或注解"></a>注解混合xml或注解</h5><p>@import 将别的配置引入当前配置中<br>@importResource 将xml配置引入当前配置中</p>
+<h5 id="xml混合注解或xml"><a href="#xml混合注解或xml" class="headerlink" title="xml混合注解或xml"></a>xml混合注解或xml</h5><p><import> 标签可将别的xml配置导入当前配置中</import></p>
+<p><bean> 标签可以将JavaConfig配置以bean的方式导入</bean></p>
+<h3 id="injection-的方式"><a href="#injection-的方式" class="headerlink" title="injection 的方式"></a>injection 的方式</h3><p>xml 方式<br>基于JAVA注解配置</p>
 <h3 id="spring-是通过什么装载这些配置后的类的"><a href="#spring-是通过什么装载这些配置后的类的" class="headerlink" title="spring 是通过什么装载这些配置后的类的"></a>spring 是通过什么装载这些配置后的类的</h3><p>spring通过应用上下文来实现应用装载配置<br>spring提供了多种上下文的实现，也就是说spring可以通过多种不同的方式来实现应用类的装载和配置</p>
 <h3 id="关于dependency-injection-的更过信息可以查看《dependency-injection》"><a href="#关于dependency-injection-的更过信息可以查看《dependency-injection》" class="headerlink" title="关于dependency injection 的更过信息可以查看《dependency injection》"></a>关于dependency injection 的更过信息可以查看《dependency injection》</h3><p>总结 关于依赖注入和面相接口编程，本事阐述的核心思想是基于 装饰器模式+spring的多样化配置方式+spring 装载配置的核心接口（application context）</p>
 <h3 id="AOP面向切面"><a href="#AOP面向切面" class="headerlink" title="AOP面向切面"></a>AOP面向切面</h3><h4 id="spring实现AOP的的方式"><a href="#spring实现AOP的的方式" class="headerlink" title="spring实现AOP的的方式"></a>spring实现AOP的的方式</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"minstrel"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"embark"</span> <span class="attr">expression</span>=<span class="string">"execution(void *.*.embarkOnQuest(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span> <span class="attr">method</span>=<span class="string">"afterQuest"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">pointcut-ref</span>=<span class="string">"embark"</span> <span class="attr">method</span>=<span class="string">"beforeQuest"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -436,6 +442,20 @@
 <h5 id="bean工厂（由org-springframework-beans-factory-BeanFactory定义）"><a href="#bean工厂（由org-springframework-beans-factory-BeanFactory定义）" class="headerlink" title="bean工厂（由org.springframework.beans.factory.BeanFactory定义）"></a>bean工厂（由org.springframework.beans.factory.BeanFactory定义）</h5><p>提供基本的DI支持</p>
 <h5 id="应用上下文（由org-springframework-context-ApplicationContext定义）"><a href="#应用上下文（由org-springframework-context-ApplicationContext定义）" class="headerlink" title="应用上下文（由org.springframework.context.ApplicationContext定义）"></a>应用上下文（由org.springframework.context.ApplicationContext定义）</h5><p>基于BeanFactory构建，提供应用框架级别的服务<br>AnnotationConfigApplicationContext 从一个或多个基于java配置类中加载spring应用上下文<br>AnnotationConfigWebApplicationContext 从一个或多个基于java的配置类中加载SpringWeb应用上下文<br>ClassPathXmlApplicationContext 从类路径下的一个或多个xml配置文件中加载spring应用上下文<br>FileSystemXmlapplicationContext 从文件系统中的一个或多个xml配置文件中加载spring应用上下文<br>XmlWebApplicationContext 从Web应用下的一个或多个xml配置文件中加载应用上下文</p>
 <h4 id="bean的生命周期"><a href="#bean的生命周期" class="headerlink" title="bean的生命周期"></a>bean的生命周期</h4><p><img src="http://39.104.171.29/image/springBeanLife.jpg" alt></p>
+<h4 id="profile条件化装配配置"><a href="#profile条件化装配配置" class="headerlink" title="profile条件化装配配置"></a>profile条件化装配配置</h4><p>使用profile 可以实现程序在不同配置下切换并运行</p>
+<h5 id="基于注解下的使用"><a href="#基于注解下的使用" class="headerlink" title="基于注解下的使用"></a>基于注解下的使用</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Profile</span>(<span class="string">"MagicExists"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MagicExistsConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line">##### 基于xml下的使用</span><br><span class="line">```xml</span><br><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span> ?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">       xmlns:c=<span class="string">"http://www.springframework.org/schema/c"</span></span><br><span class="line">       xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">       xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd"</span> profile=<span class="string">"MagicExists"</span>&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="激活并使用条件配置下的配置"><a href="#激活并使用条件配置下的配置" class="headerlink" title="激活并使用条件配置下的配置"></a>激活并使用条件配置下的配置</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@ContextConfiguration</span>(classes = MagicExistsConfig.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dome8Test</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ActiveProfiles</span>(<span class="string">"MagicExists"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MagicExistsTest</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Autowired</span></span><br><span class="line">        <span class="keyword">private</span> MagicBean magicBean;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Test</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            Assert.assertNotNull(magicBean);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于条件化配置装配dome可到如下网址查看 <a href="https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome8" target="_blank" rel="noopener">https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome8</a></p>
+<h4 id="条件化bean"><a href="#条件化bean" class="headerlink" title="条件化bean"></a>条件化bean</h4><h5 id="基于注解实现（-conditional）"><a href="#基于注解实现（-conditional）" class="headerlink" title="基于注解实现（@conditional）"></a>基于注解实现（@conditional）</h5><p>1.在bean声明上加入@condition注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Conditional</span>(MagicExistsCondition.class)</span><br><span class="line"><span class="function"><span class="keyword">public</span> MagicBean <span class="title">magicBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MagicBean();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.编写MagicExistsCondition条件判定类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> MagicExistsCondition</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Descirption</span> 判断Magic存在</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> WengLiangBao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/1/8 上午10:22</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Vsersion</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MagicExistsCondition</span> <span class="keyword">implements</span> <span class="title">Condition</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata)</span> </span>&#123;</span><br><span class="line">        Environment env = conditionContext.getEnvironment();</span><br><span class="line">        <span class="keyword">return</span> env.containsProperty(<span class="string">"magic"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3.测试<br>@conditional注解会根据条件判定类中的matches方法返回的结果来装配当前被声明的bean<br>代码 <a href="https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome8" target="_blank" rel="noopener">https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome8</a></p>
+<h4 id="处理自动装配歧义"><a href="#处理自动装配歧义" class="headerlink" title="处理自动装配歧义"></a>处理自动装配歧义</h4><h5 id="Primary"><a href="#Primary" class="headerlink" title="Primary"></a>Primary</h5><p>指定每次都首选的bean（个人不太推荐，因为它不够灵活）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Primary</span> <span class="comment">//指定首选bean解决方案</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cake</span> <span class="keyword">implements</span> <span class="title">Dessert</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="Qualifier"><a href="#Qualifier" class="headerlink" title="Qualifier"></a>Qualifier</h5><p>使用限定符指定要装配的bean</p>
+<h6 id="根据bean的ID装配"><a href="#根据bean的ID装配" class="headerlink" title="根据bean的ID装配"></a>根据bean的ID装配</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier</span>(<span class="string">"cake"</span>)<span class="comment">//限定符解决方案</span></span><br><span class="line"><span class="keyword">private</span> Dessert dessert;</span><br></pre></td></tr></table></figure>
+<h6 id="根据自定义限定符注解装配"><a href="#根据自定义限定符注解装配" class="headerlink" title="根据自定义限定符注解装配"></a>根据自定义限定符注解装配</h6><p>1.创建自定义限定符注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> Cold</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Descirption</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> WengLiangBao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/1/14 下午1:07</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Vsersion</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Qualifier</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Cold &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.在bean的声明处使用注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Cold</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IceCream</span> <span class="keyword">implements</span> <span class="title">Dessert</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3.自动注入处使用注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Cold</span> <span class="comment">//自定义限定符注解</span></span><br><span class="line"><span class="keyword">private</span> Dessert dessert;</span><br></pre></td></tr></table></figure></p>
+<p>代码：github 上查看 <a href="https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome9" target="_blank" rel="noopener">https://github.com/slothjun/Spring4BookProject/tree/master/src/main/java/dome9</a></p>
 <h2 id="springMVC"><a href="#springMVC" class="headerlink" title="springMVC"></a>springMVC</h2><p>​    运行流程图</p>
 <p><img src="http://39.104.171.29/image/springMvc-generater.png" alt></p>
 <p>dispatcher Servlet 前端控制器（front Controller）核心</p>
@@ -465,6 +485,176 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span> <span class="function"><span class="keyword">public</span> MultipartResolver <span class="title">multipartResolver</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StandardServletMultipartResolver();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.测试代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">multipartHandle</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String originalFilename = multipartFile.getOriginalFilename();</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = multipartFile.getBytes();</span><br><span class="line">    String contentType = multipartFile.getContentType();</span><br><span class="line">    InputStream inputStream = multipartFile.getInputStream();</span><br><span class="line">    String name = multipartFile.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/01/07/JNDI-转载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2020/01/07/JNDI-转载/" class="post-title-link" itemprop="url">JNDI-转载</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-07 12:27:10" itemprop="dateCreated datePublished" datetime="2020-01-07T12:27:10+08:00">2020-01-07</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>JNDI是 Java 命名与目录接口（Java Naming and Directory Interface），在J2EE规范中是重要的规范之一，不少专家认为，没有透彻理解JNDI的意义和作用，就没有真正掌握J2EE特别是EJB的知识。<br>那么，JNDI到底起什么作用？</p>
+<p>要了解JNDI的作用，我们可以从“如果不用JNDI我们怎样做？用了JNDI后我们又将怎样做？”这个问题来探讨。</p>
+<p>没有JNDI的做法：<br>程序员开发时，知道要开发访问MySQL数据库的应用，于是将一个对 MySQL JDBC 驱动程序类的引用进行了编码，并通过使用适当的 JDBC URL 连接到数据库。<br>就像以下代码这样：</p>
+<p>Java code<br>Connection conn=null;<br>try {<br>    Class.forName(“com.mysql.jdbc.Driver”, true, Thread.currentThread().getContextClassLoader());<br>    conn=DriverManager.getConnection(“jdbc:mysql://MyDBServer?user=xxx&amp;password=xxx”);<br>    ……<br>    conn.close();<br>} catch(Exception e) {<br>    e.printStackTrace();<br>} finally {<br>    if(conn!=null) {<br>        try {<br>            conn.close();<br>        } catch(SQLException e) {}<br>    }<br>}</p>
+<p>这是传统的做法，也是以前非Java程序员（如Delphi、VB等）常见的做法。这种做法一般在小规模的开发过程中不会产生问题，只要程序员熟悉Java语言、了解JDBC技术和MySQL，可以很快开发出相应的应用程序。</p>
+<p>没有JNDI的做法存在的问题：<br>1、数据库服务器名称MyDBServer 、用户名和口令都可能需要改变，由此引发JDBC URL需要修改；<br>2、数据库可能改用别的产品，如改用DB2或者Oracle，引发JDBC驱动程序包和类名需要修改；<br>3、随着实际使用终端的增加，原配置的连接池参数可能需要调整；<br>4、……</p>
+<p>解决办法：<br>程序员应该不需要关心“具体的数据库后台是什么？JDBC驱动程序是什么？JDBC URL格式是什么？访问数据库的用户名和口令是什么？”等等这些问题，程序员编写的程序应该没有对 JDBC 驱动程序的引用，没有服务器名称，没有用户名称或口令 —— 甚至没有数据库池或连接管理。而是把这些问题交给J2EE容器来配置和管理，程序员只需要对这些配置和管理进行引用即可。</p>
+<p>由此，就有了JNDI。</p>
+<p>用了JNDI之后的做法：<br>首先，在在J2EE容器中配置JNDI参数，定义一个数据源，也就是JDBC引用参数，给这个数据源设置一个名称；然后，在程序中，通过数据源名称引用数据源从而访问后台数据库。<br>具体操作如下（以JBoss为例）：<br>1、配置数据源<br>在JBoss 的 D:/jboss420GA/docs/examples/jca 文件夹下面，有很多不同数据库引用的数据源定义模板。将其中的 mysql-ds.xml 文件Copy到你使用的服务器下，如 D:/jboss420GA/server/default/deploy。<br>修改 mysql-ds.xml 文件的内容，使之能通过JDBC正确访问你的MySQL数据库，如下：</p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<datasources><br><local-tx-datasource><br>  <jndi-name>MySqlDS</jndi-name><br>  <connection-url>jdbc:mysql://localhost:3306/lw</connection-url><br>  <driver-class>com.mysql.jdbc.Driver</driver-class><br>  <user-name>root</user-name><br>  <password>rootpassword</password><br><exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter</exception-sorter-class-name><br>  <metadata><br>  <type-mapping>mySQL</type-mapping><br>  </metadata><br></local-tx-datasource><br></datasources>
+
+<p>这里，定义了一个名为MySqlDS的数据源，其参数包括JDBC的URL，驱动类名，用户名及密码等。</p>
+<p>2、在程序中引用数据源：<br>Java code<br>Connection conn=null;<br>try {<br>    Context ctx = new InitialContext();<br>    Object datasourceRef = ctx.lookup(“java:MySqlDS”);<br>    //引用数据源<br>    DataSource ds = (Datasource) datasourceRef;<br>    conn = ds.getConnection();<br>    ……<br>    c.close();<br>} catch(Exception e) {<br>    e.printStackTrace();<br>} finally {<br>    if(conn!=null) {<br>        try {<br>            conn.close();<br>        } catch(SQLException e) {}<br>    }<br>}</p>
+<p>直接使用JDBC或者通过JNDI引用数据源的编程代码量相差无几，但是现在的程序可以不用关心具体JDBC参数了。<br>在系统部署后，如果数据库的相关参数变更，只需要重新配置 mysql-ds.xml 修改其中的JDBC参数，只要保证数据源的名称不变，那么程序源代码就无需修改。</p>
+<p>由此可见，JNDI避免了程序与数据库之间的紧耦合，使应用更加易于配置、易于部署。</p>
+<p>总结：<br>J2EE 规范要求所有 J2EE 容器都要提供 JNDI 规范的实现。JNDI 在 J2EE 中的角色就是“交换机” —— J2EE 组件在运行时间接地查找其他组件、资源或服务的通用机制。在多数情况下，提供 JNDI 供应者的容器可以充当有限的数据存储，这样管理员就可以设置应用程序的执行属性，并让其他应用程序引用这些属性（Java 管理扩展（Java Management Extensions，JMX）也可以用作这个目的）。JNDI 在 J2EE 应用程序中的主要角色就是提供间接层，这样组件就可以发现所需要的资源，而不用了解这些间接性。</p>
+<p>在 J2EE 中，JNDI 是把 J2EE 应用程序合在一起的粘合剂，JNDI 提供的间接寻址允许跨企业交付可伸缩的、功能强大且很灵活的应用程序。这是 J2EE 的承诺，而且经过一些计划和预先考虑，这个承诺是完全可以实现的。</p>
+<p>说白了就是把资源取个名字，再根据名字来找资源。</p>
+<p>//===============================================================================================================<br>首先我们来回顾一下简单的问题，列在下面第一点。<br>1.我们知道，Java 的运行从 static main 开始，为什么一定要从 static 方法开始呢？<br>2.在我们知道这个世界上的另外一个地方有一个对象存在而且服务器也会在我们开始工作前为我们准备好，那么我该怎么找到它呢？如果这个对象是我这个类创建的，那么当然简单，直接用对象的引用就能调用它的方法，那如果这个对象不是我创建的，我想主动调用它的方法这似乎在任何编程语言中都不可能，记得写一个方法那是被别人调用的不是主动调用别人。</p>
+<p>就像你找人一样，如果他还没有和你建立联系的话(建立联系就是保存一份对象的引用，如果两个对象彼此没有创建另外一个而且也没有被中间的第三方建立这种关系问题就出现了)，请问你如何和他打交道？<br>现实中是：<br>a. 我们拨通 114<br>  Java 中：Context ctx = new InitialContext();<br>b. 请问哪里有通马桶的？114 答，xxx… 为您转接中，请稍候。<br>  Java 中：DataSource ds = (DataSource) ctx.lookup(“便民服务公司”);<br>c. 过了一会儿，人来了，你说：师付，请帮我通马桶吧。<br>  Java 中: ds.getConnection();</p>
+<p>上面的话，我没有回答你什么是 JNDI, 但是我回答了为什么我们需要 JNDI. 希望你在概念上了解了它存在的必要性。</p>
+<p>下面的话，给你一点指导如何更好的理解 JNDI 实现：<br>1.一个对象如果它在另外一个地方(可能与当前运行的程序不在同一个 VM / 同一进程中), 对象怎么可能从一个 VM 中发送到另外一个 VM 中呢？像 LDAP 这种，对象的状态还需要持久地保存的话(重启服务器进程后它还在)，又该怎么办呢？请看 JNDI StateFactory, 它用一种方法把一个对象转换成某种方式保存下来，就像我们把一个 Entity 对象保存下来时，我们会用 SQL 来做一样。</p>
+<p>2.有一个对象上次已经保存了状态，现在服务器重启了，上次的对象肯定不在内存里面，我们怎么恢复上次的状态呢？<br>请看 JNDI ObjectFactory. 它读取一些上次保存的状态信息，来创建并初始化一个对象。比如：我们配置了一个 XML，它是某个 JDBC 数据源的配置数据，Application Server 启动时读取这个信息(相当于上次的状态),然后重启对象。</p>
+<p>3.企业应用这么复杂，面向接口编程，那如何用一种简单的方式来配置新的实现类呢？Java 的做法是：<br>已经定义了 SPI (Service Provider Interface). 包括以下几点：<br>  接口准备好了，如：StateFactory / ObjectFactory.<br>  配置：先搜索 JRE 下面的某个 jndiprovider.properties 文件当作默认实现，再查找用户 classpath 根路径下 /jndi.properties. 另外还有 System.getProperties() 和在创建 InitialContext 给一个 hashtable 作为参数，这三个参数, 有优先级的关系，越是后面具体的参数优先级越高，越前面越通用型的参数优先级越低。这一点，请看 JDK ResourceManager 这个类的源码。<br>  实现类与初始化它们是如何自动完成的呢？这个你需要看 Context 接口里面的常量，以及拿 Sun LDAP InitialContextFactory 运行样例来看 Context 接口的常量一个样本参数值，一般我们很重要的是 InitialContextFactory 这个参数，但也有时候也有其他参数要配置，比如：pkgs, 它是说，我们给一个包名，JNDI 管理器要查找实现时用这个包名列表当成包名，类名就是 协议名 + 固定的后缀：比如： ldap://localhost:389, 它会用一个’包名前缀.协议名.协议名 + URLContextFactory’ 作为类名来搜索一个类，如果它存在就把它当成实现类，如果没找到再尝试另外一个包名前缀。你可以看 com.sun.jndi.url 名，下面有例子看，比如说 ldap:// 的情况就是 找一个类 com.sun.jndi.url.ldap.ldapURLContextFactory，如果是 dns://<a href="http://www.163.com/xxx" target="_blank" rel="noopener">www.163.com/xxx</a> 就找个 com.sun.jndi.url.dns.dnsURLContextFactory。这是 URL context factory 也就是当你使用 ctx.lookup(“java:xxxx/yyy”) 这种带协议前缀的时候。</p>
+<p>另外你也可以类比地看 com.sun.<a href="http://www.protocol" target="_blank" rel="noopener">www.protocol</a> 包里面的类，它是另外不一个与 JNDI 不相关的 URLStreamHandler 处理的规则，与些设计和配置几乎完全相同。我以前写过一个 jdbc:oracle:username/password:@localhost:1521:training/[select A from C where DEL_IND = 0] , 在 java 程序中输入这个 URL 我们可以把数据库里面的数据读取出来，效果就根你输入 file:/C:/boot.ini 读取了这个文件内容一样，办法就是我写了一个支持 jdbc 协议的 URLStreamHandler 在命令行配置一个使用它，其他的应用程序类就能自动处理，它们都不知道我是从数据库里面读取的数据。</p>
+<ol start="4">
+<li>J2EE 1.3 开始，资源的管理由应用服务器单独来管理和配置，这与 J2EE 1.2 不同，在 J2EE 1.2 中我们直接在应用程序中配置我们要用的资源。J2EE 1.3 中我们配置一个数据源在服务器上，我们在应用程序中只需要说明我们配置的资源的引用就行了，比如我们只在 web.xml 或 ejb-jar.xml 配置 <resource-ref> 而不是 data source 本身。这有什么好处？比如：我们定义了两个 training 的数据源：jdbc/training/db2. jdbc/oracle/db2. 一个是开发环境，一个是 UAT 环境，现在开发时我们建立一个 <resource-ref> 指向jdbc/training/db2，那么就用 db2 数据库，UAT 测试时我们建立另外一个 <resource-ref> 指向 jdbc/training/oracle, 就会使用 oracle 数据库，而这本身不需要修改代码，只是修改了 web.xml / ejb-jar.xml ,而且现在连接到数据的用户名和密码不再是应用程序开发本身的事情，因为你不需要配置资源也就不需要知道它的登录名和密码，而是由管理员在服务器上配置数据源，这里注意，开发人员做他代码部分的事情，服务器管理员负责配置资源源，J2EE component provider 和 Deployer 两个角色的职责分开了，虽然现实中 deployer 都是委托给了开发人员，但 J2EE 规范是分开来描述的。</resource-ref></resource-ref></resource-ref></li>
+</ol>
+<p>5.上面说了半天，目的是什么呢？这是我的痛苦经历，第一次写 EJB, 买了本书，J2EE 从入门到精通(就是那本传说中的黃皮宝典系列)，写了一个无状态 session bean 来访问数据源，死活找不到数据源：NamingException: xxx not found. 在 IBM developerworks 上看到一篇文章，茅塞顿开，原来那本书讲的是J2EE 1.2, 我用的 WSAD 5.1.2 开发用的默认配置都是 J2EE 1.3。这里面引出了 JNDI LinkRef, 为了实现上面 4 里面所说的服务器上配置一个资源，但应用程序里面配置一个引用的话，现在的应用服务器在处理这点JNDI技术实现上基本上都是用 LinkRef 来实现的，这是 JNDI 里面的一个类。服务器启动时会创建一个 jdbc/training/db2 和 jdbc/training/oracle 两个 DataSource 对象 (用的是 ObjectFactory), 当一个应用程序访问了准备访问数据源时，服务器检测到了 web.xml/ejb-jar.xml 中指定了 <resource-ref> 它就会创建一个 LinkRef 放到 context 中去，它的名称是：jdbc/training,但它的 ref 是 jdbc/training/db2.<br>这样我们 ctx.lookup(“java:jdbc/training”) 时，java 协议对应的 javaURLContextFactory 会把这个 jdbc/training 对象找出来，在检测到它是一个 LinkRef 对象时，会自动再用它的 ref 值(这里是 jdbc/training/db2) 再 lookup 一遍，这下终于找到 jdbc/training/db2 这个 data source 对象。</resource-ref></p>
+<p>6.JNDI 里面还有其他的相关的东西。再结合一个 Reference 概念看，LinkRef 是继承它的。想再具体的了解一个实现细节，请拿一份 apache commons-xxx.jar (名字我忘记了，不过用过 spring / hibernate 来创建数据源的人可能知道它们用 xxxDataSource 做一个不需要在服务器上配置，但却能使用 data source 的办法)，我不是推荐你这个 jar, 我是推荐你看这个xxxDataSource 源码，里面演示了一个 ObjectFactory 用法。这和 JMS ConnectionFactory等其他 J2EE 托管资源的配置和使用都是用的同样的技术实现的。举一反三。<br>想了解更，就再看一个 StateFactory 的实现以及 Reference 的源码之类的。作为期望迈入 J2EE 中级编程的你，至少在概念和理论上要知道 ObjectFactory / LinkRef / SPI / resource ref 配置这几点，如果你再知道 StateFactory 是怎么实现的就更好了。</p>
+<p>转载自<a href="https://blog.csdn.net/wn084/article/details/80729230" target="_blank" rel="noopener">https://blog.csdn.net/wn084/article/details/80729230</a></p>
 
           
         
@@ -1406,7 +1596,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#x79;&#95;&#x74;&#121;&#x40;&#x32;&#54;&#51;&#x2e;&#x6e;&#x65;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#x79;&#95;&#x74;&#121;&#x40;&#x32;&#54;&#51;&#x2e;&#x6e;&#x65;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#121;&#95;&#x74;&#121;&#64;&#50;&#x36;&#x33;&#46;&#110;&#101;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#121;&#95;&#x74;&#121;&#64;&#50;&#x36;&#x33;&#46;&#110;&#101;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -1414,7 +1604,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#110;&#121;&#x5f;&#116;&#121;&#x40;&#50;&#x36;&#51;&#46;&#110;&#101;&#116;" target="_blank" rel="noopener">&#116;&#111;&#110;&#121;&#x5f;&#116;&#121;&#x40;&#50;&#x36;&#51;&#46;&#110;&#101;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#x79;&#95;&#116;&#121;&#x40;&#50;&#54;&#x33;&#x2e;&#110;&#101;&#116;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#x79;&#95;&#116;&#121;&#x40;&#50;&#54;&#x33;&#x2e;&#110;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
@@ -1804,430 +1994,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/10/mysql必知必会-note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/09/10/mysql必知必会-note/" class="post-title-link" itemprop="url">mysql必知必会-note</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-10 17:15:27" itemprop="dateCreated datePublished" datetime="2019-09-10T17:15:27+08:00">2019-09-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="了解sql"><a href="#了解sql" class="headerlink" title="了解sql"></a>了解sql</h2><h3 id="数据库基础术语"><a href="#数据库基础术语" class="headerlink" title="数据库基础术语"></a>数据库基础术语</h3><h4 id="什么是数据库"><a href="#什么是数据库" class="headerlink" title="什么是数据库"></a>什么是数据库</h4><p>数据库是一个以某种有组织的方式存储的数据集合。所以本人认为数据库是一个管理数据的概念。</p>
-<h4 id="表"><a href="#表" class="headerlink" title="表"></a>表</h4><p>表是某种特定类型数据的结构化清单。</p>
-<h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><p>模式 是关于数据库和表的布局及特性的信息</p>
-<h4 id="列"><a href="#列" class="headerlink" title="列"></a>列</h4><p>列 column 表中的一个字段，所有表是由一个或多个列组成。</p>
-<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>数据类型 datatype 表示所容许的数据类型。每个表的列都有相应的数据类型，它限制了列中存储的数据。数据类型对于数据的排序，和优化磁盘使用方面起到了重要的作用。</p>
-<h4 id="行"><a href="#行" class="headerlink" title="行"></a>行</h4><p>行 row 表中的一行记录。</p>
-<h4 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h4><p>主键 primarykey 由一列或列表示。它们与普通的列不同，它们具有其值具有表中唯一性切不为null的特性。</p>
-<h4 id="什么是sql"><a href="#什么是sql" class="headerlink" title="什么是sql"></a>什么是sql</h4><p>sql 的全称是structured query language （结构化查询语言）它是一个专门用来跟数据库通讯的语言。</p>
-<p>sql具有的特定及优点如下</p>
-<p>1.互通性 sql 不是某个DBMS厂商的专属语言，所以使用sql可以操作大多数DBMS产品 如MySQL</p>
-<p>2.简单易学。sql的大多数功能由一个或几个关键字组成，所以学习成本较低。</p>
-<p>3.在保持语法简单的情况下，做到了功能强大操作灵活。</p>
-<h2 id="mysql简介"><a href="#mysql简介" class="headerlink" title="mysql简介"></a>mysql简介</h2><h3 id="什么是MySQL"><a href="#什么是MySQL" class="headerlink" title="什么是MySQL"></a>什么是MySQL</h3><p>首先MySQL它是一种DBMS产品，DBMS是databaseManageSystem 的简称。其次MySQL具有如下特性</p>
-<p>1.成本底，由于MySQL是开源产品所以企业商业是不需要支付费用的。</p>
-<p>2.性能，MySQL在DBMS系列产品中的性能优越</p>
-<p>3.可信赖，就像Linux内核一样。MySQL的开源使得其的使用者和维护者增多。</p>
-<p>4.简单易用</p>
-<h3 id="DBMS产品分类"><a href="#DBMS产品分类" class="headerlink" title="DBMS产品分类"></a>DBMS产品分类</h3><p>DBMS产品可以大致分为2类，一类是基于共享文件系统如File Maker 等。另一类是基于客户机与服务器的如MySQL、Oracle等</p>
-<h3 id="MySQL工具（客户端）"><a href="#MySQL工具（客户端）" class="headerlink" title="MySQL工具（客户端）"></a>MySQL工具（客户端）</h3><p>MySQL workbench</p>
-<p>mysql命令行（自带）</p>
-<h2 id="使用MySQL"><a href="#使用MySQL" class="headerlink" title="使用MySQL"></a>使用MySQL</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接一般用于像 MySQL workbench 这样的工具或程序代码中。</p>
-<p>链接案例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:3306</span><br></pre></td></tr></table></figure>
-<p>其中 root表示用户名</p>
-<p>localhost 表示IP地址</p>
-<p>3306 表示服务端口</p>
-<h3 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h3><p>登录数据库后使用MySQL命令行工具选择切换数据库可以使用关键字USE实现</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> 存在的数据库名称</span><br></pre></td></tr></table></figure>
-<h3 id="关于SHOW的一些操作"><a href="#关于SHOW的一些操作" class="headerlink" title="关于SHOW的一些操作"></a>关于SHOW的一些操作</h3><p>显示所有的数据库名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW DATABASES;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| crashcourse        |</span><br><span class="line">| fileupload         |</span><br><span class="line">| maven_study        |</span><br><span class="line">| mybatis_study      |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>显示数据库中的所有表名称，注意：此时需要使用USE选择要查看的数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; USE crashcourse;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; SHOW TABLES;</span><br><span class="line">+-----------------------+</span><br><span class="line">| Tables_in_crashcourse |</span><br><span class="line">+-----------------------+</span><br><span class="line">| customers             |</span><br><span class="line">| orderitems            |</span><br><span class="line">| orders                |</span><br><span class="line">| productnotes          |</span><br><span class="line">| products              |</span><br><span class="line">| vendors               |</span><br><span class="line">+-----------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>显示表中列column的信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW COLUMNS FROM orders;</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| Field      | Type     | Null | Key | Default | Extra          |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| order_num  | int(11)  | NO   | PRI | NULL    | auto_increment |</span><br><span class="line">| order_date | datetime | NO   |     | NULL    |                |</span><br><span class="line">| cust_id    | int(11)  | NO   | MUL | NULL    |                |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>此查询还有一个快捷方式就是 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DESCRIBE orders;</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| Field      | Type     | Null | Key | Default | Extra          |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">| order_num  | int(11)  | NO   | PRI | NULL    | auto_increment |</span><br><span class="line">| order_date | datetime | NO   |     | NULL    |                |</span><br><span class="line">| cust_id    | int(11)  | NO   | MUL | NULL    |                |</span><br><span class="line">+------------+----------+------+-----+---------+----------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>DESCRIBE 是 SHOW COLUMNS FROM的一种快捷方式</p>
-<p>显示数据库创建语句或表的创建语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW CREATE DATABASE crashcourse;</span><br><span class="line">+-------------+---------------------------------------------------------------------------------------+</span><br><span class="line">| Database    | Create Database                                                                       |</span><br><span class="line">+-------------+---------------------------------------------------------------------------------------+</span><br><span class="line">| crashcourse | CREATE DATABASE `crashcourse` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */ |</span><br><span class="line">+-------------+---------------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW CREATE TABLE order;</span><br><span class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;order&apos; at line 1</span><br><span class="line">mysql&gt; SHOW CREATE TABLE orders;</span><br><span class="line">+--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                          |</span><br><span class="line">+--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| orders | CREATE TABLE `orders` (</span><br><span class="line">  `order_num` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `order_date` datetime NOT NULL,</span><br><span class="line">  `cust_id` int(11) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`order_num`),</span><br><span class="line">  KEY `fk_orders_customers` (`cust_id`),</span><br><span class="line">  CONSTRAINT `fk_orders_customers` FOREIGN KEY (`cust_id`) REFERENCES `customers` (`cust_id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=20010 DEFAULT CHARSET=utf8 COLLATE=utf8_bin |</span><br><span class="line">+--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>关于SHOW的一些命令可以通过 HELP SHOW获取</p>
-<h2 id="检索数据"><a href="#检索数据" class="headerlink" title="检索数据"></a>检索数据</h2><h3 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="SELECT语句"></a>SELECT语句</h3><p>select是sql中最常用的查询语句</p>
-<h4 id="检索单个列"><a href="#检索单个列" class="headerlink" title="检索单个列"></a>检索单个列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products;</span><br><span class="line">+----------------+</span><br><span class="line">| prod_name      |</span><br><span class="line">+----------------+</span><br><span class="line">| .5 ton anvil   |</span><br><span class="line">| 1 ton anvil    |</span><br><span class="line">| 2 ton anvil    |</span><br><span class="line">| Detonator      |</span><br><span class="line">| Bird seed      |</span><br><span class="line">| Carrots        |</span><br><span class="line">| Fuses          |</span><br><span class="line">| JetPack 1000   |</span><br><span class="line">| JetPack 2000   |</span><br><span class="line">| Oil can        |</span><br><span class="line">| Safe           |</span><br><span class="line">| Sling          |</span><br><span class="line">| TNT (1 stick)  |</span><br><span class="line">| TNT (5 sticks) |</span><br><span class="line">+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>本次查询只是单纯的检索了单个列的数据，没有对数据做过滤和排序。</p>
-<p>个人认为过滤不是必须的，但排序是必须的。因为不指定排序的数据顺序是不可控的。</p>
-<h4 id="检索多个列"><a href="#检索多个列" class="headerlink" title="检索多个列"></a>检索多个列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_name,prod_price FROM products;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| prod_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| ANV01   | .5 ton anvil   |       5.99 |</span><br><span class="line">| ANV02   | 1 ton anvil    |       9.99 |</span><br><span class="line">| ANV03   | 2 ton anvil    |      14.99 |</span><br><span class="line">| DTNTR   | Detonator      |      13.00 |</span><br><span class="line">| FB      | Bird seed      |      10.00 |</span><br><span class="line">| FC      | Carrots        |       2.50 |</span><br><span class="line">| FU1     | Fuses          |       3.42 |</span><br><span class="line">| JP1000  | JetPack 1000   |      35.00 |</span><br><span class="line">| JP2000  | JetPack 2000   |      55.00 |</span><br><span class="line">| OL1     | Oil can        |       8.99 |</span><br><span class="line">| SAFE    | Safe           |      50.00 |</span><br><span class="line">| SLING   | Sling          |       4.49 |</span><br><span class="line">| TNT1    | TNT (1 stick)  |       2.50 |</span><br><span class="line">| TNT2    | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>注意多个列间使用,分割最后一个不需要加入,不然会出现语法错误</p>
-<p>如果现在需要检索表中的所有列，可以使用通配符<code>*</code>代替列名。</p>
-<h4 id="检索数据去重"><a href="#检索数据去重" class="headerlink" title="检索数据去重"></a>检索数据去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id FROM products;</span><br><span class="line">+---------+</span><br><span class="line">| vend_id |</span><br><span class="line">+---------+</span><br><span class="line">|    1001 |</span><br><span class="line">|    1001 |</span><br><span class="line">|    1001 |</span><br><span class="line">|    1002 |</span><br><span class="line">|    1002 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1005 |</span><br><span class="line">|    1005 |</span><br><span class="line">+---------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT DISTINCT vend_id FROM products;</span><br><span class="line">+---------+</span><br><span class="line">| vend_id |</span><br><span class="line">+---------+</span><br><span class="line">|    1001 |</span><br><span class="line">|    1002 |</span><br><span class="line">|    1003 |</span><br><span class="line">|    1005 |</span><br><span class="line">+---------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>第一次select 查询获取了products.vend_id的所有数据<br>第二次select 查询内容同上但是加入了DISTINCT关键字对数据进行了去重。</p>
-<p>DISTINCT使用注意事项</p>
-<p>1.不能对部分列使用，如 prod_id,DISTINCT vend_id。</p>
-<p>2.DISTINCT 位于 SELECT 后 列前 ，所有的被检索的列将都具有去重功能。</p>
-<h4 id="检索限制输出"><a href="#检索限制输出" class="headerlink" title="检索限制输出"></a>检索限制输出</h4><p>想要控制输出就使用 limit关键字如下</p>
-<p>输出查询结果的前5行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products LIMIT 5;</span><br><span class="line">+--------------+</span><br><span class="line">| prod_name    |</span><br><span class="line">+--------------+</span><br><span class="line">| .5 ton anvil |</span><br><span class="line">| 1 ton anvil  |</span><br><span class="line">| 2 ton anvil  |</span><br><span class="line">| Detonator    |</span><br><span class="line">| Bird seed    |</span><br><span class="line">+--------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>从第1行开始显示3行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products LIMIT 1,3;</span><br><span class="line">+-------------+</span><br><span class="line">| prod_name   |</span><br><span class="line">+-------------+</span><br><span class="line">| 1 ton anvil |</span><br><span class="line">| 2 ton anvil |</span><br><span class="line">| Detonator   |</span><br><span class="line">+-------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h4 id="使用完全限定"><a href="#使用完全限定" class="headerlink" title="使用完全限定"></a>使用完全限定</h4><p>之前的查询语句中使用的都是先对表名，举个对比的例子如下</p>
-<p>未使用完全限定的查询语句</p>
-<p>SELECT prod_name FROM products LIMIT 1,3</p>
-<p>使用完全限定的查询语句</p>
-<p>SELECT products.prod_name FROM crashcourse.products LIMIT 1,3</p>
-<p>使用完全限定时语句更严谨。推荐使用！</p>
-<h2 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h2><h3 id="单列排序数据"><a href="#单列排序数据" class="headerlink" title="单列排序数据"></a>单列排序数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products ORDER BY prod_name;</span><br><span class="line">+----------------+</span><br><span class="line">| prod_name      |</span><br><span class="line">+----------------+</span><br><span class="line">| .5 ton anvil   |</span><br><span class="line">| 1 ton anvil    |</span><br><span class="line">| 2 ton anvil    |</span><br><span class="line">| Bird seed      |</span><br><span class="line">| Carrots        |</span><br><span class="line">| Detonator      |</span><br><span class="line">| Fuses          |</span><br><span class="line">| JetPack 1000   |</span><br><span class="line">| JetPack 2000   |</span><br><span class="line">| Oil can        |</span><br><span class="line">| Safe           |</span><br><span class="line">| Sling          |</span><br><span class="line">| TNT (1 stick)  |</span><br><span class="line">| TNT (5 sticks) |</span><br><span class="line">+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>根据products.prod_name 按字母升序排序。</p>
-<h3 id="多列排序顺序"><a href="#多列排序顺序" class="headerlink" title="多列排序顺序"></a>多列排序顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price,prod_name;</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| prod_id | prod_price | prod_name      |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| FC      |       2.50 | Carrots        |</span><br><span class="line">| TNT1    |       2.50 | TNT (1 stick)  |</span><br><span class="line">| FU1     |       3.42 | Fuses          |</span><br><span class="line">| SLING   |       4.49 | Sling          |</span><br><span class="line">| ANV01   |       5.99 | .5 ton anvil   |</span><br><span class="line">| OL1     |       8.99 | Oil can        |</span><br><span class="line">| ANV02   |       9.99 | 1 ton anvil    |</span><br><span class="line">| FB      |      10.00 | Bird seed      |</span><br><span class="line">| TNT2    |      10.00 | TNT (5 sticks) |</span><br><span class="line">| DTNTR   |      13.00 | Detonator      |</span><br><span class="line">| ANV03   |      14.99 | 2 ton anvil    |</span><br><span class="line">| JP1000  |      35.00 | JetPack 1000   |</span><br><span class="line">| SAFE    |      50.00 | Safe           |</span><br><span class="line">| JP2000  |      55.00 | JetPack 2000   |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>上述例子中的输出，仅在多行拥有相同的prod_price值时，才对产品prod_name进行排序。如果prod_price的值都是唯一的就不会使用prod_name的条件进行排序</p>
-<h3 id="排序的方向"><a href="#排序的方向" class="headerlink" title="排序的方向"></a>排序的方向</h3><p>默认排序的方向是升序，相反降序的案例如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC;</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| prod_id | prod_price | prod_name      |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">| JP2000  |      55.00 | JetPack 2000   |</span><br><span class="line">| SAFE    |      50.00 | Safe           |</span><br><span class="line">| JP1000  |      35.00 | JetPack 1000   |</span><br><span class="line">| ANV03   |      14.99 | 2 ton anvil    |</span><br><span class="line">| DTNTR   |      13.00 | Detonator      |</span><br><span class="line">| FB      |      10.00 | Bird seed      |</span><br><span class="line">| TNT2    |      10.00 | TNT (5 sticks) |</span><br><span class="line">| ANV02   |       9.99 | 1 ton anvil    |</span><br><span class="line">| OL1     |       8.99 | Oil can        |</span><br><span class="line">| ANV01   |       5.99 | .5 ton anvil   |</span><br><span class="line">| SLING   |       4.49 | Sling          |</span><br><span class="line">| FU1     |       3.42 | Fuses          |</span><br><span class="line">| FC      |       2.50 | Carrots        |</span><br><span class="line">| TNT1    |       2.50 | TNT (1 stick)  |</span><br><span class="line">+---------+------------+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>另外 DESC 不同于 DISTINCT 它可用于不同的条件列，只需要在每个列后加入DESC即可。</p>
-<p>SELECT prod_id,prod_price,prod_name FROM products ORDER BY prod_price DESC,prod_name;</p>
-<p>表示按价格降序排序，如果有价格相同的按商品名称升序排序。</p>
-<h2 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h2><h3 id="where子语句"><a href="#where子语句" class="headerlink" title="where子语句"></a>where子语句</h3><p>where子语句可以添加一些查询条件，过滤数据。</p>
-<h4 id="根据where-操作符过滤"><a href="#根据where-操作符过滤" class="headerlink" title="根据where 操作符过滤"></a>根据where 操作符过滤</h4><p>where操作符如下</p>
-<p>=    等于</p>
-<p>&lt;&gt;    不等于</p>
-<p>!=    不等于</p>
-<p>&lt;    小于</p>
-<p>&lt;=    小于等于</p>
-<blockquote>
-<p>   大于</p>
-</blockquote>
-<blockquote>
-<p>=    大于等于</p>
-</blockquote>
-<p>BETWEEN    在指定两个值之间，包括指定的值</p>
-<h4 id="BETWEEN-使用"><a href="#BETWEEN-使用" class="headerlink" title="BETWEEN 使用"></a>BETWEEN 使用</h4><p>获取价格在5-10元的商品<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name,prod_price FROM products WHERE prod_price BETWEEN 5 AND 10 ORDER BY prod_price DESC;</span><br><span class="line">+----------------+------------+</span><br><span class="line">| prod_name      | prod_price |</span><br><span class="line">+----------------+------------+</span><br><span class="line">| Bird seed      |      10.00 |</span><br><span class="line">| TNT (5 sticks) |      10.00 |</span><br><span class="line">| 1 ton anvil    |       9.99 |</span><br><span class="line">| Oil can        |       8.99 |</span><br><span class="line">| .5 ton anvil   |       5.99 |</span><br><span class="line">+----------------+------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<h4 id="空值null过滤"><a href="#空值null过滤" class="headerlink" title="空值null过滤"></a>空值null过滤</h4><p>获取商品价格为null 的所有商品</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products WHERE prod_price IS NULL;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>获取商品价格不为null 的所有商品</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products WHERE prod_price IS NOT NULL;</span><br><span class="line">+----------------+</span><br><span class="line">| prod_name      |</span><br><span class="line">+----------------+</span><br><span class="line">| .5 ton anvil   |</span><br><span class="line">| 1 ton anvil    |</span><br><span class="line">| 2 ton anvil    |</span><br><span class="line">| Detonator      |</span><br><span class="line">| Bird seed      |</span><br><span class="line">| Carrots        |</span><br><span class="line">| Fuses          |</span><br><span class="line">| JetPack 1000   |</span><br><span class="line">| JetPack 2000   |</span><br><span class="line">| Oil can        |</span><br><span class="line">| Safe           |</span><br><span class="line">| Sling          |</span><br><span class="line">| TNT (1 stick)  |</span><br><span class="line">| TNT (5 sticks) |</span><br><span class="line">+----------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="AND-OR-IN-NOT-操作符"><a href="#AND-OR-IN-NOT-操作符" class="headerlink" title="AND OR IN NOT 操作符"></a>AND OR IN NOT 操作符</h2><p>操作符（operator）的定义：用来联结或改变WHERE字句中的关键字。也称为逻辑操作符</p>
-<h3 id="AND"><a href="#AND" class="headerlink" title="AND"></a>AND</h3><p>相当于语句中的并且，用作条件追加。</p>
-<p>查询厂商id为1003 并且价格大于等于10</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_id,prod_price,prod_name FROM products WHERE vend_id = 1003 AND prod_price &gt;= 10 ORDER BY prod_name;</span><br><span class="line">+---------+---------+------------+----------------+</span><br><span class="line">| vend_id | prod_id | prod_price | prod_name      |</span><br><span class="line">+---------+---------+------------+----------------+</span><br><span class="line">|    1003 | FB      |      10.00 | Bird seed      |</span><br><span class="line">|    1003 | DTNTR   |      13.00 | Detonator      |</span><br><span class="line">|    1003 | SAFE    |      50.00 | Safe           |</span><br><span class="line">|    1003 | TNT2    |      10.00 | TNT (5 sticks) |</span><br><span class="line">+---------+---------+------------+----------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>AND 可以在一次查询中多次使用</p>
-<h3 id="OR"><a href="#OR" class="headerlink" title="OR"></a>OR</h3><p>相当于语句中或者，用于条件选择。</p>
-<p>查询厂商id为1003或1002的商品信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE vend_id = 1003 OR vend_id = 1002 ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Carrots        |       2.50 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1002 | Fuses          |       3.42 |</span><br><span class="line">|    1002 | Oil can        |       8.99 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | Sling          |       4.49 |</span><br><span class="line">|    1003 | TNT (1 stick)  |       2.50 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>OR 可以在一次查询中多次使用</p>
-<h3 id="AND-OR-联合使用"><a href="#AND-OR-联合使用" class="headerlink" title="AND OR 联合使用"></a>AND OR 联合使用</h3><p>使用时需要注意优先级问题。</p>
-<p>MySQL中默认 AND 与 OR 同时出现时 AND 优先被执行。</p>
-<p>误区案例</p>
-<p>查询厂商为1002或1003的价格大于等于10的商品<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE vend_id = 1002 OR vend_id = 1003 AND prod_price &gt;= 10 ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1002 | Fuses          |       3.42 |</span><br><span class="line">|    1002 | Oil can        |       8.99 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>此时发现 价格 为 3.42 和 8.99的商品被查出。原因是上面所说的优先级导致的。</p>
-<p>误区解决</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE (vend_id = 1002 OR vend_id = 1003) AND prod_price &gt;= 10 ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>当OR条件加入（）时它的优先级就大于了AND,就像是数学运算的优先级问题一样被（）解决。</p>
-<p>AND 和 OR 同时使用的场景下建议使用（）。</p>
-<h3 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h3><p>IN 用来指定条件范围<br>使用OR操作符过滤数据的一些案例，同样使用IN也可以完成</p>
-<p>查询厂商id为1003或1002的商品信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_name,prod_price FROM products WHERE vend_id IN (1002,1003) ORDER BY prod_name;</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">| vend_id | prod_name      | prod_price |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">|    1003 | Bird seed      |      10.00 |</span><br><span class="line">|    1003 | Carrots        |       2.50 |</span><br><span class="line">|    1003 | Detonator      |      13.00 |</span><br><span class="line">|    1002 | Fuses          |       3.42 |</span><br><span class="line">|    1002 | Oil can        |       8.99 |</span><br><span class="line">|    1003 | Safe           |      50.00 |</span><br><span class="line">|    1003 | Sling          |       4.49 |</span><br><span class="line">|    1003 | TNT (1 stick)  |       2.50 |</span><br><span class="line">|    1003 | TNT (5 sticks) |      10.00 |</span><br><span class="line">+---------+----------------+------------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>IN与OR比较具有的优点如下</p>
-<p>1.语法更清晰简洁</p>
-<p>2.在使用IN时操作符优先级问题会减少</p>
-<p>3.执行更快</p>
-<p>4.IN可以包含其他的SELECT语句。使得能够动态创建WHERE字句</p>
-<h3 id="NOT"><a href="#NOT" class="headerlink" title="NOT"></a>NOT</h3><p>WHERE 字句中的NOT操作符有且只能有一个，功能是否定之后所跟的任何条件。</p>
-<p>查询厂商id不是1002,1003的所有商品信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name,prod_price FROM products WHERE vend_id NOT IN (1002,1003) ORDER BY prod_name;</span><br><span class="line">+--------------+------------+</span><br><span class="line">| prod_name    | prod_price |</span><br><span class="line">+--------------+------------+</span><br><span class="line">| .5 ton anvil |       5.99 |</span><br><span class="line">| 1 ton anvil  |       9.99 |</span><br><span class="line">| 2 ton anvil  |      14.99 |</span><br><span class="line">| JetPack 1000 |      35.00 |</span><br><span class="line">| JetPack 2000 |      55.00 |</span><br><span class="line">+--------------+------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>NOT支持的取反的操作符有 IN、BETWEEN、EXISTS。</p>
-<h2 id="通配符进行过滤"><a href="#通配符进行过滤" class="headerlink" title="通配符进行过滤"></a>通配符进行过滤</h2><h3 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h3><p>LIKE 是开启通配符匹配的关键字。</p>
-<p>通配符号 % _</p>
-<p>%表示匹配任意字符<br>_表示匹配一个字符</p>
-<p>查询商品名称中包含 anvil<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &apos;%anvil&apos;;</span><br><span class="line">+---------+--------------+</span><br><span class="line">| prod_id | prod_name    |</span><br><span class="line">+---------+--------------+</span><br><span class="line">| ANV01   | .5 ton anvil |</span><br><span class="line">| ANV02   | 1 ton anvil  |</span><br><span class="line">| ANV03   | 2 ton anvil  |</span><br><span class="line">+---------+--------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT prod_id,prod_name FROM products WHERE prod_name LIKE &apos;_ ton anvil&apos;;</span><br><span class="line">+---------+-------------+</span><br><span class="line">| prod_id | prod_name   |</span><br><span class="line">+---------+-------------+</span><br><span class="line">| ANV02   | 1 ton anvil |</span><br><span class="line">| ANV03   | 2 ton anvil |</span><br><span class="line">+---------+-------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>使用通配符的技巧</p>
-<p>1.不要过度使用通配符，会造成数据库运算压力。</p>
-<p>2.在明确需要使用通配符时，除非绝对有必要，否则不要把他们用在搜索模式的开始处。把通配符置于搜索模式的开始处，搜索起来是最慢的。</p>
-<p>3.仔细注意通配符的位置。</p>
-<h2 id="使用正则表达式进行搜索"><a href="#使用正则表达式进行搜索" class="headerlink" title="使用正则表达式进行搜索"></a>使用正则表达式进行搜索</h2><p>MySQL开启使用正则表达式的关键字符是 REGEXP</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_name FROM products WHERE prod_name REGEXP &apos;.000&apos; ORDER BY prod_name;</span><br><span class="line">+--------------+</span><br><span class="line">| prod_name    |</span><br><span class="line">+--------------+</span><br><span class="line">| JetPack 1000 |</span><br><span class="line">| JetPack 2000 |</span><br><span class="line">+--------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="创建计算字段"><a href="#创建计算字段" class="headerlink" title="创建计算字段"></a>创建计算字段</h2><h3 id="计算字段"><a href="#计算字段" class="headerlink" title="计算字段"></a>计算字段</h3><p>计算字段是原先表中不存在的字段，通过使用数据库函数或计算后并重命名的字段。</p>
-<h4 id="拼接字段"><a href="#拼接字段" class="headerlink" title="拼接字段"></a>拼接字段</h4><p>vendors 表中厂商名称和地址是分离的。客户端需要获取一个vend—title的字段。格式是这样的 vend_name (vend_country)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT Concat(Trim(vend_name),&apos; (&apos;,Trim(vend_country),&apos;)&apos;) AS vend_title FROM vendors ORDER BY vend_name;</span><br><span class="line">+-------------------------+</span><br><span class="line">| vend_title              |</span><br><span class="line">+-------------------------+</span><br><span class="line">| ACME (USA)              |</span><br><span class="line">| Anvils R Us (USA)       |</span><br><span class="line">| Furball Inc. (USA)      |</span><br><span class="line">| Jet Set (England)       |</span><br><span class="line">| Jouets Et Ours (France) |</span><br><span class="line">| LT Supplies (USA)       |</span><br><span class="line">+-------------------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>其中函数 Concat 用于链接多个字符串</p>
-<p>Trim函数用于去除字段左右的空格</p>
-<p>AS 关键字用于起别名 alias</p>
-<h4 id="执行算数计算"><a href="#执行算数计算" class="headerlink" title="执行算数计算"></a>执行算数计算</h4><p>在表查询中，需要添加一个字段，这个字段来至于表中2个字段的乘积</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT prod_id,quantity,item_price,quantity*item_price AS expended_price FROM orderitems ORDER BY expended_price;</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">| prod_id | quantity | item_price | expended_price |</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">| SLING   |        1 |       4.49 |           4.49 |</span><br><span class="line">| OL1     |        1 |       8.99 |           8.99 |</span><br><span class="line">| FB      |        1 |      10.00 |          10.00 |</span><br><span class="line">| FB      |        1 |      10.00 |          10.00 |</span><br><span class="line">| ANV03   |        1 |      14.99 |          14.99 |</span><br><span class="line">| ANV02   |        3 |       9.99 |          29.97 |</span><br><span class="line">| TNT2    |        5 |      10.00 |          50.00 |</span><br><span class="line">| JP2000  |        1 |      55.00 |          55.00 |</span><br><span class="line">| ANV01   |       10 |       5.99 |          59.90 |</span><br><span class="line">| FC      |       50 |       2.50 |         125.00 |</span><br><span class="line">| TNT2    |      100 |      10.00 |        1000.00 |</span><br><span class="line">+---------+----------+------------+----------------+</span><br><span class="line">11 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="测试计算"><a href="#测试计算" class="headerlink" title="测试计算"></a>测试计算</h3><p>使用 SELECT 函数 或运算即可</p>
-<p>测试now函数获取当前时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT NOW();</span><br><span class="line">+---------------------+</span><br><span class="line">| NOW()               |</span><br><span class="line">+---------------------+</span><br><span class="line">| 2019-09-03 16:07:01 |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>测试 三乘五<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 3*5;</span><br><span class="line">+-----+</span><br><span class="line">| 3*5 |</span><br><span class="line">+-----+</span><br><span class="line">|  15 |</span><br><span class="line">+-----+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<h2 id="MySQL函数"><a href="#MySQL函数" class="headerlink" title="MySQL函数"></a>MySQL函数</h2><p>sql是通用的，但是函数并不是通用的。以下介绍关于MySQL提供的函数</p>
-<h3 id="文本处理函数"><a href="#文本处理函数" class="headerlink" title="文本处理函数"></a>文本处理函数</h3><p>下面列举一些关于MySQL处理文本的函数</p>
-<p>Left()    返回字符串左边的字符</p>
-<p>length()    返回字符串的长度</p>
-<p>Locate()    找出字符串的一个子串</p>
-<p>Lower()        将字符串转换为小写</p>
-<p>LTrim()        去掉字符串左边的空格</p>
-<p>Right()        返回字符串右边的字符</p>
-<p>RTrim()        去掉字符串右边的空格</p>
-<p>Soundex()    返回字符串的soundex值（用于声音模糊查询）</p>
-<p>SubString()    返回字符串的字符</p>
-<p>Upper()        将字符串转换为大写</p>
-<p>Upper示例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_name,UPPER(vend_name) AS vend_name_upper FROM vendors ORDER BY vend_name;</span><br><span class="line">+----------------+-----------------+</span><br><span class="line">| vend_name      | vend_name_upper |</span><br><span class="line">+----------------+-----------------+</span><br><span class="line">| ACME           | ACME            |</span><br><span class="line">| Anvils R Us    | ANVILS R US     |</span><br><span class="line">| Furball Inc.   | FURBALL INC.    |</span><br><span class="line">| Jet Set        | JET SET         |</span><br><span class="line">| Jouets Et Ours | JOUETS ET OURS  |</span><br><span class="line">| LT Supplies    | LT SUPPLIES     |</span><br><span class="line">+----------------+-----------------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h3><p>关于MySQL处理日期和时间的函数</p>
-<p>AddDate()    添加一个日期</p>
-<p>AddTime()    添加一个时间</p>
-<p>CurDate()    返回当前日期</p>
-<p>CurTime()    返回当前时间</p>
-<p>Date()        返回日期时间的日期部分</p>
-<p>DateDiff()    计算两个日期之差</p>
-<p>Date_Add()    高度灵活的日期运算函数</p>
-<p>Date_Format    返回一个格式化的日期或时间串</p>
-<p>Day()        返回一个日期的天数部分</p>
-<p>DayOfWeek()    对于一个日期返回对应的星期</p>
-<p>Hour()        返回时间中的小时</p>
-<p>Minute()    返回时间中的分钟</p>
-<p>Month()        返回一个日期的月份部分</p>
-<p>Now()        返回当前日期和时间</p>
-<p>Second()    返回一个时间的秒</p>
-<p>Time()        返回日期时间的时间部分</p>
-<p>Year()        返回一个日期的年份部分</p>
-<p>Year示例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT order_date,Year(order_date) AS order_date_year From orders ORDER BY order_date_year;</span><br><span class="line">+---------------------+-----------------+</span><br><span class="line">| order_date          | order_date_year |</span><br><span class="line">+---------------------+-----------------+</span><br><span class="line">| 2005-09-01 00:00:00 |            2005 |</span><br><span class="line">| 2005-09-12 00:00:00 |            2005 |</span><br><span class="line">| 2005-09-30 00:00:00 |            2005 |</span><br><span class="line">| 2005-10-03 00:00:00 |            2005 |</span><br><span class="line">| 2005-10-08 00:00:00 |            2005 |</span><br><span class="line">+---------------------+-----------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="MySQL中的数值处理函数"><a href="#MySQL中的数值处理函数" class="headerlink" title="MySQL中的数值处理函数"></a>MySQL中的数值处理函数</h3><p>Abs()    返回一个数的绝对值</p>
-<p>Cos()    返回一个角度的余弦</p>
-<p>Exp()    返回一个数的指数值</p>
-<p>Mod()    返回操作的余数</p>
-<p>Pi()    返回圆周率</p>
-<p>Rand()    返回一个随机数</p>
-<p>Sin()    返回一个角度的正弦</p>
-<p>Sqrt()    返回一个数的平方根</p>
-<p>Tan()    返回一个角度的正切</p>
-<h2 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h2><h3 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h3><h4 id="AVG"><a href="#AVG" class="headerlink" title="AVG"></a>AVG</h4><p>AVG()    返回某列的平均值</p>
-<p>案例：获取所有商品的平均价格</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT AVG(prod_price) AS prod_price_avg FROM products;</span><br><span class="line">+----------------+</span><br><span class="line">| prod_price_avg |</span><br><span class="line">+----------------+</span><br><span class="line">|      16.133571 |</span><br><span class="line">+----------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h4 id="COUNT"><a href="#COUNT" class="headerlink" title="COUNT"></a>COUNT</h4><p>COUNT()    统计表中的行数，参数（parameter）为*时代表所有列null也会被统计。当指定特定的列时只针对指定的列统计并且null不会计入统计。</p>
-<p>案例：统计商品个数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT COUNT(*) FROM customers;</span><br><span class="line">+----------+</span><br><span class="line">| COUNT(*) |</span><br><span class="line">+----------+</span><br><span class="line">|        5 |</span><br><span class="line">+----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT COUNT(cust_email) FROM customers;</span><br><span class="line">+-------------------+</span><br><span class="line">| COUNT(cust_email) |</span><br><span class="line">+-------------------+</span><br><span class="line">|                 3 |</span><br><span class="line">+-------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h4 id="MAX"><a href="#MAX" class="headerlink" title="MAX"></a>MAX</h4><p>MAX()    获取指定列中的最大值，必须传入指定的列。当遇到null会忽略</p>
-<p>案例：获取商品的最大价格</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT MAX(prod_price) AS max_price FROM products;</span><br><span class="line">+-----------+</span><br><span class="line">| max_price |</span><br><span class="line">+-----------+</span><br><span class="line">|     55.00 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h4 id="MIN"><a href="#MIN" class="headerlink" title="MIN"></a>MIN</h4><p>MIN()    与MAX相反获取列中的最小值。注意事项一致。</p>
-<p>案例：获取商品的最小值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT MIN(prod_price) AS min_price FROM products;</span><br><span class="line">+-----------+</span><br><span class="line">| min_price |</span><br><span class="line">+-----------+</span><br><span class="line">|      2.50 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h4 id="SUN"><a href="#SUN" class="headerlink" title="SUN"></a>SUN</h4><p>SUN()    求和函数。null被忽略</p>
-<p>案例：获取20005订单的商品的数量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT SUM(quantity) AS items_ordered FROM orderitems WHERE order_num = 20005;</span><br><span class="line">+---------------+</span><br><span class="line">| items_ordered |</span><br><span class="line">+---------------+</span><br><span class="line">|            19 |</span><br><span class="line">+---------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="聚集函数中DISTINCT和All"><a href="#聚集函数中DISTINCT和All" class="headerlink" title="聚集函数中DISTINCT和All"></a>聚集函数中DISTINCT和All</h3><p>聚集函数默认取值范围是all（指定列的所有值）我们可以在上面的几个聚集函数中使用DISTINCT去重后进行聚合计算</p>
-<p>上面的5个函数中MAX和MIN使用DISTINCT无意义。因为我们要获取的是最大值或最小值</p>
-<p>DISTINCT不能用于COUNT(*)，因为不允许使用COUNT(DISTINCT)。类似的DISTINCT必须使用列名。</p>
-<p>案例：获取不同商品价格的平均值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT AVG(DISTINCT prod_price) AS avg_price FROM products;</span><br><span class="line">+-----------+</span><br><span class="line">| avg_price |</span><br><span class="line">+-----------+</span><br><span class="line">| 17.780833 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="组合聚合函数"><a href="#组合聚合函数" class="headerlink" title="组合聚合函数"></a>组合聚合函数</h3><p>案例：获取所有商品数量，商品的最大值、最小值以及商品的平均值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT COUNT(*) AS num_item,MAX(prod_price) AS max_price,MIN(prod_price) AS min_price,AVG(prod_price) AS avg_price FROM products;</span><br><span class="line">+----------+-----------+-----------+-----------+</span><br><span class="line">| num_item | max_price | min_price | avg_price |</span><br><span class="line">+----------+-----------+-----------+-----------+</span><br><span class="line">|       14 |     55.00 |      2.50 | 16.133571 |</span><br><span class="line">+----------+-----------+-----------+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h2><h3 id="数据分组"><a href="#数据分组" class="headerlink" title="数据分组"></a>数据分组</h3><p>数据为什么要分组，当遇到求每组每种……的需求时我们可以考虑使用分组。</p>
-<p>使用group by可以实现分组声明。同时下面列举一些关于分组的规定</p>
-<p>1.GROUP BY 分组后，数据将在最后规定的分组上进行汇总。也就是说分组后不能从个别的列中获取数据</p>
-<p>2.GROUP BY子句中列出的每列都必须是检索或有效的表达式（不能是聚集函数）。如果在SELECT中使用表达式，则必须在GROUP BY子句中指定相同的表达式。</p>
-<p>3.除聚集计算外，SELECT语句中的每个列必须在GROUP BY字句中给出</p>
-<p>4.如果分组中存在null值，则将null作为一个分组返回。如果列中存在多行null值，它们将分为一组。</p>
-<p>5.GROUP BY 语法顺序在 WHERE之后ORDER BY之前。</p>
-<p>案例：获取每个厂商的商品个数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,COUNT(*) FROM products GROUP BY vend_id ORDER BY vend_id;</span><br><span class="line">+---------+----------+</span><br><span class="line">| vend_id | COUNT(*) |</span><br><span class="line">+---------+----------+</span><br><span class="line">|    1001 |        3 |</span><br><span class="line">|    1002 |        2 |</span><br><span class="line">|    1003 |        7 |</span><br><span class="line">|    1005 |        2 |</span><br><span class="line">+---------+----------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="过滤分组"><a href="#过滤分组" class="headerlink" title="过滤分组"></a>过滤分组</h3><p>就是在分组的前提下过滤数据，可使用HAVING完成过滤</p>
-<p>案例：获取每个厂商商品数量，厂商商品数量小于2过滤掉。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,COUNT(*) AS prod_num FROM products GROUP BY vend_id HAVING prod_num &gt;=2;</span><br><span class="line">+---------+----------+</span><br><span class="line">| vend_id | prod_num |</span><br><span class="line">+---------+----------+</span><br><span class="line">|    1001 |        3 |</span><br><span class="line">|    1002 |        2 |</span><br><span class="line">|    1003 |        7 |</span><br><span class="line">|    1005 |        2 |</span><br><span class="line">+---------+----------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="过滤分组-排序"><a href="#过滤分组-排序" class="headerlink" title="过滤分组+排序"></a>过滤分组+排序</h3><p>案例：获取每个厂商商品数量，厂商商品数量小于2过滤掉。最后按商品数量的升序排列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,COUNT(*) AS prod_num FROM products GROUP BY vend_id HAVING prod_num &gt;=2 ORDER BY prod_num;</span><br><span class="line">+---------+----------+</span><br><span class="line">| vend_id | prod_num |</span><br><span class="line">+---------+----------+</span><br><span class="line">|    1002 |        2 |</span><br><span class="line">|    1005 |        2 |</span><br><span class="line">|    1001 |        3 |</span><br><span class="line">|    1003 |        7 |</span><br><span class="line">+---------+----------+</span><br><span class="line">4 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="行过滤-分组过滤-排序"><a href="#行过滤-分组过滤-排序" class="headerlink" title="行过滤+分组过滤+排序"></a>行过滤+分组过滤+排序</h3><p>案例：获取每个厂商商品数量，过滤掉商品价格小于10的商品，厂商商品数量小于2也过滤掉。最后按商品数量的升序排列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,COUNT(*) AS prod_num FROM products WHERE prod_price &gt;=10  GROUP BY vend_id HAVING prod_num &gt;=2 ORDER BY prod_num;</span><br><span class="line">+---------+----------+</span><br><span class="line">| vend_id | prod_num |</span><br><span class="line">+---------+----------+</span><br><span class="line">|    1005 |        2 |</span><br><span class="line">|    1003 |        4 |</span><br><span class="line">+---------+----------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="WHERE-GROUP-BY-HAVING-ORDER-BY-各自的作用"><a href="#WHERE-GROUP-BY-HAVING-ORDER-BY-各自的作用" class="headerlink" title="WHERE GROUP BY HAVING ORDER BY 各自的作用"></a>WHERE GROUP BY HAVING ORDER BY 各自的作用</h3><p>WHERE     用于行过滤</p>
-<p>GROUP BY     用于分组说明</p>
-<p>HAVING         用于分组过滤</p>
-<p>ORDER BY     用于输出排序</p>
-<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>首先子查询是MySQL4.1引入的特性。</p>
-<p>子查询可以组合使用</p>
-<p>子查询的效率不高，尽量少用</p>
-<p>下面列举2个例子</p>
-<p>1.列出订购物品TNT2的所有客户信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mysql&gt; SELECT cust_name,cust_contact FROM customers WHERE cust_id IN (SELECT cust_id FROM orders WHERE order_num IN (SELECT order_num FROM orderitems WHERE prod_id = &apos;TNT2&apos;))</span><br><span class="line">    -&gt; ;</span><br><span class="line">+----------------+--------------+</span><br><span class="line">| cust_name      | cust_contact |</span><br><span class="line">+----------------+--------------+</span><br><span class="line">| Coyote Inc.    | Y Lee        |</span><br><span class="line">| Yosemite Place | Y Sam        |</span><br><span class="line">+----------------+--------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>2.获取customers表中每个顾客的订单总数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT cust_name,cust_state,(SELECT COUNT(*) FROM orders WHERE customers.cust_id = orders.cust_id) AS orders FROM customers ORDER BY cust_name;</span><br><span class="line">+----------------+------------+--------+</span><br><span class="line">| cust_name      | cust_state | orders |</span><br><span class="line">+----------------+------------+--------+</span><br><span class="line">| Coyote Inc.    | MI         |      2 |</span><br><span class="line">| E Fudd         | IL         |      1 |</span><br><span class="line">| Mouse House    | OH         |      0 |</span><br><span class="line">| Wascals        | IN         |      1 |</span><br><span class="line">| Yosemite Place | AZ         |      1 |</span><br><span class="line">+----------------+------------+--------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>使用子查询的诀窍是分步骤循序渐进的运行（编写）sql</p>
-<h2 id="联结表"><a href="#联结表" class="headerlink" title="联结表"></a>联结表</h2><p>联结表就是将一些关系表联结起来，获取数据。</p>
-<h3 id="关系表"><a href="#关系表" class="headerlink" title="关系表"></a>关系表</h3><p>关系表简单说就是2张表之间存在关联性。它具有以下优点</p>
-<p>1.因为每张表都是根据其特性建立的，所以它不允许出现重复的字段。复用性强</p>
-<p>2.可以细粒度的利用字段进行查询过滤</p>
-<p>3.操作简单，一次操作多次引用</p>
-<p>联结案例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_name,prod_name,prod_price FROM vendors,products WHERE vendors.vend_id = products.vend_id ORDER BY vend_name,prod_name;</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| vend_name   | prod_name      | prod_price |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| ACME        | Bird seed      |      10.00 |</span><br><span class="line">| ACME        | Carrots        |       2.50 |</span><br><span class="line">| ACME        | Detonator      |      13.00 |</span><br><span class="line">| ACME        | Safe           |      50.00 |</span><br><span class="line">| ACME        | Sling          |       4.49 |</span><br><span class="line">| ACME        | TNT (1 stick)  |       2.50 |</span><br><span class="line">| ACME        | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Anvils R Us | .5 ton anvil   |       5.99 |</span><br><span class="line">| Anvils R Us | 1 ton anvil    |       9.99 |</span><br><span class="line">| Anvils R Us | 2 ton anvil    |      14.99 |</span><br><span class="line">| Jet Set     | JetPack 1000   |      35.00 |</span><br><span class="line">| Jet Set     | JetPack 2000   |      55.00 |</span><br><span class="line">| LT Supplies | Fuses          |       3.42 |</span><br><span class="line">| LT Supplies | Oil can        |       8.99 |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="内联结"><a href="#内联结" class="headerlink" title="内联结"></a>内联结</h3><h4 id="笛卡尔集"><a href="#笛卡尔集" class="headerlink" title="笛卡尔集"></a>笛卡尔集</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_name,prod_name,prod_price FROM vendors,products ORDER BY vend_name,prod_name;</span><br><span class="line">+----------------+----------------+------------+</span><br><span class="line">| vend_name      | prod_name      | prod_price |</span><br><span class="line">+----------------+----------------+------------+</span><br><span class="line">| ACME           | .5 ton anvil   |       5.99 |</span><br><span class="line">| ACME           | 1 ton anvil    |       9.99 |</span><br><span class="line">| ACME           | 2 ton anvil    |      14.99 |</span><br><span class="line">| ACME           | Bird seed      |      10.00 |</span><br><span class="line">| ACME           | Carrots        |       2.50 |</span><br><span class="line">| ACME           | Detonator      |      13.00 |</span><br><span class="line">| ACME           | Fuses          |       3.42 |</span><br><span class="line">| ACME           | JetPack 1000   |      35.00 |</span><br><span class="line">| ACME           | JetPack 2000   |      55.00 |</span><br><span class="line">| ACME           | Oil can        |       8.99 |</span><br><span class="line">| ACME           | Safe           |      50.00 |</span><br><span class="line">| ACME           | Sling          |       4.49 |</span><br><span class="line">| ACME           | TNT (1 stick)  |       2.50 |</span><br><span class="line">| ACME           | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Anvils R Us    | .5 ton anvil   |       5.99 |</span><br><span class="line">| Anvils R Us    | 1 ton anvil    |       9.99 |</span><br><span class="line">| Anvils R Us    | 2 ton anvil    |      14.99 |</span><br><span class="line">| Anvils R Us    | Bird seed      |      10.00 |</span><br><span class="line">| Anvils R Us    | Carrots        |       2.50 |</span><br><span class="line">| Anvils R Us    | Detonator      |      13.00 |</span><br><span class="line">| Anvils R Us    | Fuses          |       3.42 |</span><br><span class="line">| Anvils R Us    | JetPack 1000   |      35.00 |</span><br><span class="line">| Anvils R Us    | JetPack 2000   |      55.00 |</span><br><span class="line">| Anvils R Us    | Oil can        |       8.99 |</span><br><span class="line">| Anvils R Us    | Safe           |      50.00 |</span><br><span class="line">| Anvils R Us    | Sling          |       4.49 |</span><br><span class="line">| Anvils R Us    | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Anvils R Us    | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Furball Inc.   | .5 ton anvil   |       5.99 |</span><br><span class="line">| Furball Inc.   | 1 ton anvil    |       9.99 |</span><br><span class="line">| Furball Inc.   | 2 ton anvil    |      14.99 |</span><br><span class="line">| Furball Inc.   | Bird seed      |      10.00 |</span><br><span class="line">| Furball Inc.   | Carrots        |       2.50 |</span><br><span class="line">| Furball Inc.   | Detonator      |      13.00 |</span><br><span class="line">| Furball Inc.   | Fuses          |       3.42 |</span><br><span class="line">| Furball Inc.   | JetPack 1000   |      35.00 |</span><br><span class="line">| Furball Inc.   | JetPack 2000   |      55.00 |</span><br><span class="line">| Furball Inc.   | Oil can        |       8.99 |</span><br><span class="line">| Furball Inc.   | Safe           |      50.00 |</span><br><span class="line">| Furball Inc.   | Sling          |       4.49 |</span><br><span class="line">| Furball Inc.   | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Furball Inc.   | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Jet Set        | .5 ton anvil   |       5.99 |</span><br><span class="line">| Jet Set        | 1 ton anvil    |       9.99 |</span><br><span class="line">| Jet Set        | 2 ton anvil    |      14.99 |</span><br><span class="line">| Jet Set        | Bird seed      |      10.00 |</span><br><span class="line">| Jet Set        | Carrots        |       2.50 |</span><br><span class="line">| Jet Set        | Detonator      |      13.00 |</span><br><span class="line">| Jet Set        | Fuses          |       3.42 |</span><br><span class="line">| Jet Set        | JetPack 1000   |      35.00 |</span><br><span class="line">| Jet Set        | JetPack 2000   |      55.00 |</span><br><span class="line">| Jet Set        | Oil can        |       8.99 |</span><br><span class="line">| Jet Set        | Safe           |      50.00 |</span><br><span class="line">| Jet Set        | Sling          |       4.49 |</span><br><span class="line">| Jet Set        | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Jet Set        | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Jouets Et Ours | .5 ton anvil   |       5.99 |</span><br><span class="line">| Jouets Et Ours | 1 ton anvil    |       9.99 |</span><br><span class="line">| Jouets Et Ours | 2 ton anvil    |      14.99 |</span><br><span class="line">| Jouets Et Ours | Bird seed      |      10.00 |</span><br><span class="line">| Jouets Et Ours | Carrots        |       2.50 |</span><br><span class="line">| Jouets Et Ours | Detonator      |      13.00 |</span><br><span class="line">| Jouets Et Ours | Fuses          |       3.42 |</span><br><span class="line">| Jouets Et Ours | JetPack 1000   |      35.00 |</span><br><span class="line">| Jouets Et Ours | JetPack 2000   |      55.00 |</span><br><span class="line">| Jouets Et Ours | Oil can        |       8.99 |</span><br><span class="line">| Jouets Et Ours | Safe           |      50.00 |</span><br><span class="line">| Jouets Et Ours | Sling          |       4.49 |</span><br><span class="line">| Jouets Et Ours | TNT (1 stick)  |       2.50 |</span><br><span class="line">| Jouets Et Ours | TNT (5 sticks) |      10.00 |</span><br><span class="line">| LT Supplies    | .5 ton anvil   |       5.99 |</span><br><span class="line">| LT Supplies    | 1 ton anvil    |       9.99 |</span><br><span class="line">| LT Supplies    | 2 ton anvil    |      14.99 |</span><br><span class="line">| LT Supplies    | Bird seed      |      10.00 |</span><br><span class="line">| LT Supplies    | Carrots        |       2.50 |</span><br><span class="line">| LT Supplies    | Detonator      |      13.00 |</span><br><span class="line">| LT Supplies    | Fuses          |       3.42 |</span><br><span class="line">| LT Supplies    | JetPack 1000   |      35.00 |</span><br><span class="line">| LT Supplies    | JetPack 2000   |      55.00 |</span><br><span class="line">| LT Supplies    | Oil can        |       8.99 |</span><br><span class="line">| LT Supplies    | Safe           |      50.00 |</span><br><span class="line">| LT Supplies    | Sling          |       4.49 |</span><br><span class="line">| LT Supplies    | TNT (1 stick)  |       2.50 |</span><br><span class="line">| LT Supplies    | TNT (5 sticks) |      10.00 |</span><br><span class="line">+----------------+----------------+------------+</span><br><span class="line">84 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h4 id="inner-join-ANSI-SQL语法"><a href="#inner-join-ANSI-SQL语法" class="headerlink" title="inner join(ANSI SQL语法)"></a>inner join(ANSI SQL语法)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_name,prod_name,prod_price FROM vendors INNER JOIN products ON vendors.vend_id = products.vend_id;</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| vend_name   | prod_name      | prod_price |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">| Anvils R Us | .5 ton anvil   |       5.99 |</span><br><span class="line">| Anvils R Us | 1 ton anvil    |       9.99 |</span><br><span class="line">| Anvils R Us | 2 ton anvil    |      14.99 |</span><br><span class="line">| LT Supplies | Fuses          |       3.42 |</span><br><span class="line">| LT Supplies | Oil can        |       8.99 |</span><br><span class="line">| ACME        | Detonator      |      13.00 |</span><br><span class="line">| ACME        | Bird seed      |      10.00 |</span><br><span class="line">| ACME        | Carrots        |       2.50 |</span><br><span class="line">| ACME        | Safe           |      50.00 |</span><br><span class="line">| ACME        | Sling          |       4.49 |</span><br><span class="line">| ACME        | TNT (1 stick)  |       2.50 |</span><br><span class="line">| ACME        | TNT (5 sticks) |      10.00 |</span><br><span class="line">| Jet Set     | JetPack 1000   |      35.00 |</span><br><span class="line">| Jet Set     | JetPack 2000   |      55.00 |</span><br><span class="line">+-------------+----------------+------------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>当两个表中vend_id都同时存在并对应的数据</p>
-<h3 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h3><p>联结会影响数据库性能，所以使用联结时要尽量避免出现不必要的表联结。</p>
-<h2 id="高级联结"><a href="#高级联结" class="headerlink" title="高级联结"></a>高级联结</h2><h3 id="不同类型的联结"><a href="#不同类型的联结" class="headerlink" title="不同类型的联结"></a>不同类型的联结</h3><h4 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h4><p>单个表使用别名被联结后获取数据的情况属于自联结</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT p1.prod_id,p1.prod_name FROM products as p1 INNER JOIN products as p2 ON p1.vend_id = p2.vend_id WHERE p2.prod_id = &apos;DTNTR&apos; ORDER BY p1.prod_name;</span><br><span class="line">+---------+----------------+</span><br><span class="line">| prod_id | prod_name      |</span><br><span class="line">+---------+----------------+</span><br><span class="line">| FB      | Bird seed      |</span><br><span class="line">| FC      | Carrots        |</span><br><span class="line">| DTNTR   | Detonator      |</span><br><span class="line">| SAFE    | Safe           |</span><br><span class="line">| SLING   | Sling          |</span><br><span class="line">| TNT1    | TNT (1 stick)  |</span><br><span class="line">| TNT2    | TNT (5 sticks) |</span><br><span class="line">+---------+----------------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>自联结的好处是，它可以替代子查询完成相同的操作。并且比子查询性能要高</p>
-<h4 id="自然联结"><a href="#自然联结" class="headerlink" title="自然联结"></a>自然联结</h4><p>明确联结后检索的列，并且不重复的的情况属于自然联结</p>
-<p>之前的大多数联结案例都属于自然联结</p>
-<h4 id="外部联结"><a href="#外部联结" class="headerlink" title="外部联结"></a>外部联结</h4><p>外部联结分为做联结和右联结</p>
-<h3 id="使用联结的注意事项"><a href="#使用联结的注意事项" class="headerlink" title="使用联结的注意事项"></a>使用联结的注意事项</h3><p>1.联结的时候，联结类型要考虑清楚</p>
-<p>2.联结条件很重要，所以也需要深思。不提供条件的话会出现笛卡尔集</p>
-<h2 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h2><p>组合查询就是将多条sql查询组合后使用。前提是这两条sql语句检索的列必须一致。</p>
-<h3 id="创建组合查询"><a href="#创建组合查询" class="headerlink" title="创建组合查询"></a>创建组合查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;=5 UNION SELECT vend_id,prod_id,prod_price FROM products WHERE vend_id IN (1001,1002);</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">| vend_id | prod_id | prod_price |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">|    1003 | FC      |       2.50 |</span><br><span class="line">|    1002 | FU1     |       3.42 |</span><br><span class="line">|    1003 | SLING   |       4.49 |</span><br><span class="line">|    1003 | TNT1    |       2.50 |</span><br><span class="line">|    1001 | ANV01   |       5.99 |</span><br><span class="line">|    1001 | ANV02   |       9.99 |</span><br><span class="line">|    1001 | ANV03   |      14.99 |</span><br><span class="line">|    1002 | OL1     |       8.99 |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>组合查询使用注意事项</p>
-<ol>
-<li><p>组合查询中SELECT最少为2条</p>
-</li>
-<li><p>组合查询中每条查询语句中检索的列必须相同，顺序可以不一样。数据类型是数据库支持的类型</p>
-</li>
-<li><p>组合查询ORDER by要用在最后.</p>
-</li>
-<li><p>组合查询会自动过滤重复的数据。如果不想被过滤可以使用 union all 如下面的例子</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT vend_id,prod_id,prod_price FROM products WHERE prod_price &lt;=5 UNION ALL SELECT vend_id,prod_id,prod_price FROM products WHERE vend_id IN (1001,1002);</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">| vend_id | prod_id | prod_price |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">|    1003 | FC      |       2.50 |</span><br><span class="line">|    1002 | FU1     |       3.42 |</span><br><span class="line">|    1003 | SLING   |       4.49 |</span><br><span class="line">|    1003 | TNT1    |       2.50 |</span><br><span class="line">|    1001 | ANV01   |       5.99 |</span><br><span class="line">|    1001 | ANV02   |       9.99 |</span><br><span class="line">|    1001 | ANV03   |      14.99 |</span><br><span class="line">|    1002 | FU1     |       3.42 |</span><br><span class="line">|    1002 | OL1     |       8.99 |</span><br><span class="line">+---------+---------+------------+</span><br><span class="line">9 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="全文本搜索"><a href="#全文本搜索" class="headerlink" title="全文本搜索"></a>全文本搜索</h2><p>由于本章内容myISAM 引擎不支持中文所以不做笔记介绍</p>
-<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><h3 id="插入完整一行"><a href="#插入完整一行" class="headerlink" title="插入完整一行"></a>插入完整一行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO customers VALUES(null,&apos;Pep E. LaPew&apos;,&apos;100 Main Street&apos;,&apos;Los Angeles&apos;,&apos;CA&apos;,&apos;90046&apos;,&apos;USA&apos;,null,null);</span><br><span class="line">Query OK, 1 row affected (0.04 sec)</span><br></pre></td></tr></table></figure>
-<h4 id="提高性能降低insert的优先级"><a href="#提高性能降低insert的优先级" class="headerlink" title="提高性能降低insert的优先级"></a>提高性能降低insert的优先级</h4><p>如果数据检索是最重要的，在insert into 将加入 low_priority可降低insert语句的优先级。这样别的用户的查询语句就有可能被优先执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert low_priority into</span><br></pre></td></tr></table></figure>
-<h3 id="插入多个行"><a href="#插入多个行" class="headerlink" title="插入多个行"></a>插入多个行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO customers(cust_name,cust_address,cust_city,cust_state,cust_zip,cust_country) values(&apos;Pep e. LaPew&apos;,&apos;100 Main Street&apos;,&apos;Los Angeles&apos;,&apos;CA&apos;,&apos;90046&apos;,&apos;USA&apos;),(&apos;M.martian&apos;,&apos;42 Galaxy Way&apos;,&apos;New York&apos;,&apos;Ny&apos;,&apos;11213&apos;,&apos;USA&apos;);</span><br><span class="line">Query OK, 2 rows affected (0.06 sec)</span><br><span class="line">Records: 2  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
-<h3 id="插入检索后的行"><a href="#插入检索后的行" class="headerlink" title="插入检索后的行"></a>插入检索后的行</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> customers(</span><br><span class="line">	cust_id,</span><br><span class="line">	cust_contact,</span><br><span class="line">	cust_email,</span><br><span class="line">	cust_name,</span><br><span class="line">	cust_address,</span><br><span class="line">	cust_city,</span><br><span class="line">	cust_country)</span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">	cust_id,</span><br><span class="line">	cust_contact,</span><br><span class="line">	cust_email,</span><br><span class="line">	cust_name,</span><br><span class="line">	cust_address,</span><br><span class="line">	cust_city,cust_country </span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">	custnew;</span><br></pre></td></tr></table></figure>
-<h3 id="插入时的注意事项"><a href="#插入时的注意事项" class="headerlink" title="插入时的注意事项"></a>插入时的注意事项</h3><ol>
-<li>插入数据时应该明确指定要插入的列</li>
-</ol>
-<h2 id="更新和删除数据"><a href="#更新和删除数据" class="headerlink" title="更新和删除数据"></a>更新和删除数据</h2><h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; UPDATE customers SET cust_email = &apos;elmer@fudd.com&apos; WHERE cust_id = 10005;</span><br><span class="line">Query OK, 1 row affected (0.09 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br></pre></td></tr></table></figure>
-<h3 id="IGNORE"><a href="#IGNORE" class="headerlink" title="IGNORE"></a>IGNORE</h3><p>如果update更新多行，并且更新中如果一行或多行出现错误时，会取消整个update操作。使用ignore可以忽略错误行完成修改更新。(谨慎使用，个人认为它打破了sql执行时数据的一致性)</p>
-<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DELETE FROM customers Where cust_id = 10006;</span><br><span class="line">Query OK, 1 row affected (0.06 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="删除表内所有数据"><a href="#删除表内所有数据" class="headerlink" title="删除表内所有数据"></a>删除表内所有数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; truncate table custnew1;</span><br><span class="line">Query OK, 0 rows affected (0.24 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="update-和-delete使用注意事项"><a href="#update-和-delete使用注意事项" class="headerlink" title="update 和 delete使用注意事项"></a>update 和 delete使用注意事项</h3><ol>
-<li><p>更新或删除数据时要考虑where条件，除非操作是针对全表内容的</p>
-</li>
-<li><p>更新或删除的where条件，操作前要在SELECT 中查询并确认</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2276,7 +2042,7 @@
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
