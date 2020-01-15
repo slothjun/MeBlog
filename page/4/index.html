@@ -663,6 +663,163 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
+<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
+<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
+<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
+<p>​    动态加载用户的功能模块</p>
+<p>后端</p>
+<p>​    根据用户权限使用API</p>
+<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
+<p>​        问题：数据如何存储便于后期的使用与管理。</p>
+<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
+<p>​    数据传输</p>
+<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
+<p>​        方案：认证+校验</p>
+<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
+<p>​            校验 ：</p>
+<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
+<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
+<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
+<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
+<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/web_认证机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -970,7 +1127,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/modelAttribute注解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -990,7 +1147,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
+                <a href="/MeBlog/2019/04/29/modelAttribute注解/" class="post-title-link" itemprop="url">modelAttribute注解</a>
               
             
           </h1>
@@ -1052,26 +1209,16 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
       
         
           
-            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
-<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
-<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
-<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
-<p>​    动态加载用户的功能模块</p>
-<p>后端</p>
-<p>​    根据用户权限使用API</p>
-<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
-<p>​        问题：数据如何存储便于后期的使用与管理。</p>
-<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
-<p>​    数据传输</p>
-<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
-<p>​        方案：认证+校验</p>
-<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
-<p>​            校验 ：</p>
-<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
-<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
-<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
-<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
-<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
+            <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
+
+1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
+
+2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
+</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基础controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
+
           
         
       
@@ -1324,6 +1471,158 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
+<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
+<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
+<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
+<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
+<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
+<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
+<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
+<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
+<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
+<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
+<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
+<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/python-入门篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1482,7 +1781,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/modelAttribute注解/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-用户用户组篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -1502,7 +1801,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/modelAttribute注解/" class="post-title-link" itemprop="url">modelAttribute注解</a>
+                <a href="/MeBlog/2019/04/29/Linux-用户用户组篇/" class="post-title-link" itemprop="url">Linux-用户用户组篇</a>
               
             
           </h1>
@@ -1564,454 +1863,49 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
       
         
           
-            <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
-
-1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
-
-2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
-</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>基础controller</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
-<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
-<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
-<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
-<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
-<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
-<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
-<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
-<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
-<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
-<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
-<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
-<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-软件管理篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/Linux-软件管理篇/" class="post-title-link" itemprop="url">Linux-软件管理篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="软件包管理简介"><a href="#软件包管理简介" class="headerlink" title="软件包管理简介"></a>软件包管理简介</h2><p><img src="http://39.104.171.29/image/1554165969408.png" alt="1554165969408"></p>
-<p><img src="http://39.104.171.29/image/1554166782008.png" alt="1554166782008"></p>
-<p><img src="http://39.104.171.29/image/1554167202716.png" alt="1554167202716"></p>
-<p><img src="http://39.104.171.29/image/1554167710627.png" alt="1554167710627"></p>
-<p><img src="http://39.104.171.29/image/1554167773662.png" alt="1554167773662"></p>
-<p>总结：Linux 软件安装包分为</p>
-<p>​    源码包安装</p>
-<p>​        优点：可控性高，可以自己查看或修改程序的源代码。安装后软件的执行效率高，比厂商提供的二进制包高5%</p>
-<p>​        缺点：需要自己手动编译源码后才可安装，操作难度高。</p>
-<p>​    二进制包安装</p>
-<p>​        优点：安装速度块，由于使用的是厂商编译过的二进制包，所有省去了自己对源码的手动编译。直接安装即可。</p>
-<p>​        缺点：不可以直接查看程序的源代码。安装后软件的执行效率比自己手动编译的的软件包慢5%。并且安装软件存在依赖性问题</p>
-<p>​    脚本包安装</p>
-<p>​        优点：脚本包安装类似与Windows下的软件安装界面。它是源码包安装和二进制包安装的中和方式。运行脚本后，脚本会帮助你去编译软件的源代码并安装。</p>
-<p>​        缺点：单独编写软件脚本</p>
-<h2 id="RPM-包管理（二进制包）"><a href="#RPM-包管理（二进制包）" class="headerlink" title="RPM 包管理（二进制包）"></a>RPM 包管理（二进制包）</h2><h3 id="rpm的命名规则"><a href="#rpm的命名规则" class="headerlink" title="rpm的命名规则"></a>rpm的命名规则</h3><p><img src="http://39.104.171.29/image/1554169009132.png" alt="1554169009132"></p>
-<p>包名或包全名例子</p>
-<p>​    httpd-2.2.15-15.el6.centos.1.i686.rpm</p>
-<p>​    包名 : httpd</p>
-<p>​    包全名 : httpd-2.2.15-15.el6.centos.1.i686.rpm</p>
-<h3 id="rpm的依赖性"><a href="#rpm的依赖性" class="headerlink" title="rpm的依赖性"></a>rpm的依赖性</h3><p><img src="http://39.104.171.29/image/1554170327297.png" alt="1554170327297"></p>
-<p>总结：</p>
-<p>​    rpm包的命名规则：</p>
-<p>​    软件包名-软件版本-软件的发布次数.适合的Linux平台.适合的硬件平台.rpm包扩展名</p>
-<p>​    rpm依赖性：</p>
-<p>​        树形依赖 ：如安装软件包a时发现需要安装软件包b,而安装软件包b又需要软件包c.</p>
-<p>解决上述的树形依赖问题的方法：先安装软件包c然后依次安装软件包b,软件包a</p>
-<p>​        环形依赖：如安装软件包a时发现需要安装软件包b,而安装软件包b需要安装软件包c,但是安装软件包c却需要软件包a,这样就形成了环形的依赖结构。</p>
-<p>环形依赖解决方案：同时安装包a,b,c即可解决此问题。</p>
-<p>​        模块依赖：模块依赖和软件包依赖不同之处在于，模块所依赖的包，有可能不在系统安装包内。</p>
-<p>解决方案：进入 <a href="http://www.rpmfind.net" target="_blank" rel="noopener">www.rpmfind.net</a> 搜索需要的模块包</p>
-<h3 id="包全名和包名的使用介绍"><a href="#包全名和包名的使用介绍" class="headerlink" title="包全名和包名的使用介绍"></a>包全名和包名的使用介绍</h3><p><img src="http://39.104.171.29/image/1554172185949.png" alt="1554172185949"></p>
-<h3 id="rpm安装升级卸载"><a href="#rpm安装升级卸载" class="headerlink" title="rpm安装升级卸载"></a>rpm安装升级卸载</h3><p><img src="http://39.104.171.29/image/1554172274777.png" alt="1554172274777"></p>
-<p><img src="http://39.104.171.29/image/1554172740075.png" alt="1554172740075"></p>
-<p><img src="http://39.104.171.29/image/1554172783240.png" alt="1554172783240"></p>
-<p>总结：</p>
-<ol>
-<li><p>什么时候使用包全名或包名</p>
-<ol>
-<li>包全名，在软件没有安装并需要使用的情况下。如软件的安装或更新</li>
-<li>包名，在软件已经被安装的情况下。如软件的卸载</li>
-</ol>
-</li>
-<li><p>rpm实现包安装</p>
-<p>在进入安装包目录的情况下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh 需要安装的包全名（need install package name）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>rpm实现包升级</p>
-<p>在进入安装包目录的情况下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh 需要更新的包全名（need update package name）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>rpm实现包卸载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e 需要卸载的包名 （need deleter package name）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="rpm查询"><a href="#rpm查询" class="headerlink" title="rpm查询"></a>rpm查询</h3><h4 id="查询是否安装"><a href="#查询是否安装" class="headerlink" title="查询是否安装"></a>查询是否安装</h4><p><img src="http://39.104.171.29/image/1554173640238.png" alt="1554173640238"></p>
-<h4 id="安装包的详细信息查询"><a href="#安装包的详细信息查询" class="headerlink" title="安装包的详细信息查询"></a>安装包的详细信息查询</h4><p><img src="http://39.104.171.29/image/1554174085399.png" alt="1554174085399"></p>
-<h4 id="RPM的安装位置查询"><a href="#RPM的安装位置查询" class="headerlink" title="RPM的安装位置查询"></a>RPM的安装位置查询</h4><p><img src="http://39.104.171.29/image/1554174169009.png" alt="1554174169009"></p>
-<h4 id="根据文件名查询rpm包"><a href="#根据文件名查询rpm包" class="headerlink" title="根据文件名查询rpm包"></a>根据文件名查询rpm包</h4><p><img src="http://39.104.171.29/image/1554174656232.png" alt="1554174656232"></p>
-<h4 id="查询安装包的依赖性"><a href="#查询安装包的依赖性" class="headerlink" title="查询安装包的依赖性"></a>查询安装包的依赖性</h4><p><img src="http://39.104.171.29/image/1554174809684.png" alt="1554174809684"></p>
-<p>总结：</p>
-<p>rpm查询</p>
-<ol>
-<li><p>查询是否安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -q 包名 （package name）</span><br></pre></td></tr></table></figure>
-<p>系统已经安装的所有安装包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="2">
-<li><p>安装包的详细信息查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qi 包名 （package name）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>RPM的安装位置查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ql 包名 （package name）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="4">
-<li><p>获取给定文件名属于哪个RPM</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qf 文件名 （file name）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="5">
-<li><p>查询RPM的依赖性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qR 包名（package name）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="rpm包校验"><a href="#rpm包校验" class="headerlink" title="rpm包校验"></a>rpm包校验</h3><p><img src="http://39.104.171.29/image/1554175762509.png" alt="1554175762509"></p>
-<p><img src="http://39.104.171.29/image/1554175960568.png" alt="1554175960568"></p>
-<p><img src="http://39.104.171.29/image/1554176086475.png" alt="1554176086475"></p>
-<h3 id="rpm包提取"><a href="#rpm包提取" class="headerlink" title="rpm包提取"></a>rpm包提取</h3><p><img src="http://39.104.171.29/image/1554176212571.png" alt="1554176212571"></p>
-<p><img src="http://39.104.171.29/image/1554176347181.png" alt="1554176347181"></p>
-<p>总结：</p>
-<p>rpm 包校验</p>
-<p>rpm 包提取</p>
-<p>/usr/bin/ls  文件提取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm2cpio /mnt/cdrom/Packages/coreutils-8.22-23.el7.x86_64.rpm | cpio -idv ./usr/bin/ls</span><br></pre></td></tr></table></figure>
-<h3 id="yum在线管理-IP地址配置"><a href="#yum在线管理-IP地址配置" class="headerlink" title="yum在线管理-IP地址配置"></a>yum在线管理-IP地址配置</h3><p>使用 red heat 的setup命令</p>
-<p>本人使用的是contos7，发现使用setup后没有网络配置项，在网上查他们说需要使用yum去安装setup的一些功能项。（未做测试）</p>
-<p>那我是怎么配置使自己的系统可以访问外网的呢？我直接修改改network 的配置文件（/etc/sysconfig/network-scripts/ifcfg-ens33）文件，将ONBOOT 设为 true，然后就可以上网了。</p>
-<h3 id="网络yum源"><a href="#网络yum源" class="headerlink" title="网络yum源"></a>网络yum源</h3><p>本人安装的contos已经默认安装并配置了yum源，下面是有关yum源的一些配置属性的解释</p>
-<p><img src="http://39.104.171.29/image/1554189939317.png" alt="1554189939317"></p>
-<p>使用镜像（mirror）</p>
-<ol>
-<li>下载镜像repo配置文件 <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-7.repo</a> </li>
-<li>将原repo文件备份为 repo.backup</li>
-<li>将下载好的Centos-7.repo 移动到/etc/yum.repos.d/下并改名为CentOS-Base.repo</li>
-</ol>
-<p>总结：</p>
-<p>​    1.系统上网配置，使用setup 下的网络配置，配置ip 子网掩码 网关 CSDN 保存即可，设置后记得修改network 的网络配置文件，将ONBOOT 设为true， 之后service network restart 重启即可，然后使用ping命令测试系统是否联网</p>
-<p>​    2.yum 配置使用contos默认即可</p>
-<p>​    3.yum mirror设置，上述配置即可</p>
-<h3 id="yum命令"><a href="#yum命令" class="headerlink" title="yum命令"></a>yum命令</h3><h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p><img src="http://39.104.171.29/image/1554192514578.png" alt="1554192514578"></p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><img src="http://39.104.171.29/image/1554194593714.png" alt="1554194593714"></p>
-<p>​    注意 当更新时，没有指定包名，yum会更新整个系统中所有软件甚至内核也会被升级。</p>
-<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><p><img src="http://39.104.171.29/image/1554194899289.png" alt="1554194899289"></p>
-<h4 id="yum软件组使用"><a href="#yum软件组使用" class="headerlink" title="yum软件组使用"></a>yum软件组使用</h4><p><img src="http://39.104.171.29/image/1554195154103.png" alt="1554195154103"></p>
-<p>总结：</p>
-<p>​    系统安装原则：最小化安装，用需要用什么软件，就安装什么软件。最好不要卸载软件。更新软件时要注意指定软件名，不然就会更新整个系统（包括内核）。安装时-y 命令要在安装熟练时使用，一般慎用</p>
-<h3 id="yum光盘源搭建"><a href="#yum光盘源搭建" class="headerlink" title="yum光盘源搭建"></a>yum光盘源搭建</h3><p><img src="http://39.104.171.29/image/1554195811036.png" alt="1554195811036"><img src="http://39.104.171.29/image/1554196150392.png" alt="1554196150392"></p>
-<h2 id="源码包安装管理"><a href="#源码包安装管理" class="headerlink" title="源码包安装管理"></a>源码包安装管理</h2><h3 id="源码包和rpm包的区别"><a href="#源码包和rpm包的区别" class="headerlink" title="源码包和rpm包的区别"></a>源码包和rpm包的区别</h3><p>​  安装之前的区别：概念上的区别</p>
-<p>​  安装之后的区别：安装位置不同</p>
-<p><img src="http://39.104.171.29/image/1554360805482.png" alt="1554360805482"></p>
-<p><img src="http://39.104.171.29/image/1554360845078.png" alt="1554360845078"></p>
-<p>​  由于源码包和rpm 安装包的安装位置不同导致了，应用的启动方式选择面不同</p>
-<p>​  rpm 包安装的软件可以 使用 service 去执行命令，也可以使用 绝对路径 + 命令的方法操作</p>
-<p>​  源码包 只能通过 绝对路径 + 命令的方法操作</p>
-<p>​  service 操作软件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service tomcat start</span><br></pre></td></tr></table></figure>
-<p>​  绝对路径+命令方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/tomcat start</span><br></pre></td></tr></table></figure>
-<h3 id="源码包安装过程"><a href="#源码包安装过程" class="headerlink" title="源码包安装过程"></a>源码包安装过程</h3><p><img src="http://39.104.171.29/image/1554360911277.png" alt="1554360911277"></p>
-<p><img src="http://39.104.171.29/image/1554361918473.png" alt="1554361918473"></p>
-<h4 id="源码包安装流程"><a href="#源码包安装流程" class="headerlink" title="源码包安装流程"></a>源码包安装流程</h4><ol>
-<li>下载源码包文件</li>
-<li>解压源码包文件到 /usr/local/ 源码文件名 下</li>
-<li>进入解压目录阅读 INSTALL 文档，查看如何安装。</li>
-<li>使用make  命令编译源码</li>
-<li>使用make install 命令安装</li>
-</ol>
-<p>INSTALL安装说明文档</p>
-<p>README使用说明</p>
-<p>make 编译</p>
-<p>make install 编译安装</p>
-<p>make clean 清空编译</p>
-<p><img src="http://39.104.171.29/image/1554362742757.png" alt="1554362742757"></p>
-<p>###脚本安装包</p>
-<p><img src="http://39.104.171.29/image/1554368570910.png" alt="1554368570910"></p>
-<p><img src="http://39.104.171.29/image/1554368673263.png" alt="1554368673263"></p>
+            <h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><p>如何去做用户管理</p>
+<p>越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。</p>
+<p>在Linux中主要是通过用户配置文件来查看和修改用户信息。</p>
+<h2 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h2><h3 id="用户信息文件-etc-passwd"><a href="#用户信息文件-etc-passwd" class="headerlink" title="用户信息文件/etc/passwd"></a>用户信息文件/etc/passwd</h3><p>这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。</p>
+<p>文档解读：</p>
+<p>​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别附有什么含有</p>
+<p>​    1.用户名称</p>
+<p>​    2.密码标识 ，具体密码信息需要进入/etc/shadow查看，并且密码采用SHA512散列加密算法.</p>
+<p>​    3.uid 用户的id标识 0表示超级用户，而且前499已经被系统占用</p>
+<p>​    4.gid 表示用户组id标识 这里指的是用户的初始组</p>
+<p>​    5.用户说明信息</p>
+<p>​    6.用户的home 目录</p>
+<p>​    7.用户登陆后所能执行的shell脚本</p>
+<h3 id="影子文件-etc-shadow"><a href="#影子文件-etc-shadow" class="headerlink" title="影子文件/etc/shadow"></a>影子文件/etc/shadow</h3><p>​    文件中存储了关于用户的密码的一些信息</p>
+<p>​    同样每行表示每个用户的密码信息，每行分为6个字段</p>
+<p>​    1.用户名称</p>
+<p>​    2.密码 经过加密后的，被锁定的密码前会加入！！</p>
+<p>​    3.密码最后一次修改日期</p>
+<p>​    4.密码的两次修改时间间隔（和3做比较）</p>
+<p>​    5.密码的有效期（和3做比较）</p>
+<p>​    6.密码修改到期前的警告天数（和5做比较）</p>
+<h3 id="组织信息文件-etc-group和组密码文件-etc-gshadow"><a href="#组织信息文件-etc-group和组密码文件-etc-gshadow" class="headerlink" title="组织信息文件/etc/group和组密码文件/etc/gshadow"></a>组织信息文件/etc/group和组密码文件/etc/gshadow</h3><p>​    /etc/group 存储了信息用户组的信息</p>
+<p>​    /etc/gshadow 存储了用户组管理员以及密码的一些信息</p>
+<p>​    具体详情 可查阅 man 5 gshadow</p>
+<h2 id="用户管理相关的文件"><a href="#用户管理相关的文件" class="headerlink" title="用户管理相关的文件"></a>用户管理相关的文件</h2><p>​    1.用户的家目录</p>
+<p>​        /home/用户名称 或/root/</p>
+<p>​    2.用户邮箱目录</p>
+<p>​        /var/spool/mail/用户名称</p>
+<p>​    3.用户模板目录</p>
+<p>​        /etc/skel</p>
+<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><p>​    添加用户 useradd [选项] 用户名</p>
+<p>​    指定修改用户密码 passwd  [选项]  用户名</p>
+<p>​    修改用户信息 usermod [选项]  用户名</p>
+<p>​    删除用户 userdel [选项] 用户名</p>
+<p>​    切换用户 su [选项] 用户名</p>
+<p>​        “-” 切换后使用切换用户的环境</p>
+<p>​        “-c” 仅执行一次命令</p>
+<h2 id="用户组管理命令"><a href="#用户组管理命令" class="headerlink" title="用户组管理命令"></a>用户组管理命令</h2><p>​    添加用户组 groupadd [选项] 组名</p>
+<p>​    修改用户组 groupmod [选项] 组名</p>
+<p>​    删除用户组 groupdel [选项] 组名</p>
+<p>​    把用户加入组中 gpasswd 选项 组名</p>
+<p>​        “-a” 用户名 把用户加入组</p>
+<p>​        “-d”用户名 把用户从组中删除</p>
 
           
         
