@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">47</span></a>
 
   </li>
 
@@ -319,6 +319,336 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/03/18/python-入门篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2020/03/18/python-入门篇/" class="post-title-link" itemprop="url">python-入门篇.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-18 17:35:32" itemprop="dateCreated datePublished" datetime="2020-03-18T17:35:32+08:00">2020-03-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="python的来源"><a href="#python的来源" class="headerlink" title="python的来源"></a>python的来源</h2><p>​    python是著名的“Guido van Rossum”在1989年圣诞节期间开发的编程语言</p>
+<p>  现在，全世界差不多有600多种编程语言，但流行的编程语言也就那么20来种。如果你听说过TIOBE排行榜，你就能知道编程语言的大致流行程度。这是最近10年最常用的10种编程语言的变化图：</p>
+<p>  <img src="https://cdn.liaoxuefeng.com/cdn/files/attachments/00138595453161126cc9f11f1d441b0934661239528fa55000/0" alt></p>
+<p>  总的来说，这几种编程语言各有千秋。C语言是可以用来编写操作系统的贴近硬件的语言，所以，C语言适合开发那些追求运行速度、充分发挥硬件性能的程序。而Python是用来编写应用程序的高级编程语言。</p>
+<p>  当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。</p>
+<p>  Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。</p>
+<p>  除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。</p>
+<p>  许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。</p>
+<h2 id="python-的优点"><a href="#python-的优点" class="headerlink" title="python 的优点"></a>python 的优点</h2><p>  life is short,you need Python –Bruce Eckel</p>
+<p>  龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。</p>
+<p>  总的来说，Python的哲学就是简单优雅，尽量写容易看明白的代码，尽量写少的代码。如果一个资深程序员向你炫耀他写的晦涩难懂、动不动就几万行的代码，你可以尽情地嘲笑他。</p>
+<p>  那Python适合开发哪些类型的应用呢？</p>
+<p>  首选是网络应用，包括网站、后台服务等等；</p>
+<p>  其次是许多日常需要的小工具，包括系统管理员需要的脚本任务等等；</p>
+<p>  另外就是把其他语言开发的程序再包装起来，方便使用。</p>
+<p>##Python的缺点</p>
+<p>  任何编程语言都有缺点，Python也不例外。优点说过了，那Python有哪些缺点呢？</p>
+<p>第一个缺点就是运行速度慢，和C程序相比非常慢，因为Python是解释型语言，你的代码在执行时会一行一行地翻译成CPU能理解的机器码，这个翻译过程非常耗时，所以很慢。而C程序是运行前直接编译成CPU能执行的机器码，所以非常快。</p>
+<p>但是大量的应用程序不需要这么快的运行速度，因为用户根本感觉不出来。例如开发一个下载MP3的网络应用程序，C程序的运行时间需要0.001秒，而Python程序的运行时间需要0.1秒，慢了100倍，但由于网络更慢，需要等待1秒，你想，用户能感觉到1.001秒和1.1秒的区别吗？这就好比F1赛车和普通的出租车在北京三环路上行驶的道理一样，虽然F1赛车理论时速高达400公里，但由于三环路堵车的时速只有20公里，因此，作为乘客，你感觉的时速永远是20公里。</p>
+<h2 id="python交互模式"><a href="#python交互模式" class="headerlink" title="python交互模式"></a>python交互模式</h2><p>  使用当前系统的命令模式，输入python3即可进入交互模式，输入exit()可退出python交互式模式。<br>  交互式模式可以直接显示代码运行的结果。但是之前输入的代码退出交互式模式后不能存到硬盘中</p>
+<h2 id="命令行执行-py文件"><a href="#命令行执行-py文件" class="headerlink" title="命令行执行.py文件"></a>命令行执行.py文件</h2><p>  命令行模式下，进入要执行的.py文件同目录下，输入python3 文件名即可运行</p>
+<h2 id="变量的命名规则"><a href="#变量的命名规则" class="headerlink" title="变量的命名规则"></a>变量的命名规则</h2><p>  变量名只能包含字母，数字和下划线，且不能以数字打头；</p>
+<p>  变量名不能包含空格；</p>
+<p>  不能将Python 关键字和函数名作为变量名使用；</p>
+<p>  慎用小写字母i和大写字母O，容易看成数字1和数字0；</p>
+<p>  Python 的命名是大小写敏感的，也就是说a和A对于解释器而言，是两个不同的名字；</p>
+<h2 id="占位符（place-holder）"><a href="#占位符（place-holder）" class="headerlink" title="占位符（place holder）"></a>占位符（place holder）</h2><p>  表示符：%d %.2f %.1f %s</p>
+<p>  %d 表示十进制整数占位符<br>  %.2f 表示浮点数保留到2位小数点后<br>  %.1f 表示浮点数保留到1位小数点后<br>  %s 表示字符串</p>
+<h2 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h2><p>  二进制 （binary）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0b111</span> <span class="comment">#7</span></span><br><span class="line"><span class="comment">#二进制的形式表示7</span></span><br><span class="line">a = bin(<span class="number">7</span>)</span><br></pre></td></tr></table></figure></p>
+<p>  十进制 （decimal）<br>  十六进制 （hexadecimal）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0xff</span> <span class="comment">#255</span></span><br><span class="line"><span class="comment">#十六进制的形式表示255</span></span><br><span class="line">hex(<span class="number">255</span>)</span><br></pre></td></tr></table></figure></p>
+<p>  占位符表示进制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%x"</span> %(<span class="number">255</span>)) <span class="comment">#使用16进制的形式表示255</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>多行注释 “””<br>单行注释 #</p>
+<h2 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h2><p>  list 列表类似Java中的列表list都是类构成</p>
+<p>  下标的使用如: list[1]、list[-1]</p>
+<p>  列表的追加如：list.append()</p>
+<p>  列表的删除如：</p>
+<pre><code>del list[x] 直接删除指定索引处的元素
+list.pop(x) 弹出指定索引处的元素并返回
+list.remove(x) 删除首个指定元素
+</code></pre><p>  列表的排序：<br>    list.sort()<br>  列表拷贝<br>    list.copy()</p>
+<h3 id="数值列表"><a href="#数值列表" class="headerlink" title="数值列表"></a>数值列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"output of range(10):"</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">  print(i)</span><br></pre></td></tr></table></figure>
+<h3 id="列表的快速生成"><a href="#列表的快速生成" class="headerlink" title="列表的快速生成"></a>列表的快速生成</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">matrix = [[<span class="number">0</span>]*<span class="number">8</span>]*<span class="number">10</span></span><br><span class="line">cubes = [x**<span class="number">3</span> + <span class="number">100</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>)]</span><br><span class="line">variables = [x+y <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">'abc'</span> <span class="keyword">for</span> y <span class="keyword">in</span> <span class="string">'0123'</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="切片-slice"><a href="#切片-slice" class="headerlink" title="切片(slice)"></a>切片(slice)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line">print(<span class="string">"numbers[3:9]:"</span>,numbers[<span class="number">3</span>:<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
+<p>  切片会生成一个新的list返回，并不是直接操作原有的list<br>  切片可以对str类型的数据使用</p>
+<p>  妙用切片<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numbers = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line">numbersCopy = numbers[:]</span><br><span class="line"></span><br><span class="line">numbersReversed = numbers[::<span class="number">-1</span>]</span><br><span class="line">print(<span class="string">"numbers[:3:-2] is:"</span>,numbers[:<span class="number">3</span>:<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"numbers[:3:-2] is:"</span>,numbers[:<span class="number">3</span>:<span class="number">-2</span>])</span><br></pre></td></tr></table></figure></p>
+<p>  将切片的参数划分为[x:y:z]<br>  当z为正数时 x默认为0,y默认为最后一个元素不包含、<br>  当z为负数时 x默认为最后一个值，y默认为第一个值并且包含</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="元祖（tuple）"><a href="#元祖（tuple）" class="headerlink" title="元祖（tuple）"></a>元祖（tuple）</h3><p>元祖是只读的列表<br>当只有一个数时需要加，如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print((<span class="number">1</span>,))</span><br></pre></td></tr></table></figure></p>
+<h3 id="只读类型"><a href="#只读类型" class="headerlink" title="只读类型"></a>只读类型</h3><p>int double str</p>
+<h2 id="名字绑定"><a href="#名字绑定" class="headerlink" title="名字绑定"></a>名字绑定</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/03/18/pc计算机的的常识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2020/03/18/pc计算机的的常识/" class="post-title-link" itemprop="url">PC计算机常识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-18 10:24:22" itemprop="dateCreated datePublished" datetime="2020-03-18T10:24:22+08:00">2020-03-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="计算机是如何记录时间的"><a href="#计算机是如何记录时间的" class="headerlink" title="计算机是如何记录时间的"></a>计算机是如何记录时间的</h2><p>名词：RTC</p>
+<p>RTC （real time clock）实时时钟</p>
+<p>计算机断电期间，RTC芯片由锂电池供电；</p>
+<p>RTC在内部或外部晶体振荡器驱动下以固定节拍增加内部计数器的值；</p>
+<p>计算机开机后，CPU通过scl/sda串行线读取RTC的计数值；</p>
+<p>RTC计数值表从格林尼治时间1970年1月1日零时起；</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1606,7 +1936,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#x79;&#x5f;&#x74;&#x79;&#64;&#50;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#x79;&#x5f;&#x74;&#x79;&#64;&#50;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#x79;&#95;&#116;&#121;&#64;&#50;&#54;&#x33;&#46;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#x79;&#95;&#116;&#121;&#64;&#50;&#54;&#x33;&#46;&#x6e;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -1614,7 +1944,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#x79;&#95;&#x74;&#121;&#64;&#50;&#54;&#51;&#x2e;&#110;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#x79;&#95;&#x74;&#121;&#64;&#50;&#54;&#51;&#x2e;&#110;&#101;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#x79;&#95;&#116;&#121;&#x40;&#x32;&#54;&#x33;&#46;&#110;&#101;&#116;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#x79;&#95;&#116;&#121;&#x40;&#x32;&#54;&#x33;&#46;&#110;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
@@ -1704,306 +2034,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/27/Anaconda工具/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/09/27/Anaconda工具/" class="post-title-link" itemprop="url">Anaconda 工具</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-27 11:22:43" itemprop="dateCreated datePublished" datetime="2019-09-27T11:22:43+08:00">2019-09-27</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><h3 id="version-环境切换"><a href="#version-环境切换" class="headerlink" title="version 环境切换"></a>version 环境切换</h3><h4 id="列出当前Anaconda-python拥有的环境列表"><a href="#列出当前Anaconda-python拥有的环境列表" class="headerlink" title="列出当前Anaconda python拥有的环境列表"></a>列出当前Anaconda python拥有的环境列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(python36) spiderbao@spiderbao-CW65S:~$ conda info -e</span><br><span class="line"># conda environments:</span><br><span class="line">#</span><br><span class="line">base                     /home/spiderbao/anaconda3</span><br><span class="line">python36              *  /home/spiderbao/anaconda3/envs/python36</span><br></pre></td></tr></table></figure>
-<p>其中base 为安装Anaconda 所默认安装的</p>
-<h4 id="查看当前Python的版本"><a href="#查看当前Python的版本" class="headerlink" title="查看当前Python的版本"></a>查看当前Python的版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(python36) spiderbao@spiderbao-CW65S:~$ python -V</span><br><span class="line">Python 3.6.9 :: Anaconda, Inc.</span><br></pre></td></tr></table></figure>
-<h4 id="安装新的Python-版本"><a href="#安装新的Python-版本" class="headerlink" title="安装新的Python 版本"></a>安装新的Python 版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name python36 python=3.6</span><br></pre></td></tr></table></figure>
-<p>其中 python36 为别名</p>
-<p>新版本安装完后一些常用的库和包需要手动安装</p>
-<h4 id="切换Python-版本"><a href="#切换Python-版本" class="headerlink" title="切换Python 版本"></a>切换Python 版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate python36</span><br></pre></td></tr></table></figure>
-<p>其中Python36 为别名</p>
-<h4 id="切换会之前的环境"><a href="#切换会之前的环境" class="headerlink" title="切换会之前的环境"></a>切换会之前的环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
-<h4 id="删除指定的版本环境"><a href="#删除指定的版本环境" class="headerlink" title="删除指定的版本环境"></a>删除指定的版本环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name python34 --all</span><br></pre></td></tr></table></figure>
-<p>其中python34 为别名</p>
-<h4 id="手动安装常用的库和包"><a href="#手动安装常用的库和包" class="headerlink" title="手动安装常用的库和包"></a>手动安装常用的库和包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda install numpy</span><br><span class="line"></span><br><span class="line">conda install scipy</span><br><span class="line"></span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/18/Python带我飞-note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/09/18/Python带我飞-note/" class="post-title-link" itemprop="url">python带我飞-note</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-18 09:39:59" itemprop="dateCreated datePublished" datetime="2019-09-18T09:39:59+08:00">2019-09-18</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="第二篇-进阶"><a href="#第二篇-进阶" class="headerlink" title="第二篇 进阶"></a>第二篇 进阶</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量是编程语言中最基础的术语，用来指计算机中存储的可变数据。如下例子</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Val = <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
-<h4 id="变量的规则"><a href="#变量的规则" class="headerlink" title="变量的规则"></a>变量的规则</h4><p>类型不同，存储功能不同</p>
-<p>申明变量无需定义变量类型，直接赋值即可</p>
-<p>如何做到直接赋值，原因是Python内部对变量进行了对象封装，并且它具有三个重要的属性id,type,value</p>
-<h4 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h4><p>Python3中的类型划分为6种：</p>
-<p>number 数字可以划分为 int float bool complex 等</p>
-<p>string 字符串</p>
-<p>tuple 元组</p>
-<p>sets 集合</p>
-<p>dictionaries 字典</p>
-<h4 id="变量类型的帮助函数"><a href="#变量类型的帮助函数" class="headerlink" title="变量类型的帮助函数"></a>变量类型的帮助函数</h4><p>dir 用来查询类型的所有属性。如dir(number)</p>
-<p>help 用来查询类型具体的说明文档。如help(number)</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2052,7 +2082,7 @@
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
