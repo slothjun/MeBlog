@@ -96,24 +96,24 @@
 
 
 
-  <meta name="description" content="用户和用户组管理如何去做用户管理 越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。 在Linux中主要是通过用户配置文件来查看和修改用户信息。 用户配置文件用户信息文件/etc/passwd这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。 文档解读： ​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别">
+  <meta name="description" content="系统环境/etc/profile 文件/etc/profile 文件属于一个系统的全局变量123456789101112131415161718192021222324if [ &quot;$&amp;#123;PS1-&amp;#125;&quot; ]; then  if [ &quot;$&amp;#123;BASH-&amp;#125;&quot; ] &amp;amp;&amp;amp; [ &quot;$BASH&quot; != &quot;/bin/sh&quot; ]; then    # The fil">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux-用户用户组篇">
-<meta property="og:url" content="https://slothjun.github.io/MeBlog/2019/04/29/Linux-用户用户组篇/index.html">
+<meta property="og:title" content="linux-文件配置篇">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2020/04/03/linux-文件配置篇/index.html">
 <meta property="og:site_name" content="WenLiangBaoBlog">
-<meta property="og:description" content="用户和用户组管理如何去做用户管理 越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。 在Linux中主要是通过用户配置文件来查看和修改用户信息。 用户配置文件用户信息文件/etc/passwd这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。 文档解读： ​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别">
+<meta property="og:description" content="系统环境/etc/profile 文件/etc/profile 文件属于一个系统的全局变量123456789101112131415161718192021222324if [ &quot;$&amp;#123;PS1-&amp;#125;&quot; ]; then  if [ &quot;$&amp;#123;BASH-&amp;#125;&quot; ] &amp;amp;&amp;amp; [ &quot;$BASH&quot; != &quot;/bin/sh&quot; ]; then    # The fil">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-29T13:24:25.640Z">
+<meta property="og:updated_time" content="2020-04-03T06:06:40.147Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux-用户用户组篇">
-<meta name="twitter:description" content="用户和用户组管理如何去做用户管理 越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。 在Linux中主要是通过用户配置文件来查看和修改用户信息。 用户配置文件用户信息文件/etc/passwd这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。 文档解读： ​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别">
+<meta name="twitter:title" content="linux-文件配置篇">
+<meta name="twitter:description" content="系统环境/etc/profile 文件/etc/profile 文件属于一个系统的全局变量123456789101112131415161718192021222324if [ &quot;$&amp;#123;PS1-&amp;#125;&quot; ]; then  if [ &quot;$&amp;#123;BASH-&amp;#125;&quot; ] &amp;amp;&amp;amp; [ &quot;$BASH&quot; != &quot;/bin/sh&quot; ]; then    # The fil">
 
 
 
 
 
 
-  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2019/04/29/Linux-用户用户组篇/">
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2020/04/03/linux-文件配置篇/">
 
 
 
@@ -123,7 +123,7 @@
   };
 </script>
 
-  <title>Linux-用户用户组篇 | WenLiangBaoBlog</title>
+  <title>linux-文件配置篇 | WenLiangBaoBlog</title>
   
 
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-用户用户组篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/03/linux-文件配置篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -352,7 +352,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux-用户用户组篇
+          <h1 class="post-title" itemprop="name headline">linux-文件配置篇
 
               
             
@@ -378,7 +378,7 @@
                 
               
 
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+              <time title="创建时间：2020-04-03 14:06:40" itemprop="dateCreated datePublished" datetime="2020-04-03T14:06:40+08:00">2020-04-03</time>
             
 
             
@@ -413,49 +413,16 @@
       
 
       
-        <h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><p>如何去做用户管理</p>
-<p>越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。</p>
-<p>在Linux中主要是通过用户配置文件来查看和修改用户信息。</p>
-<h2 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h2><h3 id="用户信息文件-etc-passwd"><a href="#用户信息文件-etc-passwd" class="headerlink" title="用户信息文件/etc/passwd"></a>用户信息文件/etc/passwd</h3><p>这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。</p>
-<p>文档解读：</p>
-<p>​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别附有什么含有</p>
-<p>​    1.用户名称</p>
-<p>​    2.密码标识 ，具体密码信息需要进入/etc/shadow查看，并且密码采用SHA512散列加密算法.</p>
-<p>​    3.uid 用户的id标识 0表示超级用户，而且前499已经被系统占用</p>
-<p>​    4.gid 表示用户组id标识 这里指的是用户的初始组</p>
-<p>​    5.用户说明信息</p>
-<p>​    6.用户的home 目录</p>
-<p>​    7.用户登陆后所能执行的shell脚本</p>
-<h3 id="影子文件-etc-shadow"><a href="#影子文件-etc-shadow" class="headerlink" title="影子文件/etc/shadow"></a>影子文件/etc/shadow</h3><p>​    文件中存储了关于用户的密码的一些信息</p>
-<p>​    同样每行表示每个用户的密码信息，每行分为6个字段</p>
-<p>​    1.用户名称</p>
-<p>​    2.密码 经过加密后的，被锁定的密码前会加入！！</p>
-<p>​    3.密码最后一次修改日期</p>
-<p>​    4.密码的两次修改时间间隔（和3做比较）</p>
-<p>​    5.密码的有效期（和3做比较）</p>
-<p>​    6.密码修改到期前的警告天数（和5做比较）</p>
-<h3 id="组织信息文件-etc-group和组密码文件-etc-gshadow"><a href="#组织信息文件-etc-group和组密码文件-etc-gshadow" class="headerlink" title="组织信息文件/etc/group和组密码文件/etc/gshadow"></a>组织信息文件/etc/group和组密码文件/etc/gshadow</h3><p>​    /etc/group 存储了信息用户组的信息</p>
-<p>​    /etc/gshadow 存储了用户组管理员以及密码的一些信息</p>
-<p>​    具体详情 可查阅 man 5 gshadow</p>
-<h2 id="用户管理相关的文件"><a href="#用户管理相关的文件" class="headerlink" title="用户管理相关的文件"></a>用户管理相关的文件</h2><p>​    1.用户的家目录</p>
-<p>​        /home/用户名称 或/root/</p>
-<p>​    2.用户邮箱目录</p>
-<p>​        /var/spool/mail/用户名称</p>
-<p>​    3.用户模板目录</p>
-<p>​        /etc/skel</p>
-<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><p>​    添加用户 useradd [选项] 用户名</p>
-<p>​    指定修改用户密码 passwd  [选项]  用户名</p>
-<p>​    修改用户信息 usermod [选项]  用户名</p>
-<p>​    删除用户 userdel [选项] 用户名</p>
-<p>​    切换用户 su [选项] 用户名</p>
-<p>​        “-” 切换后使用切换用户的环境</p>
-<p>​        “-c” 仅执行一次命令</p>
-<h2 id="用户组管理命令"><a href="#用户组管理命令" class="headerlink" title="用户组管理命令"></a>用户组管理命令</h2><p>​    添加用户组 groupadd [选项] 组名</p>
-<p>​    修改用户组 groupmod [选项] 组名</p>
-<p>​    删除用户组 groupdel [选项] 组名</p>
-<p>​    把用户加入组中 gpasswd 选项 组名</p>
-<p>​        “-a” 用户名 把用户加入组</p>
-<p>​        “-d”用户名 把用户从组中删除</p>
+        <h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><h2 id="etc-profile-文件"><a href="#etc-profile-文件" class="headerlink" title="/etc/profile 文件"></a>/etc/profile 文件</h2><p>/etc/profile 文件属于一个系统的全局变量<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;PS1-&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;BASH-&#125;</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$BASH</span>"</span> != <span class="string">"/bin/sh"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># The file bash.bashrc already sets the default PS1.</span></span><br><span class="line">    <span class="comment"># PS1='\h:\w\$ '</span></span><br><span class="line">    <span class="keyword">if</span> [ -f /etc/bash.bashrc ]; <span class="keyword">then</span></span><br><span class="line">      . /etc/bash.bashrc</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"`id -u`"</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">      PS1=<span class="string">'# '</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      PS1=<span class="string">'$ '</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -d /etc/profile.d ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> /etc/profile.d/*.sh; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -r <span class="variable">$i</span> ]; <span class="keyword">then</span></span><br><span class="line">      . <span class="variable">$i</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  <span class="built_in">unset</span> i</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>Linux是一个多用户操作系统。用户登录或切换（即Login shell 启动）时都有一个专用的运行环境，但首先执行 /etc/profile 。而Non-login shell不会调用这个脚本。各用户的默认环境（一组环境变量的定义）一般相同。用户也可以自行配置运行环境，即修改相应的系统环境变量。</p>
+</li>
+<li><p>在 /etc/profile 文件中设置的变量是全局变量。而 .bashrc文件（在用户的家目录下）则只对当前用户有用</p>
+</li>
+<li><p>使用 source 命令更新环境变量。source /etc/profile  或者  ./profile，执行一下文件。但不能用 sh /etc/profile。sh 是在子 shell 进程中执行的，即使PATH改变了也不会反应到当前环境中。而 source 是在当前 shell 进程中执行的，所以我们能看到PATH的改变</p>
+</li>
+</ol>
+<p>4.在profile文件添加或修改的内容需要注销系统才能生效。同名的环境变量，后写入的起作用</p>
 
       
     </div>
@@ -490,7 +457,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://slothjun.github.io/MeBlog/2019/04/29/Linux-用户用户组篇/" title="Linux-用户用户组篇">https://slothjun.github.io/MeBlog/2019/04/29/Linux-用户用户组篇/</a>
+    <a href="https://slothjun.github.io/MeBlog/2020/04/03/linux-文件配置篇/" title="linux-文件配置篇">https://slothjun.github.io/MeBlog/2020/04/03/linux-文件配置篇/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -510,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MeBlog/2019/04/29/gradle-wrapper/" rel="next" title="Gradle Wrapper">
-                <i class="fa fa-chevron-left"></i> Gradle Wrapper
+              <a href="/MeBlog/2020/03/18/pc计算机的的常识/" rel="next" title="PC计算机常识">
+                <i class="fa fa-chevron-left"></i> PC计算机常识
               </a>
             
           </div>
@@ -520,8 +487,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/MeBlog/2019/04/29/Linux-软件管理篇/" rel="prev" title="Linux-软件管理篇">
-                Linux-软件管理篇 <i class="fa fa-chevron-right"></i>
+              <a href="/MeBlog/2020/04/03/Linux-命令篇/" rel="prev" title="Linux-命令篇">
+                Linux-命令篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -647,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用户和用户组管理"><span class="nav-number">1.</span> <span class="nav-text">用户和用户组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户配置文件"><span class="nav-number">1.1.</span> <span class="nav-text">用户配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户信息文件-etc-passwd"><span class="nav-number">1.1.1.</span> <span class="nav-text">用户信息文件/etc/passwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#影子文件-etc-shadow"><span class="nav-number">1.1.2.</span> <span class="nav-text">影子文件/etc/shadow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组织信息文件-etc-group和组密码文件-etc-gshadow"><span class="nav-number">1.1.3.</span> <span class="nav-text">组织信息文件/etc/group和组密码文件/etc/gshadow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理相关的文件"><span class="nav-number">1.2.</span> <span class="nav-text">用户管理相关的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理命令"><span class="nav-number">1.3.</span> <span class="nav-text">用户管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户组管理命令"><span class="nav-number">1.4.</span> <span class="nav-text">用户组管理命令</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统环境"><span class="nav-number">1.</span> <span class="nav-text">系统环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#etc-profile-文件"><span class="nav-number">1.1.</span> <span class="nav-text">/etc/profile 文件</span></a></li></ol></li></ol></div>
             
 
           </div>
