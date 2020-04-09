@@ -1107,200 +1107,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jodconverter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/jodconverter/" class="post-title-link" itemprop="url">jodconverter</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="jodconverter"><a href="#jodconverter" class="headerlink" title="jodconverter"></a>jodconverter</h2><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>​    概念：</p>
-<p>​        jodconverter的全称是 java Document Converter ,它可以在不同的办公室格式之间转换文档。它利用了<a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a>， </p>
-<p>​    <strong>JODConverter</strong>自动执行OpenOffice / LibreOffice支持的所有转换。支持的转化包括： </p>
-<table>
-<thead>
-<tr>
-<th>文件类型</th>
-<th>输入格式</th>
-<th>输出格式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>文本</td>
-<td>DOC，DOCX，ODT，OTT，RTF，TEXT</td>
-<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
-</tr>
-<tr>
-<td>电子表格</td>
-<td>CSV，ODS，OTS，TSV，XLS，XLSX</td>
-<td>CSV，HTML，ODS，OTS，PDF，PNG，TSV，XLS，XLSX</td>
-</tr>
-<tr>
-<td>介绍</td>
-<td>ODP，OTP，PPT，PPTX</td>
-<td>HTML，ODP，OTP，PDF，PNG，PPT，PPTX，SWF</td>
-</tr>
-<tr>
-<td>画画</td>
-<td>ODG，OTG</td>
-<td>ODG，OTG，PDF，PNG，SWF</td>
-</tr>
-<tr>
-<td>其他</td>
-<td>HTML</td>
-<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
-</tr>
-</tbody>
-</table>
-<h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><p>要使用<strong>JODConverter，</strong>您需要：</p>
-<ul>
-<li>Java运行时环境1.7或更高版本。</li>
-<li><a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a> ; 通常建议使用最新的稳定版本。</li>
-<li>任何可用于Java和Apache OpenOffice / LibreOffice的操作系统（Windows，Linux，Mac OS X，Solaris，FreeBSD等）。请参阅您计划用于操作系统要求的OOo分发的系统要求。<ul>
-<li>Apache OpenOffice <a href="https://www.openoffice.org/dev_docs/source/sys_reqs.html" target="_blank" rel="noopener">系统要求</a>。</li>
-<li>LibreOffice <a href="https://www.libreoffice.org/get-help/system-requirements" target="_blank" rel="noopener">系统要求</a>。</li>
-</ul>
-</li>
-<li>要用作Web应用程序/ Web服务，您还需要一个servlet容器，例如<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">Apache Tomcat</a>。</li>
-</ul>
-<h3 id="组件（配置）"><a href="#组件（配置）" class="headerlink" title="组件（配置）"></a>组件（配置）</h3><h4 id="officeHome"><a href="#officeHome" class="headerlink" title="officeHome"></a>officeHome</h4><p>此属性设置将用于执行文档转换的办公室安装的office主目录。 </p>
-<h4 id="processManager"><a href="#processManager" class="headerlink" title="processManager"></a>processManager</h4><p>当JODConverter需要处理已启动的办公流程时，将使用流程管理器。当JODConverter启动办公室进程时，它必须检索已启动进程的PID，以便以后能够在需要时终止它。</p>
-<p> <em>默认值</em>：默认情况下，JODConverter将根据运行JODConverter的操作系统尝试查找最佳进程管理器。但是，如果在类路径中找到，则可以使用任何实现ProcessManager接口的进程管理器。</p>
-<p>只有在启用了processManager后才可以使用jodconverter进行文件转换</p>
-<p>其余属性请查看此链接<a href="https://github.com/sbraconnier/jodconverter/wiki/Configuration" target="_blank" rel="noopener">https://github.com/sbraconnier/jodconverter/wiki/Configuration</a> </p>
-<h3 id="官方Java中使用dome"><a href="#官方Java中使用dome" class="headerlink" title="官方Java中使用dome"></a>官方Java中使用dome</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">File inputFile = <span class="keyword">new</span> File(<span class="string">"document.doc"</span>);</span><br><span class="line">File outputFile = <span class="keyword">new</span> File(<span class="string">"document.pdf"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an office manager using the default configuration.</span></span><br><span class="line"><span class="comment">// The default port is 2002. Note that when an office manager</span></span><br><span class="line"><span class="comment">// is installed, it will be the one used by default when</span></span><br><span class="line"><span class="comment">// a converter is created.</span></span><br><span class="line"><span class="keyword">final</span> LocalOfficeManager officeManager = LocalOfficeManager.install(); </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an office process and connect to the started instance (on port 2002).</span></span><br><span class="line">    officeManager.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert</span></span><br><span class="line">    JodConverter</span><br><span class="line">             .convert(inputFile)</span><br><span class="line">             .to(outputFile)</span><br><span class="line">             .execute();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Stop the office process</span></span><br><span class="line">    OfficeUtils.stopQuietly(officeManager);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="本人整合springboot使用"><a href="#本人整合springboot使用" class="headerlink" title="本人整合springboot使用"></a>本人整合springboot使用</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-初识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1461,6 +1267,200 @@
 <p>合理分配权限</p>
 <p>定期备份重要数据和日志</p>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jodconverter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/jodconverter/" class="post-title-link" itemprop="url">jodconverter</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="jodconverter"><a href="#jodconverter" class="headerlink" title="jodconverter"></a>jodconverter</h2><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>​    概念：</p>
+<p>​        jodconverter的全称是 java Document Converter ,它可以在不同的办公室格式之间转换文档。它利用了<a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a>， </p>
+<p>​    <strong>JODConverter</strong>自动执行OpenOffice / LibreOffice支持的所有转换。支持的转化包括： </p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>输入格式</th>
+<th>输出格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本</td>
+<td>DOC，DOCX，ODT，OTT，RTF，TEXT</td>
+<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
+</tr>
+<tr>
+<td>电子表格</td>
+<td>CSV，ODS，OTS，TSV，XLS，XLSX</td>
+<td>CSV，HTML，ODS，OTS，PDF，PNG，TSV，XLS，XLSX</td>
+</tr>
+<tr>
+<td>介绍</td>
+<td>ODP，OTP，PPT，PPTX</td>
+<td>HTML，ODP，OTP，PDF，PNG，PPT，PPTX，SWF</td>
+</tr>
+<tr>
+<td>画画</td>
+<td>ODG，OTG</td>
+<td>ODG，OTG，PDF，PNG，SWF</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>HTML</td>
+<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><p>要使用<strong>JODConverter，</strong>您需要：</p>
+<ul>
+<li>Java运行时环境1.7或更高版本。</li>
+<li><a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a> ; 通常建议使用最新的稳定版本。</li>
+<li>任何可用于Java和Apache OpenOffice / LibreOffice的操作系统（Windows，Linux，Mac OS X，Solaris，FreeBSD等）。请参阅您计划用于操作系统要求的OOo分发的系统要求。<ul>
+<li>Apache OpenOffice <a href="https://www.openoffice.org/dev_docs/source/sys_reqs.html" target="_blank" rel="noopener">系统要求</a>。</li>
+<li>LibreOffice <a href="https://www.libreoffice.org/get-help/system-requirements" target="_blank" rel="noopener">系统要求</a>。</li>
+</ul>
+</li>
+<li>要用作Web应用程序/ Web服务，您还需要一个servlet容器，例如<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">Apache Tomcat</a>。</li>
+</ul>
+<h3 id="组件（配置）"><a href="#组件（配置）" class="headerlink" title="组件（配置）"></a>组件（配置）</h3><h4 id="officeHome"><a href="#officeHome" class="headerlink" title="officeHome"></a>officeHome</h4><p>此属性设置将用于执行文档转换的办公室安装的office主目录。 </p>
+<h4 id="processManager"><a href="#processManager" class="headerlink" title="processManager"></a>processManager</h4><p>当JODConverter需要处理已启动的办公流程时，将使用流程管理器。当JODConverter启动办公室进程时，它必须检索已启动进程的PID，以便以后能够在需要时终止它。</p>
+<p> <em>默认值</em>：默认情况下，JODConverter将根据运行JODConverter的操作系统尝试查找最佳进程管理器。但是，如果在类路径中找到，则可以使用任何实现ProcessManager接口的进程管理器。</p>
+<p>只有在启用了processManager后才可以使用jodconverter进行文件转换</p>
+<p>其余属性请查看此链接<a href="https://github.com/sbraconnier/jodconverter/wiki/Configuration" target="_blank" rel="noopener">https://github.com/sbraconnier/jodconverter/wiki/Configuration</a> </p>
+<h3 id="官方Java中使用dome"><a href="#官方Java中使用dome" class="headerlink" title="官方Java中使用dome"></a>官方Java中使用dome</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">File inputFile = <span class="keyword">new</span> File(<span class="string">"document.doc"</span>);</span><br><span class="line">File outputFile = <span class="keyword">new</span> File(<span class="string">"document.pdf"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an office manager using the default configuration.</span></span><br><span class="line"><span class="comment">// The default port is 2002. Note that when an office manager</span></span><br><span class="line"><span class="comment">// is installed, it will be the one used by default when</span></span><br><span class="line"><span class="comment">// a converter is created.</span></span><br><span class="line"><span class="keyword">final</span> LocalOfficeManager officeManager = LocalOfficeManager.install(); </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an office process and connect to the started instance (on port 2002).</span></span><br><span class="line">    officeManager.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert</span></span><br><span class="line">    JodConverter</span><br><span class="line">             .convert(inputFile)</span><br><span class="line">             .to(outputFile)</span><br><span class="line">             .execute();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Stop the office process</span></span><br><span class="line">    OfficeUtils.stopQuietly(officeManager);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="本人整合springboot使用"><a href="#本人整合springboot使用" class="headerlink" title="本人整合springboot使用"></a>本人整合springboot使用</h3>
           
         
       
