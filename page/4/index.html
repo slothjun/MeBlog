@@ -96,16 +96,16 @@
 
 
 
-  <meta name="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+  <meta name="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WenLiangBaoBlog">
 <meta property="og:url" content="https://slothjun.github.io/MeBlog/page/4/index.html">
 <meta property="og:site_name" content="WenLiangBaoBlog">
-<meta property="og:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+<meta property="og:description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WenLiangBaoBlog">
-<meta name="twitter:description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+<meta name="twitter:description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
 
 
 
@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">48</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">49</span></a>
 
   </li>
 
@@ -335,11 +335,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/17/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/05/17/git/" class="post-title-link" itemprop="url">git</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-17 17:10:25" itemprop="dateCreated datePublished" datetime="2019-05-17T17:10:25+08:00">2019-05-17</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="为什么使用git"><a href="#为什么使用git" class="headerlink" title="为什么使用git"></a>为什么使用git</h2><p>这个问题的答案就在于，集中式版本控制和分布式版本控制的的区别。</p>
+<p>那么怎样算得上集中式版本控制呢？</p>
+<p>比如说SVN就是集中式版本控制系统，版本库是集中放在中央服务器的,而干活的时候,用的都是自己的电脑,所以首先要从中央服务器哪里得到最新的版本,然后干活,干完后,需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作,如果在局域网还可以,带宽够大,速度够快,如果在互联网下,如果网速慢的话,就郁闷了。</p>
+<p><img src="http://39.104.171.29/image/svn-1.png" alt="svn-active-stream"></p>
+<p>集中式版本控制存在如下缺陷： 依赖网络性强，由于只使用一个中央服务器，所以会有单点问题。</p>
+<p>以上说了集中式版本控制，那么分布式版本控制工具又是怎么样的呢？</p>
+<p>分布式版本控制的代表就是git</p>
+<p>Git 是分布式版本控制系统,那么它就没有中央服务器,每个人的电脑就是一个完整的版本库,这样,工作的时候就不需要联网了,因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库,那多个人如何协作呢?比如说自己在电脑上改了文件A,其他人也在电脑上改了文件A,这时,你们两之间只需把各自的修改推送给对方,就可以互相看到对方的修改了。下图就是分布式版本控制工具管理方式:</p>
+<p><img src="http://39.104.171.29/image/git-1.png" alt="git-active-stream"></p>
+<p>分布式版本控制：解决了集中式版本控制的单点问题，和网络依赖性问题，适用于互联网多地区协同开发，但是在只是在局域网下开发，个人认为还是使用svn会更方便，git虽然性能优越但是使用上没有SVN简便。</p>
+<h2 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h2><p>同生活中的许多伟大事件一样,Git 诞生于一个极富纷争大举创新的年代。Linux 内核<br>开源项目有着为数众广的参与者。绝大多数的 Linux 内核维护工作都花在了提交补丁和保<br>存归档的繁琐事务上(1991-2002 年间)。到 2002 年,整个项目组开始启用分布式版本<br>控制系统 BitKeeper 来管理和维护代码。<br>到 2005 年的时候,开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结<br>束,他们收回了免费使用 BitKeeper 的权力。这就迫使 Linux 开源社区(特别是 Linux 的<br>缔造者 Linus Torvalds )不得不吸取教训,只有开发一套属于自己的版本控制系统才不至于<br>重蹈覆辙。他们对新的系统订了若干目标:<br>• 速度<br>• 简单的设计<br>• 对非线性开发模式的强力支持(允许上千个并行开发的分支)<br>• 完全分布式<br>• 有能力高效管理类似 Linux 内核一样的超大规模项目(速度和数据量)</p>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>一般工作流程如下:<br>1.从远程仓库中克隆 Git 资源作为本地仓库。<br>2.从本地仓库中 checkout 代码然后进行代码修改<br>3.在提交前先将代码提交到暂存区。<br>4.提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。<br>5.在修改完成后,需要和团队成员共享代码时,可以将代码 push 到远程仓库。<br>下图展示了 Git 的工作流程:</p>
+<p><img src="http://39.104.171.29/image/git-2.png" alt="git-active-stream"></p>
+<h3 id="git-的工作目录介绍"><a href="#git-的工作目录介绍" class="headerlink" title="git 的工作目录介绍"></a>git 的工作目录介绍</h3><p><img src="http://39.104.171.29/image/git-3.png" alt="git-active-stream"></p>
+<p>其中 ./git 文件夹下就是git的本地仓库</p>
+<h2 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init 要初始的文件夹路径</span><br></pre></td></tr></table></figure>
+<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 要加入的文件</span><br></pre></td></tr></table></figure>
+<h3 id="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"><a href="#将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中" class="headerlink" title="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"></a>将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中</h3><p>将缓存区域文件添加到本地仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
+<p>将本地仓库推送到远程仓库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push ssh://git@39.xxx.171.29/home/git/git_study</span><br><span class="line">fatal: 当前分支 master 没有对应的上游分支。</span><br><span class="line">为推送当前分支并建立与远程上游的跟踪，使用</span><br><span class="line"></span><br><span class="line">    git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">Permission denied, please try again.</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">对象计数中: 6, 完成.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">压缩对象中: 100% (3/3), 完成.</span><br><span class="line">写入对象中: 100% (6/6), 523 bytes | 523.00 KiB/s, 完成.</span><br><span class="line">Total 6 (delta 0), reused 0 (delta 0)</span><br><span class="line">To ssh://39.XXX.171.29/home/git/git_study</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">分支 &apos;master&apos; 设置为跟踪来自 &apos;ssh://git@39.XXX.171.29/home/git/git_study&apos; 的远程分支 &apos;master&apos;。</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看修改历史"><a href="#查看修改历史" class="headerlink" title="查看修改历史"></a>查看修改历史</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git log</span><br><span class="line">commit 4cb2b4f87b03b6cf3301b000a3e14c44027e3f42 (HEAD -&gt; master)</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:28:44 2019 +0800</span><br><span class="line"></span><br><span class="line">    第二次修改</span><br><span class="line"></span><br><span class="line">commit 1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:21:19 2019 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br></pre></td></tr></table></figure>
+<h3 id="还原修改"><a href="#还原修改" class="headerlink" title="还原修改"></a>还原修改</h3><p>reset 还原，还原后历史版本不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git reset --hard  1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">HEAD 现在位于 1910c01 first commit</span><br></pre></td></tr></table></figure></p>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git rm test </span><br><span class="line">rm &apos;test&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="忽略文件或文件夹"><a href="#忽略文件或文件夹" class="headerlink" title="忽略文件或文件夹"></a>忽略文件或文件夹</h3><p>在文件目录下创建gitignore 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure></p>
+<p>忽略语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">空行或是以 # 开头的行即注释行将被忽略。</span><br><span class="line">可以在前面添加正斜杠 / 来避免递归,下面的例子中可以很明白的看出来与下一条的区别。</span><br><span class="line">可以在后面添加正斜杠 / 来忽略文件夹,例如 build/ 即忽略 build 文件夹。</span><br><span class="line">可以使用 ! 来否定忽略,即比如在前面用了 *.apk ,然后使用 !a.apk ,则这个 a.apk 不会</span><br><span class="line">被忽略。</span><br><span class="line">* 用来匹配零个或多个字符,如 *.[oa] 忽略所有以&quot;.o&quot;或&quot;.a&quot;结尾, *~ 忽略所有以 ~ 结尾</span><br><span class="line">的文件(这种文件通常被许多编辑器标记为临时文件); [] 用来匹配括号内的任一字符,</span><br><span class="line">如 [abc] ,也可以在括号内加连接符,如 [0-9] 匹配 0 至 9 的数; ? 用来匹配单个字符。</span><br><span class="line">看了这么多,还是应该来个栗子:</span><br><span class="line"># 忽略 .a 文件</span><br><span class="line">*.a</span><br><span class="line"># 但否定忽略 lib.a, 尽管已经在前面忽略了 .a 文件</span><br><span class="line">!lib.a</span><br><span class="line"># 仅在当前目录下忽略 TODO 文件, 但不包括子目录下的 subdir/TODO</span><br><span class="line">/TODO</span><br><span class="line"># 忽略 build/ 文件夹下的所有文件</span><br><span class="line">build/</span><br><span class="line"># 忽略 doc/notes.txt, 不包括 doc/server/arch.txt</span><br><span class="line">doc/*.txt</span><br><span class="line"># 忽略所有的 .pdf 文件 在 doc/ directory 下的</span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
+<h3 id="解决文件冲突"><a href="#解决文件冲突" class="headerlink" title="解决文件冲突"></a>解决文件冲突</h3><p>编辑有冲突后的文件，再次提交即可</p>
+<h3 id="文件更新或拉取"><a href="#文件更新或拉取" class="headerlink" title="文件更新或拉取"></a>文件更新或拉取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ git clone ssh://git@39.xxx.xxx.29/home/git/git_study</span><br><span class="line">正克隆到 &apos;git_study&apos;...</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">remote: Counting objects: 13, done.</span><br><span class="line">remote: Compressing objects: 100% (7/7), done.</span><br><span class="line">remote: Total 13 (delta 0), reused 0 (delta 0)</span><br><span class="line">接收对象中: 100% (13/13), 完成.</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ cd git_study/</span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit/git_study$ git pull</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">已经是最新的。</span><br></pre></td></tr></table></figure>
+<h2 id="git分支管理"><a href="#git分支管理" class="headerlink" title="git分支管理"></a>git分支管理</h2><h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 新分支名称</span><br></pre></td></tr></table></figure>
+<h3 id="选择分支"><a href="#选择分支" class="headerlink" title="选择分支"></a>选择分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名称</span><br></pre></td></tr></table></figure>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git merge mybatis </span><br><span class="line">更新 8c65eb0..458de41</span><br><span class="line">Fast-forward</span><br><span class="line"> xiaoli | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 xiaoli</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/05/17/Docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -741,7 +908,7 @@ Docker也不关心你要把容器运到何方：我们可以在自己的笔记�
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -949,7 +1116,7 @@ Filename_Version-Reversion_Architecture.deb
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -1118,7 +1285,7 @@ Filename_Version-Reversion_Architecture.deb
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -1273,7 +1440,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -1446,7 +1613,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -1596,7 +1763,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -1753,7 +1920,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -1906,11 +2073,11 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/springboot_param_validation/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/modelAttribute注解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
       <meta itemprop="image" content="/MeBlog/images/blog_head.png">
     </span>
 
@@ -1926,7 +2093,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/springboot_param_validation/" class="post-title-link" itemprop="url">SpringBoot 参数校验</a>
+                <a href="/MeBlog/2019/04/29/modelAttribute注解/" class="post-title-link" itemprop="url">modelAttribute注解</a>
               
             
           </h1>
@@ -1988,218 +2155,16 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
       
         
           
-            <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>​JSR-303 实现方案+JSR-349Bean 验证</p>
-<p>JSR-303的实现使用hibernate的实现 @Valid注解</p>
-<p>JSR-349Bean 验证的实现使用spring提供的@Validated注解</p>
-<h3 id="校验案例"><a href="#校验案例" class="headerlink" title="校验案例"></a>校验案例</h3><p>本案例的环境为，springboot2.0.5.RELEASE</p>
-<p>基础代码实现：</p>
-<ol>
-<li><p>导入坐标</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>此坐标包含了@Valid 和@Validated</p>
-</li>
-<li><p>创建入口启动类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.utils.IdWorker;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.domain.EntityScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.config.EnableJpaRepositories;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="meta">@ComponentScan</span>(<span class="string">"com.healthengine.department"</span>)</span><br><span class="line"><span class="meta">@EntityScan</span>(<span class="string">"com.healthengine.medpro.department"</span>)</span><br><span class="line"><span class="meta">@EnableJpaRepositories</span>(basePackages = <span class="string">"com.healthengine.department.dao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DepartmentApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(DepartmentApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//雪花算法用来生成id</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IdWorker <span class="title">idWorker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> IdWorker(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：此入口启动类要放在Controller包的同级目录下，因为@SpringBootApplication注解会扫描同级目录及其子目录。此类只放在java目录下是不对的。要放在Java目录下的下级目录下</p>
-<p><img src="http://39.104.171.29:80/image/springBoot-validatd1.png" alt>（正确目录格式）</p>
-<p><img src="http://39.104.171.29:80/image/springBoot-validatd2.png" alt>(错误目录格式)</p>
-</li>
-</ol>
-<ol start="3">
-<li><p>配置文件设置</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">9002</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">medpro-department</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/medprotwo</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    database:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    open-in-view:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建controller</p>
-</li>
-</ol>
-<p>案例使用到的java Bean</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.department.Department;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.Valid;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"co_company"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">594829320797158219L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"版本号不能为空"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String version;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date renewalDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date expirationDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyArea;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyAddress;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String businessLicenseId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String legalRepresentative;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyPhone;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String mailbox;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companySize;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String industry;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String remarks;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String auditState;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer state;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Double balance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line">    <span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line">    <span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"co_department"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"id不能为空"</span>)</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String pid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 企业id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String companyId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门编码，同级部门不可重复</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String manager;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 介绍</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String introduce;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建时间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Date create;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="基础校验（快速尝鲜）"><a href="#基础校验（快速尝鲜）" class="headerlink" title="基础校验（快速尝鲜）"></a>基础校验（快速尝鲜）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象参数校验</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test1"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test1</span><span class="params">(@Validated @RequestBody Company company)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="单个参数校验"><a href="#单个参数校验" class="headerlink" title="单个参数校验"></a>单个参数校验</h4><ol>
-<li><p>在类中加入@Validated</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span>()</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/validation"</span>)</span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValidationTest</span> </span>&#123;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法上对参数使用校验注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/test2"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test2</span><span class="params">(@NotNull(message = <span class="string">"年齡不能為空"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="分组校验"><a href="#分组校验" class="headerlink" title="分组校验"></a>分组校验</h3></li>
-<li><p>创建分组标识接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在要校验的字段上使用校验注解并添加groups属性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在方法上使用校验</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test3"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test3</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="嵌套属性校验"><a href="#嵌套属性校验" class="headerlink" title="嵌套属性校验"></a>嵌套属性校验</h3></li>
-<li><p>在要需要嵌套校验的对象上添加@valid</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 部门列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line"><span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在方法上使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Valid @Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="非嵌套属性校验"><a href="#非嵌套属性校验" class="headerlink" title="非嵌套属性校验"></a>非嵌套属性校验</h3></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="自定义校验规则"><a href="#自定义校验规则" class="headerlink" title="自定义校验规则"></a>自定义校验规则</h4><h3 id="校验异常类全局处理"><a href="#校验异常类全局处理" class="headerlink" title="校验异常类全局处理"></a>校验异常类全局处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department.exception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.entity.Result;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.converter.HttpMessageConversionException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.BindingResult;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.FieldError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.ObjectError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.MethodArgumentNotValidException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolation;</span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolationException;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单个参数异常抛出</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(ConstraintViolationException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">constraintViolationException</span><span class="params">(ConstraintViolationException ce)</span></span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(ConstraintViolation violation:ce.getConstraintViolations())&#123;</span><br><span class="line">            sb.append(<span class="string">"异常信息： "</span>+violation.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实体类异常抛出</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(MethodArgumentNotValidException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">validationBodyException</span><span class="params">(MethodArgumentNotValidException exception)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        BindingResult result = exception.getBindingResult();</span><br><span class="line">        <span class="keyword">if</span> (result.hasErrors()) &#123;</span><br><span class="line"></span><br><span class="line">            List&lt;ObjectError&gt; errors = result.getAllErrors();</span><br><span class="line"></span><br><span class="line">            errors.forEach(p -&gt;&#123;</span><br><span class="line"></span><br><span class="line">                FieldError fieldError = (FieldError) p;</span><br><span class="line">                sb.append(<span class="string">"异常字段："</span>+fieldError.getField()+<span class="string">" 异常信息："</span>+fieldError.getDefaultMessage()).append(System.lineSeparator());</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 参数类型转换错误</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception 错误</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 错误信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(HttpMessageConversionException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">parameterTypeException</span><span class="params">(HttpMessageConversionException exception)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,exception.getCause().getLocalizedMessage(),<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="案例后发现的缺陷"><a href="#案例后发现的缺陷" class="headerlink" title="案例后发现的缺陷"></a>案例后发现的缺陷</h3><ol>
-<li><p>使用hibernate参数校验注解后发现，使用Spring jpa 存入数据时也会产生校验。</p>
-<p>目前解决方案，使用注解时为其分组。这样可以解决存入数据库时的校验，当存入数据库前，想做校验需要自己手动编写逻辑。</p>
-</li>
-</ol>
+            <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
 
-          
-        
-      
-    </div>
+1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
 
-    
+2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
+</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基础controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
 
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)吾日三省吾身，必成其业">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/SpringBoot-MultipartAutoConfiguration/" class="post-title-link" itemprop="url">springBoot-MultipartAutoConfiguration</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h2><p>​    今天本人想实现一个文件上传的功能。</p>
-<p>​    文件上传的难点在以什么样的传输格式上传文件。</p>
-<p>​    一般 表单 提交 所 形成 的 请求 结果是 很 简单 的， 就是 以“&amp;” 符 分割 的 多个 name- value 对。 例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstName= Charles&amp; lastName= Xavier&amp; email= professorx% 40xmen. org &amp;username= professorx&amp; password= letmein01</span><br></pre></td></tr></table></figure>
-<p>尽管 这种 编码 形式 很 简单， 并且 对于 典型的 基于 文本 的 表单 提交 也 足够 满足要求， 但是 对于 传送 二进制 数据， 如上 传 图片等文件， 就 显得 力不从心 了。</p>
-<p>​    那么对应二进制数据的上传依托Http请求要怎么去实现呢？</p>
-<p>​    multipart 格式 的 数据 会 将 一个 表单 拆分 为多 个 部分（ part）， 每个 部分 对应 一个 输入 域。 在 一般 的 表单 输入 域 中， 它 所 对应 的 部分 中会 放置 文本 型 数据， 但是 如果 上传 文件 的 话， 它 所 对应 的 部分 可以 是 二进制， 下面 展现 了 multipart 的 请求 体：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; firstName&quot; Charles </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; lastName&quot; Xavier ------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; email&quot; charles@ xmen. com </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; username&quot; professorx </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; password&quot; letmein01 </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW Content- Disposition: form- data; name=&quot; profilePicture&quot;; filename=&quot; me. jpg&quot; Content- Type: image/ jpeg [[ Binary image data goes here ]] </span><br><span class="line">------WebKitFormBoundaryqgkaBn8IHJCuNmiW--</span><br></pre></td></tr></table></figure>
-<p>在 这个 multipart 的 请求 中， 我们 可以 看到 profilePicture 部分 与其 他 部分 明显 不同。 除了 其他 内容 以外， 它 还有 自己的 Content- Type 头， 表明 它是 一个 JPEG 图片。 尽管 不一定 那么 明显， 但 profilePicture 部分 的 请求 体 是 二进制 数据， 而 不是 简单 的 文本。</p>
-<p>尽管 multipart 请求 看起来 很复杂， 但通过 Spring MVC 处理 它们 却 很容易。 在 编写 控制器 方法 处理 文件 上传 之前， 我们 必须 要 配置 一个 multipart 解析 器， 通过 它来 告诉 DispatcherServlet 该 如何 读取 multipart 请求。</p>
-<p>​    spring mvc 对multipart 解析器定义了 multipart Resolver 接口规范。 并提供了CommonsMultipartResolver： 使用 Jakarta Commons FileUpload 解析 multipart 请求的实现和StandardServletMultipartResolver： 依赖于 Servlet 3. 0 对 multipart 请求 的 支持（ 始于 Spring 3. 1）。</p>
-<p><img src="http://39.104.171.29:80/image/CommonsMultipartResolver.png" alt></p>
-<p><img src="http://39.104.171.29:80/image/StandardServletMultipartResolver.png" alt></p>
-<p>使用springboot 如何操作multipart Resolver  接下来请看MultipartAutoConfiguration装配类都做了什么</p>
-<h2 id="MultipartAutoConfiguration"><a href="#MultipartAutoConfiguration" class="headerlink" title="MultipartAutoConfiguration"></a>MultipartAutoConfiguration</h2>
           
         
       
@@ -2278,7 +2243,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
               <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="WenLiangBao">
             
               <p class="site-author-name" itemprop="name">WenLiangBao</p>
-              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)吾日三省吾身，必成其业</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)温故而知新,可以为师矣</p>
           </div>
 
           
@@ -2288,7 +2253,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
