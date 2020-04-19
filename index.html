@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/14/Java编程语言-基础篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/19/Java编程语言-基础篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/14/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
+                <a href="/MeBlog/2020/04/19/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
               
             
           </h1>
@@ -380,7 +380,7 @@
                 
               
 
-              <time title="创建时间：2020-04-14 11:47:30" itemprop="dateCreated datePublished" datetime="2020-04-14T11:47:30+08:00">2020-04-14</time>
+              <time title="创建时间：2020-04-19 21:28:11" itemprop="dateCreated datePublished" datetime="2020-04-19T21:28:11+08:00">2020-04-19</time>
             
 
             
@@ -428,7 +428,19 @@
 <p>3.一个文件中只能有一个公共类,该类的名字即使文件的名字<br>4.执行程序时,程序名之后输入的内容称为命令行参数,这些参数将会放入main(String[] args)中的args字符串数组中<br>5.Java语言区分大小写</p>
 <h3 id="Java-小应用程序-Java-Applet"><a href="#Java-小应用程序-Java-Applet" class="headerlink" title="Java 小应用程序(Java Applet)"></a>Java 小应用程序(Java Applet)</h3><h2 id="Java-中的面向对象技术"><a href="#Java-中的面向对象技术" class="headerlink" title="Java 中的面向对象技术"></a>Java 中的面向对象技术</h2><h3 id="面向对象技术"><a href="#面向对象技术" class="headerlink" title="面向对象技术"></a>面向对象技术</h3><p>1.面向对象是一种软件开发的方法.在面向对象程序设计方法出现之前,软件界广泛流行的是面向过程的设计方法<br>2.面向对象技术相比面向过程而言,可以使程序变得更简单易于理解.还有就是可以更大化的实现代码的重用<br>3.面向对象方法学,可以简单理解为.一个能使分析,设计和实现更接近人们的认识的学科<br>4.面向对象方法学主要包括3个方面<br>    1.面向对象分析(object-oriented Analysis)简称OOA<br>    2.面向对象设计(object-oriented Design)简称OOD<br>    3.面向对象编程(object-oriented Programming)简称OOP</p>
 <h3 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h3><p>1.一个类的实例可以称为对象或实例<br>2.对象是类的一个具象,类是对象的一个抽象<br>3.OOP技术把问题看成是相互作用的事物的集合,也就是对象的集合.对象具有两个特性,一是状态,二是行为.状态是指对象本身的信息也就是属性,行为是实现对对象的操作也就是方法<br>4.OOP三大核心概念:封装、继承、多态<br>    封装：封装体现的特点是将对象的属性和方法实现的细节隐藏起来，并报露出使用的入口<br>    继承：将一个类中数据和方法保留，并加上自己特殊的数据和方法，从而构成一个新类。继承体现的是一种层次关系<br>    多态：在一个或多个类中，可以让多个方法使用同一个名字。多态可以保证对不同数据类型进行同等的操作</p>
-
+<h1 id="数据和表达式"><a href="#数据和表达式" class="headerlink" title="数据和表达式"></a>数据和表达式</h1><h2 id="基本语法元素"><a href="#基本语法元素" class="headerlink" title="基本语法元素"></a>基本语法元素</h2><h3 id="空白、注释及语句"><a href="#空白、注释及语句" class="headerlink" title="空白、注释及语句"></a>空白、注释及语句</h3><h4 id="空白"><a href="#空白" class="headerlink" title="空白"></a>空白</h4><p>在java程序中，换行符及回车符等都可以表示一行的结束</p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>注释不能插在一个标识符或关键字的中间</p>
+<h5 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释 //"></a>单行注释 //</h5><h5 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释 /*"></a>多行注释 /*</h5><p>使用/<em>表示注释的开始，</em>/表示注释的结束位置</p>
+<p>一般这种注释用于解释方法中的逻辑说明或方法说明</p>
+<h5 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释 /**"></a>文档注释 /**</h5><p>以/*<em> 开始，</em>/结束<br>一般这种注释用于说明公共的类或方法<br>其中注释有一下参数：<br>@param 参数<br>@return 输出(返回值)<br>@throws 异常抛出</p>
+<h4 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h4><p>语句是java程序运行中的最小执行单元</p>
+<p>程序的各语句之间需要使用；分隔</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>abstract boolean brack byte case<br>catch char class const continue default<br>do double else extends false final<br>finally flost for future generic goto<br>if implements import inner instanceof int<br>interface long native new null operator<br>outer package private protected public rest<br>return short static strictfp super switch<br>synchronized this throw throws transient true<br>try var void volatile while</p>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>在java编程语言中，标识符由字母、下划线（_）、美元符号（$）、字母等构成</p>
+<p>数子不能做为标识符的首个字母</p>
+<p>标识符可以用在类上、接口上、方法上、变量上</p>
+<h3 id="Java编程规范"><a href="#Java编程规范" class="headerlink" title="Java编程规范"></a>Java编程规范</h3><p>1.缩进<br>2.变量的大小写<br>3.常量的大小写<br>3.方法名的应用<br>4.合理的注解和空格</p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2>
           
         
       
@@ -484,7 +496,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/10/python-入门篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/17/python-入门篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -504,7 +516,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/10/python-入门篇/" class="post-title-link" itemprop="url">python-入门篇</a>
+                <a href="/MeBlog/2020/04/17/python-入门篇/" class="post-title-link" itemprop="url">python-入门篇</a>
               
             
           </h1>
@@ -529,7 +541,7 @@
                 
               
 
-              <time title="创建时间：2020-04-10 11:19:10" itemprop="dateCreated datePublished" datetime="2020-04-10T11:19:10+08:00">2020-04-10</time>
+              <time title="创建时间：2020-04-17 15:24:48" itemprop="dateCreated datePublished" datetime="2020-04-17T15:24:48+08:00">2020-04-17</time>
             
 
             
@@ -586,12 +598,12 @@
 <p>但是大量的应用程序不需要这么快的运行速度，因为用户根本感觉不出来。例如开发一个下载MP3的网络应用程序，C程序的运行时间需要0.001秒，而Python程序的运行时间需要0.1秒，慢了100倍，但由于网络更慢，需要等待1秒，你想，用户能感觉到1.001秒和1.1秒的区别吗？这就好比F1赛车和普通的出租车在北京三环路上行驶的道理一样，虽然F1赛车理论时速高达400公里，但由于三环路堵车的时速只有20公里，因此，作为乘客，你感觉的时速永远是20公里。</p>
 <h2 id="python交互模式"><a href="#python交互模式" class="headerlink" title="python交互模式"></a>python交互模式</h2><p>  使用当前系统的命令模式，输入python3即可进入交互模式，输入exit()可退出python交互式模式。<br>  交互式模式可以直接显示代码运行的结果。但是之前输入的代码退出交互式模式后不能存到硬盘中</p>
 <h2 id="命令行执行-py文件"><a href="#命令行执行-py文件" class="headerlink" title="命令行执行.py文件"></a>命令行执行.py文件</h2><p>  命令行模式下，进入要执行的.py文件同目录下，输入python3 文件名即可运行</p>
-<h2 id="变量的命名规则"><a href="#变量的命名规则" class="headerlink" title="变量的命名规则"></a>变量的命名规则</h2><p>  变量名只能包含字母，数字和下划线，且不能以数字打头；</p>
+<h2 id="变量的命名规则（标识符）"><a href="#变量的命名规则（标识符）" class="headerlink" title="变量的命名规则（标识符）"></a>变量的命名规则（标识符）</h2><p>  变量名只能包含字母，数字和下划线，且不能以数字打头；</p>
 <p>  变量名不能包含空格；</p>
 <p>  不能将Python 关键字和函数名作为变量名使用；</p>
 <p>  慎用小写字母i和大写字母O，容易看成数字1和数字0；</p>
 <p>  Python 的命名是大小写敏感的，也就是说a和A对于解释器而言，是两个不同的名字；</p>
-<h2 id="占位符（place-holder）"><a href="#占位符（place-holder）" class="headerlink" title="占位符（place holder）"></a>占位符（place holder）</h2><p>  表示符：%d %.2f %.1f %s</p>
+<h2 id="占位符（place-holder）"><a href="#占位符（place-holder）" class="headerlink" title="占位符（place holder）"></a>占位符（place holder）</h2><p>  %d %.2f %.1f %s</p>
 <p>  %d 表示十进制整数占位符<br>  %.2f 表示浮点数保留到2位小数点后<br>  %.1f 表示浮点数保留到1位小数点后<br>  %s 表示字符串</p>
 <h2 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h2><p>  二进制 （binary）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0b111</span> <span class="comment">#7</span></span><br><span class="line"><span class="comment">#二进制的形式表示7</span></span><br><span class="line">a = bin(<span class="number">7</span>)</span><br></pre></td></tr></table></figure></p>
 <p>  十进制 （decimal）<br>  十六进制 （hexadecimal）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0xff</span> <span class="comment">#255</span></span><br><span class="line"><span class="comment">#十六进制的形式表示255</span></span><br><span class="line">hex(<span class="number">255</span>)</span><br></pre></td></tr></table></figure></p>
@@ -895,7 +907,7 @@ list.remove(x) 删除首个指定元素
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#x6e;&#101;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#x79;&#95;&#116;&#121;&#64;&#x32;&#54;&#x33;&#x2e;&#x6e;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#x79;&#95;&#116;&#121;&#64;&#x32;&#54;&#x33;&#x2e;&#x6e;&#x65;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -903,7 +915,7 @@ list.remove(x) 删除首个指定元素
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#110;&#121;&#95;&#x74;&#x79;&#x40;&#50;&#54;&#x33;&#x2e;&#110;&#101;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#110;&#121;&#95;&#x74;&#x79;&#x40;&#50;&#54;&#x33;&#x2e;&#110;&#101;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#121;&#x5f;&#116;&#121;&#x40;&#x32;&#x36;&#x33;&#46;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#121;&#x5f;&#116;&#121;&#x40;&#x32;&#x36;&#x33;&#46;&#110;&#x65;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
