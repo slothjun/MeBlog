@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/23/Java编程语言-基础篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/24/Java编程语言-基础篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/23/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
+                <a href="/MeBlog/2020/04/24/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
               
             
           </h1>
@@ -380,7 +380,7 @@
                 
               
 
-              <time title="创建时间：2020-04-23 18:17:48" itemprop="dateCreated datePublished" datetime="2020-04-23T18:17:48+08:00">2020-04-23</time>
+              <time title="创建时间：2020-04-24 17:43:51" itemprop="dateCreated datePublished" datetime="2020-04-24T17:43:51+08:00">2020-04-24</time>
             
 
             
@@ -435,6 +435,8 @@
 <h5 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释 /**"></a>文档注释 <code>/**</code></h5><p>以<code>/**</code> 开始，<code>*/</code>结束<br>一般这种注释用于说明公共的类或方法<br>其中注释有一下参数：<br>@param 参数<br>@return 输出(返回值)<br>@throws 异常抛出</p>
 <h4 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h4><p>语句是java程序运行中的最小执行单元</p>
 <p>程序的各语句之间需要使用；分隔</p>
+<p>语句分为单语句及复合语句。单语句就是通常意义下的一条语句，复合语句是块（使用{}包裹起来的内容）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//复合语句</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//单语句</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>abstract boolean brack byte case<br>catch char class const continue default<br>do double else extends false final<br>finally flost for future generic goto<br>if implements import inner instanceof int<br>interface long native new null operator<br>outer package private protected public rest<br>return short static strictfp super switch<br>synchronized this throw throws transient true<br>try var void volatile while</p>
 <h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>在java编程语言中，标识符由字母、下划线<code>_</code>、美元符号<code>$</code>、字母等构成</p>
 <p>数子不能做为标识符的首个字母</p>
@@ -692,7 +694,100 @@
 <h4 id="实例运算符（instanceof）"><a href="#实例运算符（instanceof）" class="headerlink" title="实例运算符（instanceof）"></a>实例运算符（instanceof）</h4><p>用于判断当前实例是否属于某个类或接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Father expression = <span class="keyword">new</span> Expression();</span><br><span class="line">System.out.println(expression <span class="keyword">instanceof</span> HelloWorld);</span><br><span class="line">System.out.println(expression <span class="keyword">instanceof</span> Object);</span><br></pre></td></tr></table></figure>
 <p>注意 instanceof只能在对象和要判断的类之间存在继承或实现同一接口时做运算。不然会有语法错误提示</p>
-
+<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><h2 id="java程序的结构"><a href="#java程序的结构" class="headerlink" title="java程序的结构"></a>java程序的结构</h2><p>简介：一个java程序是由一个或多个.java文件组成的，.java文件被称为源文件。源文件可以是一个或多个类或接口，但是类中只能有一个公共类也就是public修饰类，并且源文件名要和公共类名一致。</p>
+<p>java程序结构中的注意项：</p>
+<ul>
+<li>package：包语句，每个文件中只能拥有一个包语句，并且此语句必须在可执行代码的第一行。</li>
+<li>import：引入语句，如果有import语句的话必须放在所有类定义的前面。</li>
+<li>公共类（具有public定义的类）：每个源文件中只能包含一个。</li>
+<li>类定义：每个源文件中可以包含多个，但公共类只能有一个。</li>
+<li>接口定义：每个源文件中接口可以有一个或多个。</li>
+</ul>
+<h3 id="java包（package）"><a href="#java包（package）" class="headerlink" title="java包（package）"></a>java包（package）</h3><p>简介：包是类的容器，程序设计人员利用包来划分名字空间，避免类名冲突。使用包的目的是将源文件有效的组织起来。</p>
+<p>注意事项：</p>
+<ul>
+<li>包层次必须与java开发系统的文件系统结构相同。</li>
+<li>包名中全部使用小写。</li>
+<li>一个包可以包含多个包或多个类。</li>
+</ul>
+<p>代码案例（example）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.spider.dome</span><br></pre></td></tr></table></figure>
+<h3 id="引入语句"><a href="#引入语句" class="headerlink" title="引入语句"></a>引入语句</h3><p>简介：其作用就是将指定的资源引入当前类中，其实不使用引入语句直接使用其资源的全限定名称（报名.资源名）也是可以使用的。</p>
+<p>注意事项：</p>
+<ul>
+<li>引入语句须放在所有类定义的前面。</li>
+<li>引入的类必须具有访问权限才可以正常使用。</li>
+<li>当引入的同时引入两个有歧义的类时，直接使用全称类名。</li>
+</ul>
+<p>代码案例（example）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入当包下的全部</span></span><br><span class="line"><span class="keyword">import</span> com.spider.dome.*;</span><br><span class="line"><span class="comment">//引入指定类</span></span><br><span class="line"><span class="keyword">import</span> com.spider.dome.Customer;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Cat cat = <span class="keyword">new</span> Cat();</span><br><span class="line">chapter3.com.spider.Dog spiderDog = <span class="keyword">new</span> chapter3.com.spider.Dog();</span><br><span class="line">chapter3.com.spider.dome.Dog domeDog = <span class="keyword">new</span> chapter3.com.spider.dome.Dog(<span class="string">"钢镚"</span>);</span><br><span class="line">cat.setDomeDog(domeDog);</span><br><span class="line">cat.setSpiderDog(spiderDog);</span><br><span class="line">System.out.println(cat);</span><br></pre></td></tr></table></figure>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h3 id="赋值语句"><a href="#赋值语句" class="headerlink" title="赋值语句"></a>赋值语句</h3><p>简介：把一个值赋值给一个变量这样的语句就称为赋值语句</p>
+<p>注意事项：</p>
+<ul>
+<li>有的表达式可以作为一条赋值语句，但是不是所有语句都是表达式</li>
+<li>以下3条语句中，前两条为赋值语句，最后一条为表达式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">x = <span class="number">12</span>;</span><br><span class="line">x++;</span><br></pre></td></tr></table></figure>
+<h3 id="分支语句"><a href="#分支语句" class="headerlink" title="分支语句"></a>分支语句</h3><p>简介：分支在java程序中分为2种 if 和 switch</p>
+<p>if (单重分支)的语法形式如下：</p>
+<p>if(条件表达式){</p>
+<p>​    语句1；</p>
+<p>}</p>
+<p>if else 的语法形式如下：</p>
+<p>if(条件表达式){</p>
+<p>​    语句1；</p>
+<p>}else{</p>
+<p>​    语句2；</p>
+<p>}</p>
+<p>案例代码(example):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ifOrSwitchLearn</span><span class="params">(<span class="keyword">int</span> firstVal,<span class="keyword">int</span> secondVal)</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        if(firstVal == 0)&#123;</span></span><br><span class="line"><span class="comment">//            if(secondVal == 1)&#123;</span></span><br><span class="line"><span class="comment">//                firstVal ++;</span></span><br><span class="line"><span class="comment">//            &#125;else&#123;</span></span><br><span class="line"><span class="comment">//                firstVal --;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        <span class="keyword">if</span>(firstVal == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(secondVal == <span class="number">1</span>)&#123;</span><br><span class="line">                firstVal ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            firstVal --;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"firstVal is: "</span>+firstVal);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>switch 语句(多重分支)的语法形式如下：</p>
+<p>switch （表达式）{</p>
+<p>​        case c1:</p>
+<p>​                    语句组1；</p>
+<p>​                    break；</p>
+<p>​        case c2:</p>
+<p>​                    语句组2；</p>
+<p>​                    break；</p>
+<p>…</p>
+<p>​        case ck:</p>
+<p>​                    语句组k;</p>
+<p>​                    break;</p>
+<p>default:</p>
+<p>​        语句组;</p>
+<p>​        break;</p>
+<p>}</p>
+<p>switch 语句中的break是可选项，程序运行到break处时会跳出当前switch语句块。没有遇到时会向下执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> firstVal = <span class="number">1</span>;     </span><br><span class="line"><span class="keyword">switch</span>(firstVal)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                System.out.println(firstVal);</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                System.out.println(<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                System.out.println(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//程序运行结果是 1 2 3</span></span><br><span class="line"><span class="keyword">int</span> firstVal = <span class="number">1</span>;     </span><br><span class="line"><span class="keyword">switch</span>(firstVal)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                System.out.println(firstVal);</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                System.out.println(<span class="number">2</span>);</span><br><span class="line">        		<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                System.out.println(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//程序运行结果是 1 2</span></span><br></pre></td></tr></table></figure>
+<p>if else if 语句：</p>
+<p>if else if 类似与 switch 每一项加了break的做法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(firstVal==<span class="number">0</span>)&#123;</span><br><span class="line">            System.out.print(<span class="number">0</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(firstVal == <span class="number">1</span>)&#123;</span><br><span class="line">            System.out.print(<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(firstVal == <span class="number">2</span>)&#123;</span><br><span class="line">            System.out.print(<span class="number">2</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(firstVal == <span class="number">3</span>)&#123;</span><br><span class="line">            System.out.print(<span class="number">3</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.print(firstVal);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">switch</span>(firstVal)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                System.out.print(<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                System.out.print(<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                System.out.print(<span class="number">2</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                System.out.print(<span class="number">3</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.print(firstVal);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">dayInMonth</span><span class="params">(<span class="keyword">int</span> month)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!(month&gt;=<span class="number">1</span>&amp;&amp;month&lt;=<span class="number">12</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(month == <span class="number">2</span>||month == <span class="number">4</span>||month == <span class="number">6</span>||month == <span class="number">9</span>||month == <span class="number">11</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">"this "</span>+month+<span class="string">" month of 30 day."</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"this "</span>+month+<span class="string">" month of 31 day."</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line">        <span class="keyword">int</span> month = calendar.get(Calendar.MONTH)+<span class="number">1</span>;</span><br><span class="line">        dayInMonth(month);</span><br><span class="line">        System.out.println(calendar.get(Calendar.DAY_OF_MONTH));</span><br><span class="line">        <span class="keyword">char</span> c = <span class="string">"str"</span>.charAt(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><p>简介：循环语句控制程序流程多次执行一段代码。java中提供了三种循环语句分别是 for wile do.</p>
+<h4 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h4><p>for 语句语法形式如下：</p>
+<p>for(初始语句；条件表达式；迭代语句){</p>
+<p>​    循环体语句；</p>
+<p>}</p>
+<p>注意事项：</p>
+<ul>
+<li>初始语句和迭代语句中可以含有多个语句，各语句间使用;做分离。括号内的3个部分是可选的，当条件表达式为空时默认值为true。所以会导致代码块重复一直运行下去。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">forAndWileAndDoLearn</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sumi = <span class="number">0</span>,sumj = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++,i++)&#123;</span><br><span class="line">        sumi +=i;</span><br><span class="line">        sumj +=j;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"sumi is :"</span>+sumi+<span class="string">"\n"</span>+<span class="string">"sumj is :"</span>+sumj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h4><p>while 语句语法形式如下：</p>
+<p>while（条件表达式）{</p>
+<p>​        循环体语句；</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">forAndWileAndDoLearn</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">int</span> sumi = <span class="number">0</span>,sumj = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> i =<span class="number">0</span>,j = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(j&lt;<span class="number">10</span>)&#123;</span><br><span class="line">          sumi +=i;</span><br><span class="line">          sumj +=j;</span><br><span class="line">          i++;</span><br><span class="line">          j++;</span><br><span class="line">      &#125;</span><br><span class="line">      System.out.println(<span class="string">"sumi is :"</span>+sumi+<span class="string">"\n"</span>+<span class="string">"sumj is :"</span>+sumj);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="do-语句"><a href="#do-语句" class="headerlink" title="do 语句"></a>do 语句</h4><p>do 语句语法形式如下：</p>
+<p>do{</p>
+<p>​    循环体语句；</p>
+<p>}while（条件表达式）;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">forAndWileAndDoLearn</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sumi = <span class="number">0</span>,sumj = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i =<span class="number">0</span>,j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            sumi +=i;</span><br><span class="line">            sumj +=j;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;<span class="keyword">while</span>(j&lt;<span class="number">10</span>);</span><br><span class="line">        System.out.println(<span class="string">"sumi is :"</span>+sumi+<span class="string">"\n"</span>+<span class="string">"sumj is :"</span>+sumj);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>注意事项：</p>
+<ul>
+<li>do语句与while语句大致相同，不同之处在于do语句是先执行循环体语句然后做条件判断。</li>
+</ul>
+<h3 id="跳转语句"><a href="#跳转语句" class="headerlink" title="跳转语句"></a>跳转语句</h3>
           
         
       
@@ -1361,7 +1456,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#110;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#110;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#110;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#110;&#x79;&#95;&#x74;&#x79;&#x40;&#50;&#x36;&#x33;&#x2e;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#110;&#x79;&#95;&#x74;&#x79;&#x40;&#50;&#x36;&#x33;&#x2e;&#x6e;&#101;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -1369,7 +1464,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#110;&#x79;&#95;&#116;&#x79;&#x40;&#x32;&#54;&#51;&#x2e;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#116;&#111;&#110;&#x79;&#95;&#116;&#x79;&#x40;&#x32;&#54;&#51;&#x2e;&#x6e;&#101;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#121;&#95;&#116;&#x79;&#64;&#x32;&#x36;&#51;&#46;&#110;&#x65;&#116;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#121;&#95;&#116;&#x79;&#64;&#x32;&#x36;&#51;&#46;&#110;&#x65;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
