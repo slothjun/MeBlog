@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/02/Java编程语言-基础篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/07/Java编程语言-基础篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/02/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
+                <a href="/MeBlog/2020/05/07/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
               
             
           </h1>
@@ -380,7 +380,7 @@
                 
               
 
-              <time title="创建时间：2020-05-02 22:26:33" itemprop="dateCreated datePublished" datetime="2020-05-02T22:26:33+08:00">2020-05-02</time>
+              <time title="创建时间：2020-05-07 16:38:30" itemprop="dateCreated datePublished" datetime="2020-05-07T16:38:30+08:00">2020-05-07</time>
             
 
             
@@ -904,6 +904,153 @@
 </tr>
 </tbody>
 </table>
+<h2 id="定义方法"><a href="#定义方法" class="headerlink" title="定义方法"></a>定义方法</h2><p>书写语法：</p>
+<p>修饰符 返回类型 方法名(参数列表) {</p>
+<p>​    方法体（块)</p>
+<p>}</p>
+<p>方法定义的注意事项：</p>
+<ul>
+<li>方法名必须是一个合法的标识符</li>
+<li>返回值类型必须和方法声明的返回类型一致</li>
+<li>参数列表中每个元素之间使用逗号间隔</li>
+<li>传给方法的值称为实参，语法声明中参数列表中的参数称为形参数</li>
+</ul>
+<h3 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h3><p>方法的重载简单的说就是同一个方法名拥有不同的参数列表</p>
+<p>注意事项：</p>
+<ul>
+<li>方法的重载与参数的个数，参数的顺序有关，但和返回值类型无关</li>
+</ul>
+<h2 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h2><p>简介：java中静态成员是不依赖于对象内容的。也就是说静态的成员和对象无关。</p>
+<p>不同对象的成员，其内存地址是不同的。但是如果类中包含静态成员，则系统只在类定义时为静态成员分配内存。此时还没有创建对象（没有对类进行实例化）以后生成该类的实例时，将不再为静态成员分配内存，不同的对象静态成员是共享的。</p>
+<h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><p>在java中静态成员变量是唯一能为类中所有对象共享变量的方法。</p>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>注意事项：</p>
+<ul>
+<li>静态方法中不能使用this，因为静态成员是不依赖于对象的。</li>
+<li>一个静态方法中只能使用其内部定义的参数或静态变量</li>
+<li>静态方法不能被重写</li>
+</ul>
+<h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><p>简介：java中的包装类是用来将基本类型转换成引用类型操作的实现。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">基本数据类型</th>
+<th style="text-align:center">包装类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">byte</td>
+<td style="text-align:center">Byte</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">Short</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">Integer</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">Long</td>
+</tr>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">Float</td>
+</tr>
+<tr>
+<td style="text-align:center">double</td>
+<td style="text-align:center">Double</td>
+</tr>
+<tr>
+<td style="text-align:center">char</td>
+<td style="text-align:center">Char</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">Boolean</td>
+</tr>
+<tr>
+<td style="text-align:center">void</td>
+<td style="text-align:center">Void</td>
+</tr>
+</tbody>
+</table>
+<p>注意 Void 类不能被实例化</p>
+<p>自动装箱</p>
+<p>example：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//        Integer a =10;</span></span><br><span class="line"><span class="comment">//        System.out.println(a);</span></span><br></pre></td></tr></table></figure>
+<p>自动拆箱</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//        Integer a =10;</span></span><br><span class="line"><span class="comment">//        int b = a;</span></span><br><span class="line"><span class="comment">//        System.out.println(b);</span></span><br></pre></td></tr></table></figure>
+<h1 id="数组和字符串"><a href="#数组和字符串" class="headerlink" title="数组和字符串"></a>数组和字符串</h1><h2 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h2><p>简介：数组是用来表示一些相同数据类型的元素的集合。</p>
+<p>注意事项（warning）</p>
+<ul>
+<li>数据有序，数据的存入和取出是有序的</li>
+<li>下标可用，获取数据可以使用下标取出</li>
+<li>可声明多种数据类型，可以是基本数据类型，也可以是引用数据类型</li>
+<li>数组在使用前必须要声明，先声明后使用。</li>
+<li>数组在声明时并不会为数组分配内存，而是存储数组引用的变量。当数组赋值时内存才会分配内存空间。</li>
+</ul>
+<h3 id="数组的声明"><a href="#数组的声明" class="headerlink" title="数组的声明"></a>数组的声明</h3><p>案例example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方式1</span></span><br><span class="line"><span class="keyword">char</span> s[];</span><br><span class="line"><span class="keyword">int</span> intArray[];</span><br><span class="line"><span class="comment">//方式2</span></span><br><span class="line"><span class="keyword">char</span>[] s;</span><br><span class="line"><span class="keyword">int</span>[] intArray;</span><br></pre></td></tr></table></figure>
+<h4 id="静态数组定义（错误，java中不存在）"><a href="#静态数组定义（错误，java中不存在）" class="headerlink" title="静态数组定义（错误，java中不存在）"></a>静态数组定义（错误，java中不存在）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> intArray[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h3><p>简介：数组初始化的过程就是数组的创建过程</p>
+<p>注意事项：</p>
+<ul>
+<li>数组初始化后长度就会被固定，就像是Python中的tuple。</li>
+</ul>
+<h4 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h4><p>案例example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> intArray[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">double</span> heights[] = &#123;<span class="number">4.5</span>,<span class="number">23.6</span>,<span class="number">84.124</span>,<span class="number">78.2</span>,<span class="number">61.5</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h4><p>案例example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String names[];</span><br><span class="line">names = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line">names[<span class="number">0</span>] = <span class="string">"Tom"</span>;</span><br><span class="line">names[<span class="number">1</span>] = <span class="string">"Jen"</span>;</span><br><span class="line">names[<span class="number">2</span>] = <span class="string">"Simon"</span>;</span><br><span class="line">names[<span class="number">3</span>] = <span class="string">"Georgianna"</span>;</span><br></pre></td></tr></table></figure>
+<p>注意事项：</p>
+<ul>
+<li>ps = new Point[4]; 只是创建可以容纳4个Point的数组，但并未创建了4个Point对象</li>
+<li>动态初始化时要注意数组的边界。不能越界赋值</li>
+<li>数组可以存储不同于所声明的类，但存储的类型必须是它的祖先类。如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object[] points;</span><br><span class="line"></span><br><span class="line">points = <span class="keyword">new</span> Point[<span class="number">100</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以上的声明及其初始化是合法的但是如下声明相反却是错误的：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Point[] points;</span><br><span class="line"></span><br><span class="line">points = <span class="keyword">new</span> Object[<span class="number">100</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="访问数组元素"><a href="#访问数组元素" class="headerlink" title="访问数组元素"></a>访问数组元素</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String names[];</span><br><span class="line">names = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line">names[<span class="number">0</span>] = <span class="string">"Tom"</span>;</span><br><span class="line">names[<span class="number">1</span>] = <span class="string">"Jen"</span>;</span><br><span class="line">names[<span class="number">2</span>] = <span class="string">"Simon"</span>;</span><br><span class="line">names[<span class="number">3</span>] = <span class="string">"Georgianna"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//访问素组中的下标为0的元素也就是数组中的第一个元素</span></span><br><span class="line">String name = names[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h3><p>简介：多维数组可以理解为数组的嵌套</p>
+<p>例如二位数组就是一个多维数组，它的表示方式如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] intArray;</span><br><span class="line"><span class="keyword">int</span> intArray[][];</span><br><span class="line"><span class="keyword">int</span>[] intArray[];</span><br></pre></td></tr></table></figure>
+<h4 id="静态初始化-1"><a href="#静态初始化-1" class="headerlink" title="静态初始化"></a>静态初始化</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] intArray = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="动态初始化-1"><a href="#动态初始化-1" class="headerlink" title="动态初始化"></a>动态初始化</h4><h5 id="直接分配"><a href="#直接分配" class="headerlink" title="直接分配"></a>直接分配</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<h5 id="按维分配"><a href="#按维分配" class="headerlink" title="按维分配"></a>按维分配</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//矩形多维数组</span></span><br><span class="line"><span class="keyword">int</span>[][] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">	a[i] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非矩形多维数组</span></span><br><span class="line"><span class="keyword">int</span>[][] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][];</span><br><span class="line">a[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">a[<span class="number">1</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="多维数组的引用"><a href="#多维数组的引用" class="headerlink" title="多维数组的引用"></a>多维数组的引用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] intArray = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">int</span> a = intArray[<span class="number">0</span>][<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="如何解决数组的固定长度问题"><a href="#如何解决数组的固定长度问题" class="headerlink" title="如何解决数组的固定长度问题"></a>如何解决数组的固定长度问题</h3><p>因为我们平时使用的都是数组的引用，所以我们可以通过改变引用指向的数组来解决这一问题。</p>
+<p>案例example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changeLengthOfArray</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">    <span class="comment">//将当前的数组长度加1</span></span><br><span class="line">    <span class="keyword">int</span> length = array.length;</span><br><span class="line">    array = <span class="keyword">new</span> <span class="keyword">int</span> [length+<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数组的一些常用方法"><a href="#数组的一些常用方法" class="headerlink" title="数组的一些常用方法"></a>数组的一些常用方法</h3><p>System.arraycopy</p>
+<p>java.util.Arrays 下的一些静态方法</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>简介：java中的字符串是由有限个字符组成的序列对象。说到字符串不得不说String 和StringBuffer</p>
+<p>注意事项（warning）：</p>
+<ul>
+<li>string 用来操作不会被修改的字符串。</li>
+<li>StringBuffer 用来操作可变的字符串。</li>
+<li>string 比StringBuffer 所占用的内存空间要小。StringBuffer除自身字符串占用空间之外还有16个字符大小的缓存区。</li>
+</ul>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>常量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Hello world!"</span></span><br></pre></td></tr></table></figure>
+<p>变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="keyword">new</span> String(<span class="string">"Hello World"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer  sb = <span class="keyword">new</span> StringBuffer(<span class="string">"Hello World"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="字符串的判断"><a href="#字符串的判断" class="headerlink" title="字符串的判断"></a>字符串的判断</h3><p>== 、compareTo()、equals()、equalsIgnoreCase()、regionMatches()</p>
+<p>注意事项：</p>
+<ul>
+<li>判断时应该先从内存中的地址值去判断，这样可以达到断言的效果。使用 == 判断就是变量的地址值</li>
+</ul>
+<h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><p>简介：简单的说可以理解为一个动态数组的实现类</p>
+<p>注意事项：</p>
+<ul>
+<li>vector中只能保存对象类型，所以不能操作基本数据类型。</li>
+</ul>
+<p>案例example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyVector</span> <span class="keyword">extends</span> <span class="title">Vector</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyVector</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInt</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        addElement(<span class="keyword">new</span> Integer(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFloat</span><span class="params">(<span class="keyword">float</span> f)</span></span>&#123;</span><br><span class="line">        addElement(<span class="keyword">new</span> Float(f));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addString</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        addElement(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCharArray</span><span class="params">(<span class="keyword">char</span>[] c)</span></span>&#123;</span><br><span class="line">        addElement(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printVector</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = size();</span><br><span class="line">        System.out.println(<span class="string">"Number of Vector element is: "</span>+length+<span class="string">" and they are:"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            Object o = elementAt(i);</span><br><span class="line">            <span class="keyword">if</span>( o <span class="keyword">instanceof</span> <span class="keyword">char</span>[])&#123;</span><br><span class="line">                System.out.println(String.copyValueOf((<span class="keyword">char</span>[])o));</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(o);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyControl</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        MyVector vector = <span class="keyword">new</span> MyVector();</span><br><span class="line">        <span class="keyword">int</span> digit = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">float</span> real = <span class="number">3.14f</span>;</span><br><span class="line">        <span class="keyword">char</span>[] letters =&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>&#125;;</span><br><span class="line">        String s = <span class="keyword">new</span> String(<span class="string">"Hi there!"</span>);</span><br><span class="line">        vector.addInt(digit);</span><br><span class="line">        vector.addFloat(real);</span><br><span class="line">        vector.addString(s);</span><br><span class="line">        vector.addCharArray(letters);</span><br><span class="line">        vector.printVector();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1610,7 +1757,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#x79;&#95;&#x74;&#121;&#x40;&#50;&#54;&#x33;&#x2e;&#110;&#x65;&#116;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#x79;&#95;&#x74;&#121;&#x40;&#50;&#54;&#x33;&#x2e;&#110;&#x65;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#110;&#121;&#x5f;&#x74;&#x79;&#64;&#50;&#x36;&#51;&#x2e;&#x6e;&#x65;&#116;" target="_blank" rel="noopener">&#116;&#x6f;&#110;&#121;&#x5f;&#x74;&#x79;&#64;&#50;&#x36;&#51;&#x2e;&#x6e;&#x65;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -1618,7 +1765,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#121;&#95;&#x74;&#121;&#64;&#50;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#121;&#95;&#x74;&#121;&#64;&#50;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#110;&#121;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#51;&#x2e;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#110;&#121;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#51;&#x2e;&#x6e;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
