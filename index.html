@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/07/Java编程语言-基础篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/08/Java编程语言-基础篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/07/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
+                <a href="/MeBlog/2020/05/08/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
               
             
           </h1>
@@ -380,7 +380,7 @@
                 
               
 
-              <time title="创建时间：2020-05-07 17:33:08" itemprop="dateCreated datePublished" datetime="2020-05-07T17:33:08+08:00">2020-05-07</time>
+              <time title="创建时间：2020-05-08 20:34:18" itemprop="dateCreated datePublished" datetime="2020-05-08T20:34:18+08:00">2020-05-08</time>
             
 
             
@@ -919,6 +919,7 @@
 <p>注意事项：</p>
 <ul>
 <li>方法的重载与参数的个数，参数的顺序有关，但和返回值类型无关</li>
+<li>方法的重载只存在于同一个类中</li>
 </ul>
 <h2 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h2><p>简介：java中静态成员是不依赖于对象内容的。也就是说静态的成员和对象无关。</p>
 <p>不同对象的成员，其内存地址是不同的。但是如果类中包含静态成员，则系统只在类定义时为静态成员分配内存。此时还没有创建对象（没有对类进行实例化）以后生成该类的实例时，将不再为静态成员分配内存，不同的对象静态成员是共享的。</p>
@@ -1055,6 +1056,107 @@
 </ul>
 <p>案例example</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyVector</span> <span class="keyword">extends</span> <span class="title">Vector</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyVector</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInt</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        addElement(<span class="keyword">new</span> Integer(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFloat</span><span class="params">(<span class="keyword">float</span> f)</span></span>&#123;</span><br><span class="line">        addElement(<span class="keyword">new</span> Float(f));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addString</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        addElement(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCharArray</span><span class="params">(<span class="keyword">char</span>[] c)</span></span>&#123;</span><br><span class="line">        addElement(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printVector</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = size();</span><br><span class="line">        System.out.println(<span class="string">"Number of Vector element is: "</span>+length+<span class="string">" and they are:"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">            Object o = elementAt(i);</span><br><span class="line">            <span class="keyword">if</span>( o <span class="keyword">instanceof</span> <span class="keyword">char</span>[])&#123;</span><br><span class="line">                System.out.println(String.copyValueOf((<span class="keyword">char</span>[])o));</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(o);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyControl</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        MyVector vector = <span class="keyword">new</span> MyVector();</span><br><span class="line">        <span class="keyword">int</span> digit = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">float</span> real = <span class="number">3.14f</span>;</span><br><span class="line">        <span class="keyword">char</span>[] letters =&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>&#125;;</span><br><span class="line">        String s = <span class="keyword">new</span> String(<span class="string">"Hi there!"</span>);</span><br><span class="line">        vector.addInt(digit);</span><br><span class="line">        vector.addFloat(real);</span><br><span class="line">        vector.addString(s);</span><br><span class="line">        vector.addCharArray(letters);</span><br><span class="line">        vector.printVector();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="继承与多态"><a href="#继承与多态" class="headerlink" title="继承与多态"></a>继承与多态</h1><h2 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h2><p>简介：子类是继承父类的衍生类。</p>
+<p>子类在程序设计上体现了继承的特点，除使用了面向对象继承的特性外，它还实现了代码的复用性。</p>
+<p>语法：</p>
+<p>修饰符 class 子类名 extends 父类名{</p>
+<p>}</p>
+<p>父类的称呼： 超类、基类</p>
+<h3 id="is-a关系"><a href="#is-a关系" class="headerlink" title="is a关系"></a>is a关系</h3><p>继承的关系体现使用is a 可以很贴切的描述出。</p>
+<p>案例example：</p>
+<p>如员工（employee）和经理（manager）之间的关系就可以使用is a 来描述。</p>
+<p>The manager is an employee of the company</p>
+<h3 id="has-a关系"><a href="#has-a关系" class="headerlink" title="has a关系"></a>has a关系</h3><p>模块的概念可以使用 has a 来描述比较贴切。</p>
+<p>案例example：</p>
+<p>Cars has engines and wheels</p>
+<p>发动机和轮胎之间是没有关联的，但是它们都与汽车有联系。所以可以被看做是汽车的模块。</p>
+<h3 id="Object-类"><a href="#Object-类" class="headerlink" title="Object 类"></a>Object 类</h3><p>object在java中是所有类的超类</p>
+<p>object中的一些常用的方法：</p>
+<p>public final class getClass();  获取当前对象的所属类信息。</p>
+<p>public String toString(); 获取当前对象的输出信息。</p>
+<p>public boolean equals(Object o); 对象对比时会参看此方法的返回值。</p>
+<h3 id="单继承"><a href="#单继承" class="headerlink" title="单继承"></a>单继承</h3><p>多重继承关系类似于一个网络。如果子类的多个父类中有同名的方法和属性，那么就容易造成子类实例的混乱。</p>
+<p>java使用单继承规避了这一缺点，同时通过实现多个接口也可以间接的实现多重继承的优势。</p>
+<p>虽然继承可以保留父类中的成员方法和成员变量，但是子类不能继承父类的构造方法。要想使用父类的构造方法可以使用super关键字</p>
+<p>案例example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> String employeeNumber;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDetails</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Name: "</span>+name+<span class="string">"\n employeeNumber: "</span>+employeeNumber;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manager</span> <span class="keyword">extends</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String department;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">(String name,String department)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();<span class="comment">//使用父类的无参构造方法，如果想使用有参的话可以super(参数列表)；这样调用</span></span><br><span class="line">        <span class="keyword">super</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.department = department;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getDetails</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Name: "</span>+name+<span class="string">"\nDepartment: "</span>+department;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子类不能直接访问其父类中定义的私有成员</p>
+<p>example：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">B</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tryVariables</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"a: "</span>+a);</span><br><span class="line">        System.out.println(<span class="string">"super a: "</span>+<span class="keyword">super</span>.a);<span class="comment">// super 可以访问父类中允许访问的成员属性</span></span><br><span class="line"><span class="comment">//        System.out.println("b: "+b);</span></span><br><span class="line">        System.out.println(<span class="string">"b: "</span>+getB());</span><br><span class="line">        System.out.println(<span class="string">"c: "</span>+c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> c = <span class="number">30</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getB</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对象转型（Casting）"><a href="#对象转型（Casting）" class="headerlink" title="对象转型（Casting）"></a>对象转型（Casting）</h3><p>简介：和大多数面向对象的语言一样，java允许使用对象的父类类型做引用类型（静态类型），子类对象的实例做值（动态类型）。</p>
+<p>example：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B a  = <span class="keyword">new</span> A();</span><br></pre></td></tr></table></figure>
+<p>但是相反子类类型做引用类型，父类对象做值就会出错是不可以的</p>
+<p>example：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A b  = <span class="keyword">new</span> B();</span><br></pre></td></tr></table></figure>
+<h2 id="方法覆盖与多态"><a href="#方法覆盖与多态" class="headerlink" title="方法覆盖与多态"></a>方法覆盖与多态</h2><h3 id="方法覆盖（override）"><a href="#方法覆盖（override）" class="headerlink" title="方法覆盖（override）"></a>方法覆盖（override）</h3><p>简介：方法的覆盖也被称为：override、方法重写、隐藏。它只出现在子父类中。并且要求方法名参数列表和返回值一致。</p>
+<p>注意事项：</p>
+<ul>
+<li>子类方法不能比父类方法的访问权限更严格。</li>
+<li>覆盖方法所抛出的异常不能比原方法多。</li>
+<li>它只出现在子父类中</li>
+</ul>
+<h3 id="调用父类的构造方法"><a href="#调用父类的构造方法" class="headerlink" title="调用父类的构造方法"></a>调用父类的构造方法</h3><p>出于安全考虑，java对于对象的初始化要求是非常严格的。比如，java要求一个父类对象要在子类运行前完成初始化。</p>
+<p>虽然不能继承父类中的构造方法，但使用super关键字可以调用父类的构造方法</p>
+<p>注意事项：</p>
+<ul>
+<li>在构造方法中使用super关键字调用父类的构造方法。</li>
+<li>默认情况下子类的构造方法中会调用父类的无参构造方法。</li>
+<li>super调用父类构造方法时要放在方法的第一行</li>
+</ul>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>简介: java中多态是一个非常重要的概念。有了多态，能够允许同一条方法在不同的上下文环境中做不同的事情。</p>
+<p>重载方法可以看做是多态的一种形式。</p>
+<p> 父子类间的override也是多态的一种表现形式。</p>
+<p>如 父类类型 a  = new 子类类型 ，java 在这种情况下执行override方法,执行的是子类对象中的方法（运行时类型），而不是引用类型（父类/编译时类型）中的方法。</p>
+<p>静态类型：引用类型，是在编译时确定下来的。</p>
+<p>example：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SuperClass superc; <span class="comment">//静态类型</span></span><br></pre></td></tr></table></figure>
+<p>动态类型：运行时某一时刻引用所指向对象的类型，它会随着进程的改变而改变。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SuperClass superc = <span class="keyword">new</span> SuperClass();  <span class="comment">//中的 new SuperClass() 对象是动态类型</span></span><br></pre></td></tr></table></figure>
+<p>动态绑定：调用稍后可能被覆盖的方法的这种处理方式，称为动态绑定。</p>
+<p>静态绑定：在编译过程中能确定调用方法的处理方式，称为静态绑定。</p>
+<h2 id="终极类与抽象类"><a href="#终极类与抽象类" class="headerlink" title="终极类与抽象类"></a>终极类与抽象类</h2><h3 id="终极"><a href="#终极" class="headerlink" title="终极"></a>终极</h3><p>java中有一个关键字final表示终极，它可以修饰类、方法、变量。</p>
+<p>当final修饰类时它被称为终极类，这时类不能被继承。</p>
+<p>当final修饰方法时它被称为终极方法，此时方法不能被覆盖（override）。</p>
+<p>当final修饰变量时它被称为终极变量，此时变量的值不能被修改。</p>
+<h4 id="终极类"><a href="#终极类" class="headerlink" title="终极类"></a>终极类</h4><p>语法：</p>
+<p>final public class 类名{</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalClass</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="终极方法"><a href="#终极方法" class="headerlink" title="终极方法"></a>终极方法</h4><p>语法：</p>
+<p>final 权限修饰符 返回值类型 方法名（参数列表）{</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">finalMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="终极变量"><a href="#终极变量" class="headerlink" title="终极变量"></a>终极变量</h4><p>语法：</p>
+<p>final 访问权限修饰符 类型 变量名 = 值；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> iFinal = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3><p>java中使用abstract 关键字来表示抽象，它可以修饰类、方法。</p>
+<p>注意事项：</p>
+<ul>
+<li>abstract修饰类时，它不能被直接创建对象，而是可以通过其子类来创建对象。因为它的子类实现了它所包含的抽象方法。</li>
+<li>abstract 修饰方法，此时的方法是抽象方法所以不需要写方法体。</li>
+<li>有抽象方法的一定是抽象类，抽象类不一定都是抽象方法。</li>
+<li>抽象类不能直接创建对象，但是可以定义一个抽象类型的引用变量。</li>
+</ul>
+<h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><p>语法：</p>
+<p>abstract  public class 类名{</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span>  <span class="title">AbClass</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> c = <span class="number">30</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getB</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h4><p>abstract 权限修饰符 返回值类型 方法名（参数列表);</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span>  <span class="title">AbClass</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">abMethod</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>简介：接口是体现抽象的另一种形式，可将其想象为一个“纯”的抽象类。</p>
+<p>语法：</p>
+<p>修饰符 interface 接口名{</p>
+<p>}</p>
+<p>注意事项：</p>
+<ul>
+<li>接口中的的变量只能是终极变量。</li>
+<li>接口中的方法只能是抽象方法。</li>
+</ul>
+<p>在java接口的定义中默认缺省final public abstract 关键字。如下例子中是一样的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Shape2D</span></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">area</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape2D</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1111,7 +1213,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/26/English-语法/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/08/English-语法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -1131,7 +1233,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/26/English-语法/" class="post-title-link" itemprop="url">English-语法</a>
+                <a href="/MeBlog/2020/05/08/English-语法/" class="post-title-link" itemprop="url">English-语法</a>
               
             
           </h1>
@@ -1156,7 +1258,7 @@
                 
               
 
-              <time title="创建时间：2020-04-26 15:58:47" itemprop="dateCreated datePublished" datetime="2020-04-26T15:58:47+08:00">2020-04-26</time>
+              <time title="创建时间：2020-05-08 16:49:20" itemprop="dateCreated datePublished" datetime="2020-05-08T16:49:20+08:00">2020-05-08</time>
             
 
             
@@ -1266,7 +1368,7 @@
 </tr>
 </tbody>
 </table>
-<p>english example:</p>
+<p>English example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">She is happy</span><br><span class="line"></span><br><span class="line">They are excited</span><br><span class="line"></span><br><span class="line">We learn French</span><br><span class="line"></span><br><span class="line">I like music</span><br><span class="line"></span><br><span class="line">He is a student</span><br><span class="line"></span><br><span class="line">They are teachers</span><br><span class="line"></span><br><span class="line">It is cheap</span><br><span class="line"></span><br><span class="line">做宾格的例子 example</span><br><span class="line"></span><br><span class="line">I like her</span><br><span class="line"></span><br><span class="line">I support them</span><br><span class="line"></span><br><span class="line">He teaches us English</span><br><span class="line"></span><br><span class="line">They belive me</span><br></pre></td></tr></table></figure>
 <h3 id="人称代词的作用"><a href="#人称代词的作用" class="headerlink" title="人称代词的作用"></a>人称代词的作用</h3><p>可以做主语（主格）、宾语(宾格)、表语</p>
 <p>主格和宾格都可以作表语如：</p>
@@ -1325,14 +1427,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="形容词性物主代词和名词性物主代词的区分"><a href="#形容词性物主代词和名词性物主代词的区分" class="headerlink" title="形容词性物主代词和名词性物主代词的区分:"></a>形容词性物主代词和名词性物主代词的区分:</h3><p>chinese example:</p>
+<h3 id="形容词性物主代词和名词性物主代词的区分"><a href="#形容词性物主代词和名词性物主代词的区分" class="headerlink" title="形容词性物主代词和名词性物主代词的区分:"></a>形容词性物主代词和名词性物主代词的区分:</h3><p>Chinese example:</p>
 <p>注：下划线部分为定语</p>
 <ul>
 <li>1.这是<u>我的</u>书 其中的”我的”在中文里是定语，修饰名词”书”。所以这里的”我的”翻译成英语就是一个形容词性物主代词 This is my book</li>
 <li>2.你的书比<u>我的</u>贵，这里的”我的”在中文的含义是”我的书”实际上是指”书”，它属于名词的意义。所以这里的我的翻译成英语就是一个名词性物主代词 Your books  is more expensive than mine</li>
 </ul>
 <h3 id="形容词性物主代词的用法"><a href="#形容词性物主代词的用法" class="headerlink" title="形容词性物主代词的用法"></a>形容词性物主代词的用法</h3><p>​    做前置定语，所以它的后面会跟一个名词</p>
-<p>english example：</p>
+<p>English example：</p>
 <p>注：下划线部分为定语</p>
 <ul>
 <li><u>My</u> house</li>
@@ -1761,7 +1863,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#x79;&#x40;&#x32;&#x36;&#51;&#46;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#x79;&#x40;&#x32;&#x36;&#51;&#46;&#x6e;&#101;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#110;&#x79;&#x5f;&#116;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#110;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#x6f;&#110;&#x79;&#x5f;&#116;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#110;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -1769,7 +1871,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#121;&#95;&#x74;&#121;&#64;&#x32;&#54;&#x33;&#46;&#110;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#121;&#95;&#x74;&#121;&#64;&#x32;&#54;&#x33;&#46;&#110;&#101;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#x6e;&#121;&#95;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#x74;&#111;&#x6e;&#121;&#95;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#110;&#x65;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
