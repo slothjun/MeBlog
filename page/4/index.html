@@ -2084,7 +2084,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/单词库/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -2104,7 +2104,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/单词库/" class="post-title-link" itemprop="url">单词库</a>
+                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
               
             
           </h1>
@@ -2166,19 +2166,26 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
       
         
           
-            <p>operating  <a href="http://www.youdao.com/w/eng/operating/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>kernel <a href="http://www.youdao.com/w/eng/kernel/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>enterprise <a href="http://www.youdao.com/w/eng/enterprise/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>movie 电影 <a href="http://www.youdao.com/w/eng/movie/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>advanced <a href="http://www.youdao.com/w/eng/advanced/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>assume <a href="http://www.youdao.com/w/eng/assume/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>echo <a href="http://www.youdao.com/w/eng/echo/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>touch <a href="http://www.youdao.com/w/eng/touch/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>perusal <a href="http://www.youdao.com/w/eng/perusal/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>block <a href="http://www.youdao.com/w/eng/block/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>between <a href="http://www.youdao.com/w/eng/between/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-<p>owner <a href="http://www.youdao.com/w/eng/owner/#keyfrom=dict2.index" target="_blank" rel="noopener">有道详情</a></p>
-
+            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
+<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
+<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
+<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
+<p>​    动态加载用户的功能模块</p>
+<p>后端</p>
+<p>​    根据用户权限使用API</p>
+<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
+<p>​        问题：数据如何存储便于后期的使用与管理。</p>
+<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
+<p>​    数据传输</p>
+<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
+<p>​        方案：认证+校验</p>
+<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
+<p>​            校验 ：</p>
+<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
+<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
+<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
+<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
+<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
           
         
       
