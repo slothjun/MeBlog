@@ -1748,163 +1748,6 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
-<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
-<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
-<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
-<p>​    动态加载用户的功能模块</p>
-<p>后端</p>
-<p>​    根据用户权限使用API</p>
-<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
-<p>​        问题：数据如何存储便于后期的使用与管理。</p>
-<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
-<p>​    数据传输</p>
-<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
-<p>​        方案：认证+校验</p>
-<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
-<p>​            校验 ：</p>
-<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
-<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
-<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
-<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
-<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/web_认证机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2007,6 +1850,163 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 <p>Token Auth的优点</p>
 <p>​    支持跨域访问: Cookie是不允许垮域访问的，这一点对Token机制是不存在的，前提是传输的用户认证信息通过HTTP头传输.<br>    无状态(也称：服务端可扩展行):Token机制在服务端不需要存储session信息，因为Token 自身包含了所有登录用户的信息，只需要在客户端的cookie或本地介质存储状态信息.<br>    更适用CDN: 可以通过内容分发网络请求你服务端的所有资料（如：javascript，HTML,图片等），而你的服务端只要提供API即可.<br>    去耦: 不需要绑定到一个特定的身份验证方案。Token可以在任何地方生成，只要在你的API被调用的时候，你可以进行Token生成调用即可.<br>    更适用于移动应用: 当你的客户端是一个原生平台（iOS, Android，Windows 8等）时，Cookie是不被支持的（你需要通过Cookie容器进行处理），这时采用Token认证机制就会简单得多。<br>    CSRF:因为不再依赖于Cookie，所以你就不需要考虑对CSRF（跨站请求伪造）的防范。<br>性能: 一次网络往返时间（通过数据库查询session信息）总比做一次HMACSHA256计算 的Token验证和解析要费时得多.<br>    不需要为登录页面做特殊处理: 如果你使用Protractor 做功能测试的时候，不再需要为登录页面做特殊处理.<br>    基于标准化:你的API可以采用标准化的 JSON Web Token (JWT). 这个标准已经存在多个后端库（.NET, Ruby,<br>Java,Python, PHP）和多家公司的支持（如：Firebase,Google, Microsoft）.</p>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
+<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
+<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
+<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
+<p>​    动态加载用户的功能模块</p>
+<p>后端</p>
+<p>​    根据用户权限使用API</p>
+<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
+<p>​        问题：数据如何存储便于后期的使用与管理。</p>
+<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
+<p>​    数据传输</p>
+<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
+<p>​        方案：认证+校验</p>
+<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
+<p>​            校验 ：</p>
+<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
+<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
+<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
+<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
+<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
           
         
       
