@@ -46,21 +46,21 @@
 
 
 
-<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
 
 
-  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
 
 
 
@@ -71,7 +71,7 @@
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/MeBlog/',
+    root: '/',
     scheme: 'Mist',
     version: '7.0.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
@@ -190,7 +190,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/MeBlog/" class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">WenLiangBaoBlog</span>
         <span class="logo-line-after"><i></i></span>
@@ -223,7 +223,7 @@
         
         
           
-          <li class="menu-item menu-item-home">
+          <li class="menu-item menu-item-home menu-item-active">
 
     
     
@@ -235,7 +235,7 @@
       
     
 
-    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">49</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">49</span></a>
 
   </li>
 
@@ -335,12 +335,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/27/数字-电子-计算机操作系统/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/27/数字-电子-计算机操作系统/" class="post-title-link" itemprop="url">数字-电子-计算机操作系统</a>
+                <a href="/2020/05/27/数字-电子-计算机操作系统/" class="post-title-link" itemprop="url">数字-电子-计算机操作系统</a>
               
             
           </h1>
@@ -380,12 +380,24 @@
                 
               
 
-              <time title="创建时间：2020-05-27 17:54:42 / 修改时间：18:04:48" itemprop="dateCreated datePublished" datetime="2020-05-27T17:54:42+08:00">2020-05-27</time>
+              <time title="创建时间：2020-05-27 17:54:42" itemprop="dateCreated datePublished" datetime="2020-05-27T17:54:42+08:00">2020-05-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-29 16:57:01" itemprop="dateModified" datetime="2020-05-29T16:57:01+08:00">2020-05-29</time>
               
             
           </span>
@@ -425,7 +437,35 @@
 <p>1.计算机系统是一种可以按用户要求接收和存储信息、自动进行数据处理并输出结果信息的系统。</p>
 <p>2.广义的计算机系统包含机械式系统和电子式系统。</p>
 <p>3.电子式系统可以分为模拟式和数字式计算机系统。本篇博客讨论的是数字电子计算机系统，也可简称为计算机系统</p>
-<h3 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h3><h3 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h3><h3 id="研究操作系统的观点"><a href="#研究操作系统的观点" class="headerlink" title="研究操作系统的观点"></a>研究操作系统的观点</h3><h3 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h3><h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><h3 id="Windows操作系统的体系结构"><a href="#Windows操作系统的体系结构" class="headerlink" title="Windows操作系统的体系结构"></a>Windows操作系统的体系结构</h3><h3 id="Unix操作系统的体系结构"><a href="#Unix操作系统的体系结构" class="headerlink" title="Unix操作系统的体系结构"></a>Unix操作系统的体系结构</h3><h3 id="Linux操作系统的体系结构"><a href="#Linux操作系统的体系结构" class="headerlink" title="Linux操作系统的体系结构"></a>Linux操作系统的体系结构</h3><h3 id="Android操作系统的体系结构"><a href="#Android操作系统的体系结构" class="headerlink" title="Android操作系统的体系结构"></a>Android操作系统的体系结构</h3><h2 id="操作系统的发展"><a href="#操作系统的发展" class="headerlink" title="操作系统的发展"></a>操作系统的发展</h2><h3 id="手工操作"><a href="#手工操作" class="headerlink" title="手工操作"></a>手工操作</h3><h3 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h3><h3 id="多道批处理"><a href="#多道批处理" class="headerlink" title="多道批处理"></a>多道批处理</h3><h3 id="分时与实时系统"><a href="#分时与实时系统" class="headerlink" title="分时与实时系统"></a>分时与实时系统</h3><h3 id="Unix通用操作系统"><a href="#Unix通用操作系统" class="headerlink" title="Unix通用操作系统"></a>Unix通用操作系统</h3><h3 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="Android操作系统"><a href="#Android操作系统" class="headerlink" title="Android操作系统"></a>Android操作系统</h3><h2 id="操作系统分类"><a href="#操作系统分类" class="headerlink" title="操作系统分类"></a>操作系统分类</h2><h3 id="批处理操作系统"><a href="#批处理操作系统" class="headerlink" title="批处理操作系统"></a>批处理操作系统</h3><h3 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h3><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3><h3 id="嵌入式操作系统"><a href="#嵌入式操作系统" class="headerlink" title="嵌入式操作系统"></a>嵌入式操作系统</h3><h3 id="个人计算机操作系统-1"><a href="#个人计算机操作系统-1" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h3><h3 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h3><h2 id="操作系统设计"><a href="#操作系统设计" class="headerlink" title="操作系统设计"></a>操作系统设计</h2><h3 id="操作系统的设计过程"><a href="#操作系统的设计过程" class="headerlink" title="操作系统的设计过程"></a>操作系统的设计过程</h3><h3 id="操作系统的设计目标"><a href="#操作系统的设计目标" class="headerlink" title="操作系统的设计目标"></a>操作系统的设计目标</h3><h3 id="操作系统的结构设计"><a href="#操作系统的结构设计" class="headerlink" title="操作系统的结构设计"></a>操作系统的结构设计</h3><h3 id="操作系统的结构"><a href="#操作系统的结构" class="headerlink" title="操作系统的结构"></a>操作系统的结构</h3><h1 id="操作系统运行环境"><a href="#操作系统运行环境" class="headerlink" title="操作系统运行环境"></a>操作系统运行环境</h1><h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><h2 id="中断-异常"><a href="#中断-异常" class="headerlink" title="中断/异常"></a>中断/异常</h2><h2 id="计算机中相关的硬件部分"><a href="#计算机中相关的硬件部分" class="headerlink" title="计算机中相关的硬件部分"></a>计算机中相关的硬件部分</h2><h3 id="内存储器"><a href="#内存储器" class="headerlink" title="内存储器"></a>内存储器</h3><h4 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h4><h5 id="存储器的类型"><a href="#存储器的类型" class="headerlink" title="存储器的类型"></a>存储器的类型</h5><p>微型计算机中大部分采用半导体存储器，其大致可分为如下两种类型</p>
+<h3 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h3><h3 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h3><h3 id="研究操作系统的观点"><a href="#研究操作系统的观点" class="headerlink" title="研究操作系统的观点"></a>研究操作系统的观点</h3><h3 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h3><h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><h3 id="Windows操作系统的体系结构"><a href="#Windows操作系统的体系结构" class="headerlink" title="Windows操作系统的体系结构"></a>Windows操作系统的体系结构</h3><h3 id="Unix操作系统的体系结构"><a href="#Unix操作系统的体系结构" class="headerlink" title="Unix操作系统的体系结构"></a>Unix操作系统的体系结构</h3><h3 id="Linux操作系统的体系结构"><a href="#Linux操作系统的体系结构" class="headerlink" title="Linux操作系统的体系结构"></a>Linux操作系统的体系结构</h3><h3 id="Android操作系统的体系结构"><a href="#Android操作系统的体系结构" class="headerlink" title="Android操作系统的体系结构"></a>Android操作系统的体系结构</h3><h2 id="操作系统的发展"><a href="#操作系统的发展" class="headerlink" title="操作系统的发展"></a>操作系统的发展</h2><h3 id="手工操作"><a href="#手工操作" class="headerlink" title="手工操作"></a>手工操作</h3><h3 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h3><h3 id="多道批处理"><a href="#多道批处理" class="headerlink" title="多道批处理"></a>多道批处理</h3><h3 id="分时与实时系统"><a href="#分时与实时系统" class="headerlink" title="分时与实时系统"></a>分时与实时系统</h3><h3 id="Unix通用操作系统"><a href="#Unix通用操作系统" class="headerlink" title="Unix通用操作系统"></a>Unix通用操作系统</h3><h3 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="Android操作系统"><a href="#Android操作系统" class="headerlink" title="Android操作系统"></a>Android操作系统</h3><h2 id="操作系统分类"><a href="#操作系统分类" class="headerlink" title="操作系统分类"></a>操作系统分类</h2><h3 id="批处理操作系统"><a href="#批处理操作系统" class="headerlink" title="批处理操作系统"></a>批处理操作系统</h3><h3 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h3><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3><h3 id="嵌入式操作系统"><a href="#嵌入式操作系统" class="headerlink" title="嵌入式操作系统"></a>嵌入式操作系统</h3><h3 id="个人计算机操作系统-1"><a href="#个人计算机操作系统-1" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h3><h3 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h3><h2 id="操作系统设计"><a href="#操作系统设计" class="headerlink" title="操作系统设计"></a>操作系统设计</h2><h3 id="操作系统的设计过程"><a href="#操作系统的设计过程" class="headerlink" title="操作系统的设计过程"></a>操作系统的设计过程</h3><h3 id="操作系统的设计目标"><a href="#操作系统的设计目标" class="headerlink" title="操作系统的设计目标"></a>操作系统的设计目标</h3><h3 id="操作系统的结构设计"><a href="#操作系统的结构设计" class="headerlink" title="操作系统的结构设计"></a>操作系统的结构设计</h3><h3 id="操作系统的结构"><a href="#操作系统的结构" class="headerlink" title="操作系统的结构"></a>操作系统的结构</h3><h1 id="操作系统运行环境"><a href="#操作系统运行环境" class="headerlink" title="操作系统运行环境"></a>操作系统运行环境</h1><h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><p>处理器的一些常识：</p>
+<p>操作系统做为一个程序需要在处理器上运行。<br>如果一个计算机系统只有一个处理器，我们称之为单机系统。如果有多个处理器我们称为多处理器系统。<br>计算机处理器都有自己的指令系统。</p>
+<h3 id="处理器的构成"><a href="#处理器的构成" class="headerlink" title="处理器的构成"></a>处理器的构成</h3><p>处理器一般由运算器、控制器、一系列的寄存器以及高速缓存构成。</p>
+<p>运算器：用来实现指令中的算术和逻辑运算<br>控制器：负责控制程序运行的流程，取指令、维护处理器的状态、处理器与内存的交互等。<br>寄存器：存储处理器执行指令过程中暂时需要存储的数据、地址以及指令信息等。它具有比内存更快的访问速度但是由于寄存器集成在微处理器的芯片中，所以它的存储空间很有限。</p>
+<p>根据用户使用可以为寄存器分类为：</p>
+<h4 id="用户可见寄存器"><a href="#用户可见寄存器" class="headerlink" title="用户可见寄存器"></a>用户可见寄存器</h4><p>见名知意，此寄存器用来存储用户控制的数据。</p>
+<p>用户可以通过高级编程语言使用</p>
+<p>数据寄存器：</p>
+<p>1.也称为通用寄存器<br>2.用于各种算术逻辑指令和访存指令。</p>
+<p>地址寄存器：</p>
+<p>1.用于存储数据及指令的物理地址、线性地址或者有效地址，用于某种特定方式的寻址。</p>
+<p>条件码寄存器：<br>1.保存处理器操作结果的各种标记位。如算术运算产生的溢出、符号等。</p>
+<h4 id="控制和状态寄存器"><a href="#控制和状态寄存器" class="headerlink" title="控制和状态寄存器"></a>控制和状态寄存器</h4><p>用于控制处理器的操作，一般由具有特权的操作系统使用。</p>
+<p>由具有特权的操作系统使用</p>
+<p>程序计数器：用于取出将要取出的指令的地址。<br>指令寄存器：包含最近取出的指令。<br>程序状态字：记录了处理器的运行模式信息等。</p>
+<h3 id="处理器基本工作方式"><a href="#处理器基本工作方式" class="headerlink" title="处理器基本工作方式"></a>处理器基本工作方式</h3><p>处理器的基本工作方式可由指令执行执行过程描述</p>
+<p>指令执行的基本过程：如下图</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/指令周期.png" alt></p>
+<h4 id="指令根据功能可划分为"><a href="#指令根据功能可划分为" class="headerlink" title="指令根据功能可划分为"></a>指令根据功能可划分为</h4><p>访问存储器指令：负责处理器和存储器之间的数据传输<br>I/O指令：负责处理器和I/O模块之间的数据传送和命令发送<br>算术逻辑指令：用以执行有关数据的算术和逻辑操作<br>控制转移指令：可以指定一个新的指令的执行起点<br>处理器控制指令：用于修改处理器状态，改变处理器工作方式等</p>
+<h4 id="特权指令和非特权指令"><a href="#特权指令和非特权指令" class="headerlink" title="特权指令和非特权指令"></a>特权指令和非特权指令</h4><p>特权指令和非特权指令存在于多用户多任务多通道的操作系统中。<br>特权指令：普通用户程序无权访问使用，操作系统可以访问使用。<br>用户可以通过陷入（Trap）使用特权指令。<br>陷入：用户将处理器状态切换为操作系统运行的特权状态，然后由操作系统运行拥有特权指令的程序。这个过程称为陷入。<br>系统可通过处理器状态标识判断当前执行的程序是一般应用还是系统指令<br>特权或非特权指令这种指令使用架构需要硬件的支持</p>
+<h3 id="处理器的工作状态"><a href="#处理器的工作状态" class="headerlink" title="处理器的工作状态"></a>处理器的工作状态</h3><p>管态：拥有特权的级别，可以执行特权指令。有时被称为：核心态、内核态、系统态<br>目态：拥有普通的权利级别，如一般的用户程序就是在目态模式下运行的<br>举例：英特尔公司的X86系列处理器支持4个处理器特权级别：R0、R1、R2、R3</p>
+<p>它们4者间的关系如下：<br>$$<br>r0⊇r1⊇r2⊇r3<br>$$</p>
+<h4 id="处理器工作状态的转换"><a href="#处理器工作状态的转换" class="headerlink" title="处理器工作状态的转换"></a>处理器工作状态的转换</h4><p>目态转换为管态</p>
+<p>使用中断技术，并将PSW中的处理器状态设为管态即可</p>
+<p>管态转换为目态</p>
+<p>同样也是使用中断+PSW中修改处理器状态</p>
+<p>程序状态字（PSW）</p>
+<p>为了解决处理器当前工作状态的问题。</p>
+<h2 id="中断-异常"><a href="#中断-异常" class="headerlink" title="中断/异常"></a>中断/异常</h2><h2 id="计算机中相关的硬件部分"><a href="#计算机中相关的硬件部分" class="headerlink" title="计算机中相关的硬件部分"></a>计算机中相关的硬件部分</h2><h3 id="内存储器"><a href="#内存储器" class="headerlink" title="内存储器"></a>内存储器</h3><h4 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h4><h5 id="存储器的类型"><a href="#存储器的类型" class="headerlink" title="存储器的类型"></a>存储器的类型</h5><p>微型计算机中大部分采用半导体存储器，其大致可分为如下两种类型</p>
 <h6 id="读写型存储器（RAM）"><a href="#读写型存储器（RAM）" class="headerlink" title="读写型存储器（RAM）"></a>读写型存储器（RAM）</h6><p>knowledge point：</p>
 <p>1.这种类型的存储器也被称作随机访问存储器</p>
 <p>2.它可以随时进行读或写的操作</p>
@@ -442,12 +482,12 @@
 <h5 id="存储器的层次结构"><a href="#存储器的层次结构" class="headerlink" title="存储器的层次结构"></a>存储器的层次结构</h5><p>存储器层次化结构的由来：</p>
 <p>因为人们对计算机存储器的需求是这样的，速度越快越好、容量越大越好、制造价格越便宜越好。而现实中速度、容量、价格这三者间是存在二律悖反的。有了速度就得牺牲价格和容量，相反同理。</p>
 <p>既然不能达到最优，那如何权衡三者使用呢?答案是采用层次化的存储结构。图2-2代表了计算机存储器的层次化结构</p>
-<p><img src="/MeBlog/.io//存储器的层次结构图.png" alt="图2-2"></p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/存储器的层次结构图.png" alt="图2-2"></p>
 <h5 id="存储器的保护"><a href="#存储器的保护" class="headerlink" title="存储器的保护"></a>存储器的保护</h5><p>内存中的数据是需要被保护的不然会出现资源的破坏从而导致系统奔溃或程序奔溃。</p>
 <p>要实现存储保护，必须要有硬件的支持。</p>
 <p>界地址寄存器是被广泛使用的一种存储保护技术。下面咱们看看它是如何工作的。</p>
 <p>在处理器中设置一对界存储器，分别是上限界存储器和下限界存储器。每当处理器访问内存时，硬件自动将被访问的内存地址与界寄存器进行对比，如果越界就会产生程序中断。如图2-3所示，阐述了界地址寄存器的保护策略运行流程</p>
-<p><img src="/MeBlog/.io//界地址寄存器存储保护技术.png" alt="图2-3"></p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/界地址寄存器存储保护技术.png" alt="图2-3"></p>
 <h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2>
           
         
@@ -504,12 +544,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/25/计算机-操作系统/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/05/25/计算机-操作系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -524,7 +564,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/25/计算机-操作系统/" class="post-title-link" itemprop="url">数字电子-计算机操作系统</a>
+                <a href="/2020/05/25/计算机-操作系统/" class="post-title-link" itemprop="url">数字电子-计算机操作系统</a>
               
             
           </h1>
@@ -662,12 +702,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/20/Java编程语言-基础篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/05/20/Java编程语言-基础篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -682,7 +722,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/20/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
+                <a href="/2020/05/20/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
               
             
           </h1>
@@ -1870,12 +1910,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/08/English-语法/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/05/08/English-语法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1890,7 +1930,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/08/English-语法/" class="post-title-link" itemprop="url">English-语法</a>
+                <a href="/2020/05/08/English-语法/" class="post-title-link" itemprop="url">English-语法</a>
               
             
           </h1>
@@ -2215,12 +2255,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/21/Ubuntu系统/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/04/21/Ubuntu系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2235,7 +2275,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/21/Ubuntu系统/" class="post-title-link" itemprop="url">Ubuntu系统</a>
+                <a href="/2020/04/21/Ubuntu系统/" class="post-title-link" itemprop="url">Ubuntu系统</a>
               
             
           </h1>
@@ -2359,12 +2399,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/21/Linux-命令篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/04/21/Linux-命令篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2379,7 +2419,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/21/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
+                <a href="/2020/04/21/Linux-命令篇/" class="post-title-link" itemprop="url">Linux-命令篇</a>
               
             
           </h1>
@@ -2520,7 +2560,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#110;&#121;&#x5f;&#x74;&#121;&#64;&#x32;&#54;&#x33;&#46;&#x6e;&#x65;&#116;" target="_blank" rel="noopener">&#116;&#x6f;&#110;&#121;&#x5f;&#x74;&#121;&#64;&#x32;&#54;&#x33;&#46;&#x6e;&#x65;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#x36;&#51;&#x2e;&#x6e;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#121;&#x5f;&#116;&#x79;&#64;&#50;&#x36;&#51;&#x2e;&#x6e;&#x65;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -2528,7 +2568,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#110;&#x79;&#95;&#x74;&#121;&#64;&#50;&#x36;&#x33;&#x2e;&#x6e;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#110;&#x79;&#95;&#x74;&#121;&#64;&#50;&#x36;&#x33;&#x2e;&#x6e;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#x79;&#95;&#x74;&#121;&#x40;&#x32;&#54;&#x33;&#46;&#110;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#x79;&#95;&#x74;&#121;&#x40;&#x32;&#54;&#x33;&#46;&#110;&#101;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
@@ -2649,12 +2689,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/21/bash-初识/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/04/21/bash-初识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2669,7 +2709,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/21/bash-初识/" class="post-title-link" itemprop="url">bash-初识</a>
+                <a href="/2020/04/21/bash-初识/" class="post-title-link" itemprop="url">bash-初识</a>
               
             
           </h1>
@@ -2866,12 +2906,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/17/python-入门篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/04/17/python-入门篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2886,7 +2926,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/17/python-入门篇/" class="post-title-link" itemprop="url">python-入门篇</a>
+                <a href="/2020/04/17/python-入门篇/" class="post-title-link" itemprop="url">python-入门篇</a>
               
             
           </h1>
@@ -3116,12 +3156,12 @@ list.remove(x) 删除首个指定元素
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/03/linux-文件配置篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/04/03/linux-文件配置篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -3136,7 +3176,7 @@ list.remove(x) 删除首个指定元素
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/04/03/linux-文件配置篇/" class="post-title-link" itemprop="url">linux-文件配置篇</a>
+                <a href="/2020/04/03/linux-文件配置篇/" class="post-title-link" itemprop="url">linux-文件配置篇</a>
               
             
           </h1>
@@ -3264,12 +3304,12 @@ list.remove(x) 删除首个指定元素
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/03/18/pc计算机的的常识/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/2020/03/18/pc计算机的的常识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
       <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+      <meta itemprop="image" content="/images/blog_head.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -3284,7 +3324,7 @@ list.remove(x) 删除首个指定元素
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/03/18/pc计算机的的常识/" class="post-title-link" itemprop="url">PC计算机常识</a>
+                <a href="/2020/03/18/pc计算机的的常识/" class="post-title-link" itemprop="url">PC计算机常识</a>
               
             
           </h1>
@@ -3397,7 +3437,7 @@ list.remove(x) 删除首个指定元素
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/MeBlog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/MeBlog/page/5/">5</a><a class="extend next" rel="next" href="/MeBlog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -3428,7 +3468,7 @@ list.remove(x) 删除首个指定元素
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="WenLiangBao">
+              <img class="site-author-image" itemprop="image" src="/images/blog_head.png" alt="WenLiangBao">
             
               <p class="site-author-name" itemprop="name">WenLiangBao</p>
               <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)温故而知新,可以为师矣</p>
@@ -3439,7 +3479,7 @@ list.remove(x) 删除首个指定元素
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/MeBlog/archives/">
+                  <a href="/archives/">
                 
                     <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
@@ -3465,7 +3505,7 @@ list.remove(x) 删除首个指定元素
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
              </div>
           
 
@@ -3581,39 +3621,39 @@ list.remove(x) 删除首个指定元素
 
 
   
-  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
-
-  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
-
-
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
   
 
 
-  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
 
 
   
@@ -3633,7 +3673,7 @@ list.remove(x) 删除首个指定元素
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/MeBlog/" + search_path;
+    var path = "/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
