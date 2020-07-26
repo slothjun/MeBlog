@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">49</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">51</span></a>
 
   </li>
 
@@ -319,6 +319,507 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/系统安全框架搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/系统安全框架搭建/" class="post-title-link" itemprop="url">系统安全案例及设计理念</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="RBAC模型"><a href="#RBAC模型" class="headerlink" title="RBAC模型"></a>RBAC模型</h2><h3 id="什么是RBAC"><a href="#什么是RBAC" class="headerlink" title="什么是RBAC"></a>什么是RBAC</h3><p>RBAC（全称：Role-Based Access Control）基于角色的权限访问控制，作为传统访问控制（自主访问，强制访<br>问）的有前景的代替受到广泛的关注。在RBAC中，权限与角色相关联，用户通过成为适当角色的成员而得到这些<br>角色的权限。这就极大地简化了权限的管理。在一个组织中，角色是为了完成各种工作而创造，用户则依据它的责<br>任和资格来被指派相应的角色，用户可以很容易地从一个角色被指派到另一个角色。角色可依新的需求和系统的合<br>并而赋予新的权限，而权限也可根据需要而从某角色中回收。角色与角色的关系可以建立起来以囊括更广泛的客观<br>情况。<br>访问控制是针对越权使用资源的防御措施，目的是为了限制访问主体（如用户等） 对访问客体（如数据库资源等）<br>的访问权限。企业环境中的访问控制策略大部分都采用基于角色的访问控制（RBAC）模型，是目前公认的解决大<br>型企业的统一资源访问控制的有效方法</p>
+<h3 id="基于RBAC实现的设计思路"><a href="#基于RBAC实现的设计思路" class="headerlink" title="基于RBAC实现的设计思路"></a>基于RBAC实现的设计思路</h3><p>基于角色的访问控制基本原理是在用户和访问权限之间加入角色这一层，实现用户和权限的分离，用户只有通过激<br>活角色才能获得访问权限。通过角色对权限分组，大大简化了用户权限分配表，间接地实现了对用户的分组，提高<br>了权限的分配效率。且加入角色层后，访问控制机制更接近真实世界中的职业分配，便于权限管理。</p>
+<h3 id="表结构模型图"><a href="#表结构模型图" class="headerlink" title="表结构模型图"></a>表结构模型图</h3><p><img src="http://39.104.171.29:80/image/RBAC_data_model.png" alt></p>
+<h3 id="需求1"><a href="#需求1" class="headerlink" title="需求1"></a>需求1</h3><p>前端</p>
+<p>​    动态加载用户的功能模块</p>
+<p>后端</p>
+<p>​    根据用户权限使用API</p>
+<h3 id="基于RBAC-dome-案例分析并实现"><a href="#基于RBAC-dome-案例分析并实现" class="headerlink" title="基于RBAC dome 案例分析并实现"></a>基于RBAC dome 案例分析并实现</h3><h4 id="后台无状态安全校验实现"><a href="#后台无状态安全校验实现" class="headerlink" title="后台无状态安全校验实现"></a>后台无状态安全校验实现</h4><p>​    底层数据</p>
+<p>​        问题：数据如何存储便于后期的使用与管理。</p>
+<p>​        方案：使用RBAC管理模型，根据用户、角色、权限三种概念。来实现数据的访问、使用等相关权限的合理分配。</p>
+<p>​    数据传输</p>
+<p>​        问题：数据传输依托于互联网，如何保证其安全。</p>
+<p>​        方案：认证+校验</p>
+<p>​            认证 ：<a href="C:\Users\sloth\Desktop\md\web_认证机制.md" target="_blank" rel="noopener"></a>依托web认证机制中的方案可实现</p>
+<p>​            校验 ：</p>
+<p>​                实现逻辑 在请求到达controller 时拦截并校验。</p>
+<p>​                实现方式有：filter intercept aop  他们三者的关系如下图</p>
+<p>​                <img src="http://39.104.171.29:80/image/filter-intercept-aop.png" alt></p>
+<p>​                本次案例使用的的过滤方式为，filter 过滤一些不存在token的请求，由intercept拦截校验接下来的数据信息。</p>
+<h4 id="后台有状态安全校验实现"><a href="#后台有状态安全校验实现" class="headerlink" title="后台有状态安全校验实现"></a>后台有状态安全校验实现</h4>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/springboot_param_validation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/springboot_param_validation/" class="post-title-link" itemprop="url">SpringBoot 参数校验</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>​JSR-303 实现方案+JSR-349Bean 验证</p>
+<p>JSR-303的实现使用hibernate的实现 @Valid注解</p>
+<p>JSR-349Bean 验证的实现使用spring提供的@Validated注解</p>
+<h3 id="校验案例"><a href="#校验案例" class="headerlink" title="校验案例"></a>校验案例</h3><p>本案例的环境为，springboot2.0.5.RELEASE</p>
+<p>基础代码实现：</p>
+<ol>
+<li><p>导入坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此坐标包含了@Valid 和@Validated</p>
+</li>
+<li><p>创建入口启动类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.utils.IdWorker;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.domain.EntityScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.config.EnableJpaRepositories;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="meta">@ComponentScan</span>(<span class="string">"com.healthengine.department"</span>)</span><br><span class="line"><span class="meta">@EntityScan</span>(<span class="string">"com.healthengine.medpro.department"</span>)</span><br><span class="line"><span class="meta">@EnableJpaRepositories</span>(basePackages = <span class="string">"com.healthengine.department.dao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DepartmentApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(DepartmentApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//雪花算法用来生成id</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IdWorker <span class="title">idWorker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> IdWorker(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：此入口启动类要放在Controller包的同级目录下，因为@SpringBootApplication注解会扫描同级目录及其子目录。此类只放在java目录下是不对的。要放在Java目录下的下级目录下</p>
+<p><img src="http://39.104.171.29:80/image/springBoot-validatd1.png" alt>（正确目录格式）</p>
+<p><img src="http://39.104.171.29:80/image/springBoot-validatd2.png" alt>(错误目录格式)</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>配置文件设置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">9002</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">medpro-department</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://localhost:3306/medprotwo</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">xxxx</span></span><br><span class="line"><span class="attr">  jpa:</span></span><br><span class="line"><span class="attr">    database:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">    show-sql:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    open-in-view:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建controller</p>
+</li>
+</ol>
+<p>案例使用到的java Bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.department.Department;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.Valid;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotEmpty;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"co_company"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">594829320797158219L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"版本号不能为空"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line">    <span class="keyword">private</span> String version;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date renewalDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date expirationDate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyArea;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyAddress;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String businessLicenseId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String legalRepresentative;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companyPhone;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String mailbox;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String companySize;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String industry;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String remarks;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String auditState;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer state;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Double balance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line">    <span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line">    <span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Table;</span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotBlank;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"co_department"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@NotBlank</span>(message = <span class="string">"id不能为空"</span>)</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 父id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String pid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 企业id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String companyId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 部门编码，同级部门不可重复</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String managerId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 负责人名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String manager;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 介绍</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String introduce;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建时间</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Date create;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.medpro.company;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="基础校验（快速尝鲜）"><a href="#基础校验（快速尝鲜）" class="headerlink" title="基础校验（快速尝鲜）"></a>基础校验（快速尝鲜）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象参数校验</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test1"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test1</span><span class="params">(@Validated @RequestBody Company company)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="单个参数校验"><a href="#单个参数校验" class="headerlink" title="单个参数校验"></a>单个参数校验</h4><ol>
+<li><p>在类中加入@Validated</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span>()</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/validation"</span>)</span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ValidationTest</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法上对参数使用校验注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/test2"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test2</span><span class="params">(@NotNull(message = <span class="string">"年齡不能為空"</span>)</span> Integer age)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="分组校验"><a href="#分组校验" class="headerlink" title="分组校验"></a>分组校验</h3></li>
+<li><p>创建分组标识接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AddDepartment</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在要校验的字段上使用校验注解并添加groups属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotBlank</span>(message = <span class="string">"用户名不能为空！"</span>,groups = &#123;AddDepartment.class&#125;)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在方法上使用校验</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test3"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test3</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="嵌套属性校验"><a href="#嵌套属性校验" class="headerlink" title="嵌套属性校验"></a>嵌套属性校验</h3></li>
+<li><p>在要需要嵌套校验的对象上添加@valid</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 部门列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Valid</span> <span class="comment">//开启嵌套校验</span></span><br><span class="line"><span class="meta">@NotEmpty</span>(groups = &#123;AddDepartment.class&#125;,message = <span class="string">"部门列表不能为空！"</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;Department&gt; departmentList;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在方法上使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Valid @Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="非嵌套属性校验"><a href="#非嵌套属性校验" class="headerlink" title="非嵌套属性校验"></a>非嵌套属性校验</h3></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/test4"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">test4</span><span class="params">(@Validated(AddDepartment.class)</span> @RequestBody Company company)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Result(ResultCode.SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义校验规则"><a href="#自定义校验规则" class="headerlink" title="自定义校验规则"></a>自定义校验规则</h4><h3 id="校验异常类全局处理"><a href="#校验异常类全局处理" class="headerlink" title="校验异常类全局处理"></a>校验异常类全局处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.healthengine.department.exception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.entity.Result;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.converter.HttpMessageConversionException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.BindingResult;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.FieldError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.ObjectError;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.MethodArgumentNotValidException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolation;</span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintViolationException;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单个参数异常抛出</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(ConstraintViolationException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">constraintViolationException</span><span class="params">(ConstraintViolationException ce)</span></span>&#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(ConstraintViolation violation:ce.getConstraintViolations())&#123;</span><br><span class="line">            sb.append(<span class="string">"异常信息： "</span>+violation.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实体类异常抛出</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(MethodArgumentNotValidException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">validationBodyException</span><span class="params">(MethodArgumentNotValidException exception)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        BindingResult result = exception.getBindingResult();</span><br><span class="line">        <span class="keyword">if</span> (result.hasErrors()) &#123;</span><br><span class="line"></span><br><span class="line">            List&lt;ObjectError&gt; errors = result.getAllErrors();</span><br><span class="line"></span><br><span class="line">            errors.forEach(p -&gt;&#123;</span><br><span class="line"></span><br><span class="line">                FieldError fieldError = (FieldError) p;</span><br><span class="line">                sb.append(<span class="string">"异常字段："</span>+fieldError.getField()+<span class="string">" 异常信息："</span>+fieldError.getDefaultMessage()).append(System.lineSeparator());</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,sb.toString(),<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 参数类型转换错误</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception 错误</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 错误信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(HttpMessageConversionException.class)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">parameterTypeException</span><span class="params">(HttpMessageConversionException exception)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="number">500</span>,exception.getCause().getLocalizedMessage(),<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="案例后发现的缺陷"><a href="#案例后发现的缺陷" class="headerlink" title="案例后发现的缺陷"></a>案例后发现的缺陷</h3><ol>
+<li><p>使用hibernate参数校验注解后发现，使用Spring jpa 存入数据时也会产生校验。</p>
+<p>目前解决方案，使用注解时为其分组。这样可以解决存入数据库时的校验，当存入数据库前，想做校验需要自己手动编写逻辑。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/modelAttribute注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/modelAttribute注解/" class="post-title-link" itemprop="url">modelAttribute注解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
+
+1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
+
+2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
+</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基础controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -487,7 +988,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/modelAttribute注解/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-用户用户组篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -507,7 +1008,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/modelAttribute注解/" class="post-title-link" itemprop="url">modelAttribute注解</a>
+                <a href="/MeBlog/2019/04/29/Linux-用户用户组篇/" class="post-title-link" itemprop="url">Linux-用户用户组篇</a>
               
             
           </h1>
@@ -569,15 +1070,49 @@
       
         
           
-            <h2 id="modelAttribute"><a href="#modelAttribute" class="headerlink" title="@modelAttribute"></a>@modelAttribute</h2><pre><code>moelAttribute 是springmvc提供的注解。
-
-1.运用在参数上，会将客户端传递过来的参数按名称注入到指定对象中，并且会将这个对象自动加入ModelMap中，便于View层使用；
-
-2.运用在方法上，会在每一个@RequestMapping标注的方法前执行，如果有返回值，则自动将该返回值加入到ModelMap中；
-</code></pre><h3 id="运用在方法上"><a href="#运用在方法上" class="headerlink" title="运用在方法上"></a>运用在方法上</h3><h4 id="实现案例，抽取request-和response、modelMap将其注入在baseController中。"><a href="#实现案例，抽取request-和response、modelMap将其注入在baseController中。" class="headerlink" title="实现案例，抽取request 和response、modelMap将其注入在baseController中。"></a>实现案例，抽取request 和response、modelMap将其注入在baseController中。</h4><p>beseController<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ModelAttribute;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletRequest request;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> HttpServletResponse response;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initParams</span><span class="params">(HttpServletResponse response,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.request = request;</span><br><span class="line">        <span class="keyword">this</span>.response = response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>基础controller</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.common.controller.BaseController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.CrossOrigin;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/file"</span>)</span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileBaseController</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/modelAttributeTest"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">modelAttributeTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        request.getAuthType();</span><br><span class="line">        response.getStatus();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：其中的response是多例线程不安全的，如果想要时其线程安全可以使用ThreadLocal</p>
+            <h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><p>如何去做用户管理</p>
+<p>越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。</p>
+<p>在Linux中主要是通过用户配置文件来查看和修改用户信息。</p>
+<h2 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h2><h3 id="用户信息文件-etc-passwd"><a href="#用户信息文件-etc-passwd" class="headerlink" title="用户信息文件/etc/passwd"></a>用户信息文件/etc/passwd</h3><p>这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。</p>
+<p>文档解读：</p>
+<p>​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别附有什么含有</p>
+<p>​    1.用户名称</p>
+<p>​    2.密码标识 ，具体密码信息需要进入/etc/shadow查看，并且密码采用SHA512散列加密算法.</p>
+<p>​    3.uid 用户的id标识 0表示超级用户，而且前499已经被系统占用</p>
+<p>​    4.gid 表示用户组id标识 这里指的是用户的初始组</p>
+<p>​    5.用户说明信息</p>
+<p>​    6.用户的home 目录</p>
+<p>​    7.用户登陆后所能执行的shell脚本</p>
+<h3 id="影子文件-etc-shadow"><a href="#影子文件-etc-shadow" class="headerlink" title="影子文件/etc/shadow"></a>影子文件/etc/shadow</h3><p>​    文件中存储了关于用户的密码的一些信息</p>
+<p>​    同样每行表示每个用户的密码信息，每行分为6个字段</p>
+<p>​    1.用户名称</p>
+<p>​    2.密码 经过加密后的，被锁定的密码前会加入！！</p>
+<p>​    3.密码最后一次修改日期</p>
+<p>​    4.密码的两次修改时间间隔（和3做比较）</p>
+<p>​    5.密码的有效期（和3做比较）</p>
+<p>​    6.密码修改到期前的警告天数（和5做比较）</p>
+<h3 id="组织信息文件-etc-group和组密码文件-etc-gshadow"><a href="#组织信息文件-etc-group和组密码文件-etc-gshadow" class="headerlink" title="组织信息文件/etc/group和组密码文件/etc/gshadow"></a>组织信息文件/etc/group和组密码文件/etc/gshadow</h3><p>​    /etc/group 存储了信息用户组的信息</p>
+<p>​    /etc/gshadow 存储了用户组管理员以及密码的一些信息</p>
+<p>​    具体详情 可查阅 man 5 gshadow</p>
+<h2 id="用户管理相关的文件"><a href="#用户管理相关的文件" class="headerlink" title="用户管理相关的文件"></a>用户管理相关的文件</h2><p>​    1.用户的家目录</p>
+<p>​        /home/用户名称 或/root/</p>
+<p>​    2.用户邮箱目录</p>
+<p>​        /var/spool/mail/用户名称</p>
+<p>​    3.用户模板目录</p>
+<p>​        /etc/skel</p>
+<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><p>​    添加用户 useradd [选项] 用户名</p>
+<p>​    指定修改用户密码 passwd  [选项]  用户名</p>
+<p>​    修改用户信息 usermod [选项]  用户名</p>
+<p>​    删除用户 userdel [选项] 用户名</p>
+<p>​    切换用户 su [选项] 用户名</p>
+<p>​        “-” 切换后使用切换用户的环境</p>
+<p>​        “-c” 仅执行一次命令</p>
+<h2 id="用户组管理命令"><a href="#用户组管理命令" class="headerlink" title="用户组管理命令"></a>用户组管理命令</h2><p>​    添加用户组 groupadd [选项] 组名</p>
+<p>​    修改用户组 groupmod [选项] 组名</p>
+<p>​    删除用户组 groupdel [选项] 组名</p>
+<p>​    把用户加入组中 gpasswd 选项 组名</p>
+<p>​        “-a” 用户名 把用户加入组</p>
+<p>​        “-d”用户名 把用户从组中删除</p>
 
           
         
@@ -921,7 +1456,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-用户用户组篇/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jodconverter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -941,7 +1476,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2019/04/29/Linux-用户用户组篇/" class="post-title-link" itemprop="url">Linux-用户用户组篇</a>
+                <a href="/MeBlog/2019/04/29/jodconverter/" class="post-title-link" itemprop="url">jodconverter</a>
               
             
           </h1>
@@ -1003,49 +1538,277 @@
       
         
           
-            <h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><p>如何去做用户管理</p>
-<p>越是对服务器安全性要求高的服务器，越需要建立合理的用户权限等级制度和服务器操作规范。</p>
-<p>在Linux中主要是通过用户配置文件来查看和修改用户信息。</p>
-<h2 id="用户配置文件"><a href="#用户配置文件" class="headerlink" title="用户配置文件"></a>用户配置文件</h2><h3 id="用户信息文件-etc-passwd"><a href="#用户信息文件-etc-passwd" class="headerlink" title="用户信息文件/etc/passwd"></a>用户信息文件/etc/passwd</h3><p>这个 文件 中 保存 的 就是 系统 中 所有 的 用户 和 用户 的 主要 信息。</p>
-<p>文档解读：</p>
-<p>​    文件中一行代表一个用户，每行分为7个字段，下面解释下这7个字段分别附有什么含有</p>
-<p>​    1.用户名称</p>
-<p>​    2.密码标识 ，具体密码信息需要进入/etc/shadow查看，并且密码采用SHA512散列加密算法.</p>
-<p>​    3.uid 用户的id标识 0表示超级用户，而且前499已经被系统占用</p>
-<p>​    4.gid 表示用户组id标识 这里指的是用户的初始组</p>
-<p>​    5.用户说明信息</p>
-<p>​    6.用户的home 目录</p>
-<p>​    7.用户登陆后所能执行的shell脚本</p>
-<h3 id="影子文件-etc-shadow"><a href="#影子文件-etc-shadow" class="headerlink" title="影子文件/etc/shadow"></a>影子文件/etc/shadow</h3><p>​    文件中存储了关于用户的密码的一些信息</p>
-<p>​    同样每行表示每个用户的密码信息，每行分为6个字段</p>
-<p>​    1.用户名称</p>
-<p>​    2.密码 经过加密后的，被锁定的密码前会加入！！</p>
-<p>​    3.密码最后一次修改日期</p>
-<p>​    4.密码的两次修改时间间隔（和3做比较）</p>
-<p>​    5.密码的有效期（和3做比较）</p>
-<p>​    6.密码修改到期前的警告天数（和5做比较）</p>
-<h3 id="组织信息文件-etc-group和组密码文件-etc-gshadow"><a href="#组织信息文件-etc-group和组密码文件-etc-gshadow" class="headerlink" title="组织信息文件/etc/group和组密码文件/etc/gshadow"></a>组织信息文件/etc/group和组密码文件/etc/gshadow</h3><p>​    /etc/group 存储了信息用户组的信息</p>
-<p>​    /etc/gshadow 存储了用户组管理员以及密码的一些信息</p>
-<p>​    具体详情 可查阅 man 5 gshadow</p>
-<h2 id="用户管理相关的文件"><a href="#用户管理相关的文件" class="headerlink" title="用户管理相关的文件"></a>用户管理相关的文件</h2><p>​    1.用户的家目录</p>
-<p>​        /home/用户名称 或/root/</p>
-<p>​    2.用户邮箱目录</p>
-<p>​        /var/spool/mail/用户名称</p>
-<p>​    3.用户模板目录</p>
-<p>​        /etc/skel</p>
-<h2 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h2><p>​    添加用户 useradd [选项] 用户名</p>
-<p>​    指定修改用户密码 passwd  [选项]  用户名</p>
-<p>​    修改用户信息 usermod [选项]  用户名</p>
-<p>​    删除用户 userdel [选项] 用户名</p>
-<p>​    切换用户 su [选项] 用户名</p>
-<p>​        “-” 切换后使用切换用户的环境</p>
-<p>​        “-c” 仅执行一次命令</p>
-<h2 id="用户组管理命令"><a href="#用户组管理命令" class="headerlink" title="用户组管理命令"></a>用户组管理命令</h2><p>​    添加用户组 groupadd [选项] 组名</p>
-<p>​    修改用户组 groupmod [选项] 组名</p>
-<p>​    删除用户组 groupdel [选项] 组名</p>
-<p>​    把用户加入组中 gpasswd 选项 组名</p>
-<p>​        “-a” 用户名 把用户加入组</p>
-<p>​        “-d”用户名 把用户从组中删除</p>
+            <h2 id="jodconverter"><a href="#jodconverter" class="headerlink" title="jodconverter"></a>jodconverter</h2><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>​    概念：</p>
+<p>​        jodconverter的全称是 java Document Converter ,它可以在不同的办公室格式之间转换文档。它利用了<a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a>， </p>
+<p>​    <strong>JODConverter</strong>自动执行OpenOffice / LibreOffice支持的所有转换。支持的转化包括： </p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>输入格式</th>
+<th>输出格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本</td>
+<td>DOC，DOCX，ODT，OTT，RTF，TEXT</td>
+<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
+</tr>
+<tr>
+<td>电子表格</td>
+<td>CSV，ODS，OTS，TSV，XLS，XLSX</td>
+<td>CSV，HTML，ODS，OTS，PDF，PNG，TSV，XLS，XLSX</td>
+</tr>
+<tr>
+<td>介绍</td>
+<td>ODP，OTP，PPT，PPTX</td>
+<td>HTML，ODP，OTP，PDF，PNG，PPT，PPTX，SWF</td>
+</tr>
+<tr>
+<td>画画</td>
+<td>ODG，OTG</td>
+<td>ODG，OTG，PDF，PNG，SWF</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>HTML</td>
+<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><p>要使用<strong>JODConverter，</strong>您需要：</p>
+<ul>
+<li>Java运行时环境1.7或更高版本。</li>
+<li><a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a> ; 通常建议使用最新的稳定版本。</li>
+<li>任何可用于Java和Apache OpenOffice / LibreOffice的操作系统（Windows，Linux，Mac OS X，Solaris，FreeBSD等）。请参阅您计划用于操作系统要求的OOo分发的系统要求。<ul>
+<li>Apache OpenOffice <a href="https://www.openoffice.org/dev_docs/source/sys_reqs.html" target="_blank" rel="noopener">系统要求</a>。</li>
+<li>LibreOffice <a href="https://www.libreoffice.org/get-help/system-requirements" target="_blank" rel="noopener">系统要求</a>。</li>
+</ul>
+</li>
+<li>要用作Web应用程序/ Web服务，您还需要一个servlet容器，例如<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">Apache Tomcat</a>。</li>
+</ul>
+<h3 id="组件（配置）"><a href="#组件（配置）" class="headerlink" title="组件（配置）"></a>组件（配置）</h3><h4 id="officeHome"><a href="#officeHome" class="headerlink" title="officeHome"></a>officeHome</h4><p>此属性设置将用于执行文档转换的办公室安装的office主目录。 </p>
+<h4 id="processManager"><a href="#processManager" class="headerlink" title="processManager"></a>processManager</h4><p>当JODConverter需要处理已启动的办公流程时，将使用流程管理器。当JODConverter启动办公室进程时，它必须检索已启动进程的PID，以便以后能够在需要时终止它。</p>
+<p> <em>默认值</em>：默认情况下，JODConverter将根据运行JODConverter的操作系统尝试查找最佳进程管理器。但是，如果在类路径中找到，则可以使用任何实现ProcessManager接口的进程管理器。</p>
+<p>只有在启用了processManager后才可以使用jodconverter进行文件转换</p>
+<p>其余属性请查看此链接<a href="https://github.com/sbraconnier/jodconverter/wiki/Configuration" target="_blank" rel="noopener">https://github.com/sbraconnier/jodconverter/wiki/Configuration</a> </p>
+<h3 id="官方Java中使用dome"><a href="#官方Java中使用dome" class="headerlink" title="官方Java中使用dome"></a>官方Java中使用dome</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">File inputFile = <span class="keyword">new</span> File(<span class="string">"document.doc"</span>);</span><br><span class="line">File outputFile = <span class="keyword">new</span> File(<span class="string">"document.pdf"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an office manager using the default configuration.</span></span><br><span class="line"><span class="comment">// The default port is 2002. Note that when an office manager</span></span><br><span class="line"><span class="comment">// is installed, it will be the one used by default when</span></span><br><span class="line"><span class="comment">// a converter is created.</span></span><br><span class="line"><span class="keyword">final</span> LocalOfficeManager officeManager = LocalOfficeManager.install(); </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an office process and connect to the started instance (on port 2002).</span></span><br><span class="line">    officeManager.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert</span></span><br><span class="line">    JodConverter</span><br><span class="line">             .convert(inputFile)</span><br><span class="line">             .to(outputFile)</span><br><span class="line">             .execute();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Stop the office process</span></span><br><span class="line">    OfficeUtils.stopQuietly(officeManager);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="本人整合springboot使用"><a href="#本人整合springboot使用" class="headerlink" title="本人整合springboot使用"></a>本人整合springboot使用</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-初识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/04/29/Linux-初识/" class="post-title-link" itemprop="url">Linux-初识</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><h3 id="Linux-学习方法"><a href="#Linux-学习方法" class="headerlink" title="Linux 学习方法"></a>Linux 学习方法</h3><ol>
+<li>坚持使用命令行</li>
+<li>遇到问题，不要马上问别人。先自行寻找答案<ol>
+<li>解决问题的的智慧： 帮助、文档、示例、查找</li>
+</ol>
+</li>
+<li>忘掉Windows思维方式</li>
+<li>计划、坚持、专注、练习</li>
+</ol>
+<h3 id="Linux系统分区"><a href="#Linux系统分区" class="headerlink" title="Linux系统分区"></a>Linux系统分区</h3><p>1.什么是磁盘分区：</p>
+<p>​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存储进不同的分区。</p>
+<p>example：</p>
+<p>划分柜子，将一个大柜子划分为3个小柜子。这样可以方便使用者。</p>
+<p>分区类型：</p>
+<p>主分区：最多只能有4个（一块硬盘的前提条件下）</p>
+<p>扩展分区：</p>
+<p>​    最多只能有1个（一块硬盘的前提条件下）</p>
+<p>​    主分区加扩展分区最多有4个（一块硬盘的前提条件下）</p>
+<p>​    不能写入数据，只能包含逻辑分区（一块硬盘的前提条件下）</p>
+<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553220848741.png" alt="1553220848741"></p>
+<p>逻辑分区</p>
+<p>2.格式化</p>
+<p>​    什么是格式化：</p>
+<p>​    格式化 （高级格式化）又称逻辑格式化。它是指根据用户选的的文件系统（FAT16、FAT32、NTFS、EXT3、EXT2、EXT4等）在磁盘的特定区域写入特定数据，在分区中划出一片用于存放文件的分配表、目录表等用于文件管理的磁盘空间。</p>
+<p>Linux默认的文件系统：EXT4</p>
+<p>关键词：</p>
+<p>​    block</p>
+<p>​    inode 号</p>
+<p>3.硬件设备文件名</p>
+<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553216867850.png" alt="1553216867850"></p>
+<p>4.分区设备文件名</p>
+<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217099195.png" alt="1553217099195"></p>
+<p>/dev/hda1 代表什么？ /dev 代表了这是系统的设备文件的根目录，hda1中hda表示用户使用的是IDE硬盘，1表示第几个分区（数字标识）</p>
+<p>IDE硬盘接口：</p>
+<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217517403.png" alt="1553217517403"></p>
+<p>理论每秒传输133MB</p>
+<p>SCSI硬盘接口：</p>
+<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217620457.png" alt="1553217620457"></p>
+<p>理论每秒传输200MB</p>
+<p>SATA硬盘接口：</p>
+<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217899946.png" alt="1553217899946"></p>
+<p>sata3代理论每秒传输500MB  </p>
+<p>5.挂载</p>
+<p>​    必须分区</p>
+<p>​        /(根分区)</p>
+<p>​        swap（交换分区、内存2倍）</p>
+<p>​    推荐分区</p>
+<p>​        /boot（启动分区，200MB）</p>
+<p>文件系统结构</p>
+<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553221402638.png" alt="1553221402638"></p>
+<p>系统分区流程</p>
+<p>​    分区 》格式化 》为分区指定设备文件名 》 挂载</p>
+<h3 id="密码原则："><a href="#密码原则：" class="headerlink" title="密码原则："></a>密码原则：</h3><p>​    复杂性</p>
+<p>​        八位字符以上、大小写字母、数字、符号</p>
+<p>​        不是单词</p>
+<p>​        不是用户的相关信息</p>
+<p>​    易记性</p>
+<p>​    时效性</p>
+<h3 id="安装日志"><a href="#安装日志" class="headerlink" title="安装日志"></a>安装日志</h3><p>​    /root/install.log 存储了安装在系统中的软件包及其版本信息</p>
+<p>​    /root/install.log.syslog 存储了安装过程中留下来的事件信息</p>
+<p>​    /root/anaconda-ks.cfg 以Kickstrat配置文件的格式记录安装过程中设置的选项信息</p>
+<h3 id="linux-关于IP操作的一些命令"><a href="#linux-关于IP操作的一些命令" class="headerlink" title="linux 关于IP操作的一些命令"></a>linux 关于IP操作的一些命令</h3><p>ifconfig ：查看系统网卡信息</p>
+<p>ifconfig eth0 [ip 地址]  :临时配置网卡，系统重启后失效</p>
+<h3 id="Linux-注意事项"><a href="#Linux-注意事项" class="headerlink" title="Linux 注意事项"></a>Linux 注意事项</h3><p>​    严格区分大小写</p>
+<p>​     Linux中所有的内容都是以文件形式保存，包括硬件</p>
+<p>​        硬盘文件是/dev/sd[a-p]</p>
+<p>​        光盘文件是/dev/sr0等</p>
+<p>​    Linux不靠扩展名区分文件类型 </p>
+<p>​    Linux所有存储设备都必须挂载之后用户才能使用,包括硬盘、U盘和光盘</p>
+<p>​    windows下的程序不能直接在Linux中安装和运行 </p>
+<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p>服务器最好重启操作，不要关机操作</p>
+<p>重启时应该关闭服务器</p>
+<p>不要在服务器访问高峰运行高负载命令</p>
+<p>远程配置防火墙时不要把自己踢出服务器</p>
+<p>指定合理的密码规范并定期更新</p>
+<p>合理分配权限</p>
+<p>定期备份重要数据和日志</p>
 
           
         
@@ -1415,586 +2178,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/Linux-初识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/Linux-初识/" class="post-title-link" itemprop="url">Linux-初识</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h3><h3 id="Linux-学习方法"><a href="#Linux-学习方法" class="headerlink" title="Linux 学习方法"></a>Linux 学习方法</h3><ol>
-<li>坚持使用命令行</li>
-<li>遇到问题，不要马上问别人。先自行寻找答案<ol>
-<li>解决问题的的智慧： 帮助、文档、示例、查找</li>
-</ol>
-</li>
-<li>忘掉Windows思维方式</li>
-<li>计划、坚持、专注、练习</li>
-</ol>
-<h3 id="Linux系统分区"><a href="#Linux系统分区" class="headerlink" title="Linux系统分区"></a>Linux系统分区</h3><p>1.什么是磁盘分区：</p>
-<p>​    磁盘分区是使用分区编辑器（partition editor）在磁盘上划分几个逻辑部分，碟片一但划分成数个分区（partition）不同类的目录与文件可以存储进不同的分区。</p>
-<p>example：</p>
-<p>划分柜子，将一个大柜子划分为3个小柜子。这样可以方便使用者。</p>
-<p>分区类型：</p>
-<p>主分区：最多只能有4个（一块硬盘的前提条件下）</p>
-<p>扩展分区：</p>
-<p>​    最多只能有1个（一块硬盘的前提条件下）</p>
-<p>​    主分区加扩展分区最多有4个（一块硬盘的前提条件下）</p>
-<p>​    不能写入数据，只能包含逻辑分区（一块硬盘的前提条件下）</p>
-<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553220848741.png" alt="1553220848741"></p>
-<p>逻辑分区</p>
-<p>2.格式化</p>
-<p>​    什么是格式化：</p>
-<p>​    格式化 （高级格式化）又称逻辑格式化。它是指根据用户选的的文件系统（FAT16、FAT32、NTFS、EXT3、EXT2、EXT4等）在磁盘的特定区域写入特定数据，在分区中划出一片用于存放文件的分配表、目录表等用于文件管理的磁盘空间。</p>
-<p>Linux默认的文件系统：EXT4</p>
-<p>关键词：</p>
-<p>​    block</p>
-<p>​    inode 号</p>
-<p>3.硬件设备文件名</p>
-<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553216867850.png" alt="1553216867850"></p>
-<p>4.分区设备文件名</p>
-<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217099195.png" alt="1553217099195"></p>
-<p>/dev/hda1 代表什么？ /dev 代表了这是系统的设备文件的根目录，hda1中hda表示用户使用的是IDE硬盘，1表示第几个分区（数字标识）</p>
-<p>IDE硬盘接口：</p>
-<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217517403.png" alt="1553217517403"></p>
-<p>理论每秒传输133MB</p>
-<p>SCSI硬盘接口：</p>
-<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217620457.png" alt="1553217620457"></p>
-<p>理论每秒传输200MB</p>
-<p>SATA硬盘接口：</p>
-<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553217899946.png" alt="1553217899946"></p>
-<p>sata3代理论每秒传输500MB  </p>
-<p>5.挂载</p>
-<p>​    必须分区</p>
-<p>​        /(根分区)</p>
-<p>​        swap（交换分区、内存2倍）</p>
-<p>​    推荐分区</p>
-<p>​        /boot（启动分区，200MB）</p>
-<p>文件系统结构</p>
-<p><img src="https://slothjun.github.io/MeBlog/2019/04/29/Linux-初识/Users\sloth\AppData\Local\Temp\1553221402638.png" alt="1553221402638"></p>
-<p>系统分区流程</p>
-<p>​    分区 》格式化 》为分区指定设备文件名 》 挂载</p>
-<h3 id="密码原则："><a href="#密码原则：" class="headerlink" title="密码原则："></a>密码原则：</h3><p>​    复杂性</p>
-<p>​        八位字符以上、大小写字母、数字、符号</p>
-<p>​        不是单词</p>
-<p>​        不是用户的相关信息</p>
-<p>​    易记性</p>
-<p>​    时效性</p>
-<h3 id="安装日志"><a href="#安装日志" class="headerlink" title="安装日志"></a>安装日志</h3><p>​    /root/install.log 存储了安装在系统中的软件包及其版本信息</p>
-<p>​    /root/install.log.syslog 存储了安装过程中留下来的事件信息</p>
-<p>​    /root/anaconda-ks.cfg 以Kickstrat配置文件的格式记录安装过程中设置的选项信息</p>
-<h3 id="linux-关于IP操作的一些命令"><a href="#linux-关于IP操作的一些命令" class="headerlink" title="linux 关于IP操作的一些命令"></a>linux 关于IP操作的一些命令</h3><p>ifconfig ：查看系统网卡信息</p>
-<p>ifconfig eth0 [ip 地址]  :临时配置网卡，系统重启后失效</p>
-<h3 id="Linux-注意事项"><a href="#Linux-注意事项" class="headerlink" title="Linux 注意事项"></a>Linux 注意事项</h3><p>​    严格区分大小写</p>
-<p>​     Linux中所有的内容都是以文件形式保存，包括硬件</p>
-<p>​        硬盘文件是/dev/sd[a-p]</p>
-<p>​        光盘文件是/dev/sr0等</p>
-<p>​    Linux不靠扩展名区分文件类型 </p>
-<p>​    Linux所有存储设备都必须挂载之后用户才能使用,包括硬盘、U盘和光盘</p>
-<p>​    windows下的程序不能直接在Linux中安装和运行 </p>
-<h3 id="服务器管理和维护建议"><a href="#服务器管理和维护建议" class="headerlink" title="服务器管理和维护建议"></a>服务器管理和维护建议</h3><p>服务器最好重启操作，不要关机操作</p>
-<p>重启时应该关闭服务器</p>
-<p>不要在服务器访问高峰运行高负载命令</p>
-<p>远程配置防火墙时不要把自己踢出服务器</p>
-<p>指定合理的密码规范并定期更新</p>
-<p>合理分配权限</p>
-<p>定期备份重要数据和日志</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/jodconverter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/jodconverter/" class="post-title-link" itemprop="url">jodconverter</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="jodconverter"><a href="#jodconverter" class="headerlink" title="jodconverter"></a>jodconverter</h2><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>​    概念：</p>
-<p>​        jodconverter的全称是 java Document Converter ,它可以在不同的办公室格式之间转换文档。它利用了<a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a>， </p>
-<p>​    <strong>JODConverter</strong>自动执行OpenOffice / LibreOffice支持的所有转换。支持的转化包括： </p>
-<table>
-<thead>
-<tr>
-<th>文件类型</th>
-<th>输入格式</th>
-<th>输出格式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>文本</td>
-<td>DOC，DOCX，ODT，OTT，RTF，TEXT</td>
-<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
-</tr>
-<tr>
-<td>电子表格</td>
-<td>CSV，ODS，OTS，TSV，XLS，XLSX</td>
-<td>CSV，HTML，ODS，OTS，PDF，PNG，TSV，XLS，XLSX</td>
-</tr>
-<tr>
-<td>介绍</td>
-<td>ODP，OTP，PPT，PPTX</td>
-<td>HTML，ODP，OTP，PDF，PNG，PPT，PPTX，SWF</td>
-</tr>
-<tr>
-<td>画画</td>
-<td>ODG，OTG</td>
-<td>ODG，OTG，PDF，PNG，SWF</td>
-</tr>
-<tr>
-<td>其他</td>
-<td>HTML</td>
-<td>DOC，DOCX，HTML，ODT，OTT，PDF，PNG，RTF，TXT</td>
-</tr>
-</tbody>
-</table>
-<h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><p>要使用<strong>JODConverter，</strong>您需要：</p>
-<ul>
-<li>Java运行时环境1.7或更高版本。</li>
-<li><a href="https://www.openoffice.org/" target="_blank" rel="noopener">Apache OpenOffice</a>或<a href="https://www.libreoffice.org/" target="_blank" rel="noopener">LibreOffice</a> ; 通常建议使用最新的稳定版本。</li>
-<li>任何可用于Java和Apache OpenOffice / LibreOffice的操作系统（Windows，Linux，Mac OS X，Solaris，FreeBSD等）。请参阅您计划用于操作系统要求的OOo分发的系统要求。<ul>
-<li>Apache OpenOffice <a href="https://www.openoffice.org/dev_docs/source/sys_reqs.html" target="_blank" rel="noopener">系统要求</a>。</li>
-<li>LibreOffice <a href="https://www.libreoffice.org/get-help/system-requirements" target="_blank" rel="noopener">系统要求</a>。</li>
-</ul>
-</li>
-<li>要用作Web应用程序/ Web服务，您还需要一个servlet容器，例如<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">Apache Tomcat</a>。</li>
-</ul>
-<h3 id="组件（配置）"><a href="#组件（配置）" class="headerlink" title="组件（配置）"></a>组件（配置）</h3><h4 id="officeHome"><a href="#officeHome" class="headerlink" title="officeHome"></a>officeHome</h4><p>此属性设置将用于执行文档转换的办公室安装的office主目录。 </p>
-<h4 id="processManager"><a href="#processManager" class="headerlink" title="processManager"></a>processManager</h4><p>当JODConverter需要处理已启动的办公流程时，将使用流程管理器。当JODConverter启动办公室进程时，它必须检索已启动进程的PID，以便以后能够在需要时终止它。</p>
-<p> <em>默认值</em>：默认情况下，JODConverter将根据运行JODConverter的操作系统尝试查找最佳进程管理器。但是，如果在类路径中找到，则可以使用任何实现ProcessManager接口的进程管理器。</p>
-<p>只有在启用了processManager后才可以使用jodconverter进行文件转换</p>
-<p>其余属性请查看此链接<a href="https://github.com/sbraconnier/jodconverter/wiki/Configuration" target="_blank" rel="noopener">https://github.com/sbraconnier/jodconverter/wiki/Configuration</a> </p>
-<h3 id="官方Java中使用dome"><a href="#官方Java中使用dome" class="headerlink" title="官方Java中使用dome"></a>官方Java中使用dome</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">File inputFile = <span class="keyword">new</span> File(<span class="string">"document.doc"</span>);</span><br><span class="line">File outputFile = <span class="keyword">new</span> File(<span class="string">"document.pdf"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an office manager using the default configuration.</span></span><br><span class="line"><span class="comment">// The default port is 2002. Note that when an office manager</span></span><br><span class="line"><span class="comment">// is installed, it will be the one used by default when</span></span><br><span class="line"><span class="comment">// a converter is created.</span></span><br><span class="line"><span class="keyword">final</span> LocalOfficeManager officeManager = LocalOfficeManager.install(); </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an office process and connect to the started instance (on port 2002).</span></span><br><span class="line">    officeManager.start();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert</span></span><br><span class="line">    JodConverter</span><br><span class="line">             .convert(inputFile)</span><br><span class="line">             .to(outputFile)</span><br><span class="line">             .execute();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Stop the office process</span></span><br><span class="line">    OfficeUtils.stopQuietly(officeManager);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="本人整合springboot使用"><a href="#本人整合springboot使用" class="headerlink" title="本人整合springboot使用"></a>本人整合springboot使用</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/04/29/ConfigurationProperties注解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/04/29/ConfigurationProperties注解/" class="post-title-link" itemprop="url">configuartionProperties注解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-29 21:24:25" itemprop="dateCreated datePublished" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="configuartionProperties"><a href="#configuartionProperties" class="headerlink" title="@configuartionProperties"></a>@configuartionProperties</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>​    用于将properties 文件中的属性或yml属性文件中的属性 放入pojo中</p>
-<h3 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h3><h4 id="configuartionProperties-Component"><a href="#configuartionProperties-Component" class="headerlink" title="@configuartionProperties + @Component"></a>@configuartionProperties + @Component</h4><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"me.user"</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", password='"</span> + password + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.FileSystemApplication;</span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.controller.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = FileSystemApplication.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationProperties</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configuration</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件设置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">me:</span></span><br><span class="line"><span class="attr">  user:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">baowengliang</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>测试结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User&#123;name=&apos;baowengliang&apos;, password=&apos;123456&apos;&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Bean-ConfigurationProperties"><a href="#Bean-ConfigurationProperties" class="headerlink" title="@Bean + @ConfigurationProperties"></a>@Bean + @ConfigurationProperties</h4><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", password='"</span> + password + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>启动类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(FileSystemApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"me.user"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">user</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.FileSystemApplication;</span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.controller.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = FileSystemApplication.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationProperties</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configuration</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件设置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">me:</span></span><br><span class="line"><span class="attr">  user:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">baowengliang</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>测试结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User&#123;name=&apos;baowengliang&apos;, password=&apos;123456&apos;&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="EnableConfigurationProperties-ConfigurationProperties"><a href="#EnableConfigurationProperties-ConfigurationProperties" class="headerlink" title="@EnableConfigurationProperties + @ConfigurationProperties"></a>@EnableConfigurationProperties + @ConfigurationProperties</h4><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"me.user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", password='"</span> + password + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>启动类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>()</span><br><span class="line"><span class="meta">@EnableConfigurationProperties</span>(User.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileSystemApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SpringApplication.run(FileSystemApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">me:</span></span><br><span class="line"><span class="attr">  user:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">baowengliang</span></span><br><span class="line"><span class="attr">    password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-<p>测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.FileSystemApplication;</span><br><span class="line"><span class="keyword">import</span> com.healthengine.medpro.fileSystem.controller.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span>(classes = FileSystemApplication.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationProperties</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configuration</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User&#123;name=&apos;baowengliang&apos;, password=&apos;123456&apos;&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/MeBlog/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/MeBlog/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/MeBlog/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/MeBlog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/MeBlog/page/6/">6</a><a class="extend next" rel="next" href="/MeBlog/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2038,7 +2226,7 @@
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2046,6 +2234,21 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
               
             </nav>
           

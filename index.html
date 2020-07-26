@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">49</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">51</span></a>
 
   </li>
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/06/08/git/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/07/26/java8新特性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -355,7 +355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/06/08/git/" class="post-title-link" itemprop="url">git</a>
+                <a href="/MeBlog/2020/07/26/java8新特性/" class="post-title-link" itemprop="url">java8新特性</a>
               
             
           </h1>
@@ -380,9 +380,13 @@
                 
               
 
-              <time title="创建时间：2020-06-08 16:40:51" itemprop="dateCreated datePublished" datetime="2020-06-08T16:40:51+08:00">2020-06-08</time>
+              <time title="创建时间：2020-07-26 18:00:25 / 修改时间：18:11:47" itemprop="dateCreated datePublished" datetime="2020-07-26T18:00:25+08:00">2020-07-26</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -417,58 +421,36 @@
       
         
           
-            <h2 id="为什么使用git"><a href="#为什么使用git" class="headerlink" title="为什么使用git"></a>为什么使用git</h2><p>这个问题的答案就在于，集中式版本控制和分布式版本控制的的区别。</p>
-<p>那么怎样算得上集中式版本控制呢？</p>
-<p>比如说SVN就是集中式版本控制系统，版本库是集中放在中央服务器的,而干活的时候,用的都是自己的电脑,所以首先要从中央服务器哪里得到最新的版本,然后干活,干完后,需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作,如果在局域网还可以,带宽够大,速度够快,如果在互联网下,如果网速慢的话,就郁闷了。</p>
-<p><img src="http://39.104.171.29/image/svn-1.png" alt="svn-active-stream"></p>
-<p>集中式版本控制存在如下缺陷： 依赖网络性强，由于只使用一个中央服务器，所以会有单点问题。</p>
-<p>以上说了集中式版本控制，那么分布式版本控制工具又是怎么样的呢？</p>
-<p>分布式版本控制的代表就是git</p>
-<p>Git 是分布式版本控制系统,每个人的电脑就是一个完整的版本库,这样,工作的时候就不需要联网了,因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库,那多个人如何协作呢?比如说自己在电脑上改了文件A,其他人也在电脑上改了文件A,这时,如果是自己先push上传，别想要push时远程库就会阻止并提示他更新最新的远程版本库中的内容后再push。下图就是分布式版本控制工具管理方式:</p>
-<p><img src="http://39.104.171.29/image/git-1.png" alt="git-active-stream"></p>
-<p>分布式版本控制：解决了集中式版本控制的单点问题，和网络依赖性问题，适用于互联网多地区协同开发，但是在只是在局域网下开发，个人认为还是使用svn会更方便，git虽然性能优越但是使用上没有SVN简便。</p>
-<h2 id="git-和svn等系统的存储差异"><a href="#git-和svn等系统的存储差异" class="headerlink" title=" git 和svn等系统的存储差异 "></a><span id="jump-storageMode"> git 和svn等系统的存储差异 </span></h2><p>从概念上来说，其他大部分系统以文件变更列表的方式存储信息。这类系统将它们存储的信息看作是一组基本文件和每个文件随时间逐步积累的差异。（被称作基于差异的版本控制）</p>
-<p>如下图：<br><img src="https://slothjun.github.io/MeBlog/2020/06/08/git/checking-over-time.png" alt="checking-over-time"></p>
-<p>Figure . 存储每个文件与初始版本的差异.</p>
-<p>git对待数据的方式与上图不同，而git是把每个文件看做一个小的文件系统然后为其生成快照，从而管理一系列快照。在git中，每当你提交更新或保存项目的状态时，它基本上对待当前项目的文件创建一份快照，并保存这个快照指向的索引。为了效率，如果文件没有修改，git不再更新存储该文件，而是只保留一个链接指向之前存储的文件。git对待数据更像是一个快照流</p>
-<p><img src="https://slothjun.github.io/MeBlog/2020/06/08/git/checking-over-time-git.png" alt="checking-over-time-git"></p>
-<p>Figure.存储项目随时间改变的快照.</p>
-<h2 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h2><p>同生活中的许多伟大事件一样,Git 诞生于一个极富纷争大举创新的年代。Linux 内核<br>开源项目有着为数众广的参与者。绝大多数的 Linux 内核维护工作都花在了提交补丁和保<br>存归档的繁琐事务上(1991-2002 年间)。到 2002 年,整个项目组开始启用分布式版本<br>控制系统 BitKeeper 来管理和维护代码。<br>到 2005 年的时候,开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结<br>束,他们收回了免费使用 BitKeeper 的权力。这就迫使 Linux 开源社区(特别是 Linux 的<br>缔造者 Linus Torvalds )不得不吸取教训,只有开发一套属于自己的版本控制系统才不至于<br>重蹈覆辙。他们对新的系统订了若干目标:<br>• 速度<br>• 简单的设计<br>• 对非线性开发模式的强力支持(允许上千个并行开发的分支)<br>• 完全分布式<br>• 有能力高效管理类似 Linux 内核一样的超大规模项目(速度和数据量)</p>
-<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>一般工作流程如下:<br>1.从远程仓库中克隆 Git 资源作为本地仓库。<br>2.从本地仓库中 checkout 代码然后进行代码修改<br>3.在提交前先将代码提交到暂存区。<br>4.提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。<br>5.在修改完成后,需要和团队成员共享代码时,可以将代码 push 到远程仓库。<br>下图展示了 Git 的工作流程:</p>
-<p><img src="http://39.104.171.29/image/git-2.png" alt="git-active-stream"></p>
-<h3 id="git-的工作目录介绍"><a href="#git-的工作目录介绍" class="headerlink" title="git 的工作目录介绍"></a>git 的工作目录介绍</h3><p><img src="http://39.104.171.29/image/git-3.png" alt="git-active-stream"></p>
-<p>其中 ./git 文件夹下就是git的本地仓库</p>
-<h2 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init 要初始的文件夹路径</span><br></pre></td></tr></table></figure>
-<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 要加入的文件</span><br></pre></td></tr></table></figure>
-<h3 id="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"><a href="#将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中" class="headerlink" title="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"></a>将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中</h3><p>将缓存区域文件添加到本地仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
-<p>将本地仓库推送到远程仓库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push ssh://git@39.xxx.171.29/home/git/git_study</span><br><span class="line">fatal: 当前分支 master 没有对应的上游分支。</span><br><span class="line">为推送当前分支并建立与远程上游的跟踪，使用</span><br><span class="line"></span><br><span class="line">    git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">Permission denied, please try again.</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">对象计数中: 6, 完成.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">压缩对象中: 100% (3/3), 完成.</span><br><span class="line">写入对象中: 100% (6/6), 523 bytes | 523.00 KiB/s, 完成.</span><br><span class="line">Total 6 (delta 0), reused 0 (delta 0)</span><br><span class="line">To ssh://39.XXX.171.29/home/git/git_study</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">分支 &apos;master&apos; 设置为跟踪来自 &apos;ssh://git@39.XXX.171.29/home/git/git_study&apos; 的远程分支 &apos;master&apos;。</span><br></pre></td></tr></table></figure></p>
-<h3 id="查看修改历史"><a href="#查看修改历史" class="headerlink" title="查看修改历史"></a>查看修改历史</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git log</span><br><span class="line">commit 4cb2b4f87b03b6cf3301b000a3e14c44027e3f42 (HEAD -&gt; master)</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:28:44 2019 +0800</span><br><span class="line"></span><br><span class="line">    第二次修改</span><br><span class="line"></span><br><span class="line">commit 1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:21:19 2019 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br></pre></td></tr></table></figure>
-<h3 id="还原修改"><a href="#还原修改" class="headerlink" title="还原修改"></a>还原修改</h3><p>reset 还原，还原后历史版本不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git reset --hard  1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">HEAD 现在位于 1910c01 first commit</span><br></pre></td></tr></table></figure></p>
-<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git rm test </span><br><span class="line">rm &apos;test&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="忽略文件或文件夹"><a href="#忽略文件或文件夹" class="headerlink" title="忽略文件或文件夹"></a>忽略文件或文件夹</h3><p>在文件目录下创建gitignore 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure></p>
-<p>忽略语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">空行或是以 # 开头的行即注释行将被忽略。</span><br><span class="line">可以在前面添加正斜杠 / 来避免递归,下面的例子中可以很明白的看出来与下一条的区别。</span><br><span class="line">可以在后面添加正斜杠 / 来忽略文件夹,例如 build/ 即忽略 build 文件夹。</span><br><span class="line">可以使用 ! 来否定忽略,即比如在前面用了 *.apk ,然后使用 !a.apk ,则这个 a.apk 不会</span><br><span class="line">被忽略。</span><br><span class="line">* 用来匹配零个或多个字符,如 *.[oa] 忽略所有以&quot;.o&quot;或&quot;.a&quot;结尾, *~ 忽略所有以 ~ 结尾</span><br><span class="line">的文件(这种文件通常被许多编辑器标记为临时文件); [] 用来匹配括号内的任一字符,</span><br><span class="line">如 [abc] ,也可以在括号内加连接符,如 [0-9] 匹配 0 至 9 的数; ? 用来匹配单个字符。</span><br><span class="line">看了这么多,还是应该来个栗子:</span><br><span class="line"># 忽略 .a 文件</span><br><span class="line">*.a</span><br><span class="line"># 但否定忽略 lib.a, 尽管已经在前面忽略了 .a 文件</span><br><span class="line">!lib.a</span><br><span class="line"># 仅在当前目录下忽略 TODO 文件, 但不包括子目录下的 subdir/TODO</span><br><span class="line">/TODO</span><br><span class="line"># 忽略 build/ 文件夹下的所有文件</span><br><span class="line">build/</span><br><span class="line"># 忽略 doc/notes.txt, 不包括 doc/server/arch.txt</span><br><span class="line">doc/*.txt</span><br><span class="line"># 忽略所有的 .pdf 文件 在 doc/ directory 下的</span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
-<h3 id="解决文件冲突"><a href="#解决文件冲突" class="headerlink" title="解决文件冲突"></a>解决文件冲突</h3><p>编辑有冲突后的文件，再次提交即可</p>
-<h3 id="文件更新或拉取"><a href="#文件更新或拉取" class="headerlink" title="文件更新或拉取"></a>文件更新或拉取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ git clone ssh://git@39.xxx.xxx.29/home/git/git_study</span><br><span class="line">正克隆到 &apos;git_study&apos;...</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">remote: Counting objects: 13, done.</span><br><span class="line">remote: Compressing objects: 100% (7/7), done.</span><br><span class="line">remote: Total 13 (delta 0), reused 0 (delta 0)</span><br><span class="line">接收对象中: 100% (13/13), 完成.</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ cd git_study/</span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit/git_study$ git pull</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">已经是最新的。</span><br></pre></td></tr></table></figure>
-<h2 id="git分支管理"><a href="#git分支管理" class="headerlink" title="git分支管理"></a>git分支管理</h2><p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何<a href="#jump-storageMode">保存数据</a>的。</p>
-<p>Git 保存的不是文件的变化或者差异，而是一系列不同时刻的 <strong>快照</strong> </p>
-<p>在进行提交操作时，git会保存一个提交对象（commit object）。该提交对象会包含一个指向暂存快照的指针。但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。 首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象， 而由多个分支合并产生的提交对象有多个父对象</p>
-<p>案例：</p>
-<p>我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。 暂存操作会为每一个文件计算校验和（使用我们在 <a href="https://git-scm.com/book/zh/v2/ch00/ch01-getting-started" target="_blank" rel="noopener">起步</a> 中提到的 SHA-1 哈希算法），然后会把当前版本的文件快照保存到 Git 仓库中 （Git 使用 <em>blob</em> 对象来保存它们），最终将校验和加入到暂存区域等待提交</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m &apos;The initial commit of my project&apos;</span><br></pre></td></tr></table></figure>
-<p>当使用 <code>git commit</code> 进行提交操作时，Git 会先计算每一个子目录（本例中只有项目根目录）的校验和， 然后在 Git 仓库中这些校验和保存为树对象。随后，Git 便会创建一个提交对象， 它除了包含上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。 如此一来，Git 就可以在需要的时候重现此次保存的快照。</p>
-<p>现在，Git 仓库中有五个对象：三个 <em>blob</em> 对象（保存着文件快照）、一个 <strong>树</strong> 对象 （记录着目录结构和 blob 对象索引）以及一个 <strong>提交</strong> 对象（包含着指向前述树对象的指针和所有提交信息）。</p>
-<p><img src="https://slothjun.github.io/MeBlog/2020/06/08/git/git-branch-1.png" alt="branch-1"></p>
-<p>Figure 首次提交对象及其树结构</p>
-<p>做些修改后再次提交，那么这次产生的提交对象会包含一个指向上次提交对象（父对象）的指针。</p>
-<p><img src="https://slothjun.github.io/MeBlog/2020/06/08/git/git-branch-2.png" alt="branch-1"></p>
-<p>Figure 提交对象及其父对象</p>
-<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 <code>master</code>。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 <code>master</code> 分支。 <code>master</code> 分支会在每次提交时自动向前移动。</p>
-<p><strong> <span style="color:red">Note</span></strong>:   Git 的 <code>master</code> 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。 之所以几乎每一个仓库都有 master 分支，是因为 <code>git init</code> 命令默认创建它，并且大多数人都懒得去改动它。</p>
-<p><img src="https://slothjun.github.io/MeBlog/2020/06/08/git/git-branch-3.png" alt="branch-3"></p>
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 新分支名称</span><br></pre></td></tr></table></figure>
-<h3 id="选择分支"><a href="#选择分支" class="headerlink" title="选择分支"></a>选择分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名称</span><br></pre></td></tr></table></figure>
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git merge mybatis </span><br><span class="line">更新 8c65eb0..458de41</span><br><span class="line">Fast-forward</span><br><span class="line"> xiaoli | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 xiaoli</span><br></pre></td></tr></table></figure>
+            <h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><p>Stream（流）是一个来自数据源的元素队列并支持聚合操作</p>
+<ul>
+<li>元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。</li>
+<li><strong>数据源</strong> 流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。</li>
+<li><strong>聚合操作</strong> 类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。</li>
+</ul>
+<p>和以前的Collection操作不同， Stream操作还有两个基础的特征：</p>
+<ul>
+<li><strong>Pipelining</strong>: 中间操作都会返回流对象本身。 这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。</li>
+<li><strong>内部迭代</strong>： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</li>
+</ul>
+<h2 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h2><p>内部迭代，在集合中迭代运行指定的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random random = <span class="keyword">new</span> Random();</span><br><span class="line">random.ints().limit(<span class="number">10</span>).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>map 方法用于映射每个元素到对应的结果，以下代码片段使用 map 输出了元素对应的平方数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">        List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">        List&lt;Integer&gt; squaresList = list</span><br><span class="line">                .stream()</span><br><span class="line">                .map(integer-&gt;integer*integer)</span><br><span class="line"><span class="comment">//                .distinct()</span></span><br><span class="line">                .collect(Collectors.toList());</span><br><span class="line">        squaresList.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<p>其中的distinct是用来去除重复项的</p>
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>filter 方法用于通过设置的条件过滤出元素。以下代码片段使用 filter 方法过滤出空字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(<span class="string">"abc"</span>,<span class="string">"bc"</span>,<span class="string">"efg"</span>,<span class="string">"abcd"</span>,<span class="string">""</span>,<span class="string">"jkl"</span>);</span><br><span class="line">       String collect = strings.stream()</span><br><span class="line">               .filter(string -&gt; !string.isEmpty())</span><br><span class="line">               .collect(Collectors.joining(<span class="string">","</span>));</span><br><span class="line">       System.out.print(collect);</span><br></pre></td></tr></table></figure>
+<h2 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h2><p>limit 方法用于获取指定数量的流。 以下代码片段使用 limit 方法打印出 10 条数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random random = <span class="keyword">new</span> Random();</span><br><span class="line">random.ints().limit(<span class="number">10</span>).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h2 id="sorted"><a href="#sorted" class="headerlink" title="sorted"></a>sorted</h2><p>sorted 方法用于对流进行排序。以下代码片段使用 sorted 方法对输出的 10 个随机数进行排序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random random = <span class="keyword">new</span> Random();</span><br><span class="line">random.ints().limit(<span class="number">10</span>).sorted().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h2 id="parallelStream"><a href="#parallelStream" class="headerlink" title="parallelStream"></a>parallelStream</h2><p>parallelStream 是流并行处理程序的代替方法。以下实例我们使用 parallelStream 来输出空字符串的数量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(<span class="string">"abc"</span>, <span class="string">""</span>, <span class="string">"bc"</span>, <span class="string">"efg"</span>, <span class="string">"abcd"</span>,<span class="string">""</span>, <span class="string">"jkl"</span>);</span><br><span class="line"><span class="comment">// 获取空字符串的数量</span></span><br><span class="line"><span class="keyword">int</span> count = strings.parallelStream().filter(string -&gt; string.isEmpty()).count();</span><br></pre></td></tr></table></figure>
+<h2 id="collectors"><a href="#collectors" class="headerlink" title="collectors"></a>collectors</h2><p>Collectors 类实现了很多归约操作，例如将流转换成集合和聚合元素。Collectors 可用于返回列表或字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;strings = Arrays.asList(<span class="string">"abc"</span>, <span class="string">""</span>, <span class="string">"bc"</span>, <span class="string">"efg"</span>, <span class="string">"abcd"</span>,<span class="string">""</span>, <span class="string">"jkl"</span>);</span><br><span class="line">List&lt;String&gt; filtered = strings.stream().filter(string -&gt; !string.isEmpty()).collect(Collectors.toList());</span><br><span class="line"> </span><br><span class="line">System.out.println(<span class="string">"筛选列表: "</span> + filtered);</span><br><span class="line">String mergedString = strings.stream().filter(string -&gt; !string.isEmpty()).collect(Collectors.joining(<span class="string">", "</span>));</span><br><span class="line">System.out.println(<span class="string">"合并字符串: "</span> + mergedString);</span><br></pre></td></tr></table></figure>
+<h2 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h2><p>另外，一些产生统计结果的收集器也非常有用。它们主要用于int、double、long等基本类型上，它们可以用来产生类似如下的统计结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line"> </span><br><span class="line">IntSummaryStatistics stats = numbers.stream().mapToInt((x) -&gt; x).summaryStatistics();</span><br><span class="line"> </span><br><span class="line">System.out.println(<span class="string">"列表中最大的数 : "</span> + stats.getMax());</span><br><span class="line">System.out.println(<span class="string">"列表中最小的数 : "</span> + stats.getMin());</span><br><span class="line">System.out.println(<span class="string">"所有数之和 : "</span> + stats.getSum());</span><br><span class="line">System.out.println(<span class="string">"平均数 : "</span> + stats.getAverage());</span><br></pre></td></tr></table></figure>
+<p>注意：这里使用的Arrays.asList 中的ArrayList是Arrays类下的。与ArrayList不同</p>
+
           
         
       
@@ -524,7 +506,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/27/数字-电子-计算机操作系统/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/07/22/面试自记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -544,7 +526,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/27/数字-电子-计算机操作系统/" class="post-title-link" itemprop="url">数字-电子-计算机操作系统</a>
+                <a href="/MeBlog/2020/07/22/面试自记/" class="post-title-link" itemprop="url">面试自记</a>
               
             
           </h1>
@@ -569,7 +551,7 @@
                 
               
 
-              <time title="创建时间：2020-05-27 17:54:42" itemprop="dateCreated datePublished" datetime="2020-05-27T17:54:42+08:00">2020-05-27</time>
+              <time title="创建时间：2020-07-22 22:32:01" itemprop="dateCreated datePublished" datetime="2020-07-22T22:32:01+08:00">2020-07-22</time>
             
 
             
@@ -586,7 +568,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-29 16:57:01" itemprop="dateModified" datetime="2020-05-29T16:57:01+08:00">2020-05-29</time>
+                <time title="修改时间：2020-07-23 15:46:21" itemprop="dateModified" datetime="2020-07-23T15:46:21+08:00">2020-07-23</time>
               
             
           </span>
@@ -622,62 +604,50 @@
       
         
           
-            <h1 id="操作系统概论"><a href="#操作系统概论" class="headerlink" title="操作系统概论"></a>操作系统概论</h1><h2 id="操作系统的概念"><a href="#操作系统的概念" class="headerlink" title="操作系统的概念"></a>操作系统的概念</h2><h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><p>knowledge point：</p>
-<p>1.计算机系统是一种可以按用户要求接收和存储信息、自动进行数据处理并输出结果信息的系统。</p>
-<p>2.广义的计算机系统包含机械式系统和电子式系统。</p>
-<p>3.电子式系统可以分为模拟式和数字式计算机系统。本篇博客讨论的是数字电子计算机系统，也可简称为计算机系统</p>
-<h3 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h3><h3 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h3><h3 id="研究操作系统的观点"><a href="#研究操作系统的观点" class="headerlink" title="研究操作系统的观点"></a>研究操作系统的观点</h3><h3 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h3><h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><h3 id="Windows操作系统的体系结构"><a href="#Windows操作系统的体系结构" class="headerlink" title="Windows操作系统的体系结构"></a>Windows操作系统的体系结构</h3><h3 id="Unix操作系统的体系结构"><a href="#Unix操作系统的体系结构" class="headerlink" title="Unix操作系统的体系结构"></a>Unix操作系统的体系结构</h3><h3 id="Linux操作系统的体系结构"><a href="#Linux操作系统的体系结构" class="headerlink" title="Linux操作系统的体系结构"></a>Linux操作系统的体系结构</h3><h3 id="Android操作系统的体系结构"><a href="#Android操作系统的体系结构" class="headerlink" title="Android操作系统的体系结构"></a>Android操作系统的体系结构</h3><h2 id="操作系统的发展"><a href="#操作系统的发展" class="headerlink" title="操作系统的发展"></a>操作系统的发展</h2><h3 id="手工操作"><a href="#手工操作" class="headerlink" title="手工操作"></a>手工操作</h3><h3 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h3><h3 id="多道批处理"><a href="#多道批处理" class="headerlink" title="多道批处理"></a>多道批处理</h3><h3 id="分时与实时系统"><a href="#分时与实时系统" class="headerlink" title="分时与实时系统"></a>分时与实时系统</h3><h3 id="Unix通用操作系统"><a href="#Unix通用操作系统" class="headerlink" title="Unix通用操作系统"></a>Unix通用操作系统</h3><h3 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="Android操作系统"><a href="#Android操作系统" class="headerlink" title="Android操作系统"></a>Android操作系统</h3><h2 id="操作系统分类"><a href="#操作系统分类" class="headerlink" title="操作系统分类"></a>操作系统分类</h2><h3 id="批处理操作系统"><a href="#批处理操作系统" class="headerlink" title="批处理操作系统"></a>批处理操作系统</h3><h3 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h3><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3><h3 id="嵌入式操作系统"><a href="#嵌入式操作系统" class="headerlink" title="嵌入式操作系统"></a>嵌入式操作系统</h3><h3 id="个人计算机操作系统-1"><a href="#个人计算机操作系统-1" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h3><h3 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h3><h2 id="操作系统设计"><a href="#操作系统设计" class="headerlink" title="操作系统设计"></a>操作系统设计</h2><h3 id="操作系统的设计过程"><a href="#操作系统的设计过程" class="headerlink" title="操作系统的设计过程"></a>操作系统的设计过程</h3><h3 id="操作系统的设计目标"><a href="#操作系统的设计目标" class="headerlink" title="操作系统的设计目标"></a>操作系统的设计目标</h3><h3 id="操作系统的结构设计"><a href="#操作系统的结构设计" class="headerlink" title="操作系统的结构设计"></a>操作系统的结构设计</h3><h3 id="操作系统的结构"><a href="#操作系统的结构" class="headerlink" title="操作系统的结构"></a>操作系统的结构</h3><h1 id="操作系统运行环境"><a href="#操作系统运行环境" class="headerlink" title="操作系统运行环境"></a>操作系统运行环境</h1><h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><p>处理器的一些常识：</p>
-<p>操作系统做为一个程序需要在处理器上运行。<br>如果一个计算机系统只有一个处理器，我们称之为单机系统。如果有多个处理器我们称为多处理器系统。<br>计算机处理器都有自己的指令系统。</p>
-<h3 id="处理器的构成"><a href="#处理器的构成" class="headerlink" title="处理器的构成"></a>处理器的构成</h3><p>处理器一般由运算器、控制器、一系列的寄存器以及高速缓存构成。</p>
-<p>运算器：用来实现指令中的算术和逻辑运算<br>控制器：负责控制程序运行的流程，取指令、维护处理器的状态、处理器与内存的交互等。<br>寄存器：存储处理器执行指令过程中暂时需要存储的数据、地址以及指令信息等。它具有比内存更快的访问速度但是由于寄存器集成在微处理器的芯片中，所以它的存储空间很有限。</p>
-<p>根据用户使用可以为寄存器分类为：</p>
-<h4 id="用户可见寄存器"><a href="#用户可见寄存器" class="headerlink" title="用户可见寄存器"></a>用户可见寄存器</h4><p>见名知意，此寄存器用来存储用户控制的数据。</p>
-<p>用户可以通过高级编程语言使用</p>
-<p>数据寄存器：</p>
-<p>1.也称为通用寄存器<br>2.用于各种算术逻辑指令和访存指令。</p>
-<p>地址寄存器：</p>
-<p>1.用于存储数据及指令的物理地址、线性地址或者有效地址，用于某种特定方式的寻址。</p>
-<p>条件码寄存器：<br>1.保存处理器操作结果的各种标记位。如算术运算产生的溢出、符号等。</p>
-<h4 id="控制和状态寄存器"><a href="#控制和状态寄存器" class="headerlink" title="控制和状态寄存器"></a>控制和状态寄存器</h4><p>用于控制处理器的操作，一般由具有特权的操作系统使用。</p>
-<p>由具有特权的操作系统使用</p>
-<p>程序计数器：用于取出将要取出的指令的地址。<br>指令寄存器：包含最近取出的指令。<br>程序状态字：记录了处理器的运行模式信息等。</p>
-<h3 id="处理器基本工作方式"><a href="#处理器基本工作方式" class="headerlink" title="处理器基本工作方式"></a>处理器基本工作方式</h3><p>处理器的基本工作方式可由指令执行执行过程描述</p>
-<p>指令执行的基本过程：如下图</p>
-<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/指令周期.png" alt></p>
-<h4 id="指令根据功能可划分为"><a href="#指令根据功能可划分为" class="headerlink" title="指令根据功能可划分为"></a>指令根据功能可划分为</h4><p>访问存储器指令：负责处理器和存储器之间的数据传输<br>I/O指令：负责处理器和I/O模块之间的数据传送和命令发送<br>算术逻辑指令：用以执行有关数据的算术和逻辑操作<br>控制转移指令：可以指定一个新的指令的执行起点<br>处理器控制指令：用于修改处理器状态，改变处理器工作方式等</p>
-<h4 id="特权指令和非特权指令"><a href="#特权指令和非特权指令" class="headerlink" title="特权指令和非特权指令"></a>特权指令和非特权指令</h4><p>特权指令和非特权指令存在于多用户多任务多通道的操作系统中。<br>特权指令：普通用户程序无权访问使用，操作系统可以访问使用。<br>用户可以通过陷入（Trap）使用特权指令。<br>陷入：用户将处理器状态切换为操作系统运行的特权状态，然后由操作系统运行拥有特权指令的程序。这个过程称为陷入。<br>系统可通过处理器状态标识判断当前执行的程序是一般应用还是系统指令<br>特权或非特权指令这种指令使用架构需要硬件的支持</p>
-<h3 id="处理器的工作状态"><a href="#处理器的工作状态" class="headerlink" title="处理器的工作状态"></a>处理器的工作状态</h3><p>管态：拥有特权的级别，可以执行特权指令。有时被称为：核心态、内核态、系统态<br>目态：拥有普通的权利级别，如一般的用户程序就是在目态模式下运行的<br>举例：英特尔公司的X86系列处理器支持4个处理器特权级别：R0、R1、R2、R3</p>
-<p>它们4者间的关系如下：<br>$$<br>r0⊇r1⊇r2⊇r3<br>$$</p>
-<h4 id="处理器工作状态的转换"><a href="#处理器工作状态的转换" class="headerlink" title="处理器工作状态的转换"></a>处理器工作状态的转换</h4><p>目态转换为管态</p>
-<p>使用中断技术，并将PSW中的处理器状态设为管态即可</p>
-<p>管态转换为目态</p>
-<p>同样也是使用中断+PSW中修改处理器状态</p>
-<p>程序状态字（PSW）</p>
-<p>为了解决处理器当前工作状态的问题。</p>
-<h2 id="中断-异常"><a href="#中断-异常" class="headerlink" title="中断/异常"></a>中断/异常</h2><h2 id="计算机中相关的硬件部分"><a href="#计算机中相关的硬件部分" class="headerlink" title="计算机中相关的硬件部分"></a>计算机中相关的硬件部分</h2><h3 id="内存储器"><a href="#内存储器" class="headerlink" title="内存储器"></a>内存储器</h3><h4 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h4><h5 id="存储器的类型"><a href="#存储器的类型" class="headerlink" title="存储器的类型"></a>存储器的类型</h5><p>微型计算机中大部分采用半导体存储器，其大致可分为如下两种类型</p>
-<h6 id="读写型存储器（RAM）"><a href="#读写型存储器（RAM）" class="headerlink" title="读写型存储器（RAM）"></a>读写型存储器（RAM）</h6><p>knowledge point：</p>
-<p>1.这种类型的存储器也被称作随机访问存储器</p>
-<p>2.它可以随时进行读或写的操作</p>
-<p>3.RAM的全称（random access memory）</p>
-<h6 id="只读型存储器（ROM）"><a href="#只读型存储器（ROM）" class="headerlink" title="只读型存储器（ROM）"></a>只读型存储器（ROM）</h6><p>knowledge point：</p>
-<p>1.一般使用情况下只能读取其中的数据，要想对其进行写的操作需要使用专门的写入机。</p>
-<p>2.PROM 是一种可编程的只读存储器，可以使用特殊的PROM写入器对其进行数据的写入。</p>
-<p>3.EPROM 也是一种只读存储器，可以使用特殊的紫外光照射将其中的数据清除。使用特殊的EPROM写入器对其进行数据的写入。</p>
-<p>4.ROM的全称（read only memory）</p>
-<h6 id="存储分块"><a href="#存储分块" class="headerlink" title="存储分块"></a>存储分块</h6><p>knowledge point：</p>
-<p>1.存储的最小单位被称为“二进位”，他包含的信息为0或1。</p>
-<p>2.存储的最小编址单位是字节。一个字节等于8个二进位。</p>
-<p>3.计算机系统会把存储器中的空间分块，有时块也被称为物理页。块的大小由机器确定。</p>
-<h5 id="存储器的层次结构"><a href="#存储器的层次结构" class="headerlink" title="存储器的层次结构"></a>存储器的层次结构</h5><p>存储器层次化结构的由来：</p>
-<p>因为人们对计算机存储器的需求是这样的，速度越快越好、容量越大越好、制造价格越便宜越好。而现实中速度、容量、价格这三者间是存在二律悖反的。有了速度就得牺牲价格和容量，相反同理。</p>
-<p>既然不能达到最优，那如何权衡三者使用呢?答案是采用层次化的存储结构。图2-2代表了计算机存储器的层次化结构</p>
-<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/存储器的层次结构图.png" alt="图2-2"></p>
-<h5 id="存储器的保护"><a href="#存储器的保护" class="headerlink" title="存储器的保护"></a>存储器的保护</h5><p>内存中的数据是需要被保护的不然会出现资源的破坏从而导致系统奔溃或程序奔溃。</p>
-<p>要实现存储保护，必须要有硬件的支持。</p>
-<p>界地址寄存器是被广泛使用的一种存储保护技术。下面咱们看看它是如何工作的。</p>
-<p>在处理器中设置一对界存储器，分别是上限界存储器和下限界存储器。每当处理器访问内存时，硬件自动将被访问的内存地址与界寄存器进行对比，如果越界就会产生程序中断。如图2-3所示，阐述了界地址寄存器的保护策略运行流程</p>
-<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/界地址寄存器存储保护技术.png" alt="图2-3"></p>
-<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2>
+            <h1 id="Integer面试问题"><a href="#Integer面试问题" class="headerlink" title="Integer面试问题"></a>Integer面试问题</h1><h1 id="arraylist-和linklist-的区别"><a href="#arraylist-和linklist-的区别" class="headerlink" title="arraylist 和linklist 的区别"></a>arraylist 和linklist 的区别</h1><h1 id="hashtable和hashmap的区别"><a href="#hashtable和hashmap的区别" class="headerlink" title="hashtable和hashmap的区别"></a>hashtable和hashmap的区别</h1><h1 id="spring-过滤器、拦截器、监听器的使用场景"><a href="#spring-过滤器、拦截器、监听器的使用场景" class="headerlink" title="spring 过滤器、拦截器、监听器的使用场景"></a>spring 过滤器、拦截器、监听器的使用场景</h1><h1 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h1><h1 id="io集合"><a href="#io集合" class="headerlink" title="io集合"></a>io集合</h1><h1 id="js动态扩展"><a href="#js动态扩展" class="headerlink" title="js动态扩展"></a>js动态扩展</h1><h1 id="Linux-权限"><a href="#Linux-权限" class="headerlink" title="Linux 权限"></a>Linux 权限</h1><h1 id="springMVC常用注解"><a href="#springMVC常用注解" class="headerlink" title="springMVC常用注解"></a>springMVC常用注解</h1><p>@Controller 表明该类为控制类</p>
+<p>@RestController 相当于<strong>@Controller + @ResponseBody</strong></p>
+<p>@ResponseBody 用于类和方法中，用在类中表示类中所有方法的返回值为Json串，用于方法上表示此方法的返回值为json串</p>
+<p>@RequestMapping 映射http请求url到java的方法。参数有</p>
+<p>​    path: url 的相对路径</p>
+<p>​    value：映射请求的参数，缩小主映射范围。</p>
+<p>​    method： url请求类型。其中类型分为（GET，HEAD，POST，PUT，PATCH，DELETE,OPTIONS,TRACE）中的一个</p>
+<p>​    consumes: url请求必须的Content-Type类型。</p>
+<p>​    produce：url请求返回的类型。</p>
+<p>@PostMapping</p>
+<p>@GetMapping</p>
+<p>@PutMapping</p>
+<p>@DeleteMapping</p>
+<p>​    如果在类上加了<strong>@RequestMapping</strong>，其他类上加了别的映射注解，那么到该方法的请求地址就是<strong>类上的映射注解的path+方法上的映射注解的path</strong></p>
+<p>​    如<strong>@GetMapping(“/user/{id}”)</strong> 表示给请求url中的<strong>/user/</strong>后的片段取了个名为<strong>id</strong>，这个片段在参数中可以用<strong>@PathVariable</strong>注解获得到</p>
+<p>​    如<strong>@GetMapping(“/user/{id:\d+}”)</strong> 表示通过正则表达式来限制URL中请求资源类型，这里表示<strong>id</strong>只能为数字    </p>
+<p>@RequestParam: 用于方法的参数，表示映射请求参数到Java的参数，它有多个参数选项，一般常用的参数选项有：</p>
+<p>​    name: 表示映射请求的参数名，它会从请求的参数中找到和name指定的参数名的参数值，然后赋予方法中的参数。</p>
+<p>​    required: 值为true时表示参数必须有，false时则表示参数不必须有也可以。</p>
+<p>​    defaultValue：默认值</p>
+<p>@PathVariable 用于方法的参数，它会从映射指定的<strong>url</strong>片段到<strong>java</strong>的参数中，一般常用的参数选项有:</p>
+<p>​    <strong>name</strong>：表明要指定哪一个<strong>url</strong>片段</p>
+<p>​    <strong>required</strong>：<strong>url</strong>片段中是否必须要有该片段</p>
+<p>​     示例：假如方法头部添加了<strong>@GetMapping(“/\</strong>user/**{id}”)<strong>，方法的参数中有一个</strong>@PathVariable(name=”id”, required=true)String idNo<strong>参数，那么表明请求url中必须得有</strong>{id}<strong>该片段，且会把该片段赋给</strong>idNo**参数</p>
+<p>@RequestParam 和@RequestBody区别</p>
+<ol>
+<li><p>@RequestParam接收的参数是来自requestHeader中，即<strong>请求头</strong></p>
+</li>
+<li><p>@RequestParam用来处理 <code>Content-Type</code> 为 <code>application/x-www-form-urlencoded</code> 编码的内容</p>
+</li>
+<li><p>@RequestBody接收的参数是来自requestBody中，即<strong>请求体</strong></p>
+</li>
+<li><p>一般用于处理非 <code>Content-Type: application/x-www-form-urlencoded</code>编码格式的数据，比如：<code>application/json</code>、<code>application/xml</code>等类型的数据。</p>
+</li>
+<li><p>GET请求中，因为没有HttpEntity，所以@RequestBody并不适用。</p>
+<p>POST请求中，通过HttpEntity传递的参数，必须要在请求头中声明数据的类型Content-Type</p>
+</li>
+</ol>
+<h1 id="JAVA-常用API"><a href="#JAVA-常用API" class="headerlink" title="JAVA 常用API"></a>JAVA 常用API</h1><h2 id="io"><a href="#io" class="headerlink" title="io"></a>io</h2><p>java中的输入输出流分为字节流和字符流</p>
+<p>字节流主接口为 InputStream OutputStream</p>
+<p>字符流主接口为 Reader Writer</p>
+<p>字节流中常用的类有 FileInputStream BufferedInputStream</p>
+<p>​    </p>
+
           
         
       
@@ -733,7 +703,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/25/计算机-操作系统/">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/06/12/Java编程语言-基础篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WenLiangBao">
@@ -753,7 +723,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/MeBlog/2020/05/25/计算机-操作系统/" class="post-title-link" itemprop="url">数字电子-计算机操作系统</a>
+                <a href="/MeBlog/2020/06/12/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
               
             
           </h1>
@@ -778,165 +748,7 @@
                 
               
 
-              <time title="创建时间：2020-05-25 17:14:32" itemprop="dateCreated datePublished" datetime="2020-05-25T17:14:32+08:00">2020-05-25</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="操作系统概论"><a href="#操作系统概论" class="headerlink" title="操作系统概论"></a>操作系统概论</h1><h2 id="操作系统的概念"><a href="#操作系统的概念" class="headerlink" title="操作系统的概念"></a>操作系统的概念</h2><h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><p>knowledge point：</p>
-<p>1.计算机系统是一种可以按用户要求接收和存储信息、自动进行数据处理并输出结果信息的系统。</p>
-<p>2.广义的计算机系统包含机械式系统和电子式系统。</p>
-<p>3.电子式系统可以分为模拟式和数字式计算机系统。本篇博客讨论的是数字电子计算机系统，也可简称为计算机系统。</p>
-<h3 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h3><p>knowledge point：</p>
-<p>1.操作系统是计算机系统中的一个系统软件。或者说是一些程序模块的集合。</p>
-<p>2.它能有效的管理计算机系统中的硬件和软件资源。也可以理解为，它是计算机暴露的接口，用户通过这些接口可以更好的利用计算机资源。</p>
-<h3 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h3><p>并发性</p>
-<p>共享性</p>
-<p>随机性</p>
-<h3 id="研究操作系统的观点"><a href="#研究操作系统的观点" class="headerlink" title="研究操作系统的观点"></a>研究操作系统的观点</h3><p>软件的观点</p>
-<p>资源管理的观点</p>
-<p>进程的观点</p>
-<p>虚拟机的观点</p>
-<p>服务提供者观点</p>
-<h3 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h3><p>进程管理</p>
-<p>存储管理</p>
-<p>文件管理</p>
-<p>设备管理</p>
-<p>用户接口</p>
-<h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><h3 id="Windows操作系统的体系结构"><a href="#Windows操作系统的体系结构" class="headerlink" title="Windows操作系统的体系结构"></a>Windows操作系统的体系结构</h3><h3 id="Unix操作系统的体系结构"><a href="#Unix操作系统的体系结构" class="headerlink" title="Unix操作系统的体系结构"></a>Unix操作系统的体系结构</h3><h3 id="Linux操作系统的体系结构"><a href="#Linux操作系统的体系结构" class="headerlink" title="Linux操作系统的体系结构"></a>Linux操作系统的体系结构</h3><h3 id="Android操作系统的体系结构"><a href="#Android操作系统的体系结构" class="headerlink" title="Android操作系统的体系结构"></a>Android操作系统的体系结构</h3><h2 id="操作系统的发展"><a href="#操作系统的发展" class="headerlink" title="操作系统的发展"></a>操作系统的发展</h2><h3 id="手工操作"><a href="#手工操作" class="headerlink" title="手工操作"></a>手工操作</h3><h3 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h3><h3 id="多道批处理"><a href="#多道批处理" class="headerlink" title="多道批处理"></a>多道批处理</h3><h3 id="分时与实时系统"><a href="#分时与实时系统" class="headerlink" title="分时与实时系统"></a>分时与实时系统</h3><h3 id="Unix通用操作系统"><a href="#Unix通用操作系统" class="headerlink" title="Unix通用操作系统"></a>Unix通用操作系统</h3><h3 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="Android操作系统"><a href="#Android操作系统" class="headerlink" title="Android操作系统"></a>Android操作系统</h3><h2 id="操作系统分类"><a href="#操作系统分类" class="headerlink" title="操作系统分类"></a>操作系统分类</h2><h3 id="批处理操作系统"><a href="#批处理操作系统" class="headerlink" title="批处理操作系统"></a>批处理操作系统</h3><h3 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h3><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3><h3 id="嵌入式操作系统"><a href="#嵌入式操作系统" class="headerlink" title="嵌入式操作系统"></a>嵌入式操作系统</h3><h3 id="个人计算机操作系统-1"><a href="#个人计算机操作系统-1" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h3><h3 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h3><h2 id="操作系统设计"><a href="#操作系统设计" class="headerlink" title="操作系统设计"></a>操作系统设计</h2><h3 id="操作系统的设计过程"><a href="#操作系统的设计过程" class="headerlink" title="操作系统的设计过程"></a>操作系统的设计过程</h3><h3 id="操作系统的设计目标"><a href="#操作系统的设计目标" class="headerlink" title="操作系统的设计目标"></a>操作系统的设计目标</h3><h3 id="操作系统的结构设计"><a href="#操作系统的结构设计" class="headerlink" title="操作系统的结构设计"></a>操作系统的结构设计</h3><h3 id="操作系统的结构"><a href="#操作系统的结构" class="headerlink" title="操作系统的结构"></a>操作系统的结构</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/20/Java编程语言-基础篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2020/05/20/Java编程语言-基础篇/" class="post-title-link" itemprop="url">Java 编程语言-基础篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-05-20 16:08:29" itemprop="dateCreated datePublished" datetime="2020-05-20T16:08:29+08:00">2020-05-20</time>
+              <time title="创建时间：2020-06-12 17:29:55" itemprop="dateCreated datePublished" datetime="2020-06-12T17:29:55+08:00">2020-06-12</time>
             
 
             
@@ -1422,6 +1234,11 @@
 <li>Object类是java中唯一一个没有父类的类，而其余的类都继承与Object类</li>
 <li>class定义的大括号后没有；符号</li>
 </ul>
+<h4 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h4><p>先看匿名内部类的定义的语法格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> 实现接口（）</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//匿名内部类类体部分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> 父类构造器（实参列表）</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//匿名内部类类体部分</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么匿名内部类的定义有这两种方式呢？这是因此这两种方式的定义分别对应两种方式，一种是接口，另一种是抽象类。</p>
+<p>对于实现接口，由于接口是没有构造函数的，注意这里一定是空参数。<br> 第二种是调用父类的构造器，注意此处可以是空参数，也可以传入参数。</p>
 <h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>概述：构造方法是一个特殊的类成员方法，它被用来创建生成对象。当系统识别到关键字new后会去执行指定的构造方法来创建对象。</p>
 <p>构造方法注意点：</p>
 <ul>
@@ -2043,7 +1860,606 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> chapter10;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> Producer</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Descirption</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> WengLiangBao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/5/20 下午3:55</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Vsersion</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Producer</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> pNo = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Producer</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        setName(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ThreadStudy.totalPlate&lt;=<span class="number">0</span>||pNo&gt;<span class="number">10</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//此处锁不能是对象本身,如果是对象本身wait等待后者不能被唤醒,所以使用container当前消费者和生产者中间交互的容器.</span></span><br><span class="line">        <span class="keyword">synchronized</span> (ThreadStudy.container) &#123;</span><br><span class="line">            System.out.println(currentThread().getName() + <span class="string">" in start run"</span>);</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"生产了一个盘子,盘子号："</span> + pNo);</span><br><span class="line">            ThreadStudy.container.pushPlate(String.valueOf(pNo));</span><br><span class="line">            pNo++;</span><br><span class="line">            ThreadStudy.container.notifyAll();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                ThreadStudy.container.wait();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        method1();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> chapter10;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Vector;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> Container</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Descirption</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> WengLiangBao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/5/19 下午1:34</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Vsersion</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Container</span> <span class="keyword">extends</span> <span class="title">Vector</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushPlate</span><span class="params">(String plate)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.add(plate);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPlate</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String result = (String) firstElement();</span><br><span class="line">        remove(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> chapter10;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@className</span> Consumer</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Descirption</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> WengLiangBao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/5/20 下午3:55</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Vsersion</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Consumer</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        setName(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//此处锁不能是对象本身,如果是对象本身wait等待后者不能被唤醒,所以使用container当前消费者和生产者中间交互的容器.</span></span><br><span class="line">        <span class="keyword">if</span>(ThreadStudy.totalPlate&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">synchronized</span> (ThreadStudy.container) &#123;</span><br><span class="line">            Container container = ThreadStudy.container;</span><br><span class="line">            System.out.println(currentThread().getName() + <span class="string">" in start run"</span>);</span><br><span class="line">            <span class="keyword">if</span> (container.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">"消费了一个盘子，盘子号："</span> + container.getPlate());</span><br><span class="line">                ThreadStudy.totalPlate--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">"没有盘子回去歇会吧！"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            ThreadStudy.container.notifyAll();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                ThreadStudy.container.wait();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        method1();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="包导入"><a href="#包导入" class="headerlink" title="包导入"></a>包导入</h1><h2 id="静态成员导入"><a href="#静态成员导入" class="headerlink" title="静态成员导入"></a>静态成员导入</h2><p>import static静态导入是JDK1.5中的新特性。</p>
+<p>　　一般我们导入一个类都用 import 包名.类名;</p>
+<p>　　而静态导入是这样：import static 包名.类名.*;</p>
+<p>　　这里的多了个static，还有就是类名后面多了个 .<em> 。意思是导入这个类里的静态成员（静态方法、静态变量）。当然，也可以只导入某个静态方法，只要把 .</em> 换成静态方法名就行了。然后在这个类中，就可以直接用方法名调用静态方法，而不必用“类名.方法名（）” 的方式来调用。</p>
+<p>这种方法的好处就是可以简化一些操作，例如一些工具类的静态方法，如果使了静态导入，就可以像使用自己的方法一样使用这些静态方法。</p>
+<p>　　不过在使用静态导入之前，我们必须了解下面几点：</p>
+<ol>
+<li>静态导入可能会让代码更加难以阅读</li>
+<li>如果同时导入的两个类中又有重命名的静态成员，会出现编译器错误。例如Integer类和Long类的MAX_VALUE。</li>
+<li>可以导入的静态成员包括静态对象引用、静态常量和静态方法。</li>
+</ol>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/06/09/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2020/06/09/git/" class="post-title-link" itemprop="url">git</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-06-09 14:29:36" itemprop="dateCreated datePublished" datetime="2020-06-09T14:29:36+08:00">2020-06-09</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="为什么使用git"><a href="#为什么使用git" class="headerlink" title="为什么使用git"></a>为什么使用git</h2><p>这个问题的答案就在于，集中式版本控制和分布式版本控制的的区别。</p>
+<p>那么怎样算得上集中式版本控制呢？</p>
+<p>比如说SVN就是集中式版本控制系统，版本库是集中放在中央服务器的,而干活的时候,用的都是自己的电脑,所以首先要从中央服务器哪里得到最新的版本,然后干活,干完后,需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作,如果在局域网还可以,带宽够大,速度够快,如果在互联网下,如果网速慢的话,就郁闷了。</p>
+<p><img src="http://39.104.171.29/image/svn-1.png" alt="svn-active-stream"></p>
+<p>集中式版本控制存在如下缺陷： 依赖网络性强，由于只使用一个中央服务器，所以会有单点问题。</p>
+<p>以上说了集中式版本控制，那么分布式版本控制工具又是怎么样的呢？</p>
+<p>分布式版本控制的代表就是git</p>
+<p>Git 是分布式版本控制系统,每个人的电脑就是一个完整的版本库,这样,工作的时候就不需要联网了,因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库,那多个人如何协作呢?比如说自己在电脑上改了文件A,其他人也在电脑上改了文件A,这时,如果是自己先push上传，别想要push时远程库就会阻止并提示他更新最新的远程版本库中的内容后再push。下图就是分布式版本控制工具管理方式:</p>
+<p><img src="http://39.104.171.29/image/git-1.png" alt="git-active-stream"></p>
+<p>分布式版本控制：解决了集中式版本控制的单点问题，和网络依赖性问题，适用于互联网多地区协同开发，但是在只是在局域网下开发，个人认为还是使用svn会更方便，git虽然性能优越但是使用上没有SVN简便。</p>
+<h2 id="git-和svn等系统的存储差异"><a href="#git-和svn等系统的存储差异" class="headerlink" title=" git 和svn等系统的存储差异 "></a><span id="jump-storageMode"> git 和svn等系统的存储差异 </span></h2><p>从概念上来说，其他大部分系统以文件变更列表的方式存储信息。这类系统将它们存储的信息看作是一组基本文件和每个文件随时间逐步积累的差异。（被称作基于差异的版本控制）</p>
+<p>如下图：<br><img src="https://slothjun.github.io/MeBlog/2020/06/09/git/checking-over-time.png" alt="checking-over-time"></p>
+<p>Figure . 存储每个文件与初始版本的差异.</p>
+<p>git对待数据的方式与上图不同，而git是把每个文件看做一个小的文件系统然后为其生成快照，从而管理一系列快照。在git中，每当你提交更新或保存项目的状态时，它基本上对待当前项目的文件创建一份快照，并保存这个快照指向的索引。为了效率，如果文件没有修改，git不再更新存储该文件，而是只保留一个链接指向之前存储的文件。git对待数据更像是一个快照流</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/06/09/git/checking-over-time-git.png" alt="checking-over-time-git"></p>
+<p>Figure.存储项目随时间改变的快照.</p>
+<h2 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h2><p>同生活中的许多伟大事件一样,Git 诞生于一个极富纷争大举创新的年代。Linux 内核<br>开源项目有着为数众广的参与者。绝大多数的 Linux 内核维护工作都花在了提交补丁和保<br>存归档的繁琐事务上(1991-2002 年间)。到 2002 年,整个项目组开始启用分布式版本<br>控制系统 BitKeeper 来管理和维护代码。<br>到 2005 年的时候,开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结<br>束,他们收回了免费使用 BitKeeper 的权力。这就迫使 Linux 开源社区(特别是 Linux 的<br>缔造者 Linus Torvalds )不得不吸取教训,只有开发一套属于自己的版本控制系统才不至于<br>重蹈覆辙。他们对新的系统订了若干目标:<br>• 速度<br>• 简单的设计<br>• 对非线性开发模式的强力支持(允许上千个并行开发的分支)<br>• 完全分布式<br>• 有能力高效管理类似 Linux 内核一样的超大规模项目(速度和数据量)</p>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>一般工作流程如下:<br>1.从远程仓库中克隆 Git 资源作为本地仓库。<br>2.从本地仓库中 checkout 代码然后进行代码修改<br>3.在提交前先将代码提交到暂存区。<br>4.提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。<br>5.在修改完成后,需要和团队成员共享代码时,可以将代码 push 到远程仓库。<br>下图展示了 Git 的工作流程:</p>
+<p><img src="http://39.104.171.29/image/git-2.png" alt="git-active-stream"></p>
+<h3 id="git-的工作目录介绍"><a href="#git-的工作目录介绍" class="headerlink" title="git 的工作目录介绍"></a>git 的工作目录介绍</h3><p><img src="http://39.104.171.29/image/git-3.png" alt="git-active-stream"></p>
+<p>其中 ./git 文件夹下就是git的本地仓库</p>
+<h2 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init 要初始的文件夹路径</span><br></pre></td></tr></table></figure>
+<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 要加入的文件</span><br></pre></td></tr></table></figure>
+<h3 id="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"><a href="#将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中" class="headerlink" title="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"></a>将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中</h3><p>将缓存区域文件添加到本地仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
+<p>将本地仓库推送到远程仓库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push ssh://git@39.xxx.171.29/home/git/git_study</span><br><span class="line">fatal: 当前分支 master 没有对应的上游分支。</span><br><span class="line">为推送当前分支并建立与远程上游的跟踪，使用</span><br><span class="line"></span><br><span class="line">    git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">Permission denied, please try again.</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">对象计数中: 6, 完成.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">压缩对象中: 100% (3/3), 完成.</span><br><span class="line">写入对象中: 100% (6/6), 523 bytes | 523.00 KiB/s, 完成.</span><br><span class="line">Total 6 (delta 0), reused 0 (delta 0)</span><br><span class="line">To ssh://39.XXX.171.29/home/git/git_study</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">分支 &apos;master&apos; 设置为跟踪来自 &apos;ssh://git@39.XXX.171.29/home/git/git_study&apos; 的远程分支 &apos;master&apos;。</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看修改历史"><a href="#查看修改历史" class="headerlink" title="查看修改历史"></a>查看修改历史</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git log</span><br><span class="line">commit 4cb2b4f87b03b6cf3301b000a3e14c44027e3f42 (HEAD -&gt; master)</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:28:44 2019 +0800</span><br><span class="line"></span><br><span class="line">    第二次修改</span><br><span class="line"></span><br><span class="line">commit 1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:21:19 2019 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br></pre></td></tr></table></figure>
+<h3 id="还原修改"><a href="#还原修改" class="headerlink" title="还原修改"></a>还原修改</h3><p>reset 还原，还原后历史版本不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git reset --hard  1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">HEAD 现在位于 1910c01 first commit</span><br></pre></td></tr></table></figure></p>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git rm test </span><br><span class="line">rm &apos;test&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="忽略文件或文件夹"><a href="#忽略文件或文件夹" class="headerlink" title="忽略文件或文件夹"></a>忽略文件或文件夹</h3><p>在文件目录下创建gitignore 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure></p>
+<p>忽略语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">空行或是以 # 开头的行即注释行将被忽略。</span><br><span class="line">可以在前面添加正斜杠 / 来避免递归,下面的例子中可以很明白的看出来与下一条的区别。</span><br><span class="line">可以在后面添加正斜杠 / 来忽略文件夹,例如 build/ 即忽略 build 文件夹。</span><br><span class="line">可以使用 ! 来否定忽略,即比如在前面用了 *.apk ,然后使用 !a.apk ,则这个 a.apk 不会</span><br><span class="line">被忽略。</span><br><span class="line">* 用来匹配零个或多个字符,如 *.[oa] 忽略所有以&quot;.o&quot;或&quot;.a&quot;结尾, *~ 忽略所有以 ~ 结尾</span><br><span class="line">的文件(这种文件通常被许多编辑器标记为临时文件); [] 用来匹配括号内的任一字符,</span><br><span class="line">如 [abc] ,也可以在括号内加连接符,如 [0-9] 匹配 0 至 9 的数; ? 用来匹配单个字符。</span><br><span class="line">看了这么多,还是应该来个栗子:</span><br><span class="line"># 忽略 .a 文件</span><br><span class="line">*.a</span><br><span class="line"># 但否定忽略 lib.a, 尽管已经在前面忽略了 .a 文件</span><br><span class="line">!lib.a</span><br><span class="line"># 仅在当前目录下忽略 TODO 文件, 但不包括子目录下的 subdir/TODO</span><br><span class="line">/TODO</span><br><span class="line"># 忽略 build/ 文件夹下的所有文件</span><br><span class="line">build/</span><br><span class="line"># 忽略 doc/notes.txt, 不包括 doc/server/arch.txt</span><br><span class="line">doc/*.txt</span><br><span class="line"># 忽略所有的 .pdf 文件 在 doc/ directory 下的</span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
+<h3 id="解决文件冲突"><a href="#解决文件冲突" class="headerlink" title="解决文件冲突"></a>解决文件冲突</h3><p>编辑有冲突后的文件，再次提交即可</p>
+<h3 id="文件更新或拉取"><a href="#文件更新或拉取" class="headerlink" title="文件更新或拉取"></a>文件更新或拉取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ git clone ssh://git@39.xxx.xxx.29/home/git/git_study</span><br><span class="line">正克隆到 &apos;git_study&apos;...</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">remote: Counting objects: 13, done.</span><br><span class="line">remote: Compressing objects: 100% (7/7), done.</span><br><span class="line">remote: Total 13 (delta 0), reused 0 (delta 0)</span><br><span class="line">接收对象中: 100% (13/13), 完成.</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ cd git_study/</span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit/git_study$ git pull</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">已经是最新的。</span><br></pre></td></tr></table></figure>
+<h2 id="git分支管理"><a href="#git分支管理" class="headerlink" title="git分支管理"></a>git分支管理</h2><p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何<a href="#jump-storageMode">保存数据</a>的。</p>
+<p>Git 保存的不是文件的变化或者差异，而是一系列不同时刻的 <strong>快照</strong> </p>
+<p>在进行提交操作时，git会保存一个提交对象（commit object）。该提交对象会包含一个指向暂存快照的指针。但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。 首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象， 而由多个分支合并产生的提交对象有多个父对象</p>
+<p>案例：</p>
+<p>我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。 暂存操作会为每一个文件计算校验和（使用我们在 <a href="https://git-scm.com/book/zh/v2/ch00/ch01-getting-started" target="_blank" rel="noopener">起步</a> 中提到的 SHA-1 哈希算法），然后会把当前版本的文件快照保存到 Git 仓库中 （Git 使用 <em>blob</em> 对象来保存它们），最终将校验和加入到暂存区域等待提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m &apos;The initial commit of my project&apos;</span><br></pre></td></tr></table></figure>
+<p>当使用 <code>git commit</code> 进行提交操作时，Git 会先计算每一个子目录（本例中只有项目根目录）的校验和， 然后在 Git 仓库中这些校验和保存为树对象。随后，Git 便会创建一个提交对象， 它除了包含上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。 如此一来，Git 就可以在需要的时候重现此次保存的快照。</p>
+<p>现在，Git 仓库中有五个对象：三个 <em>blob</em> 对象（保存着文件快照）、一个 <strong>树</strong> 对象 （记录着目录结构和 blob 对象索引）以及一个 <strong>提交</strong> 对象（包含着指向前述树对象的指针和所有提交信息）。</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/06/09/git/git-branch-1.png" alt="branch-1"></p>
+<p>Figure 首次提交对象及其树结构</p>
+<p>做些修改后再次提交，那么这次产生的提交对象会包含一个指向上次提交对象（父对象）的指针。</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/06/09/git/git-branch-2.png" alt="branch-1"></p>
+<p>Figure 提交对象及其父对象</p>
+<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 <code>master</code>。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 <code>master</code> 分支。 <code>master</code> 分支会在每次提交时自动向前移动。</p>
+<p><strong> <span style="color:red">Note</span></strong>:   Git 的 <code>master</code> 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。 之所以几乎每一个仓库都有 master 分支，是因为 <code>git init</code> 命令默认创建它，并且大多数人都懒得去改动它。</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/06/09/git/git-branch-3.png" alt="branch-3"></p>
+<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 新分支名称</span><br></pre></td></tr></table></figure>
+<h3 id="选择分支"><a href="#选择分支" class="headerlink" title="选择分支"></a>选择分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名称</span><br></pre></td></tr></table></figure>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git merge mybatis </span><br><span class="line">更新 8c65eb0..458de41</span><br><span class="line">Fast-forward</span><br><span class="line"> xiaoli | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 xiaoli</span><br></pre></td></tr></table></figure>
+<h2 id="git-贮藏-stash"><a href="#git-贮藏-stash" class="headerlink" title="git 贮藏(stash)"></a>git 贮藏(stash)</h2><p>个人认为此功能用来间当前缓存区中的信息暂时贮藏，便于切换别的分支去处理事情。等处理完后再切换到当前分支并恢复贮藏信息并继续当前分支的开发。</p>
+<p>使用场景：</p>
+<p>由于分支的切换需要干净的暂存区（stage，也是就是这个区域内不能有信息）。所以导致想要切换版本就必须面临提交当前工作区信息到版本库中或者不提交。而这两者都具有弊端，前者能保存当前工作区中的内容，但是会对提交历史产生影响。后者虽然不会对仓库的历史产生影响，但是当前工作区中的信息也不会保存。使用git的贮藏功能可以兼备以上所期望的2点。实现过程如下案例</p>
+<p>场景：</p>
+<p>当前项目的分支情况如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">* commit 394e7afc1077df0bf4d399c8d6d1e6821eb7f49d (HEAD -&gt; experiment)</span><br><span class="line">| Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">| Date:   Thu Jun 4 14:29:01 2020 +0800</span><br><span class="line">| </span><br><span class="line">|     test</span><br><span class="line">|     </span><br><span class="line">|     modified test</span><br><span class="line">| </span><br><span class="line">* commit 49fd47ed235a96ebe7a353c016aa4602c3b8dfb5</span><br><span class="line">| Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">| Date:   Wed Jun 3 10:05:10 2020 +0800</span><br><span class="line">| </span><br><span class="line">|     add experiment</span><br><span class="line">| </span><br><span class="line">* commit 214cbe6f166becc20309a70f35bbc43ff60ec7eb (master)</span><br><span class="line">| Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">| Date:   Wed Jun 3 10:06:25 2020 +0800</span><br><span class="line">| </span><br><span class="line">|     add test</span><br><span class="line">| </span><br><span class="line">* commit 252d42a731d129478ecfc2882d691ab3ee6e5deb</span><br><span class="line">  Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">  Date:   Wed Jun 3 10:02:57 2020 +0800</span><br><span class="line">  </span><br><span class="line">      add README.md</span><br></pre></td></tr></table></figure>
+<p>当用户在experiment开发时，接到了临时的紧急通知需要修改master分支上的几处BUG。</p>
+<p>1.使用git status 查看当前项目的情况，将要保存的信息放入暂存区（stage）处</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">位于分支 experiment</span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git reset HEAD &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">	新文件：   index.html</span><br><span class="line">	新文件：   lib/simplegit.rb</span><br><span class="line"></span><br><span class="line">未跟踪的文件:</span><br><span class="line">  （使用 &quot;git add &lt;文件&gt;...&quot; 以包含要提交的内容）</span><br><span class="line"></span><br><span class="line">	TODO</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  git add TODO</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">位于分支 experiment</span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git reset HEAD &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">	新文件：   TODO</span><br><span class="line">	新文件：   index.html</span><br><span class="line">	新文件：   lib/simplegit.rb</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>将暂存区中的内容通过stash 放入特定的一个栈中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git stash </span><br><span class="line">保存工作目录和索引状态 WIP on experiment: 394e7af test</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>切换分支工作，解决BUG并提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">切换到分支 &apos;master&apos;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="4">
+<li><p>切换分支并恢复贮藏信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout experiment </span><br><span class="line">切换到分支 &apos;experiment&apos;</span><br><span class="line">$ git stash apply stash@&#123;0&#125; </span><br><span class="line">位于分支 experiment</span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git reset HEAD &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">	新文件：   TODO</span><br><span class="line">	新文件：   index.html</span><br><span class="line">	新文件：   lib/simplegit.rb</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="5">
+<li><p>清理贮藏区中的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on experiment: 394e7af test</span><br><span class="line">$ git stash drop stash@&#123;0&#125; </span><br><span class="line">丢弃了 stash@&#123;0&#125; (b1cb57a6cb76585027a27eed6779bcab6ca4f400)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/27/数字-电子-计算机操作系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2020/05/27/数字-电子-计算机操作系统/" class="post-title-link" itemprop="url">数字-电子-计算机操作系统</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-27 17:54:42" itemprop="dateCreated datePublished" datetime="2020-05-27T17:54:42+08:00">2020-05-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-29 16:57:01" itemprop="dateModified" datetime="2020-05-29T16:57:01+08:00">2020-05-29</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="操作系统概论"><a href="#操作系统概论" class="headerlink" title="操作系统概论"></a>操作系统概论</h1><h2 id="操作系统的概念"><a href="#操作系统的概念" class="headerlink" title="操作系统的概念"></a>操作系统的概念</h2><h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><p>knowledge point：</p>
+<p>1.计算机系统是一种可以按用户要求接收和存储信息、自动进行数据处理并输出结果信息的系统。</p>
+<p>2.广义的计算机系统包含机械式系统和电子式系统。</p>
+<p>3.电子式系统可以分为模拟式和数字式计算机系统。本篇博客讨论的是数字电子计算机系统，也可简称为计算机系统</p>
+<h3 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h3><h3 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h3><h3 id="研究操作系统的观点"><a href="#研究操作系统的观点" class="headerlink" title="研究操作系统的观点"></a>研究操作系统的观点</h3><h3 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h3><h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><h3 id="Windows操作系统的体系结构"><a href="#Windows操作系统的体系结构" class="headerlink" title="Windows操作系统的体系结构"></a>Windows操作系统的体系结构</h3><h3 id="Unix操作系统的体系结构"><a href="#Unix操作系统的体系结构" class="headerlink" title="Unix操作系统的体系结构"></a>Unix操作系统的体系结构</h3><h3 id="Linux操作系统的体系结构"><a href="#Linux操作系统的体系结构" class="headerlink" title="Linux操作系统的体系结构"></a>Linux操作系统的体系结构</h3><h3 id="Android操作系统的体系结构"><a href="#Android操作系统的体系结构" class="headerlink" title="Android操作系统的体系结构"></a>Android操作系统的体系结构</h3><h2 id="操作系统的发展"><a href="#操作系统的发展" class="headerlink" title="操作系统的发展"></a>操作系统的发展</h2><h3 id="手工操作"><a href="#手工操作" class="headerlink" title="手工操作"></a>手工操作</h3><h3 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h3><h3 id="多道批处理"><a href="#多道批处理" class="headerlink" title="多道批处理"></a>多道批处理</h3><h3 id="分时与实时系统"><a href="#分时与实时系统" class="headerlink" title="分时与实时系统"></a>分时与实时系统</h3><h3 id="Unix通用操作系统"><a href="#Unix通用操作系统" class="headerlink" title="Unix通用操作系统"></a>Unix通用操作系统</h3><h3 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="Android操作系统"><a href="#Android操作系统" class="headerlink" title="Android操作系统"></a>Android操作系统</h3><h2 id="操作系统分类"><a href="#操作系统分类" class="headerlink" title="操作系统分类"></a>操作系统分类</h2><h3 id="批处理操作系统"><a href="#批处理操作系统" class="headerlink" title="批处理操作系统"></a>批处理操作系统</h3><h3 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h3><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3><h3 id="嵌入式操作系统"><a href="#嵌入式操作系统" class="headerlink" title="嵌入式操作系统"></a>嵌入式操作系统</h3><h3 id="个人计算机操作系统-1"><a href="#个人计算机操作系统-1" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h3><h3 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h3><h2 id="操作系统设计"><a href="#操作系统设计" class="headerlink" title="操作系统设计"></a>操作系统设计</h2><h3 id="操作系统的设计过程"><a href="#操作系统的设计过程" class="headerlink" title="操作系统的设计过程"></a>操作系统的设计过程</h3><h3 id="操作系统的设计目标"><a href="#操作系统的设计目标" class="headerlink" title="操作系统的设计目标"></a>操作系统的设计目标</h3><h3 id="操作系统的结构设计"><a href="#操作系统的结构设计" class="headerlink" title="操作系统的结构设计"></a>操作系统的结构设计</h3><h3 id="操作系统的结构"><a href="#操作系统的结构" class="headerlink" title="操作系统的结构"></a>操作系统的结构</h3><h1 id="操作系统运行环境"><a href="#操作系统运行环境" class="headerlink" title="操作系统运行环境"></a>操作系统运行环境</h1><h2 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h2><p>处理器的一些常识：</p>
+<p>操作系统做为一个程序需要在处理器上运行。<br>如果一个计算机系统只有一个处理器，我们称之为单机系统。如果有多个处理器我们称为多处理器系统。<br>计算机处理器都有自己的指令系统。</p>
+<h3 id="处理器的构成"><a href="#处理器的构成" class="headerlink" title="处理器的构成"></a>处理器的构成</h3><p>处理器一般由运算器、控制器、一系列的寄存器以及高速缓存构成。</p>
+<p>运算器：用来实现指令中的算术和逻辑运算<br>控制器：负责控制程序运行的流程，取指令、维护处理器的状态、处理器与内存的交互等。<br>寄存器：存储处理器执行指令过程中暂时需要存储的数据、地址以及指令信息等。它具有比内存更快的访问速度但是由于寄存器集成在微处理器的芯片中，所以它的存储空间很有限。</p>
+<p>根据用户使用可以为寄存器分类为：</p>
+<h4 id="用户可见寄存器"><a href="#用户可见寄存器" class="headerlink" title="用户可见寄存器"></a>用户可见寄存器</h4><p>见名知意，此寄存器用来存储用户控制的数据。</p>
+<p>用户可以通过高级编程语言使用</p>
+<p>数据寄存器：</p>
+<p>1.也称为通用寄存器<br>2.用于各种算术逻辑指令和访存指令。</p>
+<p>地址寄存器：</p>
+<p>1.用于存储数据及指令的物理地址、线性地址或者有效地址，用于某种特定方式的寻址。</p>
+<p>条件码寄存器：<br>1.保存处理器操作结果的各种标记位。如算术运算产生的溢出、符号等。</p>
+<h4 id="控制和状态寄存器"><a href="#控制和状态寄存器" class="headerlink" title="控制和状态寄存器"></a>控制和状态寄存器</h4><p>用于控制处理器的操作，一般由具有特权的操作系统使用。</p>
+<p>由具有特权的操作系统使用</p>
+<p>程序计数器：用于取出将要取出的指令的地址。<br>指令寄存器：包含最近取出的指令。<br>程序状态字：记录了处理器的运行模式信息等。</p>
+<h3 id="处理器基本工作方式"><a href="#处理器基本工作方式" class="headerlink" title="处理器基本工作方式"></a>处理器基本工作方式</h3><p>处理器的基本工作方式可由指令执行执行过程描述</p>
+<p>指令执行的基本过程：如下图</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/指令周期.png" alt></p>
+<h4 id="指令根据功能可划分为"><a href="#指令根据功能可划分为" class="headerlink" title="指令根据功能可划分为"></a>指令根据功能可划分为</h4><p>访问存储器指令：负责处理器和存储器之间的数据传输<br>I/O指令：负责处理器和I/O模块之间的数据传送和命令发送<br>算术逻辑指令：用以执行有关数据的算术和逻辑操作<br>控制转移指令：可以指定一个新的指令的执行起点<br>处理器控制指令：用于修改处理器状态，改变处理器工作方式等</p>
+<h4 id="特权指令和非特权指令"><a href="#特权指令和非特权指令" class="headerlink" title="特权指令和非特权指令"></a>特权指令和非特权指令</h4><p>特权指令和非特权指令存在于多用户多任务多通道的操作系统中。<br>特权指令：普通用户程序无权访问使用，操作系统可以访问使用。<br>用户可以通过陷入（Trap）使用特权指令。<br>陷入：用户将处理器状态切换为操作系统运行的特权状态，然后由操作系统运行拥有特权指令的程序。这个过程称为陷入。<br>系统可通过处理器状态标识判断当前执行的程序是一般应用还是系统指令<br>特权或非特权指令这种指令使用架构需要硬件的支持</p>
+<h3 id="处理器的工作状态"><a href="#处理器的工作状态" class="headerlink" title="处理器的工作状态"></a>处理器的工作状态</h3><p>管态：拥有特权的级别，可以执行特权指令。有时被称为：核心态、内核态、系统态<br>目态：拥有普通的权利级别，如一般的用户程序就是在目态模式下运行的<br>举例：英特尔公司的X86系列处理器支持4个处理器特权级别：R0、R1、R2、R3</p>
+<p>它们4者间的关系如下：<br>$$<br>r0⊇r1⊇r2⊇r3<br>$$</p>
+<h4 id="处理器工作状态的转换"><a href="#处理器工作状态的转换" class="headerlink" title="处理器工作状态的转换"></a>处理器工作状态的转换</h4><p>目态转换为管态</p>
+<p>使用中断技术，并将PSW中的处理器状态设为管态即可</p>
+<p>管态转换为目态</p>
+<p>同样也是使用中断+PSW中修改处理器状态</p>
+<p>程序状态字（PSW）</p>
+<p>为了解决处理器当前工作状态的问题。</p>
+<h2 id="中断-异常"><a href="#中断-异常" class="headerlink" title="中断/异常"></a>中断/异常</h2><h2 id="计算机中相关的硬件部分"><a href="#计算机中相关的硬件部分" class="headerlink" title="计算机中相关的硬件部分"></a>计算机中相关的硬件部分</h2><h3 id="内存储器"><a href="#内存储器" class="headerlink" title="内存储器"></a>内存储器</h3><h4 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h4><h5 id="存储器的类型"><a href="#存储器的类型" class="headerlink" title="存储器的类型"></a>存储器的类型</h5><p>微型计算机中大部分采用半导体存储器，其大致可分为如下两种类型</p>
+<h6 id="读写型存储器（RAM）"><a href="#读写型存储器（RAM）" class="headerlink" title="读写型存储器（RAM）"></a>读写型存储器（RAM）</h6><p>knowledge point：</p>
+<p>1.这种类型的存储器也被称作随机访问存储器</p>
+<p>2.它可以随时进行读或写的操作</p>
+<p>3.RAM的全称（random access memory）</p>
+<h6 id="只读型存储器（ROM）"><a href="#只读型存储器（ROM）" class="headerlink" title="只读型存储器（ROM）"></a>只读型存储器（ROM）</h6><p>knowledge point：</p>
+<p>1.一般使用情况下只能读取其中的数据，要想对其进行写的操作需要使用专门的写入机。</p>
+<p>2.PROM 是一种可编程的只读存储器，可以使用特殊的PROM写入器对其进行数据的写入。</p>
+<p>3.EPROM 也是一种只读存储器，可以使用特殊的紫外光照射将其中的数据清除。使用特殊的EPROM写入器对其进行数据的写入。</p>
+<p>4.ROM的全称（read only memory）</p>
+<h6 id="存储分块"><a href="#存储分块" class="headerlink" title="存储分块"></a>存储分块</h6><p>knowledge point：</p>
+<p>1.存储的最小单位被称为“二进位”，他包含的信息为0或1。</p>
+<p>2.存储的最小编址单位是字节。一个字节等于8个二进位。</p>
+<p>3.计算机系统会把存储器中的空间分块，有时块也被称为物理页。块的大小由机器确定。</p>
+<h5 id="存储器的层次结构"><a href="#存储器的层次结构" class="headerlink" title="存储器的层次结构"></a>存储器的层次结构</h5><p>存储器层次化结构的由来：</p>
+<p>因为人们对计算机存储器的需求是这样的，速度越快越好、容量越大越好、制造价格越便宜越好。而现实中速度、容量、价格这三者间是存在二律悖反的。有了速度就得牺牲价格和容量，相反同理。</p>
+<p>既然不能达到最优，那如何权衡三者使用呢?答案是采用层次化的存储结构。图2-2代表了计算机存储器的层次化结构</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/存储器的层次结构图.png" alt="图2-2"></p>
+<h5 id="存储器的保护"><a href="#存储器的保护" class="headerlink" title="存储器的保护"></a>存储器的保护</h5><p>内存中的数据是需要被保护的不然会出现资源的破坏从而导致系统奔溃或程序奔溃。</p>
+<p>要实现存储保护，必须要有硬件的支持。</p>
+<p>界地址寄存器是被广泛使用的一种存储保护技术。下面咱们看看它是如何工作的。</p>
+<p>在处理器中设置一对界存储器，分别是上限界存储器和下限界存储器。每当处理器访问内存时，硬件自动将被访问的内存地址与界寄存器进行对比，如果越界就会产生程序中断。如图2-3所示，阐述了界地址寄存器的保护策略运行流程</p>
+<p><img src="https://slothjun.github.io/MeBlog/2020/05/27/数字-电子-计算机操作系统/界地址寄存器存储保护技术.png" alt="图2-3"></p>
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/05/25/计算机-操作系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2020/05/25/计算机-操作系统/" class="post-title-link" itemprop="url">数字电子-计算机操作系统</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-25 17:14:32" itemprop="dateCreated datePublished" datetime="2020-05-25T17:14:32+08:00">2020-05-25</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="操作系统概论"><a href="#操作系统概论" class="headerlink" title="操作系统概论"></a>操作系统概论</h1><h2 id="操作系统的概念"><a href="#操作系统的概念" class="headerlink" title="操作系统的概念"></a>操作系统的概念</h2><h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><p>knowledge point：</p>
+<p>1.计算机系统是一种可以按用户要求接收和存储信息、自动进行数据处理并输出结果信息的系统。</p>
+<p>2.广义的计算机系统包含机械式系统和电子式系统。</p>
+<p>3.电子式系统可以分为模拟式和数字式计算机系统。本篇博客讨论的是数字电子计算机系统，也可简称为计算机系统。</p>
+<h3 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h3><p>knowledge point：</p>
+<p>1.操作系统是计算机系统中的一个系统软件。或者说是一些程序模块的集合。</p>
+<p>2.它能有效的管理计算机系统中的硬件和软件资源。也可以理解为，它是计算机暴露的接口，用户通过这些接口可以更好的利用计算机资源。</p>
+<h3 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h3><p>并发性</p>
+<p>共享性</p>
+<p>随机性</p>
+<h3 id="研究操作系统的观点"><a href="#研究操作系统的观点" class="headerlink" title="研究操作系统的观点"></a>研究操作系统的观点</h3><p>软件的观点</p>
+<p>资源管理的观点</p>
+<p>进程的观点</p>
+<p>虚拟机的观点</p>
+<p>服务提供者观点</p>
+<h3 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h3><p>进程管理</p>
+<p>存储管理</p>
+<p>文件管理</p>
+<p>设备管理</p>
+<p>用户接口</p>
+<h2 id="操作系统的体系结构"><a href="#操作系统的体系结构" class="headerlink" title="操作系统的体系结构"></a>操作系统的体系结构</h2><h3 id="Windows操作系统的体系结构"><a href="#Windows操作系统的体系结构" class="headerlink" title="Windows操作系统的体系结构"></a>Windows操作系统的体系结构</h3><h3 id="Unix操作系统的体系结构"><a href="#Unix操作系统的体系结构" class="headerlink" title="Unix操作系统的体系结构"></a>Unix操作系统的体系结构</h3><h3 id="Linux操作系统的体系结构"><a href="#Linux操作系统的体系结构" class="headerlink" title="Linux操作系统的体系结构"></a>Linux操作系统的体系结构</h3><h3 id="Android操作系统的体系结构"><a href="#Android操作系统的体系结构" class="headerlink" title="Android操作系统的体系结构"></a>Android操作系统的体系结构</h3><h2 id="操作系统的发展"><a href="#操作系统的发展" class="headerlink" title="操作系统的发展"></a>操作系统的发展</h2><h3 id="手工操作"><a href="#手工操作" class="headerlink" title="手工操作"></a>手工操作</h3><h3 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h3><h3 id="多道批处理"><a href="#多道批处理" class="headerlink" title="多道批处理"></a>多道批处理</h3><h3 id="分时与实时系统"><a href="#分时与实时系统" class="headerlink" title="分时与实时系统"></a>分时与实时系统</h3><h3 id="Unix通用操作系统"><a href="#Unix通用操作系统" class="headerlink" title="Unix通用操作系统"></a>Unix通用操作系统</h3><h3 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="Android操作系统"><a href="#Android操作系统" class="headerlink" title="Android操作系统"></a>Android操作系统</h3><h2 id="操作系统分类"><a href="#操作系统分类" class="headerlink" title="操作系统分类"></a>操作系统分类</h2><h3 id="批处理操作系统"><a href="#批处理操作系统" class="headerlink" title="批处理操作系统"></a>批处理操作系统</h3><h3 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h3><h3 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h3><h3 id="嵌入式操作系统"><a href="#嵌入式操作系统" class="headerlink" title="嵌入式操作系统"></a>嵌入式操作系统</h3><h3 id="个人计算机操作系统-1"><a href="#个人计算机操作系统-1" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h3><h3 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h3><h3 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h3><h2 id="操作系统设计"><a href="#操作系统设计" class="headerlink" title="操作系统设计"></a>操作系统设计</h2><h3 id="操作系统的设计过程"><a href="#操作系统的设计过程" class="headerlink" title="操作系统的设计过程"></a>操作系统的设计过程</h3><h3 id="操作系统的设计目标"><a href="#操作系统的设计目标" class="headerlink" title="操作系统的设计目标"></a>操作系统的设计目标</h3><h3 id="操作系统的结构设计"><a href="#操作系统的结构设计" class="headerlink" title="操作系统的结构设计"></a>操作系统的结构设计</h3><h3 id="操作系统的结构"><a href="#操作系统的结构" class="headerlink" title="操作系统的结构"></a>操作系统的结构</h3>
           
         
       
@@ -2749,7 +3165,7 @@
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#x79;&#x40;&#50;&#x36;&#x33;&#46;&#x6e;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#x79;&#x40;&#50;&#x36;&#x33;&#46;&#x6e;&#101;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#x79;&#x5f;&#x74;&#121;&#x40;&#x32;&#x36;&#x33;&#x2e;&#110;&#101;&#116;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#x79;&#x5f;&#x74;&#121;&#x40;&#x32;&#x36;&#x33;&#x2e;&#110;&#101;&#116;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -2757,7 +3173,7 @@
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#111;&#x6e;&#121;&#95;&#116;&#x79;&#64;&#50;&#54;&#x33;&#46;&#110;&#101;&#116;" target="_blank" rel="noopener">&#x74;&#111;&#x6e;&#121;&#95;&#116;&#x79;&#64;&#50;&#54;&#x33;&#46;&#110;&#101;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#121;&#x40;&#50;&#54;&#x33;&#46;&#x6e;&#101;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#121;&#x40;&#50;&#54;&#x33;&#46;&#x6e;&#101;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>
@@ -3080,409 +3496,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/17/python-入门篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2020/04/17/python-入门篇/" class="post-title-link" itemprop="url">python-入门篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-04-17 15:24:48" itemprop="dateCreated datePublished" datetime="2020-04-17T15:24:48+08:00">2020-04-17</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="python的来源"><a href="#python的来源" class="headerlink" title="python的来源"></a>python的来源</h2><p>​    python是著名的“Guido van Rossum”在1989年圣诞节期间开发的编程语言</p>
-<p>  现在，全世界差不多有600多种编程语言，但流行的编程语言也就那么20来种。如果你听说过TIOBE排行榜，你就能知道编程语言的大致流行程度。tiobe的官方数据链接如下：</p>
-<p>  <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener">https://www.tiobe.com/tiobe-index/</a></p>
-<p>  总的来说，这几种编程语言各有千秋。C语言是可以用来编写操作系统的贴近硬件的语言，所以，C语言适合开发那些追求运行速度、充分发挥硬件性能的程序。而Python是用来编写应用程序的高级编程语言。</p>
-<p>  当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。</p>
-<p>  Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。</p>
-<p>  除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。</p>
-<p>  许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。</p>
-<h2 id="python-的优点"><a href="#python-的优点" class="headerlink" title="python 的优点"></a>python 的优点</h2><p>  life is short,you need Python –Bruce Eckel</p>
-<p>  龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。</p>
-<p>  总的来说，Python的哲学就是简单优雅，尽量写容易看明白的代码，尽量写少的代码。如果一个资深程序员向你炫耀他写的晦涩难懂、动不动就几万行的代码，你可以尽情地嘲笑他。</p>
-<p>  那Python适合开发哪些类型的应用呢？</p>
-<p>  首选是网络应用，包括网站、后台服务等等；</p>
-<p>  其次是许多日常需要的小工具，包括系统管理员需要的脚本任务等等；</p>
-<p>  另外就是把其他语言开发的程序再包装起来，方便使用。</p>
-<h2 id="Python的缺点"><a href="#Python的缺点" class="headerlink" title="Python的缺点"></a>Python的缺点</h2><p>  任何编程语言都有缺点，Python也不例外。优点说过了，那Python有哪些缺点呢？</p>
-<p>第一个缺点就是运行速度慢，和C程序相比非常慢，因为Python是解释型语言，你的代码在执行时会一行一行地翻译成CPU能理解的机器码，这个翻译过程非常耗时，所以很慢。而C程序是运行前直接编译成CPU能执行的机器码，所以非常快。</p>
-<p>但是大量的应用程序不需要这么快的运行速度，因为用户根本感觉不出来。例如开发一个下载MP3的网络应用程序，C程序的运行时间需要0.001秒，而Python程序的运行时间需要0.1秒，慢了100倍，但由于网络更慢，需要等待1秒，你想，用户能感觉到1.001秒和1.1秒的区别吗？这就好比F1赛车和普通的出租车在北京三环路上行驶的道理一样，虽然F1赛车理论时速高达400公里，但由于三环路堵车的时速只有20公里，因此，作为乘客，你感觉的时速永远是20公里。</p>
-<h2 id="python交互模式"><a href="#python交互模式" class="headerlink" title="python交互模式"></a>python交互模式</h2><p>  使用当前系统的命令模式，输入python3即可进入交互模式，输入exit()可退出python交互式模式。<br>  交互式模式可以直接显示代码运行的结果。但是之前输入的代码退出交互式模式后不能存到硬盘中</p>
-<h2 id="命令行执行-py文件"><a href="#命令行执行-py文件" class="headerlink" title="命令行执行.py文件"></a>命令行执行.py文件</h2><p>  命令行模式下，进入要执行的.py文件同目录下，输入python3 文件名即可运行</p>
-<h2 id="变量的命名规则（标识符）"><a href="#变量的命名规则（标识符）" class="headerlink" title="变量的命名规则（标识符）"></a>变量的命名规则（标识符）</h2><p>  变量名只能包含字母，数字和下划线，且不能以数字打头；</p>
-<p>  变量名不能包含空格；</p>
-<p>  不能将Python 关键字和函数名作为变量名使用；</p>
-<p>  慎用小写字母i和大写字母O，容易看成数字1和数字0；</p>
-<p>  Python 的命名是大小写敏感的，也就是说a和A对于解释器而言，是两个不同的名字；</p>
-<h2 id="占位符（place-holder）"><a href="#占位符（place-holder）" class="headerlink" title="占位符（place holder）"></a>占位符（place holder）</h2><p>  %d %.2f %.1f %s</p>
-<p>  %d 表示十进制整数占位符<br>  %.2f 表示浮点数保留到2位小数点后<br>  %.1f 表示浮点数保留到1位小数点后<br>  %s 表示字符串</p>
-<h2 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h2><p>  二进制 （binary）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0b111</span> <span class="comment">#7</span></span><br><span class="line"><span class="comment">#二进制的形式表示7</span></span><br><span class="line">a = bin(<span class="number">7</span>)</span><br></pre></td></tr></table></figure></p>
-<p>  十进制 （decimal）<br>  十六进制 （hexadecimal）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">0xff</span> <span class="comment">#255</span></span><br><span class="line"><span class="comment">#十六进制的形式表示255</span></span><br><span class="line">hex(<span class="number">255</span>)</span><br></pre></td></tr></table></figure></p>
-<p>  占位符表示进制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%x"</span> %(<span class="number">255</span>)) <span class="comment">#使用16进制的形式表示255</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>多行注释 “””<br>单行注释 #</p>
-<h2 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h2><p>  list 列表类似Java中的列表list都是类构成</p>
-<p>  下标的使用如: list[1]、list[-1]</p>
-<p>  列表的追加如：list.append()</p>
-<p>  列表的删除如：</p>
-<pre><code>del list[x] 直接删除指定索引处的元素
-list.pop(x) 弹出指定索引处的元素并返回
-list.remove(x) 删除首个指定元素
-</code></pre><p>  列表的排序：<br>    list.sort()<br>  列表拷贝<br>    list.copy() 此拷贝不是深层拷贝，如果想要深层拷贝使用copy.deepcopy</p>
-<h3 id="数值列表"><a href="#数值列表" class="headerlink" title="数值列表"></a>数值列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"output of range(10):"</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">  print(i)</span><br></pre></td></tr></table></figure>
-<h3 id="列表的快速生成"><a href="#列表的快速生成" class="headerlink" title="列表的快速生成"></a>列表的快速生成</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">matrix = [[<span class="number">0</span>]*<span class="number">8</span>]*<span class="number">10</span></span><br><span class="line">cubes = [x**<span class="number">3</span> + <span class="number">100</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>)]</span><br><span class="line">variables = [x+y <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">'abc'</span> <span class="keyword">for</span> y <span class="keyword">in</span> <span class="string">'0123'</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="切片-slice"><a href="#切片-slice" class="headerlink" title="切片(slice)"></a>切片(slice)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line">print(<span class="string">"numbers[3:9]:"</span>,numbers[<span class="number">3</span>:<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
-<p>  切片会生成一个新的list返回，并不是直接操作原有的list<br>  切片可以对str类型的数据使用</p>
-<p>  妙用切片<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numbers = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line">numbersCopy = numbers[:]</span><br><span class="line"></span><br><span class="line">numbersReversed = numbers[::<span class="number">-1</span>]</span><br><span class="line">print(<span class="string">"numbers[:3:-2] is:"</span>,numbers[:<span class="number">3</span>:<span class="number">2</span>])</span><br><span class="line">print(<span class="string">"numbers[:3:-2] is:"</span>,numbers[:<span class="number">3</span>:<span class="number">-2</span>])</span><br></pre></td></tr></table></figure></p>
-<p>  将切片的参数划分为[x:y:z]<br>  当z为正数时 x默认为0,y默认为最后一个元素不包含、<br>  当z为负数时 x默认为最后一个值，y默认为第一个值并且包含</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="元组（tuple）"><a href="#元组（tuple）" class="headerlink" title="元组（tuple）"></a>元组（tuple）</h3><p>元组是只读的列表<br>当只有一个数时需要加，如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print((<span class="number">1</span>,))</span><br></pre></td></tr></table></figure></p>
-<h3 id="byte字节"><a href="#byte字节" class="headerlink" title="byte字节"></a>byte字节</h3><p>字节的作用：用来存储数据方便数据的交流，如字节流</p>
-<p>字节的存储Python：</p>
-<p>little 高位字节存高地址<br>big    高位字节存低地址</p>
-<p>Intel ARM   little endian</p>
-<p>Motorola    big endian</p>
-<h4 id="将数据以二进制字节的方式存储"><a href="#将数据以二进制字节的方式存储" class="headerlink" title="将数据以二进制字节的方式存储"></a>将数据以二进制字节的方式存储</h4><p>example：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># write</span></span><br><span class="line">lData = [<span class="number">11</span>,<span class="number">18.234</span>,<span class="number">10.342</span>,<span class="number">3.2342</span>,<span class="number">13</span>]</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'secondData.dat'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> d:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> lData:</span><br><span class="line">        d.write(struct.pack(<span class="string">"&lt;f"</span>,i))</span><br><span class="line"></span><br><span class="line"><span class="comment"># read</span></span><br><span class="line">data = <span class="literal">None</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'secondData.dat'</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> d:</span><br><span class="line">    data = d.read()</span><br><span class="line"></span><br><span class="line">iSampleCount = len(data)//<span class="number">4</span> <span class="comment">#解包的时候是按照4个字节的大小来进行的，所以要求4的倍数，因为Python使用/的结果是flot所以使用//。另外数据的总长度len(data)肯定是能被4整除。</span></span><br><span class="line">print(len(data))</span><br><span class="line">lCurveData = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(iSampleCount):</span><br><span class="line">    fValue, = struct.unpack(<span class="string">'&lt;f'</span>,data[i*<span class="number">4</span>:i*<span class="number">4</span>+<span class="number">4</span>])</span><br><span class="line">    lCurveData.append(fValue)</span><br><span class="line"></span><br><span class="line">print(lCurveData)</span><br><span class="line">plt.plot(lCurveData)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<h3 id="bytearray"><a href="#bytearray" class="headerlink" title="bytearray"></a>bytearray</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">buffer = bytearray(<span class="string">b'asdajhskfahs'</span>)</span><br><span class="line">buffer[<span class="number">1</span>] = ord(<span class="string">'B'</span>)</span><br><span class="line">print(buffer)</span><br></pre></td></tr></table></figure>
-<p>可以修改的byte 数组</p>
-<h3 id="序列-（sequence）"><a href="#序列-（sequence）" class="headerlink" title="序列 （sequence）"></a>序列 （sequence）</h3><p>拥有的共同点：都可以使用索引、切片，并且拥有顺序</p>
-<p>如 list tuple str byte bytearray</p>
-<h3 id="只读类型"><a href="#只读类型" class="headerlink" title="只读类型"></a>只读类型</h3><p>int float str bytes boolean tuple</p>
-<h3 id="可修改类型"><a href="#可修改类型" class="headerlink" title="可修改类型"></a>可修改类型</h3><p>list bytearray dict</p>
-<h2 id="名字绑定-name-binding"><a href="#名字绑定-name-binding" class="headerlink" title="名字绑定 (name binding)"></a>名字绑定 (name binding)</h2><p>概念名词： 名字（name） 对象(object) 绑定(binding)</p>
-<p>例子：q=2</p>
-<p>解释就是 将 name q 绑定到 object 2 上</p>
-<h2 id="is"><a href="#is" class="headerlink" title="== is"></a>== is</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3</span></span><br><span class="line">b = <span class="number">3.0</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"a==b:"</span>,a==b)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"a is b:"</span>,a <span class="keyword">is</span> b)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"a:"</span>,id(a),<span class="string">"b:"</span>,id(b))</span><br></pre></td></tr></table></figure>
-<h2 id="序列解包-sequence-unpack"><a href="#序列解包-sequence-unpack" class="headerlink" title="序列解包(sequence unpack)"></a>序列解包(sequence unpack)</h2><p>  x,y,z = ‘x’,’y’,’z’<br>  print(x,y,z)</p>
-<p>  x,y = y,x</p>
-<p>  print(x,y)</p>
-<p>  numbers = 1,2,3<br>  print(type(numbers),numbers)</p>
-<p>  a,b,c = numbers<br>  print(a,b,c)</p>
-<p>  d,e,f = 4,5,6<br>  print(d,e,f)</p>
-<p>  g,h,i = ‘789’<br>  print(g,h,i)</p>
-<p>  j,k,l = b’\x10\x20\x30’<br>  print(j,k,l)</p>
-<p>  序列解包，首先解包的对象必须是序列,其次解包时两边数据必须保持一致,不然会报错如下<br>  j,k= b’\x10\x20\x30’<br>  number1,number2 = 1,2,3<br>  print(j,k)</p>
-<p>  解包元素赋值序列<br>  lstr  = “Lenoardo di ser Piero Da Vinci”.split()<br>  first,*middle,last = lstr<br>  print(‘first:’,first,”- middle:”,middle,”- last:”,last)<br>  print(‘first id is:’,id(first),”lstr[1] id is:”,id(lstr[1]))</p>
-<h2 id="链式赋值"><a href="#链式赋值" class="headerlink" title="链式赋值"></a>链式赋值</h2><p>x = y = 2</p>
-<h2 id="布尔型"><a href="#布尔型" class="headerlink" title="布尔型"></a>布尔型</h2><p>非空即真,非零即真</p>
-<h2 id="for-可迭代对象-iterable-object"><a href="#for-可迭代对象-iterable-object" class="headerlink" title="for 可迭代对象 iterable object"></a>for 可迭代对象 iterable object</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">"asdafasg"</span>:</span><br><span class="line">    s += x +<span class="string">"-"</span></span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
-<h3 id="for-else-当for-条件不成立时会触发else-的代码块并执行"><a href="#for-else-当for-条件不成立时会触发else-的代码块并执行" class="headerlink" title="for  else  当for 条件不成立时会触发else 的代码块并执行"></a>for  else  当for 条件不成立时会触发else 的代码块并执行</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> names:</span><br><span class="line">    <span class="keyword">if</span> x.endswith(<span class="string">"Bach"</span>):</span><br><span class="line">        print(<span class="string">" I found a Bach:"</span>,x)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"No Bach been found."</span>)</span><br><span class="line"></span><br><span class="line">matrix = [[x+<span class="number">1</span>+y <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">5</span>)] <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">6</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        matrix[r][c] *= <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> matrix:</span><br><span class="line">    print(r)</span><br></pre></td></tr></table></figure>
-<h2 id="while-loop"><a href="#while-loop" class="headerlink" title="while loop"></a>while loop</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sum = i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> i&lt;=<span class="number">100</span>:</span><br><span class="line">    sum += i</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">print(<span class="string">"sum of (1,2...,100) = "</span>,sum)</span><br><span class="line"></span><br><span class="line">names = [<span class="string">"Peter Anderson"</span>,<span class="string">"Frank Bush"</span>,<span class="string">"Tom Henry"</span>,<span class="string">"Jack Lee"</span>,<span class="string">"Dorothy Henry"</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="带下标的遍历-enumerate"><a href="#带下标的遍历-enumerate" class="headerlink" title="带下标的遍历 enumerate"></a>带下标的遍历 enumerate</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">names = [<span class="string">'Tom'</span>,<span class="string">'Andy'</span>,<span class="string">'Alex'</span>,<span class="string">'Dorothy'</span>]</span><br><span class="line">print(list(enumerate(names)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx,name <span class="keyword">in</span> enumerate(names):</span><br><span class="line">    print(name +<span class="string">" is %s,id is %s"</span> % (name,idx))</span><br></pre></td></tr></table></figure>
-<h2 id="反向遍历"><a href="#反向遍历" class="headerlink" title="反向遍历"></a>反向遍历</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> reversed(names):</span><br><span class="line">    print(x)</span><br><span class="line">print(names)</span><br><span class="line"><span class="comment"># reversed会生成一个新的序列并将原有的值反向存储</span></span><br><span class="line"><span class="comment"># list本身的reverse会将当前序列的值反向存储</span></span><br></pre></td></tr></table></figure>
-<h2 id="del"><a href="#del" class="headerlink" title="del"></a>del</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">"Anything"</span></span><br><span class="line"></span><br><span class="line">y = x</span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> y</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-<h2 id="exec-执行代码无返回"><a href="#exec-执行代码无返回" class="headerlink" title="exec 执行代码无返回"></a>exec 执行代码无返回</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">exec(<span class="string">"print('This  string was print in exec function')"</span>)</span><br><span class="line"></span><br><span class="line">scopeTemp = &#123;&#125;</span><br><span class="line">scopeTemp[<span class="string">'x'</span>] = <span class="number">30</span></span><br><span class="line">scopeTemp[<span class="string">'y'</span>] = <span class="number">20</span></span><br><span class="line">exec(<span class="string">"sum = x+y"</span>,scopeTemp)</span><br><span class="line">print(<span class="string">"sum = "</span>,scopeTemp[<span class="string">"sum"</span>])</span><br></pre></td></tr></table></figure>
-<h2 id="eval-evaluation-评估-执行代码有返回"><a href="#eval-evaluation-评估-执行代码有返回" class="headerlink" title="eval evaluation 评估 执行代码有返回"></a>eval evaluation 评估 执行代码有返回</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r = eval(<span class="string">"3+2-5"</span>)</span><br><span class="line">print(r)</span><br></pre></td></tr></table></figure>
-<h2 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="字符串格式化"></a>字符串格式化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">sText = <span class="string">"Mary have &#123;&#125; lambs,they are &#123;n1&#125;,&#123;n2&#125; and &#123;&#125;."</span>.format(<span class="number">3</span>,<span class="string">'cot'</span>,n2=<span class="string">'happy'</span>,n1=<span class="string">'nauty'</span>)</span><br><span class="line">print(sText)</span><br><span class="line"></span><br><span class="line">dora = &#123;<span class="string">"name"</span>:<span class="string">"Dora"</span>,<span class="string">"id"</span>:<span class="number">17</span>,<span class="string">"age"</span>:<span class="number">32</span>,<span class="string">"gender"</span>:<span class="string">"mate"</span>,<span class="string">"title"</span>:<span class="string">"hello"</span>&#125;</span><br><span class="line">sDoraHtml = <span class="string">"""</span></span><br><span class="line"><span class="string">            &lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">            &lt;html lang="en"&gt;</span></span><br><span class="line"><span class="string">            &lt;head&gt;</span></span><br><span class="line"><span class="string">                &lt;meta charset="UTF-8"&gt;</span></span><br><span class="line"><span class="string">                &lt;title&gt;Employee &#123;name&#125;'s information&lt;/title&gt;</span></span><br><span class="line"><span class="string">            &lt;/head&gt;</span></span><br><span class="line"><span class="string">            &lt;body&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">                &lt;h1&gt; Employee &#123;name&#125;'s Information&lt;/h1&gt;</span></span><br><span class="line"><span class="string">                &lt;table border="1" width="100%"&gt;</span></span><br><span class="line"><span class="string">                    &lt;tr&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;ID:&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;&#123;id&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;Name:&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;&#123;name&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;Age:&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;&#123;age&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">                    &lt;/tr&gt;</span></span><br><span class="line"><span class="string">                    &lt;tr&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;Gender:&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;&#123;gender&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;Title:&lt;/td&gt;</span></span><br><span class="line"><span class="string">                        &lt;td&gt;&#123;title&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">                    &lt;/tr&gt;</span></span><br><span class="line"><span class="string">                &lt;/table&gt;</span></span><br><span class="line"><span class="string">            &lt;/body&gt;</span></span><br><span class="line"><span class="string">            &lt;/html&gt;</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line">t = open(<span class="string">"dora.html"</span>,<span class="string">'w'</span>)</span><br><span class="line">t.write(sDoraHtml.format_map(dora))</span><br><span class="line">t.close()</span><br><span class="line"></span><br><span class="line">os.system(<span class="string">"google-chrome dora.html"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><p>  key 必须是可哈希类型 hashable Type<br>    可哈希类型 int float str tuple<br>    不可哈希类型 dict list<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">doroth = dict(name=<span class="string">"Dorothy"</span>,id = <span class="string">"10003"</span>,age = <span class="number">26</span>)</span><br><span class="line">print(doroth)</span><br><span class="line"></span><br><span class="line">d = dict.fromkeys([<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'age'</span>],<span class="string">"unknown"</span>)</span><br><span class="line">d1 = &#123;&#125;.fromkeys([<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'age'</span>],<span class="string">"unknown"</span>)</span><br><span class="line"></span><br><span class="line">print(d)</span><br><span class="line">print(d1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dora = &#123;<span class="string">"name"</span>:<span class="string">"Dora"</span>,<span class="string">"id"</span>:<span class="number">17</span>,<span class="string">"age"</span>:<span class="number">32</span>,<span class="string">"gender"</span>:<span class="string">"mate"</span>,<span class="string">"title"</span>:<span class="string">"hello"</span>&#125;</span><br><span class="line"><span class="comment"># print(dora['salary'])</span></span><br><span class="line">print(dora.get(<span class="string">"salary"</span>,<span class="number">1000</span>))</span><br><span class="line"></span><br><span class="line">sTitle = dora.pop(<span class="string">'title'</span>)</span><br><span class="line">print(sTitle)</span><br><span class="line">print(dora)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dora = &#123;<span class="string">'id'</span>:<span class="number">10003</span>,<span class="string">'age'</span>:<span class="number">32</span>,<span class="string">'title'</span>:<span class="string">'Salas'</span>&#125;</span><br><span class="line">dora2 = &#123;<span class="string">'id'</span>:<span class="number">10004</span>,<span class="string">'title'</span>:<span class="string">'CEO'</span>,<span class="string">'gender'</span>:<span class="string">'female'</span>&#125;</span><br><span class="line"></span><br><span class="line">dora.update(dora2)</span><br><span class="line">print(dora)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dora:</span><br><span class="line">    print(i,end=<span class="string">","</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dora.keys():</span><br><span class="line">    print(i,end=<span class="string">","</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> dora.items():</span><br><span class="line">    print(key,<span class="string">"-"</span>,value)</span><br></pre></td></tr></table></figure></p>
-<h2 id="函数与抽象"><a href="#函数与抽象" class="headerlink" title="函数与抽象"></a>函数与抽象</h2><p>Python实现使用函数的案例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">costCompute</span><span class="params">(iStart,iEnd)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算客户电费，每度电10元</span></span><br><span class="line"><span class="string">    :param iStart: 起始度数</span></span><br><span class="line"><span class="string">    :param iEnd: 最终度数</span></span><br><span class="line"><span class="string">    :return: 电费</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    iCousume = iEnd - iStart</span><br><span class="line">    <span class="keyword">return</span> iCousume * <span class="number">10</span></span><br><span class="line"></span><br><span class="line">print(costCompute(<span class="number">100</span>,<span class="number">230</span>))</span><br></pre></td></tr></table></figure></p>
-<h3 id="默认参数（default-parameter）"><a href="#默认参数（default-parameter）" class="headerlink" title="默认参数（default parameter）"></a>默认参数（default parameter）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span><span class="params">(n,gender=<span class="string">"male"</span>)</span>:</span></span><br><span class="line">    n = n.title()</span><br><span class="line">    s = <span class="string">"Mr "</span> <span class="keyword">if</span> gender == <span class="string">'male'</span> <span class="keyword">else</span> <span class="string">"Miss"</span></span><br><span class="line">    print(<span class="string">"Hi,"</span>,s,n)</span><br><span class="line"></span><br><span class="line">sName = <span class="string">"alan turning"</span></span><br><span class="line">greeting(sName)</span><br></pre></td></tr></table></figure>
-<h3 id="非只读类型的参数"><a href="#非只读类型的参数" class="headerlink" title="非只读类型的参数"></a>非只读类型的参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initPerson</span><span class="params">(person,id,name,age,gender,title)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> type(person) == dict</span><br><span class="line">    person[<span class="string">'id'</span>] = id</span><br><span class="line">    person[<span class="string">'name'</span>] = name</span><br><span class="line">    person[<span class="string">'age'</span>] = age</span><br><span class="line">    person[<span class="string">'gender'</span>] = gender</span><br><span class="line">    person[<span class="string">'title'</span>] = title</span><br><span class="line"></span><br><span class="line">dora = &#123;&#125;</span><br><span class="line">initPerson(dora,<span class="string">'10003'</span>,<span class="string">'dora chen'</span>,<span class="number">32</span>,<span class="string">'female'</span>,<span class="string">'sales'</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="关键字参数调用"><a href="#关键字参数调用" class="headerlink" title="关键字参数调用"></a>关键字参数调用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initPerson</span><span class="params">(person,id,name,age,gender,title)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> type(person) == dict</span><br><span class="line">    person[<span class="string">'id'</span>] = id</span><br><span class="line">    person[<span class="string">'name'</span>] = name</span><br><span class="line">    person[<span class="string">'age'</span>] = age</span><br><span class="line">    person[<span class="string">'gender'</span>] = gender</span><br><span class="line">    person[<span class="string">'title'</span>] = title</span><br><span class="line"></span><br><span class="line">initPerson(person=dora,id=<span class="string">'10003'</span>,name=<span class="string">'dora chen'</span>,age=<span class="number">32</span>,gender=<span class="string">'female'</span>,title=<span class="string">'sales'</span>)</span><br><span class="line">print(dora)</span><br></pre></td></tr></table></figure>
-<h3 id="任意数量参数"><a href="#任意数量参数" class="headerlink" title="任意数量参数"></a>任意数量参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myPrint</span><span class="params">(title,*contents)</span>:</span></span><br><span class="line">    print(title,<span class="string">":"</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> contents:</span><br><span class="line">        print(<span class="string">"\t"</span>,i)</span><br><span class="line"></span><br><span class="line">myPrint(<span class="string">"Read-only data type:"</span>,<span class="string">"int"</span>,<span class="string">"float"</span>,<span class="string">'tuple'</span>,<span class="string">'str'</span>,<span class="string">'bytes'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myprint</span><span class="params">(title,**contents)</span>:</span></span><br><span class="line">    print(title,<span class="string">":"</span>)</span><br><span class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> contents.items():</span><br><span class="line">        print(<span class="string">"\t"</span>,k+<span class="string">":"</span>,v)</span><br><span class="line">myprint(<span class="string">"dora"</span>,name=<span class="string">"Dora chen"</span>,age=<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initPerson</span><span class="params">(person,id,name,age,gender,title)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> type(person) == dict</span><br><span class="line">    person[<span class="string">'id'</span>] = id</span><br><span class="line">    person[<span class="string">'name'</span>] = name</span><br><span class="line">    person[<span class="string">'age'</span>] = age</span><br><span class="line">    person[<span class="string">'gender'</span>] = gender</span><br><span class="line">    person[<span class="string">'title'</span>] = title</span><br><span class="line"></span><br><span class="line">dora = &#123;&#125;</span><br><span class="line">tDora = (<span class="string">'10003'</span>,<span class="string">'dora chen'</span>,<span class="number">32</span>,<span class="string">'female'</span>,<span class="string">'sales'</span>)</span><br><span class="line">initPerson(dora,*tDora)</span><br><span class="line">print(dora)</span><br><span class="line"></span><br><span class="line">dDora = &#123;<span class="string">'id'</span>:<span class="string">"10003"</span>,<span class="string">'name'</span>:<span class="string">'dora chen'</span>,<span class="string">'age'</span>:<span class="number">32</span>,<span class="string">'gender'</span>:<span class="string">'female'</span>,<span class="string">'title'</span>:<span class="string">'sales'</span>&#125;</span><br><span class="line">initPerson(dora,**dDora)</span><br><span class="line">print(dora)</span><br></pre></td></tr></table></figure>
-<h3 id="python-全局作用域实现方式"><a href="#python-全局作用域实现方式" class="headerlink" title="python 全局作用域实现方式"></a>python 全局作用域实现方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pprint</span><br><span class="line">x =<span class="number">1</span></span><br><span class="line">y =<span class="number">2</span></span><br><span class="line">scope = vars()</span><br><span class="line">pprint.pprint(scope)</span><br><span class="line">scope[<span class="string">'x'</span>] = <span class="number">3</span></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-<h3 id="递归-阶乘（factorial）总结不要在大规模的计算中使用递归"><a href="#递归-阶乘（factorial）总结不要在大规模的计算中使用递归" class="headerlink" title="递归 阶乘（factorial）总结不要在大规模的计算中使用递归"></a>递归 阶乘（factorial）总结不要在大规模的计算中使用递归</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> n*(factorial(n<span class="number">-1</span>))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"6!="</span>,factorial(<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p> 程序设计语言<br> 1990年前<br> 结构化编程 structured programming<br> 1990年后<br> 面向对象程序语言 object oriented programming</p>
-<p>面向对象关键术语：</p>
-<p>  类型 type or class</p>
-<p>  对象 object or instance</p>
-<p>  属性 attribute or data member</p>
-<p>  方法 method or function</p>
-<p>example：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gender</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    mate = <span class="number">1</span></span><br><span class="line">    female = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(range.__doc__)</span><br></pre></td></tr></table></figure></p>
-<h2 id="文件的读写"><a href="#文件的读写" class="headerlink" title="文件的读写"></a>文件的读写</h2><p>example：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># write</span></span><br><span class="line">f = open(<span class="string">'datafile.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line">f.write(<span class="string">"This is a file which is writable in text mode.\n"</span>)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># read</span></span><br><span class="line">f = open(<span class="string">'datafile.txt'</span>,<span class="string">'r'</span>)</span><br><span class="line">sLine1 = f.readline()</span><br><span class="line">print(sLine1)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安全使用流的简洁方式</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'datafile.txt'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">  sLine1 = f.readline()</span><br><span class="line">  print(sLine1)</span><br></pre></td></tr></table></figure>
-<h2 id="标准输入-标准输出-错误流"><a href="#标准输入-标准输出-错误流" class="headerlink" title="标准输入 标准输出 错误流"></a>标准输入 标准输出 错误流</h2><p>example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">iInput = open(<span class="string">'standardInput.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line">iInput.write(<span class="string">'Alas\n'</span>)</span><br><span class="line">iInput.write(<span class="string">'27\n'</span>)</span><br><span class="line">iInput.close()</span><br><span class="line"></span><br><span class="line">sys.stdout = open(<span class="string">'standardOut.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line">sys.stdin = open(<span class="string">'standardInput.txt'</span>,<span class="string">'r'</span>)</span><br><span class="line">sys.stderr = open(<span class="string">'standardError.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">name = input(<span class="string">'Water are you Name?'</span>)</span><br><span class="line">age = input(<span class="string">'How old are you'</span>)</span><br><span class="line">print(<span class="string">'This is %s she %s old'</span> %(name,age))</span><br><span class="line"></span><br><span class="line"><span class="keyword">raise</span> Exception(<span class="string">"Exception infomatoin"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="管道重定向"><a href="#管道重定向" class="headerlink" title="管道重定向"></a>管道重定向</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat title.txt | python wordCount.py</span><br></pre></td></tr></table></figure>
-<h2 id="结构化文本文件-ini-json"><a href="#结构化文本文件-ini-json" class="headerlink" title="结构化文本文件 ini json"></a>结构化文本文件 ini json</h2><p>example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">dora = <span class="string">"&#123;'name':'Dora','no':'2018173','age':26,'married':false,'scores':[&#123;'c++':76&#125;,&#123;'Data structure':99.5&#125;]&#125;"</span></span><br><span class="line"><span class="comment"># write</span></span><br><span class="line">iDora = open(<span class="string">'dora.json'</span>,<span class="string">'w'</span>)</span><br><span class="line">json.dump(dora,iDora)</span><br><span class="line"></span><br><span class="line"><span class="comment"># read</span></span><br><span class="line">dora = json.load(open(<span class="string">'dora.json'</span>,<span class="string">'r'</span>))</span><br><span class="line">print(dora)</span><br></pre></td></tr></table></figure>
-<h2 id="异常、警告"><a href="#异常、警告" class="headerlink" title="异常、警告"></a>异常、警告</h2><p>异常勾子 ：当系统发生异常时会执行一个指定的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys,traceback</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">userExceptHook</span><span class="params">(exceptType,value,traceBack)</span>:</span></span><br><span class="line">    fError = open(<span class="string">'except_error.log'</span>, <span class="string">'w'</span>)</span><br><span class="line">    traceList = traceback.format_tb(traceBack)</span><br><span class="line">    html = str(datetime.now())+<span class="string">'\n'</span></span><br><span class="line">    html += repr(exceptType)+<span class="string">'\n'</span></span><br><span class="line">    html += repr(value) + <span class="string">'\n'</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> traceList:</span><br><span class="line">        html += i+<span class="string">"\n"</span></span><br><span class="line"></span><br><span class="line">    print(html,file=sys.stderr)</span><br><span class="line">    print(html,file=fError)</span><br><span class="line">    fError.close()</span><br><span class="line"></span><br><span class="line">sys.excepthook = userExceptHook</span><br><span class="line"></span><br><span class="line">sFirst = input(<span class="string">"first number"</span>)</span><br><span class="line">sSecond = input(<span class="string">"second number"</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    print(int(sFirst)/int(sSecond))</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="keyword">raise</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="类的序列化-迭代器和生成器函数"><a href="#类的序列化-迭代器和生成器函数" class="headerlink" title="类的序列化 迭代器和生成器函数"></a>类的序列化 迭代器和生成器函数</h2><h3 id="类的序列化"><a href="#类的序列化" class="headerlink" title="类的序列化"></a>类的序列化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fibonacci</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.seq = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">        self.maxKey = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">computeTo</span><span class="params">(self,key)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(self.seq),key +<span class="number">1</span>):</span><br><span class="line">            v = self.seq[i<span class="number">-1</span>]+self.seq[i<span class="number">-2</span>]</span><br><span class="line">            self.seq.append(v)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(item, int):</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'type of item need int'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span>(item&gt;=<span class="number">0</span> <span class="keyword">and</span> item&lt;self.maxKey):</span><br><span class="line">            <span class="keyword">raise</span> IndexError(<span class="string">"sequence max length is 1000,you's item &gt; max length"</span>)</span><br><span class="line">        <span class="keyword">if</span> item&gt;len(self.seq):</span><br><span class="line">            self.computeTo(item)</span><br><span class="line">        <span class="keyword">return</span> self.seq[item]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setitem__</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(key, int):</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'type of key need int'</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span>(key&gt;=<span class="number">0</span> <span class="keyword">and</span> key&lt;self.maxKey):</span><br><span class="line">            <span class="keyword">raise</span> IndexError(<span class="string">"sequence max length is 1000,you's key &gt; max length"</span>)</span><br><span class="line">        <span class="keyword">if</span> key &gt; len(self.seq):</span><br><span class="line">            self.computeTo(key)</span><br><span class="line">        self.seq[key] = value</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.maxKey</span><br><span class="line"></span><br><span class="line">f = Fibonacci()</span><br><span class="line">print(<span class="string">"f[20]:"</span>,f[<span class="number">20</span>])</span><br><span class="line">f[<span class="number">10</span>] = <span class="string">"熊孩子"</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">21</span>):</span><br><span class="line">    print(f[i],end=<span class="string">","</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"----------------------------------------------------------------------------------"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fibonacci</span><span class="params">(list)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,*arg)</span>:</span></span><br><span class="line">        super().__init__(*arg)</span><br><span class="line">        self.iCounter = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        self.iCounter += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> super().__getitem__(item)</span><br><span class="line"></span><br><span class="line">f = Fibonacci(range(<span class="number">100</span>))</span><br><span class="line">print(<span class="string">'f[20]'</span>,f[<span class="number">20</span>])</span><br><span class="line">f[<span class="number">19</span>] = <span class="string">"熊孩子"</span></span><br><span class="line">print(<span class="string">'f[19]'</span>,f[<span class="number">19</span>])</span><br><span class="line">print(f)</span><br></pre></td></tr></table></figure>
-<h3 id="创建可迭代类"><a href="#创建可迭代类" class="headerlink" title="创建可迭代类"></a>创建可迭代类</h3><p>  迭代器和序列的对比</p>
-<p>  迭代器,由于是当系统调用next方法时才会生成相应的数据所以在系统资源占用损耗节省方面优于序列,但是不能像序列那样可以随意指定下标取值,并且只能迭代一次.推荐需要依次获取一次数据时使用</p>
-<p>  序列,由于系统执行后会在系统内部一次性创建完成序列所以系统资源占用损耗节省方面劣于迭代器,但是它可以获取指定下标的值.推荐在重复或指定获取数据的情况下使用</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fibonacci</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,arg)</span>:</span></span><br><span class="line">        self.a = <span class="number">1</span></span><br><span class="line">        self.b = <span class="number">1</span></span><br><span class="line">        self.index = <span class="number">0</span></span><br><span class="line">        self.length = arg</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span><span class="params">(self)</span>:</span></span><br><span class="line">        result = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isinstance(self.index,int):</span><br><span class="line">            <span class="keyword">raise</span> TypeError</span><br><span class="line">        <span class="keyword">elif</span> self.index &gt;= self.length <span class="keyword">or</span> self.index&lt;<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br><span class="line">        <span class="keyword">if</span> self.index <span class="keyword">in</span>(<span class="number">0</span>,<span class="number">1</span>):</span><br><span class="line">            result = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result = self.a + self.b</span><br><span class="line">            self.a,self.b = self.b,result</span><br><span class="line">        self.index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">f = Fibonacci(<span class="number">10</span>)</span><br><span class="line">print(list(f))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">    print(i,end=<span class="string">","</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacciGenerator</span><span class="params">(len)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> isinstance(len,int):</span><br><span class="line">        <span class="keyword">raise</span> TypeError</span><br><span class="line"></span><br><span class="line">    a,b =<span class="number">1</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            c = a + b</span><br><span class="line">            a,b = b,c</span><br><span class="line">            <span class="keyword">yield</span> c</span><br><span class="line">f = fibonacciGenerator(<span class="number">10</span>)</span><br><span class="line">print(list(f))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">    print(i,end=<span class="string">","</span>)</span><br><span class="line"></span><br><span class="line">f = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>)] <span class="comment">#列表推导</span></span><br><span class="line">f2 = (i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>)) </span><br><span class="line">print(type(f),f)</span><br><span class="line">print(type(f2),list(f))</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2020/04/03/linux-文件配置篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2020/04/03/linux-文件配置篇/" class="post-title-link" itemprop="url">linux-文件配置篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-04-03 14:06:40" itemprop="dateCreated datePublished" datetime="2020-04-03T14:06:40+08:00">2020-04-03</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><h2 id="etc-profile-文件"><a href="#etc-profile-文件" class="headerlink" title="/etc/profile 文件"></a>/etc/profile 文件</h2><p>/etc/profile 文件属于一个系统的全局变量<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;PS1-&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;BASH-&#125;</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$BASH</span>"</span> != <span class="string">"/bin/sh"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># The file bash.bashrc already sets the default PS1.</span></span><br><span class="line">    <span class="comment"># PS1='\h:\w\$ '</span></span><br><span class="line">    <span class="keyword">if</span> [ -f /etc/bash.bashrc ]; <span class="keyword">then</span></span><br><span class="line">      . /etc/bash.bashrc</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"`id -u`"</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">      PS1=<span class="string">'# '</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      PS1=<span class="string">'$ '</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -d /etc/profile.d ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> /etc/profile.d/*.sh; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -r <span class="variable">$i</span> ]; <span class="keyword">then</span></span><br><span class="line">      . <span class="variable">$i</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  <span class="built_in">unset</span> i</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<ol>
-<li><p>Linux是一个多用户操作系统。用户登录或切换（即Login shell 启动）时都有一个专用的运行环境，但首先执行 /etc/profile 。而Non-login shell不会调用这个脚本。各用户的默认环境（一组环境变量的定义）一般相同。用户也可以自行配置运行环境，即修改相应的系统环境变量。</p>
-</li>
-<li><p>在 /etc/profile 文件中设置的变量是全局变量。而 .bashrc文件（在用户的家目录下）则只对当前用户有用</p>
-</li>
-<li><p>使用 source 命令更新环境变量。source /etc/profile  或者  ./profile，执行一下文件。但不能用 sh /etc/profile。sh 是在子 shell 进程中执行的，即使PATH改变了也不会反应到当前环境中。而 source 是在当前 shell 进程中执行的，所以我们能看到PATH的改变</p>
-</li>
-</ol>
-<p>4.在profile文件添加或修改的内容需要注销系统才能生效。同名的环境变量，后写入的起作用</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/MeBlog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/MeBlog/page/5/">5</a><a class="extend next" rel="next" href="/MeBlog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/MeBlog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/MeBlog/page/6/">6</a><a class="extend next" rel="next" href="/MeBlog/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -3526,7 +3544,7 @@ list.remove(x) 删除首个指定元素
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3534,6 +3552,21 @@ list.remove(x) 删除首个指定元素
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
               
             </nav>
           

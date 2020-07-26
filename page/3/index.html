@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">49</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">51</span></a>
 
   </li>
 
@@ -319,6 +319,327 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/09/10/quartz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/09/10/quartz/" class="post-title-link" itemprop="url">quartz-初始</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-10 08:52:31" itemprop="dateCreated datePublished" datetime="2019-09-10T08:52:31+08:00">2019-09-10</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="quartz-简介"><a href="#quartz-简介" class="headerlink" title="quartz 简介"></a>quartz 简介</h2><h2 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h2><h2 id="quartz-快速入门"><a href="#quartz-快速入门" class="headerlink" title="quartz 快速入门"></a>quartz 快速入门</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">StdSchedulerFactory stdSchedulerFactory = <span class="keyword">new</span> StdSchedulerFactory();<span class="comment">//创建StdSchedulerFactory工厂</span></span><br><span class="line">Scheduler scheduler = stdSchedulerFactory.getScheduler();</span><br><span class="line"></span><br><span class="line">scheduler.start();</span><br><span class="line"></span><br><span class="line">JobDetail job = newJob(HelloJob.class)</span><br><span class="line">        .withIdentity(<span class="string">"myJob"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Trigger trigger = newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"myTrigger"</span>,<span class="string">"group1"</span>)</span><br><span class="line">        .startNow()</span><br><span class="line">        <span class="comment">//调度触发执行内容和时间的操作</span></span><br><span class="line">        .withSchedule(simpleSchedule()</span><br><span class="line">            .withIntervalInSeconds(<span class="number">4</span>)</span><br><span class="line">            .repeatForever())</span><br><span class="line">        .build();</span><br><span class="line">scheduler.scheduleJob(job,trigger);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>)&#123;&#125;<span class="comment">//测试用，防止主线程结束</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quartz-常用接口"><a href="#Quartz-常用接口" class="headerlink" title="Quartz 常用接口"></a>Quartz 常用接口</h2><h3 id="Scheduler-与调度程序交"><a href="#Scheduler-与调度程序交" class="headerlink" title="Scheduler (与调度程序交)"></a>Scheduler (与调度程序交)</h3><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><pre><code>开始：SchedulerFactory 创建后开始
+结束：Scheduler调用shutdown结束
+</code></pre><h3 id="Job-调度的内容实现定义"><a href="#Job-调度的内容实现定义" class="headerlink" title="Job (调度的内容实现定义)"></a>Job (调度的内容实现定义)</h3><h3 id="JobDetail-作业实例"><a href="#JobDetail-作业实例" class="headerlink" title="JobDetail (作业实例)"></a>JobDetail (作业实例)</h3><h3 id="Trigger-（触发器）"><a href="#Trigger-（触发器）" class="headerlink" title="Trigger （触发器）"></a>Trigger （触发器）</h3><h4 id="公共属性"><a href="#公共属性" class="headerlink" title="公共属性"></a>公共属性</h4><pre><code>所有类型的trigger都有TriggerKey这个属性，表示trigger的身份；除此之外，trigger还有很多其它的公共属性。这些属性，在构建trigger的时候可以通过TriggerBuilder设置。
+</code></pre><p>trigger的公共属性有：</p>
+<p>jobKey属性：当trigger触发时被执行的job的身份；</p>
+<p>startTime属性：设置trigger第一次触发的时间；该属性的值是java.util.Date类型，表示某个指定的时间点；有些类型的trigger，会在设置的startTime时立即触发，有些类型的trigger，表示其触发是在startTime之后开始生效。比如，现在是1月份，你设置了一个trigger–“在每个月的第5天执行”，然后你将startTime属性设置为4月1号，则该trigger第一次触发会是在几个月以后了(即4月5号)。</p>
+<p>endTime属性：表示trigger失效的时间点。比如，”每月第5天执行”的trigger，如果其endTime是7月1号，则其最后一次执行时间是6月5号。</p>
+<h4 id="优先级（priority）"><a href="#优先级（priority）" class="headerlink" title="优先级（priority）"></a>优先级（priority）</h4><p>如果你的trigger很多(或者Quartz线程池的工作线程太少)，Quartz可能没有足够的资源同时触发所有的trigger；这种情况下，你可能希望控制哪些trigger优先使用Quartz的工作线程，要达到该目的，可以在trigger上设置priority属性。比如，你有N个trigger需要同时触发，但只有Z个工作线程，优先级最高的Z个trigger会被首先触发。如果没有为trigger设置优先级，trigger使用默认优先级，值为5；priority属性的值可以是任意整数，正数、负数都可以。</p>
+<p>注意：只有同时触发的trigger之间才会比较优先级。10:59触发的trigger总是在11:00触发的trigger之前执行。</p>
+<p>注意：如果trigger是可恢复的，在恢复后再调度时，优先级与原trigger是一样的。</p>
+<h4 id="错过触发描述（misfire-instructions）"><a href="#错过触发描述（misfire-instructions）" class="headerlink" title="错过触发描述（misfire instructions）"></a>错过触发描述（misfire instructions）</h4><p>trigger还有一个重要的属性misfire；如果scheduler关闭了，或者Quartz线程池中没有可用的线程来执行job，此时持久性的trigger就会错过(miss)其触发时间，即错过触发(misfire)。不同类型的trigger，有不同的misfire机制。它们默认都使用“智能机制(smart policy)”，即根据trigger的类型和配置动态调整行为。当scheduler启动的时候，查询所有错过触发(misfire)的持久性trigger。然后根据它们各自的misfire机制更新trigger的信息。当你在项目中使用Quartz时，你应该对各种类型的trigger的misfire机制都比较熟悉，这些misfire机制在JavaDoc中有说明</p>
+<h4 id="Simple-Trigger"><a href="#Simple-Trigger" class="headerlink" title="Simple Trigger"></a>Simple Trigger</h4><h3 id="JobBuilder-用于构建JobDetail"><a href="#JobBuilder-用于构建JobDetail" class="headerlink" title="JobBuilder (用于构建JobDetail)"></a>JobBuilder (用于构建JobDetail)</h3><h3 id="TriggerBuilder-用于构建Trigger"><a href="#TriggerBuilder-用于构建Trigger" class="headerlink" title="TriggerBuilder (用于构建Trigger)"></a>TriggerBuilder (用于构建Trigger)</h3><h3 id="Scheduler-Job-Trigger-三者的调用关系"><a href="#Scheduler-Job-Trigger-三者的调用关系" class="headerlink" title="Scheduler Job Trigger 三者的调用关系"></a>Scheduler Job Trigger 三者的调用关系</h3><p>Scheduler 调度计划，如果想要执行调度，需要将Job和Trigger放入<br>scheduler实例化后，可以启动(start)、暂停(stand-by)、停止(shutdown)注意：scheduler被停止后，除非重新实例化，否则不能重新启动；只有当scheduler启动后，即使处于暂停状态也不行，trigger才会被触发</p>
+<p>Job 用来定义工作内容</p>
+<p>Trigger用来定义调度的触发时间，以及绑定工作组</p>
+<h3 id="JobDataMap的使用"><a href="#JobDataMap的使用" class="headerlink" title="JobDataMap的使用"></a>JobDataMap的使用</h3><p>1.Job类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getJobDetail().getJobDataMap();</span><br><span class="line"></span><br><span class="line">      String jobSays = dataMap.getString(<span class="string">"jobSays"</span>);</span><br><span class="line">      <span class="keyword">float</span> myFloatValue = dataMap.getFloat(<span class="string">"myFloatValue"</span>);</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.调度定义时<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define the job and tie it to our DumbJob class</span></span><br><span class="line">JobDetail job = newJob(DumbJob.class)</span><br><span class="line">    .withIdentity(<span class="string">"myJob"</span>, <span class="string">"group1"</span>) <span class="comment">// name "myJob", group "group1"</span></span><br><span class="line">    .usingJobData(<span class="string">"jobSays"</span>, <span class="string">"Hello World!"</span>)</span><br><span class="line">    .usingJobData(<span class="string">"myFloatValue"</span>, <span class="number">3.141f</span>)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure></p>
+<h4 id="自动填充jobDataMap参数"><a href="#自动填充jobDataMap参数" class="headerlink" title="自动填充jobDataMap参数"></a>自动填充jobDataMap参数</h4><p>只需要修改Job类，在类中添加map相对应的字段提供set方法即可。如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DumbJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    String jobSays;</span><br><span class="line">    <span class="keyword">float</span> myFloatValue;</span><br><span class="line">    ArrayList state;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DumbJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext context)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> JobExecutionException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      JobKey key = context.getJobDetail().getKey();</span><br><span class="line"></span><br><span class="line">      JobDataMap dataMap = context.getMergedJobDataMap();  <span class="comment">// Note the difference from the previous example</span></span><br><span class="line"></span><br><span class="line">      state.add(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">      System.err.println(<span class="string">"Instance "</span> + key + <span class="string">" of DumbJob says: "</span> + jobSays + <span class="string">", and val is: "</span> + myFloatValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobSays</span><span class="params">(String jobSays)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.jobSays = jobSays;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyFloatValue</span><span class="params">(<span class="keyword">float</span> myFloatValue)</span> </span>&#123;</span><br><span class="line">      myFloatValue = myFloatValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(ArrayList state)</span> </span>&#123;</span><br><span class="line">      state = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h2><p>由于Job类的创建是由Scheduler上的JobFactory 运行时动态创建的，所以个人猜测框架创作人使用了动态代理的技术。所以Job的成员变量与外界的交互就成为了难题。如何实现呢？答案就是在实现Job的类上加入@PersistJobDataAfterExecution注解，这样JobDataMap中的数据就可以与外界交互了。</p>
+<h2 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h2><pre><code>个人目前还没有使用过，w3cschool的官方文档上是这样介绍的：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DisallowConcurrentExecution：将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/08/27/linux系统结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2019/08/27/linux系统结构/" class="post-title-link" itemprop="url">Linux-系统结构</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-27 16:22:57" itemprop="dateCreated datePublished" datetime="2019-08-27T16:22:57+08:00">2019-08-27</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>简单的说Linux系统可分为 Linux内核 + 应用程序</p>
+<p>对于Linux系统的细致划分，可以分为</p>
+<p>Linux 内核</p>
+<p>系统调用</p>
+<p>库函数</p>
+<p>shell</p>
+<p>应用程序</p>
+<h2 id="内核模式与系统调用"><a href="#内核模式与系统调用" class="headerlink" title="内核模式与系统调用"></a>内核模式与系统调用</h2><h3 id="内核模式"><a href="#内核模式" class="headerlink" title="内核模式"></a>内核模式</h3><p>计算机的硬件资源又系统内核来操控，应用程序要想调用系统硬件资源需要通过访问或调用内核接口来实现指定的功能。<br>这时系统的内核就是操控硬件的基础操作。我们把内核程序的活动称为内核模式，应用程序的活动称为用户模式。</p>
+<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>应用程序通过内核接口调用内核程序的过程称为系统调用。</p>
+<p>Linux中的系统调用接口大约有200多种，我们可以通过shell查看Linux下的所有系统调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 2 syscalls</span><br></pre></td></tr></table></figure>
+<p>man 中的参数2表示系统调用，不理解的可通过 man man 查看系统帮助文档.</p>
+<p>系统调用常见的有</p>
+<p>read 文件读取</p>
+<p>write 文件写入</p>
+<p>fork 复制当前进程</p>
+<p>wait 等待某个进程完成</p>
+<p>chdir 改变工作目录</p>
+<p>通过系统调用，Linux用户可以体验到内核封装的好处。使得我们不必关系硬件驱动使用的一些底层细节。我更专注与程序的功能和要实现的目的。</p>
+<h3 id="库函数"><a href="#库函数" class="headerlink" title="库函数"></a>库函数</h3><p>库函数是什么，个人认为库函数就是系统调用的更上一层的封装。将系统调用的一些指令结合起来写成函数的形式，以方便调用。就像是C语言中的C标准库一样，有了他们程序开发起来更便捷。</p>
+<p>除了C标准库，Linux还有一些其他的库比如 POSIX等</p>
+<h3 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h3><p>shell 是一个交互程序，他是为了普通用户通过shell在不需要自己编程的情况下使用系统的一些资源。</p>
+<h3 id="用户程序"><a href="#用户程序" class="headerlink" title="用户程序"></a>用户程序</h3><p>用户程序是基于编程语言开发后的程序，它也是通过其语言调用系统内核功能来使用系统的一些硬件资源。和库函数不同的是1它是面向用户的，2它针对的功能更专一，使用更方便。</p>
+<p>早期由于Linux程序中大部分用户程序是用C编写的，然而Linux系统内核也是由C编写的。所以我觉得我们有必要了解下C中的函数调用与进程空间</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1703,380 +2024,11 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/10/mongodb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/10/mongodb/" class="post-title-link" itemprop="url">mongodb</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-10 22:56:02" itemprop="dateCreated datePublished" datetime="2019-06-10T22:56:02+08:00">2019-06-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="mongodb入门"><a href="#mongodb入门" class="headerlink" title="mongodb入门"></a>mongodb入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>mongodb是一个基于分布式文件存储的数据库。由c++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-<p>mongoab是一个介于关系型数据库和非关系型数据库之间的产品，是非关系型数据库当中功能丰富，最像关系型数据库的一个产品。它支持的数据格式有json,bson等。他最大的特点是它的查询语法类似于面向对象语言。并且它还支持对数据创建索引。</p>
-<p>下面的图片是百度百科对mongodb的介绍<br><img src="http://39.104.171.29/image/mongodb-1.png" alt></p>
-<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>在mongodb中是通过数据库、集合、文档的方式来管理数据的。下边是mongodb与关系型数据库的一些概念比较图。<br><img src="http://39.104.171.29/image/mongodb-2.png" alt><br>和关系型数据库一样，mongodb允许一个实例创建多个数据库，一个数据库创建多个集合，一个集合创建多个文档</p>
-<h3 id="链接mongodb"><a href="#链接mongodb" class="headerlink" title="链接mongodb"></a>链接mongodb</h3><p>mongodb使用CS架构开发。client shell使用链接命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://39.104.171.29/image/mongodb-3.png" alt></p>
-<h3 id="数据库操作的相关命令"><a href="#数据库操作的相关命令" class="headerlink" title="数据库操作的相关命令"></a>数据库操作的相关命令</h3><h4 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h4><p>show dbs: 查询所有数据库信息<br><img src="http://39.104.171.29/image/mongodb-4.png" alt></p>
-<p>db<br><img src="http://39.104.171.29/image/mongodb-5.png" alt></p>
-<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p>use 库名<br>使用指定的库，没有则创建（注意：当使用一个新建的库，而且没有插入任何数据时。此时的库实际没有被创建。）<br><img src="http://39.104.171.29/image/mongodb-6.png" alt></p>
-<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p>db.dropDatabase<br><img src="http://39.104.171.29/image/mongodb-7.png" alt></p>
-<h3 id="集合相关操作命令"><a href="#集合相关操作命令" class="headerlink" title="集合相关操作命令"></a>集合相关操作命令</h3><h4 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h4><p>db.createConllection(name,options)<br>name:表示集合的名称<br>options:表示创建参数</p>
-<h4 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h4><p>db.<conllection>.drop()</conllection></p>
-<p><collection> 表示选中的集合</collection></p>
-<h3 id="文档先关操作"><a href="#文档先关操作" class="headerlink" title="文档先关操作"></a>文档先关操作</h3><h4 id="集合中插入文档"><a href="#集合中插入文档" class="headerlink" title="集合中插入文档"></a>集合中插入文档</h4><p>db.<collection>.insert(document)</collection></p>
-<p><collection> 表示选中的集合<br>document:表示文档，可以是json类型的数据格式</collection></p>
-<h4 id="集合中修改指定文档信息"><a href="#集合中修改指定文档信息" class="headerlink" title="集合中修改指定文档信息"></a>集合中修改指定文档信息</h4><p>db.<collection>.update(<query>,<update>,<options>)</options></update></query></collection></p>
-<p><collection> 表示选中的集合</collection></p>
-<p><query> 表示 查询条件,相当于sql语句的where</query></p>
-<p><update> 表示 更新文档内容</update></p>
-<p><options> 表示 选项</options></p>
-<h4 id="set修改器"><a href="#set修改器" class="headerlink" title="$set修改器"></a>$set修改器</h4><p>db.test_collection.update({“age”:18},{$set:{“name”:”wan”,”age”:16}},{multi:true})</p>
-<p>test_collection：集合名称</p>
-<p>{“age”:18} ：查询结果</p>
-<p>{$set:{“name”:”wan”,”age”:16}} 修改条件</p>
-<p>{multi:true}：参数 multi 为true时表示修改全部，false时表示修改第一个匹配的文档。默认为false</p>
-<h4 id="集合中移除指定文档"><a href="#集合中移除指定文档" class="headerlink" title="集合中移除指定文档"></a>集合中移除指定文档</h4><p>db.<collection>.remove(<query>)</query></collection></p>
-<p><collection> 表示选中的集合</collection></p>
-<p><query> 表示查询的结果<br>删除前最好先执行查询</query></p>
-<h4 id="集合中搜索指定文档"><a href="#集合中搜索指定文档" class="headerlink" title="集合中搜索指定文档"></a>集合中搜索指定文档</h4><p>db.<collection>.find(query,projection)</collection></p>
-<p><collection> 表示选中的集合<br>query :查询条件<br>projection:投影查询key</collection></p>
-<p>投影查询<br>db.test_collection.find({“age”:18},{name:1,age:1,address:1,_id:0})<br>test_collection:制定的集合<br>{“age”:18} ：查询条件<br>{name:1,age:1,address:1,_id:0} ：投影参数，个人不明白只有_id可以设置为0，如果别的设置为0会报Projection cannot have a mix of inclusion and exclusion.异常</p>
-<h3 id="用户相关操作命令"><a href="#用户相关操作命令" class="headerlink" title="用户相关操作命令"></a>用户相关操作命令</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123;</span><br><span class="line">    user:&quot;spiderBao&quot;,</span><br><span class="line">    pwd:&quot;xxx&quot;,</span><br><span class="line">    roles:[</span><br><span class="line">        &#123;role:&quot;root&quot;,db:&quot;admin&quot;&#125;</span><br><span class="line">    ]</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.updateUser(</span><br><span class="line">    &apos;spiderBao1&apos;,&#123;</span><br><span class="line">        roles:[</span><br><span class="line">        &#123;role:&quot;readWriteAnyDatabase&quot;,db:&quot;admin&quot;&#125;]</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show users</span><br></pre></td></tr></table></figure>
-<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.dropUser(&quot;spiderBao1&quot;)</span><br></pre></td></tr></table></figure>
-<h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.changeUserPassword(&quot;test1&quot;,&quot;123&quot;)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2019/06/10/Java—日志框架解析-转载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2019/06/10/Java—日志框架解析-转载/" class="post-title-link" itemprop="url">Java—日志框架解析-转载</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-10 22:55:27" itemprop="dateCreated datePublished" datetime="2019-06-10T22:55:27+08:00">2019-06-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>作为Java程序员，幸运的是，Java 拥有功能和性能都非常强大的日志库；不幸的是，这样的日志库有不止一个<br>相信每个人都曾经迷失在JUL(Java Util Log), JCL(Commons Logging), Log4j, SLF4J, Logback，<br>Log4j2等等的迷宫中。在我见过的绝大多数项目中，都没有能够良好的配置和使用日志库。这篇文章先讲述Java<br>常见日志库的历史和关系，后续会讲日志使用的最佳实践。让我们从头(Java Util Log)开始说起吧。</p>
-<h3 id="Java-Util-Log"><a href="#Java-Util-Log" class="headerlink" title="Java Util Log"></a>Java Util Log</h3><p>简称JUL，是JDK 中自带的log功能。虽然是官方自带的log lib，JUL的使用确不广泛。主要原因:</p>
-<p>1.JUL从JDK1.4 才开始加入(2002年)，当时各种第三方log lib已经被广泛使用了<br>2.JUL早期存在性能问题，到JDK1.5上才有了不错的进步，但现在和Logback/Log4j2相比还是有所不如<br>3.JUL的功能不如Logback/Log4j2等完善，比如Output Handler就没有Logback/Log4j2的丰富，有<br>时候需要自己来继承定制，又比如默认没有从ClassPath里加载配置文件的功能</p>
-<h3 id="Log4j-1-x"><a href="#Log4j-1-x" class="headerlink" title="Log4j 1.x"></a>Log4j 1.x</h3><p>Log4j 是在 Logback 出现之前被广泛使用的 Log Lib, 由 Gülcü 于2001年发布，后来成为Apache<br>基金会的顶级项目。Log4j 在设计上非常优秀，对后续的 Java Log 框架有长久而深远的影响，也产生了<br>Log4c, Log4s, Log4perl 等到其他语言的移植。Log4j 的短板在于性能，在Logback 和 Log4j2<br>出来之后，Log4j的使用也减少了。</p>
-<h3 id="Commons-Logging"><a href="#Commons-Logging" class="headerlink" title="Commons Logging"></a>Commons Logging</h3><p>简称JCL，是Apache下面的项目。JCL 是一个Log Facade，只提供 Log API，不提供实现，然后有 Adapter<br>来使用 Log4j 或者 JUL 作为Log Implementation。</p>
-<p>就像之前所说，JDK现在带了自己的JUL，然后又有第三方的Log4j等日志库存在，不同的项目可能各自使用了<br>不同的日志库。如果你的项目依赖的其他lib各自使用了不同的日志库，你想控制日志行为，就需要针对每个日<br>志库都写一个配置文件，是不是很酸爽?</p>
-<p>然后这个时候 JCL 就出现了。在程序中日志创建和记录都是用JCL中的接口，在真正运行时，会看当前ClassPath<br>中有什么实现，如果有Log4j 就是用 Log4j, 如果啥都没有就是用 JDK 的 JUL。</p>
-<p>这样，在你的项目中，还有第三方的项目中，大家记录日志都使用 JCL 的接口，然后最终运行程序时，可以按照自<br>己的需求(或者喜好)来选择使用合适的Log Implementation。如果用Log4j, 就添加 Log4j 的jar包进去，然<br>后写一个 Log4j 的配置文件；如果喜欢用JUL，就只需要写个JUL的配置文件。如果有其他的新的日志库出现，也<br>只需要它提供一个Adapter，运行的时候把这个日志库的 jar 包加进去。</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul.jpg" alt></p>
-<p>到这个时候一切看起来都很简单，很美好。接口和实现做了良好的分离，在统一的JCL之下，不改变任何代码，就可以<br>通过配置就换用功能更强大，或者性能更好的日志库实现。</p>
-<p>这种简单美好一直持续到SLF4J出现。</p>
-<h3 id="SLF4J-Logback"><a href="#SLF4J-Logback" class="headerlink" title="SLF4J/Logback"></a>SLF4J/Logback</h3><p>SLF4J(The Simple Logging Facade for Java)和Logback也是Gülcü创立的项目，其创立主要是为了提供更<br>高性能的实现。其中，SLF4j 是类似于JCL 的Log Facade,Logback 是类似于Log4j 的 Log Implementation。</p>
-<p>之前已经说过，Apache 有了个JCL，用来做各种Log lib统一的接口，如果 Gülcü 要搞一个更好的Log实现的话，<br>直接写一个实现就好了，为啥还要搞一个和SLF4J呢?</p>
-<p>原因是Gülcü 认为 JCL 的 API 设计得不好，容易让使用者写出性能有问题的代码。</p>
-<p>比如在用 JCL 输出一个 debug 级别的 log:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br></pre></td></tr></table></figure>
-<p>这个有什么问题呢？一般生产环境 log 级别都会设到 info 或者以上，那这条 log 是不会被输出的。然而不管会不会输出，<br>这其中都会做一个字符串连接操作，然后生产一个新的字符串。如果这条语句在循环或者被调用很多次的函数中，就会多做很多<br>无用的字符串连接，影响性能。</p>
-<p>所以 JCL 的最佳实践推荐这么写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">    logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然而开发者常常忽略这个问题或是觉得麻烦而不愿意这么写。所以SLF4J提供了新的API，方便开发者使用:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url);</span><br></pre></td></tr></table></figure>
-<p>这样的话，在不输出 log 的时候避免了字符串拼接的开销；在输出的时候需要做一个字符串format，代价比手工拼接字符串大一些,<br>但是可以接受。</p>
-<p>而 Logback 则是作为 Log4j 的继承者来开发的，提供了性能更好的实现，异步 logger，Filter等更多的特性。</p>
-<p>现在事情变复杂了。我们有了两个流行的 Log Facade，以及三个流行的 Log Implementation。Gülcü是个追求完美的人，<br>他决定让这些Log之间都能够方便的互相替换，所以做了各种 Adapter 和 Bridge 来连接:</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul-slf4j-logback-slf4j-nop.jpg" alt></p>
-<p>可以看到甚至 Log4j 和 JUL 都可以桥接到SLF4J，再通过 SLF4J 适配到到 Logback!</p>
-<p>在这里需要注意不能搞出循环的桥接，比如下面这些依赖就不能同时存在:</p>
-<p>1.jcl-over-slf4j 和 slf4j-jcl<br>2.log4j-over-slf4j 和 slf4j-log4j12<br>3.jul-to-slf4j 和 slf4j-jdk14</p>
-<p>总感觉事情在变得更麻烦呢！</p>
-<h3 id="Log4j2"><a href="#Log4j2" class="headerlink" title="Log4j2"></a>Log4j2</h3><p>现在有了更好的 SLF4J 和 Logback——你会想事情到这里总该了解了吧，让他们慢慢取代JCL 和 Log4j 好了。</p>
-<p>然而维护 Log4j 的人不这样想，他们不想坐视用户一点点被 SLF4J /Logback 蚕食，继而搞出了 Log4j2。</p>
-<p>Log4j2 和 Log4j1.x 并不兼容，设计上很大程度上模仿了 SLF4J/Logback，性能上也获得了很大的提升。</p>
-<p>Log4j2 也做了 Facade/Implementation 分离的设计，分成了 log4j-api 和 log4j-core。</p>
-<p>现在好了，我们有了三个流行的Log 接口和四个流行的Log实现，如果画出桥接关系的图来回事什么样子呢?</p>
-<p><img src="http://39.104.171.29/image/jcl-slf4j-log4j2-api.jpg" alt></p>
-<p>是不是感觉有点晕呢？同样，在添加依赖的时候，要小心不要搞成循环依赖。对于如今的局面我的日志使用方案是</p>
-<h2 id="个人推荐日志搭配方案"><a href="#个人推荐日志搭配方案" class="headerlink" title="个人推荐日志搭配方案"></a>个人推荐日志搭配方案</h2><h3 id="1-总是使用Log-Facade，而不是具体Log-Implementation"><a href="#1-总是使用Log-Facade，而不是具体Log-Implementation" class="headerlink" title="1. 总是使用Log Facade，而不是具体Log Implementation"></a>1. 总是使用Log Facade，而不是具体Log Implementation</h3><p>正如之前所说的，使用 Log Facade 可以方便的切换具体的日志实现。而且，如果依赖多个项目，使用了不同的Log Facade，<br>还可以方便的通过 Adapter 转接到同一个实现上。如果依赖项目使用了多个不同的日志实现，就麻烦的多了。</p>
-<p>具体来说，现在推荐使用 Log4j-API 或者 SLF4j，不推荐继续使用 JCL。</p>
-<h3 id="2-只添加一个-Log-Implementation依赖"><a href="#2-只添加一个-Log-Implementation依赖" class="headerlink" title="2. 只添加一个 Log Implementation依赖"></a>2. 只添加一个 Log Implementation依赖</h3><p>毫无疑问，项目中应该只使用一个具体的 Log Implementation，建议使用 Logback 或者Log4j2。如果有依赖的项目中，<br>使用的 Log Facade不支持直接使用当前的 Log Implementation，就添加合适的桥接器依赖。具体的桥接关系可以看<br>上一篇文章的图。</p>
-<h3 id="3-具体的日志实现依赖应该设置为optional和使用runtime-scope"><a href="#3-具体的日志实现依赖应该设置为optional和使用runtime-scope" class="headerlink" title="3. 具体的日志实现依赖应该设置为optional和使用runtime scope"></a>3. 具体的日志实现依赖应该设置为optional和使用runtime scope</h3><p>在项目中，Log Implementation的依赖强烈建议设置为runtime scope，并且设置为optional。例如项目中使用了 SLF4J<br>作为 Log Facade，然后想使用 Log4j2 作为 Implementation，那么使用 maven 添加依赖的时候这样设置:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设为optional，依赖不会传递，这样如果你是个lib项目，然后别的项目使用了你这个lib，不会被引入不想要的Log<br>Implementation 依赖；</p>
-<p>Scope设置为runtime，是为了防止开发人员在项目中直接使用Log Implementation中的类，而不适用Log Facade中的类。</p>
-<h3 id="4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖"><a href="#4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖" class="headerlink" title="4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖"></a>4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖</h3><p>这是很常见的一个问题，第三方库的开发者未必会把具体的日志实现或者桥接器的依赖设置为optional，然后你的项目继承了这些<br>依赖——具体的日志实现未必是你想使用的，比如他依赖了Log4j，你想使用Logback，这时就很尴尬。另外，如果不同的第三方依<br>赖使用了不同的桥接器和Log实现，也极容易形成环。</p>
-<p>这种情况下，推荐的处理方法，是使用exclude来排除所有的这些Log实现和桥接器的依赖，只保留第三方库里面对Log Facade的依赖。</p>
-<p>比如阿里的JStorm就没有很好的处理这个问题，依赖jstorm会引入对Logback和log4j-over-slf4j的依赖，如果你想在自己的项目<br>中使用Log4j或其他Log实现的话，就需要加上excludes:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.jstorm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstorm-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-over-slf4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-避免为不会输出的log付出代价-减少对不输出日志的成本"><a href="#5-避免为不会输出的log付出代价-减少对不输出日志的成本" class="headerlink" title="5. 避免为不会输出的log付出代价(减少对不输出日志的成本)"></a>5. 避免为不会输出的log付出代价(减少对不输出日志的成本)</h3><p>Log库都可以灵活的设置输出界别，所以每一条程序中的log，都是有可能不会被输出。这时候要注意不要额外的付出代价。（字符拼接代价）</p>
-<p>先看两个有问题的写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url: "</span> + url);</span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, toJson(request));</span><br></pre></td></tr></table></figure>
-<p>第一条是直接做了字符串拼接，所以即使日志级别高于debug也会做一个字符串连接操作；第二条虽然用了SLF4J/Log4j2中的懒<br>求值方式来避免不必要的字符串拼接开销，但是toJson()这个函数却是都会被调用并且开销更大。</p>
-<p>推荐的写法如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url); <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, () -&gt; toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line">logger.debug(() -&gt; <span class="string">"receive request: "</span> + toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123; <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">    logger.debug(<span class="string">"receive request: "</span> + toJson(request)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-日志格式中最好不要使用行号，函数名等字段"><a href="#6-日志格式中最好不要使用行号，函数名等字段" class="headerlink" title="6. 日志格式中最好不要使用行号，函数名等字段"></a>6. 日志格式中最好不要使用行号，函数名等字段</h3><p>原因是，为了获取语句所在的函数名，或者行号，log库的实现都是获取当前的stacktrace，然后分析取出这些信息，而获取<br>stacktrace的代价是很昂贵的。如果有很多的日志输出，就会占用大量的CPU。在没有特殊需要的情况下，建议不要在日志中<br>输出这些这些字段。</p>
-<h3 id="7-log中不要输出稀奇古怪的字符！"><a href="#7-log中不要输出稀奇古怪的字符！" class="headerlink" title="7. log中不要输出稀奇古怪的字符！"></a>7. log中不要输出稀奇古怪的字符！</h3><p>部分开发人员为了方便看到自己的log，会在log语句中加上醒目的前缀，比如:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"========================start process request============="</span>);</span><br></pre></td></tr></table></figure>
-<p>虽然对于自己来说是方便了，但是如果所有人都这样来做的话，那log输出就没法看了！正确的做法是使用grep（linux 中的shell命令） 来看只自己关心的日志。</p>
-<p>转载处：<a href="https://zhuanlan.zhihu.com/p/24272450" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24272450</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/MeBlog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/">1</a><a class="page-number" href="/MeBlog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/MeBlog/page/4/">4</a><a class="page-number" href="/MeBlog/page/5/">5</a><a class="extend next" rel="next" href="/MeBlog/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/MeBlog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/MeBlog/">1</a><a class="page-number" href="/MeBlog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/MeBlog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/MeBlog/page/6/">6</a><a class="extend next" rel="next" href="/MeBlog/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2120,7 +2072,7 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2128,6 +2080,21 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
               
             </nav>
           
