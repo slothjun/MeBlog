@@ -1,0 +1,43 @@
+---
+title: linux-文件配置篇
+---
+
+# 系统环境
+
+## /etc/profile 文件
+
+/etc/profile 文件属于一个系统的全局变量
+```sh
+if [ "${PS1-}" ]; then
+  if [ "${BASH-}" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+
+```
+1. Linux是一个多用户操作系统。用户登录或切换（即Login shell 启动）时都有一个专用的运行环境，但首先执行 /etc/profile 。而Non-login shell不会调用这个脚本。各用户的默认环境（一组环境变量的定义）一般相同。用户也可以自行配置运行环境，即修改相应的系统环境变量。
+
+2. 在 /etc/profile 文件中设置的变量是全局变量。而 .bashrc文件（在用户的家目录下）则只对当前用户有用
+
+3. 使用 source 命令更新环境变量。source /etc/profile  或者  ./profile，执行一下文件。但不能用 sh /etc/profile。sh 是在子 shell 进程中执行的，即使PATH改变了也不会反应到当前环境中。而 source 是在当前 shell 进程中执行的，所以我们能看到PATH的改变
+
+4.在profile文件添加或修改的内容需要注销系统才能生效。同名的环境变量，后写入的起作用

@@ -1,0 +1,15 @@
+---
+title: 树莓派-apt篇
+---
+
+## 添加apt source 资源路径
+
+主要修改/etc/apt/sources.list 文件
+
+添加阿里镜像
+```linux
+sudo vim /etc/apt/sources.list
+#添加如下内容
+deb http://mirrors.aliyun.com/raspbian/raspbian/ wheezy main non-free contrib
+deb-src http://mirrors.aliyun.com/raspbian/raspbian/ wheezy main non-free contrib
+```

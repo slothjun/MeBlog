@@ -1,0 +1,3937 @@
+---
+
+
+title: Java 编程语言-基础篇
+---
+
+# Java语言概述
+
+## Java语言简介
+
+### Java语言的起源
+
+1.java 语言的前身是Oak语言
+2.Oak是由美国公司 Sun Microsystems 在1991年推出的
+3.1995年Sun公司将Oak语言改名为Java语言
+4.2009年Oracle公司将Sun收购,所以迄今为止java的版本更新由Oracle发布.
+5.Java语言有三大版本,来解决现如今主流方向的编程问题.那就是:
+	a) java 2 Platform standard Edition 简称 j2SE 标准版本,可用于一些桌面程序的开发
+	b) java 2 Platform Enterprise Edition 简称 j2EE 企业级版本,可以跟tomcat等一些web容器配合开发网站
+	c) java 2 Platform Micro Edition 简称 j2ME 微型版本,可用于一些小型的计算机系统中,如开发手机的移动应用程序.
+
+### Java语言的特点
+
+#### 语法简单,功能强大,安全可靠
+
+1.Java与C++同是面向对象的编程语言,C++的执行效率高于java.但java比C++更易于编程开发
+2.java语言相比C++来说在web方面更有优势,因为java2EE在web领域目前是主流,一般的企业级网站建设都使用J2EE
+3.因为jvm具有稳定的可靠性所以java语言是安全可靠的
+
+#### 可跨平台
+1.java实现跨平台的主要因素是 jvm(java Virtual Machine)
+2.jvm是一台虚拟机,java通过它可以操纵平台的机器指令集.所以在不同的平台下下载不同的jvm就可实现java语言的跨平台性.
+个人总结 Java之所以能实现跨平台就是有jvm这个中间过渡层的虚拟机.而别的没有这个过渡层的编译性语言只能依赖固定的平台
+
+#### 解释编译两种运行方式
+1.JIT (just in time):JIT是一种提高程序运行效率的方法。通常，程序有两种运行方式：静态编译与动态解释。静态编译的程序在执行前全部被翻译为机器码，而动态解释执行的则是一句一句边运行边翻译。
+2.为什么Java会引入JIT即时解释器?因为java要提高程序的运行效率.大家都知道java语言编写后的文件是.java文件,要想被jvm识别并使用需要经过javac编译成.class 文件也就是所谓的(字节码文件).然后jvm解析字节码文件时原先是逐行解释为平台的机器指令集的,这样做就存在了二次编译解析的过程,java为了提高效率引入JIT将类或类中的一些常用代码指定为热点代码(hot prot code),jvm将这些热点代码转化成于本地平台先关的机器码后并存储起来,下次遇到后直接使用来提高程序的运行效率
+#### 支持多线程
+1.语言级多线程功能
+
+#### 动态执行,上下兼容的API
+1.java执行代码在运行时是动态载入的,在客户机网络允许的情况下,通过自动更新版本的方式来实现瘦客户机框架的目的.
+2.Java提供的类库及其API种类很多,所以使用开发我们可以站在居然肩膀上进行,节省了一些不必要的操作.
+
+### java开发环境的安装于配置
+
+本人使用的系统是Ubuntu的,所以使用了apt install 安装了openjdk,安装路径在/usr/lib/jvm下,我创建了软链接到/usr/bin下所以或默认配置到系统的环境变量中.关于系统环境变量可查看Linux-文件配置篇
+
+## Java 程序示例
+
+### Java 应用程序(Java Application)
+1.Java程序是由类构成的,程序的入口方法是main()
+2.Java程序文件扩展名是.java,编译后生成的字节码文件的扩展名是.class
+```java
+class HelloWorld{
+
+	public static void main(String[] args){
+		System.out.println("Hello World!");
+		for (int i = 0;i < args.length;i++){
+			System.out.println("args["+i+"]:"+args[i]);
+		}
+	}
+}
+```
+3.一个文件中只能有一个公共类,该类的名字即使文件的名字
+4.执行程序时,程序名之后输入的内容称为命令行参数,这些参数将会放入main(String[] args)中的args字符串数组中
+5.Java语言区分大小写
+
+### Java 小应用程序(Java Applet)
+
+## Java 中的面向对象技术
+
+### 面向对象技术
+
+1.面向对象是一种软件开发的方法.在面向对象程序设计方法出现之前,软件界广泛流行的是面向过程的设计方法
+2.面向对象技术相比面向过程而言,可以使程序变得更简单易于理解.还有就是可以更大化的实现代码的重用
+3.面向对象方法学,可以简单理解为.一个能使分析,设计和实现更接近人们的认识的学科
+4.面向对象方法学主要包括3个方面
+	1.面向对象分析(object-oriented Analysis)简称OOA
+	2.面向对象设计(object-oriented Design)简称OOD
+	3.面向对象编程(object-oriented Programming)简称OOP
+
+### OOP
+
+1.一个类的实例可以称为对象或实例
+2.对象是类的一个具象,类是对象的一个抽象
+3.OOP技术把问题看成是相互作用的事物的集合,也就是对象的集合.对象具有两个特性,一是状态,二是行为.状态是指对象本身的信息也就是属性,行为是实现对对象的操作也就是方法
+4.OOP三大核心概念:封装、继承、多态
+	封装：封装体现的特点是将对象的属性和方法实现的细节隐藏起来，并报露出使用的入口
+	继承：将一个类中数据和方法保留，并加上自己特殊的数据和方法，从而构成一个新类。继承体现的是一种层次关系
+	多态：在一个或多个类中，可以让多个方法使用同一个名字。多态可以保证对不同数据类型进行同等的操作
+
+# 数据和表达式
+
+## 基本语法元素
+
+### 空白、注释及语句
+
+#### 空白
+
+在java程序中，换行符及回车符等都可以表示一行的结束且留有空白的部分都表示空白
+
+#### 注释
+
+注释不能插在一个标识符或关键字的中间
+
+##### 单行注释 //
+
+##### 多行注释 /* 
+
+使用`/*`表示注释的开始，`*/`表示注释的结束位置
+
+一般这种注释用于解释方法中的逻辑说明或方法说明
+
+##### 文档注释 `/**`
+
+以`/**` 开始，`*/`结束
+一般这种注释用于说明公共的类或方法
+其中注释有一下参数：
+@param 参数
+@return 输出(返回值)
+@throws 异常抛出
+
+#### 语句
+
+语句是java程序运行中的最小执行单元
+
+程序的各语句之间需要使用；分隔
+
+语句分为单语句及复合语句。单语句就是通常意义下的一条语句，复合语句是块（使用{}包裹起来的内容）
+
+```java
+//复合语句
+{
+int a = 1;
+int b = 2;
+}
+//单语句
+int a = 3;
+```
+
+
+
+
+### 关键字
+
+abstract boolean brack byte case
+catch char class const continue default
+do double else extends false final
+finally flost for future generic goto
+if implements import inner instanceof int
+interface long native new null operator
+outer package private protected public rest
+return short static strictfp super switch
+synchronized this throw throws transient true
+try var void volatile while
+
+### 标识符
+
+在java编程语言中，标识符由字母、下划线`_`、美元符号`$`、字母等构成
+
+数子不能做为标识符的首个字母
+
+标识符可以用在类上、接口上、方法上、变量上
+
+### Java编程规范
+
+1.缩进
+2.变量的大小写
+3.常量的大小写
+3.方法名的应用
+4.合理的注解和空格
+
+## 基本数据类型
+
+### 基本数据类型
+#### 整数型
+
+![javaIntegerType](http://39.104.171.29/image/javaIntegerType.jpg )
+
+整型常量默认使用int
+
+整型量可用十进制、八进制或十六进制形式表示，以`1~9`开头的整数为十进制的表示形式。以0开头的数为八进制的表示形式。以0x或0X开头的数为十六进制的表示形式。
+
+![javaIntegerParam](http://39.104.171.29/image/javaIntegerParam.jpg )
+
+#### 浮点数型
+
+float表示单精度浮点数类型
+double表示双精度浮点数类型
+浮点数类型的常量默认情况下使用double
+
+![javaFloatType](http://39.104.171.29/image/javaFloatType.jpg )
+![javaFloatParam](http://39.104.171.29/image/javaFloatParam.jpg )
+
+#### 字符型 char
+
+单个字符使用char来表示，一个char表示一个Unicode字符。char类型的常量必须使用一对‘’括起来
+
+![javaTransferredCharacter](http://39.104.171.29/image/javaTransferredCharacter.jpg)
+
+#### 布尔型 boolean
+
+java 中boolean的值只有true or false 。
+
+true or false 使用小写表示，计算机内部使用8位二进制表示
+
+### 复合数据类型
+#### 类类型
+#### 数组
+一般数组指的是一个对象
+
+#### 接口类型
+
+## 表达式
+
+简介：表达式由运算符和操作数组成。表达式用来运算得出结果
+
+java运算按功能可划分为：算术运算符、关系运算符、逻辑运算符、位运算符、赋值运算符和条件运算符、数组下标运算符
+
+### 操作数
+
+可以用来做操作数的有以下元素：
+
+#### 常量
+
+简介：常量可以简单理解为拥有单一不变唯一值引用
+
+example：
+
+```java
+        System.out.println(23.59);
+        System.out.println(-1247.1f);
+        System.out.println(true);
+        System.out.println("this is a String");
+        System.out.println('a');
+```
+
+
+
+#### 变量
+
+简介：变量是存储数据的基本单元，变量在使用之前需要先声明。使用时必须要为其初始化值
+
+```java
+        double d1;
+        d1 = 23.59;
+        float f1 = -1247.1f;
+        boolean b1 = true;
+        String s1 = "This is a String";
+        char c1 = 'a';
+        System.out.println(d1);
+        System.out.println(f1);
+        System.out.println(b1);
+        System.out.println(s1);
+        System.out.println(c1);
+```
+
+方法内声明的变量称为：自动变量、局部变量、临时变量、或栈变量
+
+类中定义的变量称为：类成员变量
+
+方法内声明的变量是不存在默认值的，而类中声明的变量在类的初始化时会为其初始化默认值
+
+​																				类成员变量：各基本类型的默认值
+
+| 类型  | 初始值 |     类型     |  初始值  |
+| :---: | :----: | :----------: | :------: |
+| byte  |   0    |    double    |   0.0    |
+| short |   0    |     char     | '\u0000' |
+|  int  |   0    |   boolean    |  false   |
+| long  |   0l   | 所有引用类型 |   null   |
+| float |  0.0f  |              |          |
+
+```java
+        int xTest = (int)(Math.random()*100),yValue,zVar;
+        boolean flag;
+        int iValue1 = 1,iValue2 = -4;
+        float fValue = 9.997f - 5f;
+        if(xTest>50){
+            yValue = 9;
+        }
+//        zVar = yValue + xTest;  //这里会出现异常，因为yValue有可能不能被赋值
+//        System.out.println(zVar);
+```
+
+
+
+变量的作用域
+
+可以正常执行
+
+```java
+class Customer{
+    
+    private String name;
+    
+    public static void main(String[] args){
+        Customer customer = new Customer();
+        
+        {
+            String name = "Tom David";
+            customer.name = name;
+            System.out.println("this name is:"+customer.name);
+        }
+        String name = "John";//由于上面代码块执行完后，代码块中的变量会被释放也就不存了.所以这里可以声明name变量
+        customer.name = name;
+        System.out.println("this name is:"+customer.name);
+    }
+}
+```
+
+不可以正常执行
+
+```java
+class Customer{
+
+    private String name;
+
+    public static void main(String[] args){
+        Customer customer = new Customer();
+
+        String name = "John";
+        {
+            String name = "Tom David";//存在的变量不能被重复声明
+            customer.name = name;
+            System.out.println("this name is:"+customer.name);
+        }
+        
+        System.out.println("this name is:"+customer.name);
+    }
+}
+```
+
+#### 数学函数
+
+由于Math类下的数学函数的返回值是基本数据类型或引用类型所以它们也可以被当做操作数来看待。
+
+如下列举一些方法：
+
+Math.sin();
+
+Math.cos();
+
+### 运算符
+
+#### 算术运算符
+
+算术运算符如: 
+
+| 符号 |        表示        |
+| :--: | :----------------: |
+|  +   |      加法运算      |
+|  -   |      减法运算      |
+|  *   |      乘法运算      |
+|  /   |      除法运算      |
+|  %   | 取模运算（取余数） |
+|  ++  |        加1         |
+|  --  |        减1         |
+
+这里需要说明下 ++i 和i++的区别，++i在i被使用前加1,i++在i被使用后加1.--与++类似。
+
+Java数据类型自动转换规则:
+
+byte short char int long float double
+
+排在前面的可以自动转换为后面的类型，如果要想将后面的类型转换为前面的类型需要使用强制类型转换（注意强制类型转换有可能损失精度，不建议使用）
+
+不同类型数据进行运算时，java会将类型根据Java数据类型自动转换规则将类型统一，然后进行相应的运算。
+
+#### 关系运算符
+
+| 符号 |    表示    |
+| :--: | :--------: |
+|  >   |    大于    |
+|  >=  | 大于且等于 |
+|  <   |    小于    |
+|  <=  | 小于且等于 |
+|  ==  |    等于    |
+|  !=  |   不等于   |
+
+#### 逻辑运算符
+
+|    符号    |  表示  |
+| :--------: | :----: |
+|  &#38;  |   与   |
+|     &#124;     |   或   |
+| &#38;&#38; | 短路与 |
+| &#124;&#124; | 短路或 |
+
+上表中的短路表示当判断的左边不满足整个逻辑运算符的规定时就会停止右边的逻辑运算并返回左边的逻辑值。如&&当左边是false时整个逻辑式的结果为false，因为&&是与只有两边都为true时才会返回true
+
+#### 位运算符
+
+位运算符是用来对二进制位进行操作的。位运算符只能对<u>整型和字符串型</u>数据进行操作
+
+​																					拥有算术意义的位运算符
+
+| 符号 |           表示            |
+| :--: | :-----------------------: |
+|  >>  | 右移x位就表示除以2的x次方 |
+
+
+
+```java
+        System.out.println(128>>1);
+        System.out.println(258>>5);//表示258除以2的5次方
+        System.out.println(258/32);
+        System.out.println(-256>>4);
+        System.out.println(-256>>>4);
+```
+
+#### 赋值运算符
+
+​																						拥有算术意义的赋值运算符
+
+| 符号 |          表示           |
+| :--: | :---------------------: |
+|  +=  |  如x +=2 同 x = x + 2   |
+|  -=  |  如x -= 2 同 x = x - 2  |
+|  *=  |  如x *=2 同 x = x * 2   |
+|  /=  |  如x /=2 同 x = x / 2   |
+|  %=  |  如x %=2 同 x = x % 2   |
+| >>=  | 如 x >>=2 同 x = x >> 2 |
+
+#### 条件运算符（三元运算符）
+
+| 符号  |                             表示                             |
+| :---: | :----------------------------------------------------------: |
+| ？ ： | 如x = condition?1:2 ，当condition为true时x值为1，相反为false时x值为2 |
+
+```java
+        boolean condition = true;
+        int x = condition?1:2;
+        System.out.println("When condition is true,x is:"+x);
+        condition = false;
+        x = condition?1:2;
+        System.out.println("When condition is false,x is:"+x);
+```
+
+#### 点运算符（.）、new运算符(new )、下标运算符([])
+
+点用算符用来调用对象的变量值或使用方法等
+
+new运算符用来创建一个类的实例（对象）
+
+下标运算符用来获取序列中某个位置的值。
+
+#### 实例运算符（instanceof）
+
+用于判断当前实例是否属于某个类或接口
+
+```java
+        Father expression = new Expression();
+        System.out.println(expression instanceof HelloWorld);
+        System.out.println(expression instanceof Object);
+```
+
+注意 instanceof只能在对象和要判断的类之间存在继承或实现同一接口时做运算。不然会有语法错误提示
+
+# 流程控制语句
+
+
+
+## java程序的结构
+
+简介：一个java程序是由一个或多个.java文件组成的，.java文件被称为源文件。源文件可以是一个或多个类或接口，但是类中只能有一个公共类也就是public修饰类，并且源文件名要和公共类名一致。
+
+java程序结构中的注意项：
+
+- package：包语句，每个文件中只能拥有一个包语句，并且此语句必须在可执行代码的第一行。
+- import：引入语句，如果有import语句的话必须放在所有类定义的前面。
+- 公共类（具有public定义的类）：每个源文件中只能包含一个。
+- 类定义：每个源文件中可以包含多个，但公共类只能有一个。
+- 接口定义：每个源文件中接口可以有一个或多个。
+
+### java包（package）
+
+简介：包是类的容器，程序设计人员利用包来划分名字空间，避免类名冲突。使用包的目的是将源文件有效的组织起来。
+
+注意事项：
+
+- 包层次必须与java开发系统的文件系统结构相同。
+- 包名中全部使用小写。
+- 一个包可以包含多个包或多个类。
+
+代码案例（example）：
+
+```java
+package com.spider.dome
+```
+
+### 引入语句
+
+简介：其作用就是将指定的资源引入当前类中，其实不使用引入语句直接使用其资源的全限定名称（报名.资源名）也是可以使用的。
+
+注意事项：
+
+- 引入语句须放在所有类定义的前面。
+- 引入的类必须具有访问权限才可以正常使用。
+- 当引入的同时引入两个有歧义的类时，直接使用全称类名。
+
+代码案例（example）：
+
+```java
+//引入当包下的全部
+import com.spider.dome.*;
+//引入指定类
+import com.spider.dome.Customer;
+```
+
+```java
+        Cat cat = new Cat();
+        chapter3.com.spider.Dog spiderDog = new chapter3.com.spider.Dog();
+        chapter3.com.spider.dome.Dog domeDog = new chapter3.com.spider.dome.Dog("钢镚");
+        cat.setDomeDog(domeDog);
+        cat.setSpiderDog(spiderDog);
+        System.out.println(cat);
+```
+
+## 流程控制
+
+### 赋值语句
+
+简介：把一个值赋值给一个变量这样的语句就称为赋值语句
+
+注意事项：
+
+- 有的表达式可以作为一条赋值语句，但是不是所有语句都是表达式
+- 以下3条语句中，前两条为赋值语句，最后一条为表达式
+
+```java
+Customer customer = new Customer();
+x = 12;
+x++;
+```
+
+### 分支语句
+
+简介：分支在java程序中分为2种 if 和 switch
+
+if (单重分支)的语法形式如下：
+
+if(条件表达式){
+
+​	语句1；
+
+}
+
+if else 的语法形式如下：
+
+if(条件表达式){
+
+​	语句1；
+
+}else{
+
+​	语句2；
+
+}
+
+案例代码(example):
+
+```java
+    private static void ifOrSwitchLearn(int firstVal,int secondVal){
+
+//        if(firstVal == 0){
+//            if(secondVal == 1){
+//                firstVal ++;
+//            }else{
+//                firstVal --;
+//            }
+//        }
+        if(firstVal == 0){
+            if(secondVal == 1){
+                firstVal ++;
+            }
+        }else {
+            firstVal --;
+        }
+
+        System.out.println("firstVal is: "+firstVal);
+
+    }
+```
+
+switch 语句(多重分支)的语法形式如下：
+
+switch （表达式）{
+
+​		case c1:
+
+​					语句组1；
+
+​					break；
+
+​		case c2:
+
+​					语句组2；
+
+​					break；
+
+...
+
+​		case ck:
+
+​					语句组k;
+
+​					break;
+
+default:
+
+​		语句组;
+
+​		break;
+
+}
+
+switch 语句中的break是可选项，程序运行到break处时会跳出当前switch语句块。没有遇到时会向下执行。
+
+```java
+int firstVal = 1;     
+switch(firstVal){
+            case 1:
+                System.out.println(firstVal);
+            case 2:
+                System.out.println(2);
+            case 3:
+                System.out.println(3);
+        }
+//程序运行结果是 1 2 3
+int firstVal = 1;     
+switch(firstVal){
+            case 1:
+                System.out.println(firstVal);
+            case 2:
+                System.out.println(2);
+        		break;
+            case 3:
+                System.out.println(3);
+        }
+//程序运行结果是 1 2 
+```
+
+if else if 语句：
+
+if else if 类似与 switch 每一项加了break的做法。
+
+```java
+        if(firstVal==0){
+            System.out.print(0);
+        }else if(firstVal == 1){
+            System.out.print(1);
+        }else if(firstVal == 2){
+            System.out.print(2);
+        }else if(firstVal == 3){
+            System.out.print(3);
+        }else{
+            System.out.print(firstVal);
+        }
+
+//等同于
+switch(firstVal){
+            case 0:
+                System.out.print(0);
+                break;
+            case 1:
+                System.out.print(1);
+                break;
+            case 2:
+                System.out.print(2);
+                break;
+            case 3:
+                System.out.print(3);
+                break;
+            default:
+                System.out.print(firstVal);
+        }
+
+    private static void dayInMonth(int month){
+        if(!(month>=1&&month<=12)){
+            return;
+        }
+        if(month == 2||month == 4||month == 6||month == 9||month == 11){
+            System.out.println("this "+month+" month of 30 day.");
+        }else{
+            System.out.println("this "+month+" month of 31 day.");
+        }
+
+    }
+    public static void main(String[] args){
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH)+1;
+        dayInMonth(month);
+        System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+        char c = "str".charAt(0);
+    }
+```
+
+### 循环语句
+
+简介：循环语句控制程序流程多次执行一段代码。java中提供了三种循环语句分别是 for wile do.
+
+#### for语句
+
+for 语句语法形式如下：
+
+for(初始语句；条件表达式；迭代语句){
+
+​	循环体语句；
+
+}
+
+注意事项：
+
+- 初始语句和迭代语句中可以含有多个语句，各语句间使用;做分离。括号内的3个部分是可选的，当条件表达式为空时默认值为true。所以会导致代码块重复一直运行下去。
+
+```java
+    private static void forAndWileAndDoLearn(){
+        int sumi = 0,sumj = 0;
+        for(int i=0, j=0;j<10;j++,i++){
+            sumi +=i;
+            sumj +=j;
+        }
+        System.out.println("sumi is :"+sumi+"\n"+"sumj is :"+sumj);
+    }
+```
+
+#### while语句
+
+while 语句语法形式如下：
+
+while（条件表达式）{
+
+​		循环体语句；
+
+}
+
+```java
+  private static void forAndWileAndDoLearn(){
+        int sumi = 0,sumj = 0;
+        int i =0,j = 0;
+        while(j<10){
+            sumi +=i;
+            sumj +=j;
+            i++;
+            j++;
+        }
+        System.out.println("sumi is :"+sumi+"\n"+"sumj is :"+sumj);
+    }
+```
+
+#### do 语句
+
+do 语句语法形式如下：
+
+do{
+
+​	循环体语句；
+
+}while（条件表达式）;
+
+```java
+private static void forAndWileAndDoLearn(){
+        int sumi = 0,sumj = 0;
+        int i =0,j = 0;
+        do{
+            sumi +=i;
+            sumj +=j;
+            i++;
+            j++;
+        }while(j<10);
+        System.out.println("sumi is :"+sumi+"\n"+"sumj is :"+sumj);
+    }
+```
+
+注意事项：
+
+- do语句与while语句大致相同，不同之处在于do语句是先执行循环体语句然后做条件判断。
+
+### 跳转语句
+
+#### 标号
+
+简介：标号可以放在任意语句之前，通常与for、while或do配合使用。
+
+#### break
+
+简介：break 用于跳出当前语句块
+
+#### continue
+
+简介：跳过当前循环
+
+```java
+    private static void learnOfBreakAndContinue(){
+//        for(int i=0;i<10;i++){
+//            out2:for (int ii=0;ii<10;ii++){
+//                if(ii>i){
+//                    break out2;
+//                }
+//                System.out.print("* ");
+//            }
+//            System.out.println();
+//        }
+
+        out1:for(int i=0;i<10;i++){
+            out2:for (int ii=0;ii<10;ii++){
+                if(ii>i){
+                    System.out.println();
+                    continue out1;
+                }
+                System.out.print("* ");
+            }
+        }
+    }
+
+```
+
+## Scanner NumberFormate DecimalFormate
+
+```java
+        Scanner scanner = new Scanner(System.in);
+        int age;
+        double weight,height,hmi;
+        System.out.println("place input your age!");
+        age = scanner.nextInt();
+        System.out.println("place input your weight(kg)");
+        weight = scanner.nextDouble();
+        System.out.println("place input your height(m)");
+        height = scanner.nextDouble();
+        hmi = weight/(height*height);
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        System.out.println("your hmi is: "+decimalFormat.format(hmi));
+        
+ //        Double myNumber = 12345.123456789;
+//        Double test = 1.2345;
+//        String myString = NumberFormat.getInstance().format(myNumber);
+//        System.out.println("default format: "+myString);
+//        myString = NumberFormat.getCurrencyInstance().format(myNumber);
+//        System.out.println("Currency format: "+myString);
+//        myString = NumberFormat.getNumberInstance().format(myNumber);
+//        System.out.println("Number format: "+myString);
+//        myString = NumberFormat.getPercentInstance().format(test);
+//        System.out.println("percent format: "+myString);
+```
+
+## 异常处理
+
+在java中将程序运行可能遇到的错误分为2类，一类是非致命性的被称之为异常（expection），另一类是致命性的被称为错误（error）
+
+异常是可以通过cache来处理的而错误则不可以。
+
+异常处理时需要考虑的问题有，如何处理异常、异常是由谁来处理、异常对程序构成的影响是否在可控范围
+
+### 异常分类
+
+#### 受检异常（Checked Expection）
+
+简介：程序执行期间发生的严重事件的后果。例如FileNotFoundException
+
+#### 运行时异常（Runtime Exception）
+
+简介：通常程序中逻辑错误的结果。例如：ClassCastException
+
+#### 异常处理
+
+注意事项：
+
+- 在不清楚如何处理异常情况下，抛出异常是一个不错的方法。
+- 处理异常时，尽量使用finally，不要嵌套cache嵌套
+- 使用了System.exit()方法后会导致finally不能被正常执行，因为程序已经被退出。
+
+# 面向对象程序设计
+
+## 类和对象
+
+### 类的定义
+
+简介：类的定义也就是类的声明。简单来说分别是数据成员变量和成员方法。下面是类的语法书写格式
+
+修饰符 class 类名 [extends 父类名]{
+
+​	修饰符 变量类型 变量名；
+
+​	修饰符 返回值类型 方法名( 参数列表){
+
+​	方法体；
+
+}
+
+}
+
+java中的访问权限修饰符表：
+
+|       类型       | 无修饰符(public) | private | protected | public |
+| :--------------: | :--------------: | :-----: | :-------: | :----: |
+|      同一类      |       yes        |   yes   |    yes    |  yes   |
+|  同一包中的子类  |       yes        |   no    |    yes    |  yes   |
+| 同一包中的非子类 |       yes        |   no    |    yes    |  yes   |
+|  不同包中的子类  |        no        |   no    |    yes    |  yes   |
+| 不同包中的非子类 |        no        |   no    |    no     |  yes   |
+
+总结点：
+
+- 类定义时，类头与类体在同一个源文件中，并且每个源文件只能拥有一个公共类，且源文件名就是那个公共类名。
+- 类可以指明父类也可以不指定父类，如果指定父类则只能指定一个父类。因为java是单继承体制。
+- Object类是java中唯一一个没有父类的类，而其余的类都继承与Object类
+- class定义的大括号后没有；符号
+
+#### 匿名内部类
+
+先看匿名内部类的定义的语法格式：
+
+```java
+new 实现接口（）
+{
+    //匿名内部类类体部分
+}
+```
+
+```javascript
+new 父类构造器（实参列表）
+{
+  //匿名内部类类体部分
+}
+```
+
+为什么匿名内部类的定义有这两种方式呢？这是因此这两种方式的定义分别对应两种方式，一种是接口，另一种是抽象类。
+
+对于实现接口，由于接口是没有构造函数的，注意这里一定是空参数。
+ 第二种是调用父类的构造器，注意此处可以是空参数，也可以传入参数。
+
+### 构造方法
+
+概述：构造方法是一个特殊的类成员方法，它被用来创建生成对象。当系统识别到关键字new后会去执行指定的构造方法来创建对象。
+
+构造方法注意点：
+
+- 构造方法不能被继承，但构造方法可以重写。
+- 构造方法没有返回值类型。
+- 一个类如果没有显示声明构造方法，系统会为当前类生成一个无参的构造方法。但是如果显示声明了构造方法系统则不会给出默认的无参构造方法。
+- 构造方法尽量为其类中的成员变量初始化自己预期的值。
+
+#### 构造方法的重载
+
+构造方法重载时可以使用关键字this来替代本类中的其他构造方法。
+
+案例（example）
+
+```java
+public class Student{
+    String name;
+    int age;
+    
+    public Student(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+    
+    public Student(String name){
+        this(this.name,20);
+    }
+    
+    public Student(){
+        this("Unkonwn");
+    }
+}
+```
+
+this关键字不仅可以用来指代本类中的构造方法，还可以指代本类中的其他元素它被看成是当前类的运行时对象。
+
+上例中的this.name 如果参数名和类成员变量名不冲突时可以省略this 关键字。
+
+### 对象的创建和初始化
+
+总结点：
+
+在java中使用构造方法是生成实例对象的唯一途径，这个过程称为对象的实例化。
+
+实例化对象时如果对象的成员变量没有显示声明值时，java会默认为其初始化值。如下表所示
+
+|   名称   | 默认值 |
+| :------: | :----: |
+| 数值变量 |   0    |
+| 布尔变量 | false  |
+| 引用变量 |  null  |
+
+## 定义方法
+
+书写语法：
+
+修饰符 返回类型 方法名(参数列表) {
+
+​	方法体（块)
+
+}
+
+方法定义的注意事项：
+
+- 方法名必须是一个合法的标识符
+- 返回值类型必须和方法声明的返回类型一致
+- 参数列表中每个元素之间使用逗号间隔
+- 传给方法的值称为实参，语法声明中参数列表中的参数称为形参数
+
+### 方法的重载
+
+方法的重载简单的说就是同一个方法名拥有不同的参数列表
+
+注意事项：
+
+- 方法的重载与参数的个数，参数的顺序有关，但和返回值类型无关
+- 方法的重载只存在于同一个类中
+
+## 静态成员
+
+简介：java中静态成员是不依赖于对象内容的。也就是说静态的成员和对象无关。
+
+不同对象的成员，其内存地址是不同的。但是如果类中包含静态成员，则系统只在类定义时为静态成员分配内存。此时还没有创建对象（没有对类进行实例化）以后生成该类的实例时，将不再为静态成员分配内存，不同的对象静态成员是共享的。
+
+### 静态变量
+
+在java中静态成员变量是唯一能为类中所有对象共享变量的方法。
+
+### 静态方法
+
+注意事项：
+
+- 静态方法中不能使用this，因为静态成员是不依赖于对象的。
+- 一个静态方法中只能使用其内部定义的参数或静态变量
+- 静态方法不能被重写
+
+## 包装类
+
+简介：java中的包装类是用来将基本类型转换成引用类型操作的实现。
+
+| 基本数据类型 | 包装类  |
+| :----------: | :-----: |
+|     byte     |  Byte   |
+|    short     |  Short  |
+|     int      | Integer |
+|     long     |  Long   |
+|    float     |  Float  |
+|    double    | Double  |
+|     char     |  Char   |
+|   boolean    | Boolean |
+|     void     |  Void   |
+
+注意 Void 类不能被实例化
+
+自动装箱
+
+example：
+
+```java
+//        Integer a =10;
+//        System.out.println(a);
+```
+
+
+
+自动拆箱
+
+```java
+//        Integer a =10;
+//        int b = a;
+//        System.out.println(b);
+```
+
+# 数组和字符串
+
+## 数组
+
+简介：数组是用来表示一些相同数据类型的元素的集合。
+
+注意事项（warning）
+
+- 数据有序，数据的存入和取出是有序的
+- 下标可用，获取数据可以使用下标取出
+- 可声明多种数据类型，可以是基本数据类型，也可以是引用数据类型
+- 数组在使用前必须要声明，先声明后使用。
+- 数组在声明时并不会为数组分配内存，而是存储数组引用的变量。当数组赋值时内存才会分配内存空间。
+
+### 数组的声明
+
+案例example
+
+```java
+//方式1
+char s[];
+int intArray[];
+//方式2
+char[] s;
+int[] intArray;
+```
+
+#### 静态数组定义（错误，java中不存在）
+
+```java
+int intArray[5];
+```
+
+
+
+### 创建数组
+
+简介：数组初始化的过程就是数组的创建过程
+
+注意事项：
+
+- 数组初始化后长度就会被固定，就像是Python中的tuple。
+
+#### 静态初始化
+
+案例example
+
+```java
+int intArray[] = {1,2,3,4};
+double heights[] = {4.5,23.6,84.124,78.2,61.5};
+```
+
+#### 动态初始化
+
+案例example
+
+```java
+String names[];
+names = new String[4];
+names[0] = "Tom";
+names[1] = "Jen";
+names[2] = "Simon";
+names[3] = "Georgianna";
+```
+
+注意事项：
+
+- ps = new Point[4]; 只是创建可以容纳4个Point的数组，但并未创建了4个Point对象
+- 动态初始化时要注意数组的边界。不能越界赋值
+- 数组可以存储不同于所声明的类，但存储的类型必须是它的祖先类。如下：
+
+```java
+Object[] points;
+
+points = new Point[100];
+```
+
+- 以上的声明及其初始化是合法的但是如下声明相反却是错误的：
+
+```java
+Point[] points;
+
+points = new Object[100];
+```
+
+### 访问数组元素
+
+```java
+String names[];
+names = new String[4];
+names[0] = "Tom";
+names[1] = "Jen";
+names[2] = "Simon";
+names[3] = "Georgianna";
+
+//访问素组中的下标为0的元素也就是数组中的第一个元素
+String name = names[0];
+```
+
+### 多维数组                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+简介：多维数组可以理解为数组的嵌套
+
+例如二位数组就是一个多维数组，它的表示方式如下
+
+```java
+int[][] intArray;
+int intArray[][];
+int[] intArray[];
+```
+
+#### 静态初始化
+
+```java
+int[][] intArray = {{1,2},{3,4},{5,6}};
+```
+
+
+
+#### 动态初始化
+
+##### 直接分配
+
+```java
+int[][] a = new int[2][3];
+```
+
+
+
+##### 按维分配
+
+```java
+//矩形多维数组
+int[][] a = new int[2][];
+for(int i=0;i<a.length;i++){
+	a[i] = new int[3];
+}
+
+//非矩形多维数组
+int[][] a = new int[2][];
+a[0] = new int[3];
+a[1] = new int[2];
+
+```
+
+#### 多维数组的引用
+
+```java
+int[][] intArray = {{1,2},{3,4},{5,6}};
+int a = intArray[0][1];
+```
+
+### 如何解决数组的固定长度问题
+
+因为我们平时使用的都是数组的引用，所以我们可以通过改变引用指向的数组来解决这一问题。
+
+案例example
+
+```java
+public void changeLengthOfArray(int[] array){
+    //将当前的数组长度加1
+    int length = array.length;
+    array = new int [length+1];
+}
+```
+
+### 数组的一些常用方法
+
+System.arraycopy
+
+java.util.Arrays 下的一些静态方法
+
+## 字符串
+
+简介：java中的字符串是由有限个字符组成的序列对象。说到字符串不得不说String 和StringBuffer
+
+注意事项（warning）：
+
+- string 用来操作不会被修改的字符串。
+- StringBuffer 用来操作可变的字符串。
+- string 比StringBuffer 所占用的内存空间要小。StringBuffer除自身字符串占用空间之外还有16个字符大小的缓存区。
+
+### String
+
+常量
+
+```java
+"Hello world!"
+```
+
+变量
+
+```java
+String s = new String("Hello World");
+```
+
+
+
+### StringBuffer
+
+```java
+StringBuffer  sb = new StringBuffer("Hello World");
+```
+
+### StringBuilder
+
+```java
+StringBuilder sb = new StringBuilder("Hello World");
+```
+
+### String、StringBuffer、StringBuilder总结：
+
+（1）如果要操作少量的数据用 String
+
+（2）多线程操作字符串缓冲区下操作大量数据 StringBuffer
+
+（3）单线程操作字符串缓冲区下操作大量数据 StringBuilder。
+
+### 字符串的判断
+
+== 、compareTo()、equals()、equalsIgnoreCase()、regionMatches()
+
+注意事项：
+
+- 判断时应该先从内存中的地址值去判断，这样可以达到断言的效果。使用 == 判断就是变量的地址值
+
+## vector
+
+简介：简单的说可以理解为一个动态数组的实现类
+
+注意事项：
+
+- vector中只能保存对象类型，所以不能操作基本数据类型。
+
+案例example
+
+```java
+class MyVector extends Vector{
+
+    public MyVector(){
+        super(1,1);
+    }
+
+    public void addInt(int i){
+        addElement(new Integer(i));
+    }
+
+    public void addFloat(float f){
+        addElement(new Float(f));
+    }
+
+    public void addString(String s){
+        addElement(s);
+    }
+
+    public void addCharArray(char[] c){
+        addElement(c);
+    }
+
+    public void printVector(){
+        int length = size();
+        System.out.println("Number of Vector element is: "+length+" and they are:");
+        for(int i=0;i<length;i++){
+            Object o = elementAt(i);
+            if( o instanceof char[]){
+                System.out.println(String.copyValueOf((char[])o));
+            }else {
+                System.out.println(o);
+            }
+        }
+    }
+}
+
+public class MyControl {
+    public static void main(String[] args){
+        MyVector vector = new MyVector();
+        int digit = 5;
+        float real = 3.14f;
+        char[] letters ={'a','b','c','d'};
+        String s = new String("Hi there!");
+        vector.addInt(digit);
+        vector.addFloat(real);
+        vector.addString(s);
+        vector.addCharArray(letters);
+        vector.printVector();
+    }
+}
+
+```
+
+# 继承与多态
+
+## 子类
+
+简介：子类是继承父类的衍生类。
+
+子类在程序设计上体现了继承的特点，除使用了面向对象继承的特性外，它还实现了代码的复用性。
+
+语法：
+
+修饰符 class 子类名 extends 父类名{
+
+}
+
+父类的称呼： 超类、基类
+
+### is a关系
+
+继承的关系体现使用is a 可以很贴切的描述出。
+
+案例example：
+
+如员工（employee）和经理（manager）之间的关系就可以使用is a 来描述。
+
+The manager is an employee of the company
+
+### has a关系
+
+模块的概念可以使用 has a 来描述比较贴切。
+
+案例example：
+
+Cars has engines and wheels
+
+发动机和轮胎之间是没有关联的，但是它们都与汽车有联系。所以可以被看做是汽车的模块。
+
+### Object 类
+
+object在java中是所有类的超类
+
+object中的一些常用的方法：
+
+public final class getClass();  获取当前对象的所属类信息。
+
+public String toString(); 获取当前对象的输出信息。
+
+public boolean equals(Object o); 对象对比时会参看此方法的返回值。
+
+### 单继承
+
+多重继承关系类似于一个网络。如果子类的多个父类中有同名的方法和属性，那么就容易造成子类实例的混乱。
+
+java使用单继承规避了这一缺点，同时通过实现多个接口也可以间接的实现多重继承的优势。
+
+虽然继承可以保留父类中的成员方法和成员变量，但是子类不能继承父类的构造方法。要想使用父类的构造方法可以使用super关键字
+
+案例example
+
+```java
+class Employee{
+    public String name;
+    public String employeeNumber;
+
+    public String getDetails(){
+        return "Name: "+name+"\n employeeNumber: "+employeeNumber;
+    }
+}
+
+class Manager extends Employee{
+    public String department;
+
+    public Manager(String name,String department){
+        super();//使用父类的无参构造方法，如果想使用有参的话可以super(参数列表)；这样调用
+        super.name = name;
+        this.department = department;
+    }
+}
+
+    @Override
+    public String getDetails() {
+        return "Name: "+name+"\nDepartment: "+department;
+    }
+}
+```
+
+子类不能直接访问其父类中定义的私有成员
+
+example：
+
+```java
+public class A extends B{
+    public int a = 1;
+    public void tryVariables(){
+        System.out.println("a: "+a);
+        System.out.println("super a: "+super.a);// super 可以访问父类中允许访问的成员属性
+//        System.out.println("b: "+b);
+        System.out.println("b: "+getB());
+        System.out.println("c: "+c);
+    }
+
+}
+
+class B{
+
+    public int a = 10;
+    private int b = 20;
+    protected int c = 30;
+    public int getB(){
+        return b;
+    }
+
+}
+```
+
+### 对象转型（Casting）
+
+简介：和大多数面向对象的语言一样，java允许使用对象的父类类型做引用类型（静态类型），子类对象的实例做值（动态类型）。
+
+example：
+
+```java
+B a  = new A();
+```
+
+但是相反子类类型做引用类型，父类对象做值就会出错是不可以的
+
+example：
+
+```java
+A b  = new B();
+```
+
+## 方法覆盖与多态
+
+### 方法覆盖（override）
+
+简介：方法的覆盖也被称为：override、方法重写、隐藏。它只出现在子父类中。并且要求方法名参数列表和返回值一致。
+
+注意事项：
+
+- 子类方法不能比父类方法的访问权限更严格。
+- 覆盖方法所抛出的异常不能比原方法多。
+- 它只出现在子父类中
+
+### 调用父类的构造方法
+
+出于安全考虑，java对于对象的初始化要求是非常严格的。比如，java要求一个父类对象要在子类运行前完成初始化。
+
+虽然不能继承父类中的构造方法，但使用super关键字可以调用父类的构造方法
+
+注意事项：
+
+- 在构造方法中使用super关键字调用父类的构造方法。
+- 默认情况下子类的构造方法中会调用父类的无参构造方法。
+- super调用父类构造方法时要放在方法的第一行
+
+### 多态
+
+简介: java中多态是一个非常重要的概念。有了多态，能够允许同一条方法在不同的上下文环境中做不同的事情。
+
+重载方法可以看做是多态的一种形式。
+
+ 父子类间的override也是多态的一种表现形式。
+
+如 父类类型 a  = new 子类类型 ，java 在这种情况下执行override方法,执行的是子类对象中的方法（运行时类型），而不是引用类型（父类/编译时类型）中的方法。
+
+静态类型：引用类型，是在编译时确定下来的。
+
+example：
+
+```java
+SuperClass superc; //静态类型
+```
+
+动态类型：运行时某一时刻引用所指向对象的类型，它会随着进程的改变而改变。
+
+```java
+SuperClass superc = new SuperClass();  //中的 new SuperClass() 对象是动态类型
+```
+
+动态绑定：调用稍后可能被覆盖的方法的这种处理方式，称为动态绑定。
+
+静态绑定：在编译过程中能确定调用方法的处理方式，称为静态绑定。
+
+## 终极类与抽象类
+
+### 终极
+
+java中有一个关键字final表示终极，它可以修饰类、方法、变量。
+
+当final修饰类时它被称为终极类，这时类不能被继承。
+
+当final修饰方法时它被称为终极方法，此时方法不能被覆盖（override）。
+
+当final修饰变量时它被称为终极变量，此时变量的值不能被修改。
+
+#### 终极类
+
+语法：
+
+final public class 类名{
+
+}
+
+```java
+final public class FinalClass{
+
+}
+```
+
+#### 终极方法
+
+语法：
+
+final 权限修饰符 返回值类型 方法名（参数列表）{
+
+}
+
+```java
+final public void finalMethod(){
+    
+}
+```
+
+#### 终极变量
+
+语法：
+
+final 访问权限修饰符 类型 变量名 = 值；
+
+```java
+final int iFinal = 10;
+```
+
+### 抽象
+
+java中使用abstract 关键字来表示抽象，它可以修饰类、方法。
+
+注意事项：
+
+- abstract修饰类时，它不能被直接创建对象，而是可以通过其子类来创建对象。因为它的子类实现了它所包含的抽象方法。
+- abstract 修饰方法，此时的方法是抽象方法所以不需要写方法体。
+- 有抽象方法的一定是抽象类，抽象类不一定都是抽象方法。
+- 抽象类不能直接创建对象，但是可以定义一个抽象类型的引用变量。
+
+#### 抽象类
+
+语法：
+
+abstract  public class 类名{
+
+}
+
+```java
+abstract public class  AbClass{
+
+
+    public int a = 10;
+    private int b = 20;
+    protected int c = 30;
+    public int getB(){
+        return b;
+    }
+
+}
+```
+
+
+
+#### 抽象方法
+
+abstract 权限修饰符 返回值类型 方法名（参数列表);
+
+```java
+abstract public class  AbClass{
+
+	abstract public void abMethod(int a);
+}
+```
+
+## 接口
+
+简介：接口是体现抽象的另一种形式，可将其想象为一个“纯”的抽象类。
+
+语法：
+
+修饰符 interface 接口名{
+
+}
+
+注意事项：
+
+- 接口中的的变量只能是终极变量。
+- 接口中的方法只能是抽象方法。
+
+在java接口的定义中默认缺省final public abstract 关键字。如下例子中是一样的。
+
+```java
+interface Shape2D{
+	double pi = 3.14;
+	double area();
+}
+```
+
+等同于
+
+```java
+public interface Shape2D{
+	public double pi = 3.14;
+	public double area();
+}
+```
+
+# 输入和输出流
+
+## 数据流的基本概念
+
+数据流的来源：
+
+所有的程序都离不开信息的输入输出。比如从键盘上输入一个字符，从文件中读取一行文字。显示器上的文字输出等这都涉及到了信息的输入输出。在java中把这些不同类型的输入或输出源抽象为流（Stream）。
+
+数据流（Data Stream）
+
+数据流是指一组有序的、有起点和终点的字节集合。例如使用键盘写数据到文件中，此操作可以使用数据流来完成。
+
+java.io包下的文件提供了流基础的使用支持。其中最常用的分为 （InputStream ，OutputStream)和（Reader，Writer）inputStream outputStream 用来处理字节流，Reader Writer 用来处理字符流。
+
+### 输入数据流
+
+简介：输入数据流是指只能读取不能写的数据流，用于向计算机内输入数据。
+
+java.io包下有关输入数据流的类都直接或间接继承于InputStream抽象类。
+
+InputStream抽象类中提供的数据主要操作方法如下：
+
+- int read();
+- int read(byte[] b);
+- int read(byte[] b,int off,int length);
+- void close();
+- int avaliable();
+- long skip(long l);
+- boolean marksupported();
+- void mark(int markaresa);
+- void reset();
+
+使用输入数据流时的注意事项：
+
+- 尽量使用以系统支持的最大容量的块为单位的BufferedInputStream类进行数据输入。
+
+  
+
+### 输出数据流
+
+简介：输出数据流是指，能将计算机内的数据输出到指定的数据源中，但是不能读取数据源中的数据。用于计算机内的数据输出。
+
+与输入数据流InputStraem流类似，java.io包下的输出数据流实现类都直接或间接继承于OutputStream.
+
+OutputStream 抽象类中提供了如下数据流的操作方法：
+
+- void write(int i);
+- void write(byte[] b);
+- void write(byte[] b ,int off ,int length);
+- void close();
+- void flush();
+
+使用输出数据流时的注意事项：
+
+- 尽量使用以系统支持的最大容量的块为单位的BufferedOutputStream类进行数据输出。
+- 在输入完数据后调用flush，将内存中缓存的内容输入到目标源。然后关闭流。
+
+## 基本字节类型的数据流
+
+### 文件数据流
+
+FileInputStream
+
+FileOutputStream
+
+案例example：
+
+```java
+public class FileOutputStreamTest {
+
+    public static void learnFileOutputStream1(){
+        FileOutputStream fOut = null;
+        try {
+            fOut = new FileOutputStream("myFile.dat");
+            fOut.write('H');
+            fOut.write(69);
+            fOut.write(76);
+            fOut.write('L');
+            fOut.write('O');
+            fOut.write('!');
+            fOut.flush();
+            fOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void learnFileInputStream(){
+        FileInputStream fInput = null;
+        try {
+            fInput = new FileInputStream("myFile.dat");
+            while (fInput.available()>0){
+                System.out.print(fInput.read()+"\t");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                fInput.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args){
+        learnFileInputStream();
+    }
+}
+
+```
+
+### 过滤器数据流
+
+简介：过滤器（filter）流，它是数据流的一个装饰流。如：BufferedInputStream BufferedOutputStream 等。
+
+#### 缓存区数据流
+
+BufferedInputStream
+
+BufferedOutputStream
+
+构造方法：
+
+```java
+public BufferedInputStream(InputStream var1)// 使用默认的缓存区8192创建 
+public BufferedInputStream(InputStream var1, int var2)//使用指定的var2的值为缓存区创建
+  public BufferedOutputStream(InputStream var1)// 使用默认的缓存区8192创建 
+public BufferedOutputStream(InputStream var1, int var2)//使用指定的var2的值为缓存区创建
+```
+
+#### java基本类型（Data）数据流
+
+DataInputStream 
+
+DataOutputStream
+
+构造方法：
+
+```java
+public DataInputStream(InputStream var1)
+    public DataOutputStream(OutputStream var1)
+```
+
+```java
+    public static void learnDataOutputStream(){
+        DataOutputStream dOut = null;
+        try {
+            dOut = new DataOutputStream(new FileOutputStream("dataFile.dat"));
+//            dOut.writeBoolean(false);
+//            dOut.writeBoolean(true);
+//            dOut.writeChar('H');
+            dOut.writeInt(19);
+            dOut.flush();
+            dOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void learnDataInputStream(){
+        DataInputStream dInput = null;
+        try {
+            dInput = new DataInputStream(new FileInputStream("dataFile.dat"));
+            while (dInput.available()>0){
+                System.out.print(dInput.readInt()+"\t");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                dInput.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+```
+
+DataInputStream or DataOutputStream 使用注意事项：
+
+- 这两个类都是用来存储java基本数据类型的。
+- 写入的是什么类型，读取的时候就使用对应的类型获取。
+
+#### 对象流
+
+简介：主要用来保存某一时态时的对象状态
+
+ObjectInputStream
+
+ObjectOutputStream
+
+注意事项：
+
+- 被转化为流的对象类必须是被标记为序列化的类。也就是实现了Serializable接口的类。
+- serialversionUID的值在实现Serializable接口后，自己生成，因为反序列化时会判断此值，如果不手动生成的话。当类的内容有所变动时，系统默认生成的值会和序列化时的值出现偏差。当有偏差时反序列化就不能正常执行。
+- ObjectOutputStram 将对象转化成流时只能保存变量的值，并没有保存方法内容。静态成员变量也不会被保存
+- ObjectOutputStram 将对象转化成流时变量的访问权限是无效的。如果想忽略某个成员变量可以使用transient关键字修饰
+- 当一个成员变量引用一个类时，只要类实现了Serializable接口是可以自动嵌套序列化的。所以这个序列化过程可以递归执行
+- 序列化的操作对数据来说是不安全的，因为访问权限修饰符是无效的
+
+案例example：
+
+```java
+public class Student implements Serializable {
+
+    private static final long serialVersionUID = 3040035028056125404L;
+
+    public transient String name;
+
+    final int age = 18;
+
+    public  String studentId ;
+
+    public Student(String name){
+        this.name = name;
+    }
+
+    public void studyMath(){
+
+        System.out.println("my name is "+name);
+        System.out.println("Good good Study day day up");
+    }
+}
+```
+
+```java
+    public static void studyObjectInputStream(){
+        ObjectInputStream oin = null;
+        try {
+            oin = new ObjectInputStream(new FileInputStream("objectFile.ser"));
+            Student s = (Student) oin.readObject();
+            s.studyMath();
+//            System.out.println("your name:"+s.name);
+            System.out.println("your age:"+s.age);
+            System.out.println("your studentId:"+s.studentId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                oin.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void studyObjectOutputStream(){
+        ObjectOutputStream oOut = null;
+        try {
+            oOut = new ObjectOutputStream(new FileOutputStream("objectFile.ser"));
+            oOut.writeObject(new Student("Tom"));
+            oOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                oOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+```
+
+## 基本字符类型的数据流
+
+Reader and Writer.
+
+java.io包中的Reader和Writer的抽象类是所有字符流处理的超类.
+
+java同其他程序设计（programming）语言使用的字符集不同。java采用Unicode  而大多数老式编程语言如c采用ASCII.
+
+ASCII 使用一个字节（8bit）表示一个字符，而Unicode使用两个字节（16bit）表示一个字符.
+
+### InputStreamReader
+
+字符流输入处理实现类，它可以设置处理字符的字符集
+
+构造方法：
+
+```java
+public InputStreamReader(InputStream var1, String var2)
+```
+
+### OutputStreamWriter
+
+字符流输出处理实现类，它可以设置处理字符的字符集
+
+构造方法：
+
+```java
+public OutputStreamWriter(OutputStream var1, String var2) 
+```
+
+### BufferedReader
+
+带缓存的读者类
+
+### BufferedWriter
+
+带缓存的写者类
+
+## 文件处理
+
+java中的文件处理主要使用java.io.File类
+
+```java
+    public static void studyFile(){
+        File f = new File("src/main/java/Chapter7/Student.java");
+        System.out.println("The file is exists? -->"+f.exists());
+        System.out.println("The file can write -->"+f.canWrite());
+        System.out.println("The file can read -->"+f.canRead());
+        System.out.println("The file is a file -->"+f.isFile());
+        System.out.println("The file is a directory -->"+f.isDirectory());
+        System.out.println("The file is absolute path -->"+f.isAbsolute());
+        System.out.println("The file's name is -->"+f.getName());
+        System.out.println("The file's path is -->"+f.getPath());
+        System.out.println("The file's absolute path is -->"+f.getAbsolutePath());
+    }
+```
+
+### RandomAccessFile
+
+指定位置的访问文件类
+
+```java
+    public static void studyRandomAccessFile(){
+        RandomAccessFile raf = null;
+        try {
+            raf = new RandomAccessFile("src/main/java/Chapter7/Student.java","rw");
+            raf.seek(10);
+            System.out.println("point site:"+raf.getFilePointer());
+            System.out.println("context is :"+raf.readLine());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                raf.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+```
+
+# 图形界面设计
+
+## Awt与Swing
+
+knowledge point:
+
+1.图形用户界面（Graphical user interface ）简称GUI。
+
+2.java.awt 或 javax.swing包含了多种用于创建图形用户界面的组件类
+
+3.设计用户图形界面的步骤，选取组件——》设计布局——》响应事件
+
+4.awt 与swing组件最大的不同是swing组件在实现时不包含任何本地代码，因此swing组件可以不受硬件平台的限制。所以swing组件也被称为"轻量级"组件，而包含本地代码的awt被称为"重量级"组件。
+
+5.当重量级组件与轻量级组件一同使用时，如果组件区域有重叠，则"重量级"组件总是显示在最上面。
+
+6.组件是构成图形用户界面的基本元素。如JButton、JTextField等。
+
+7.组件可以划分为容器组件和非容器组件。
+
+## 容器
+
+knowledge point：
+
+1.容器组件是指可以包含其他组件的组件。
+
+2.容器可以分为顶层容器和一般容器。
+
+3.显示在屏幕上的所有非容器组件必须包含在某个容器中，有些容器是可以嵌套的，在这个嵌套层次的最外层，必须是一个顶层容器。
+
+4.Java为所有容器定义了父类Container。
+
+5.Swing 提供了4种顶层容器，分别为JFrame、JApplet、JDialog、JWindow。
+
+6.关于JFrame 的example：
+
+```java
+package chapter8;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+
+/**
+ * @className JFrameDome
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/11 上午11:29
+ * @Vsersion 1.0
+ */
+public class JFrameDome {
+
+    public static void studyJFrame1(){
+        JFrame frame = new JFrame("JFrame Dome");
+        JButton button = new JButton("Press me");
+        frame.getContentPane().add(button, BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void studyJFrame2(){
+        JFrame frame = new JFrame("JFrame Dome");
+        JButton button = new JButton("Press me");
+        JPanel contentPane = new JPanel();
+        contentPane.setLayout(new BorderLayout());
+        frame.setContentPane(contentPane);
+        contentPane.add(button,BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void studyJFrame3(){
+        JFrame frame = new JFrame("Frame with Panel");
+        Container contentPane = frame.getContentPane();
+        contentPane.setBackground(Color.CYAN);
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.YELLOW);
+        JButton button = new JButton("Press me");
+        panel.add(button);
+        contentPane.add(panel,BorderLayout.SOUTH);
+        frame.setSize(300,200);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void studyJFrame4(){
+        JFrame frame = new JFrame("Frame with Panel and scrollPane");
+        frame.setSize(200,200);
+        Container contentPane = frame.getContentPane();
+        contentPane.setBackground(Color.CYAN);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(Color.YELLOW);
+        mainPanel.setSize(1000,600);
+
+        //button
+        JButton button = new JButton("Press me");
+
+        mainPanel.add(button);
+
+        //ScrollPane
+        JScrollPane scrollPane = new JScrollPane(contentPane);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+
+        contentPane.add(scrollPane,BorderLayout.SOUTH);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }
+
+
+    public static void studyJLabel(){
+       JFrame frame = new JFrame("JFrame with JLabel");
+        Container contentPane = frame.getContentPane();
+
+        JLabel label = new JLabel("This  is label title");
+        contentPane.add(label,BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args){
+        studyJFrame1();
+    }
+}
+
+```
+
+### 内容窗格
+
+knowledge point：
+
+1.获取内容窗格的2种方式：
+
+​	a).JFrame下的getContentPane()
+
+​	b).new JPanel,然后将新创建的JPanel通过JFrame的setContentPane放入。
+
+### 面板
+
+knowledge point：
+
+1.JPanel普通面板 ，JScrollPane滚动面板
+
+2.面板不能单独存在，它需要被放入到顶层容器中，并且它自身是可以嵌套的。
+
+3.关于面板的example：
+
+```java
+        JFrame frame = new JFrame("Frame with Panel and scrollPane");
+        frame.setSize(200,200);
+        Container contentPane = frame.getContentPane();
+        contentPane.setBackground(Color.CYAN);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(Color.YELLOW);
+        mainPanel.setSize(1000,600);
+
+        //button
+        JButton button = new JButton("Press me");
+
+        mainPanel.add(button);
+
+        //ScrollPane
+        JScrollPane scrollPane = new JScrollPane(contentPane);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+
+        contentPane.add(scrollPane,BorderLayout.SOUTH);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+```
+
+## 标签及按钮
+
+### 标签
+
+knowledge point：
+
+1.JLable 标签类。
+
+example：
+
+```java
+       JFrame frame = new JFrame("JFrame with JLabel");
+        Container contentPane = frame.getContentPane();
+
+        JLabel label = new JLabel("This  is label title");
+        contentPane.add(label,BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+```
+
+
+
+### 按钮
+
+#### 普通按钮
+
+knowledge point：
+
+1. JButton
+
+   ```java
+           JFrame frame = new JFrame("JFrame Dome");
+           JButton button = new JButton("Press me");
+           JPanel contentPane = new JPanel();
+           contentPane.setLayout(new BorderLayout());
+           frame.setContentPane(contentPane);
+           contentPane.add(button,BorderLayout.CENTER);
+           frame.pack();
+           frame.setVisible(true);
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   ```
+
+   
+
+#### 切换按钮
+
+knowledge point:
+
+1.JToggle
+
+example:
+
+```java
+package chapter8;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+/**
+ * @className JButtonExample
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/11 下午2:56
+ * @Vsersion 1.0
+ */
+public class JButtonExample extends WindowAdapter implements ActionListener {
+
+    JFrame f;
+    JToggleButton b;
+    JToggleButton b2;
+    JToggleButton b3;
+    JTextField tf;
+    int tag = 0;
+
+    public static void main(String[] args){
+        JButtonExample be = new JButtonExample();
+        be.go();
+    }
+
+    private void go() {
+        f = new JFrame("JFrame Example");
+        b = new JToggleButton("press",false);
+        b.addActionListener(this);
+        tf = new JTextField();
+        f.getContentPane().add(tf,BorderLayout.CENTER);
+        f.addWindowListener(this);
+        f.setSize(300,150);
+        f.setVisible(true);
+
+        b2 = new JToggleButton("装饰",false);
+        b2.setEnabled(false);
+        b3 = new JToggleButton("装饰",false);
+        b3.setEnabled(false);
+        JPanel buttonPane = new JPanel();
+        buttonPane.add(b);
+        buttonPane.add(b2);
+        buttonPane.add(b3);
+        f.getContentPane().add(buttonPane, BorderLayout.NORTH);
+    }
+
+    public void pressStatus(){
+        tf.setText("You have pressed the Button!");
+        tag = 1;
+        b.setSelected(true);
+        b.setText("Spring");
+    }
+
+    public void springStatus(){
+        tf.setText("You do another time!");
+        tag = 0;
+        b.setSelected(false);
+        b.setText("Press");
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        if(tag==0){
+            pressStatus();
+        }else {
+            springStatus();
+        }
+    }
+
+    @Override
+    public void windowClosing(WindowEvent windowEvent) {
+        System.exit(0);
+    }
+}
+
+```
+
+
+
+#### 复选按钮
+
+knowledge option:
+
+1.JCheckBox
+
+#### 单选按钮
+
+knowledge option:
+
+1.JRadioButton
+
+2.需要加入按钮组从而保证只有一个选项被选中
+
+example:
+
+```java
+package chapter8;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+/**
+ * @className TowStateButtonDome
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/11 下午3:38
+ * @Vsersion 1.0
+ */
+public class TowStateButtonDome implements ItemListener, ActionListener {
+
+    JFrame frame;
+
+    JButton clearButton;
+
+    JCheckBox cb1;
+    JCheckBox cb2;
+    JCheckBox cb3;
+    JCheckBox cb4;
+    JCheckBox cb5;
+    JCheckBox cb6;
+
+    JRadioButton rb1;
+    JRadioButton rb2;
+    JRadioButton rb3;
+    JRadioButton rb4;
+    JRadioButton rb5;
+    JRadioButton rb6;
+
+    JTextArea ta;
+
+
+    public TowStateButtonDome(){
+        this.frame = new JFrame("Two states Button Dome");
+
+        this.cb1 = new JCheckBox("JCheckBox 1");
+        this.cb2 = new JCheckBox("JCheckBox 2");
+        this.cb3 = new JCheckBox("JCheckBox 3");
+        this.cb4 = new JCheckBox("JCheckBox 4");
+        this.cb5 = new JCheckBox("JCheckBox 5");
+        this.cb6 = new JCheckBox("JCheckBox 6");
+
+        this.rb1 = new JRadioButton("JRadioButton 1");
+        this.rb2 = new JRadioButton("JRadioButton 2");
+        this.rb3 = new JRadioButton("JRadioButton 3");
+        this.rb4 = new JRadioButton("JRadioButton 4");
+        this.rb5 = new JRadioButton("JRadioButton 5");
+        this.rb6 = new JRadioButton("JRadioButton 6");
+
+        this.ta = new JTextArea();
+        this.clearButton = new JButton("clear");
+    }
+
+    public static void main(String[] args){
+        TowStateButtonDome tbd = new TowStateButtonDome();
+        tbd.go();
+    }
+
+    private void go() {
+        //panel
+        JPanel p1 = new JPanel();
+        JPanel p2 = new JPanel();
+        JPanel p3 = new JPanel();
+        JPanel p4 = new JPanel();
+        JPanel p5 = new JPanel();
+        JPanel pa = new JPanel();
+        JPanel pb = new JPanel();
+
+        JPanel topPane = new JPanel();
+
+
+        p1.add(cb1);
+        p1.add(cb2);
+        p1.add(cb3);
+
+        Border etched = BorderFactory.createEtchedBorder();
+        Border border = BorderFactory.createTitledBorder(etched,"JCheckBox");
+        p1.setBorder(border);
+
+        p2.add(cb4);
+        p2.add(cb5);
+        p2.add(cb6);
+
+        border = BorderFactory.createTitledBorder(etched,"JCheckBox Group");
+        p2.setBorder(border);
+
+        ButtonGroup group1 = new ButtonGroup();
+        group1.add(cb4);
+        group1.add(cb5);
+        group1.add(cb6);
+
+        p3.add(rb1);
+        p3.add(rb2);
+        p3.add(rb3);
+
+        border = BorderFactory.createTitledBorder(etched,"JRadioButton");
+        p3.setBorder(border);
+
+        p4.add(rb4);
+        p4.add(rb5);
+        p4.add(rb6);
+        border = BorderFactory.createTitledBorder(etched,"JRadioButton Group");
+        p4.setBorder(border);
+
+        ButtonGroup group2 = new ButtonGroup();
+
+        group2.add(rb4);
+        group2.add(rb5);
+        group2.add(rb6);
+
+
+        JScrollPane jp = new JScrollPane(ta);
+        p5.setLayout(new BorderLayout());
+        p5.add(jp);
+        border = BorderFactory.createTitledBorder(etched,"Results");
+        p5.setBorder(border);
+
+        cb1.addItemListener(this);
+        cb2.addItemListener(this);
+        cb3.addItemListener(this);
+        cb4.addItemListener(this);
+        cb5.addItemListener(this);
+        cb6.addItemListener(this);
+
+        rb1.addActionListener(this);
+        rb2.addActionListener(this);
+        rb3.addActionListener(this);
+        rb4.addActionListener(this);
+        rb5.addActionListener(this);
+        rb6.addActionListener(this);
+        clearButton.addActionListener(this);
+
+        pa.setLayout(new GridLayout(0,1));
+        pa.add(p1);
+        pa.add(p2);
+
+        pb.setLayout(new GridLayout(0,1));
+        pb.add(p3);
+        pb.add(p4);
+        topPane.add(this.clearButton);
+
+        Container contentPane = frame.getContentPane();
+        contentPane.setLayout(new GridLayout(0,1));
+        contentPane.add(topPane);
+        contentPane.add(pa);
+        contentPane.add(pb);
+        contentPane.add(p5);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+
+    }
+
+    public void itemStateChanged(ItemEvent itemEvent) {
+        JCheckBox cb = (JCheckBox) itemEvent.getSource();
+        if(cb == cb1){
+            ta.append("\n JCheckBox button 1 "+cb1.isSelected());
+        }else if(cb == cb2){
+            ta.append("\n JCheckBox button 2 "+cb2.isSelected());
+        }else if(cb == cb3){
+            ta.append("\n JCheckBox button 3 "+cb3.isSelected());
+        }else if(cb == cb4){
+            ta.append("\n JCheckBox button 4 "+cb4.isSelected());
+        }else if(cb == cb5){
+            ta.append("\n JCheckBox button 5 "+cb5.isSelected());
+        }else if(cb == cb6){
+            ta.append("\n JCheckBox button 6 "+cb6.isSelected());
+        }
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        if(actionEvent.getSource() instanceof JRadioButton){
+            JRadioButton rb = (JRadioButton) actionEvent.getSource();
+
+            if(rb == rb1){
+                ta.append("\n You selected RadioButton 1 "+rb1.isSelected());
+            }else if(rb == rb2){
+                ta.append("\n You selected RadioButton 2 "+rb2.isSelected());
+            }else if(rb == rb3){
+                ta.append("\n You selected RadioButton 3 "+rb3.isSelected());
+            }else if(rb == rb4){
+                ta.append("\n You selected RadioButton 4 "+rb4.isSelected());
+            }else if(rb == rb5){
+                ta.append("\n You selected RadioButton 5 "+rb5.isSelected());
+            }else if(rb == rb6){
+                ta.append("\n You selected RadioButton 6 "+rb6.isSelected());
+            }
+        }else if(actionEvent.getSource() instanceof JButton){
+            JButton b = (JButton) actionEvent.getSource();
+
+            if(b == clearButton){
+                ta.setText("");
+            }
+        }
+    }
+}
+
+```
+
+## 布局管理器
+
+knowledge option：
+
+1.布局用来管理容器中各组件的位置分布。
+
+### 流式布局（Flow layout）
+
+knowledge option:
+
+1.JPanel 的默认布局方式就是流式布局
+
+流式布局如下代码所示
+
+```java
+package chapter8;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class FlowLayoutDemo{
+
+	private JFrame frame;
+	private JButton button1,button2,button3;
+
+
+	public FlowLayoutDemo(){
+	
+		this.frame = new JFrame("Flow Layout");
+		this.button1 = new JButton("ok");
+		this.button2 = new JButton("open");
+		this.button3 = new JButton("close");
+	}
+
+	public static void main(String[] args){
+		FlowLayoutDemo fld = new FlowLayoutDemo();
+		fld.go();
+	}
+
+	public void go(){
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(new FlowLayout());
+		contentPane.add(button1);
+		contentPane.add(button2);
+		contentPane.add(button3);
+		
+		frame.setSize(200,100);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}
+```
+
+
+
+### 边界布局（Border layout）
+
+knowledge option：
+
+1.内容窗口的默认布局为Border layout
+
+borderlayout布局如下代码所示
+
+```java
+package chapter8;
+
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.*;
+
+public class BorderLayoutDemo extends WindowAdapter {
+
+	private JFrame frame;
+	private JButton button1,button2,button3,button4,button5;
+
+	public BorderLayoutDemo(){
+
+		this.frame = new JFrame("Border Layout");
+		this.button1 = new JButton("button1");
+		this.button2 = new JButton("button2");
+		this.button3 = new JButton("button3");
+		this.button4 = new JButton("button4");
+		this.button5 = new JButton("button5");
+	}
+
+	public static void main(String[] args){
+
+		BorderLayoutDemo bld = new BorderLayoutDemo();
+		bld.go();
+	}
+
+	public void go(){
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.add(button1,BorderLayout.EAST);
+		contentPane.add(button2,BorderLayout.SOUTH);
+		contentPane.add(button3,BorderLayout.WEST);
+		contentPane.add(button4,BorderLayout.NORTH);
+		contentPane.add(button4,BorderLayout.CENTER);
+		frame.setSize(350,200);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	@Override
+	public void windowClosing(WindowEvent windowEvent) {
+		super.windowClosing(windowEvent);
+		System.exit(0);
+	}
+}
+
+```
+
+
+
+### 网格布局（Grid layout）
+
+knowledge option:
+
+Gridlayout 是一种网格式的布局管理器，它将容器空间划分成若干行乘若干列的网格，组件依次放入其中，每个组件占一格。
+
+example：
+
+```java
+package chapter8;
+
+
+import java.awt.*;
+import javax.swing.*;
+
+public class GirdLayoutDemo extends JFrame{
+
+	private JButton b1,b2,b3,b4,b5,b6;
+
+	GirdLayoutDemo(){
+
+		setTitle("Grid example");
+		Container contentPane = getContentPane();
+		contentPane.setPreferredSize(new Dimension(400,350));
+		contentPane.setLayout(new GridLayout(3,2));
+		b1 = new JButton("grid_1");
+		b2 = new JButton("grid_2");
+		b3 = new JButton("grid_3");
+		b4 = new JButton("grid_4");
+		b5 = new JButton("grid_5");
+		b6 = new JButton("grid_6");
+		contentPane.add(b1);
+		contentPane.add(b2);
+		contentPane.add(b3);
+		contentPane.add(b4);
+		contentPane.add(b5);
+		contentPane.add(b6);
+		pack();
+		setVisible(true);
+	}
+
+	public static void main(String[] args){
+		GirdLayoutDemo gld = new GirdLayoutDemo();
+		gld.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}
+
+```
+
+
+
+### 卡片布局   (Card layout)
+
+knowledge point:
+
+card layout 是一种卡片式布局管理器，它将容器中的组件处理为一系列的卡片，每一时刻显示其中的一张。
+
+```java
+package chapter8;
+
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class CardLayoutDemo extends MouseAdapter{
+
+	JPanel p1,p2,p3;
+	JLabel l1,l2,l3;
+	CardLayout myCard;
+	JFrame frame;
+
+	Container contentPane;
+
+	public static void main(String[] args){
+		
+		CardLayoutDemo that = new CardLayoutDemo();
+		that.go();
+		that.rotation();
+	}
+
+	public void go(){
+		frame = new JFrame("Card Test");
+		contentPane = frame.getContentPane();
+		myCard = new CardLayout();
+		contentPane.setLayout(myCard);
+		p1 = new JPanel();
+		p2 = new JPanel();
+		p3 = new JPanel();
+		l1 = new JLabel("This is the first JPanel");
+		p1.add(l1);
+		p1.setBackground(Color.green);
+		l2 = new JLabel("This is the second JPanel");
+		p2.add(l2);
+		p2.setBackground(Color.yellow);
+		l3 = new JLabel("This is the thrid JPanel");
+		p3.add(l3);
+		p3.setBackground(Color.magenta);
+		p1.addMouseListener(this);
+		p2.addMouseListener(this);
+		p3.addMouseListener(this);
+		contentPane.add(p1,"First");
+		contentPane.add(p2,"Second");
+		contentPane.add(p3,"Third");
+		myCard.show(contentPane,"First");
+		frame.setSize(300,200);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+	public void rotation(){
+
+		while(true){
+			
+			System.out.println("start");
+			myCard.next(contentPane);
+			try {
+				Thread.sleep(1000l);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void mouseClicked(MouseEvent e){
+
+		myCard.next(contentPane);
+	}
+}
+
+```
+
+
+
+### 盒子布局（Box layout）
+
+knowledge point：
+
+boxLayout 是一种特殊的布局管理器，它将容器中的组件按照水平方向组成一行，垂直方向组成一列。当组成行时，组件与组件间可以设定不同的宽度，当组成列时组件与组件间可以有不同的高度。
+
+example：
+
+```java
+package chapter8;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class BoxLayoutDemo{
+
+	private JFrame frame;
+	private JPanel pv,ph;
+	public static void main(String[] args){
+		BoxLayoutDemo that = new BoxLayoutDemo();
+		that.go();
+	}
+
+	void go(){
+		
+		frame = new JFrame("Box Layout example");
+		Container contentPane = frame.getContentPane();
+		pv = new JPanel();
+		pv.setLayout(new BoxLayout(pv,BoxLayout.Y_AXIS));
+		pv.add(new JLabel("First"));
+		pv.add(new JLabel("Second"));
+		pv.add(new JLabel("Thrid"));
+		contentPane.add(pv,BorderLayout.CENTER);
+		ph = new JPanel();
+		ph.setLayout(new BoxLayout(ph,BoxLayout.X_AXIS));
+		ph.add(new JButton("yes"));
+		ph.add(new JButton("no"));
+		ph.add(new JButton("cancel"));
+		contentPane.add(ph,BorderLayout.SOUTH);
+		frame.pack();
+		frame.setVisible(true);
+	}
+}
+
+```
+
+
+
+### 空布局
+
+knowledge point:
+
+空布局就是不使用布局，通过组件中的setBounds方法来设定组件的位置和大小。
+
+example：
+
+```java
+package chapter8;
+
+import java.awt.*;
+import javax.swing.*;
+
+
+public class NullLayoutDemo{
+
+	private JFrame frame;
+	private JButton b1,b2,b3;
+	public static void main(String[] args){
+		NullLayoutDemo that = new NullLayoutDemo();
+		that.go();
+	}
+
+	void go(){
+	
+		frame = new JFrame("Null Layout example");
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(null);
+		b1 = new JButton("yes");
+		b2 = new JButton("no");
+		b3 = new JButton("cancel");
+		contentPane.add(b1);
+		contentPane.add(b2);
+		contentPane.add(b3);
+		b1.setBounds(30,15,75,20);
+		b2.setBounds(60,60,75,50);
+		b3.setBounds(160,20,75,30);
+		frame.setSize(300,200);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}
+```
+
+## 事件处理
+
+knowledge point：
+
+用户事件：程序里用户的操作称为用户事件。
+
+事件处理：对用户事件的响应称为事件处理
+
+### 事件的种类
+
+|   事件类型   |                          组件                          |    接口名称    |                          方法及说明                          |
+| :----------: | :----------------------------------------------------: | :------------: | :----------------------------------------------------------: |
+| action event | JButton、JCheckBox、JComboBox、JMenuItem、JRadioButton | ActionListener | actionPerformed(Action Event)单机按钮、选择菜单 项目或在文本框中按enter键时 |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+|              |                                                        |                |                                                              |
+
+
+
+### 事件适配器
+
+knowledge point：
+
+适配器主要是针对接口使用的优化，它实现了多个接接口，但是方法体内是空的，自己使用时只需要继承它并重写需要使用的方法。
+
+# swing组件
+
+## 组合框（JComboBox）
+
+```java
+package chapter9;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * @className JComboBoxDemo
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/18 下午3:14
+ * @Vsersion 1.0
+ */
+public class JComboBoxDemo implements ActionListener {
+
+    JFrame frame;
+    JComboBox<String> jcb1,jcb2;
+    JTextArea textArea;
+
+    public JComboBoxDemo(){
+        frame = new JFrame("JComboBox DEmo");
+        String[] list = {"one","tow","three","four","five"};
+        jcb1 = new JComboBox<String>(list);
+        jcb2 = new JComboBox<String>();
+        jcb2.addItem("six");
+        jcb2.addItem("seven");
+        jcb2.addItem("eight");
+        jcb2.addItem("nine");
+        jcb2.addItem("ten");
+        jcb2.setEnabled(true);
+        textArea = new JTextArea();
+    }
+
+    public static void main(String[] args){
+        JComboBoxDemo m = new JComboBoxDemo();
+        m.go();
+    }
+
+    private void go() {
+        JPanel p1 = new JPanel();
+        JPanel p2 = new JPanel();
+        JPanel p3 = new JPanel();
+        JPanel p4 = new JPanel();
+
+        p1.add(jcb1);
+        jcb1.setSelectedIndex(3);
+        Border etchedBorder = BorderFactory.createEtchedBorder();
+        Border border = BorderFactory.createTitledBorder(etchedBorder,"uneditable jCombobox");
+        p1.setBorder(border);
+        p2.add(jcb2);
+        p2.setBorder(BorderFactory.createTitledBorder(etchedBorder,"editable jComboBox"));
+        JScrollPane jp = new JScrollPane(textArea);
+        p3.add(jp);
+        p3.setBorder(BorderFactory.createTitledBorder(etchedBorder,"result"));
+        jcb1.addActionListener(this);
+        jcb2.addActionListener(this);
+        p4.setLayout(new GridLayout(0,1));
+        p4.add(p1);
+        p4.add(p2);
+        Container contentPane = frame.getContentPane();
+        contentPane.setLayout(new GridLayout(0,1));
+        contentPane.add(p3);
+        contentPane.add(p4);
+
+        frame.setSize(300,400);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        JComboBox jcb = (JComboBox) actionEvent.getSource();
+        if(jcb == jcb1){
+            jcb2.insertItemAt((String) jcb1.getSelectedItem(),0);
+            textArea.append("\n item "+jcb1.getSelectedItem()+" inserted");
+        }else if(jcb == jcb2){
+            textArea.append("\n item "+jcb2.getSelectedItem()+" inserted");
+            jcb2.addItem((String) jcb2.getSelectedItem());
+        }
+    }
+}
+
+```
+
+
+
+## 列表（JList）
+
+```java
+package chapter9;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * @className JListDemo
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/18 下午4:56
+ * @Vsersion 1.0
+ */
+public class JListDemo implements ActionListener {
+
+    JFrame frame;
+    JList list;
+    DefaultListModel listModel;
+    JPanel panel;
+    JTextField textField;
+    JButton button;
+
+    public JListDemo(){
+        frame = new JFrame("JList Demo");
+        listModel = new DefaultListModel();
+        listModel.addElement("one");
+        listModel.addElement("two");
+        listModel.addElement("three");
+        listModel.addElement("four");
+        list = new JList(listModel);
+        panel = new JPanel();
+        textField  = new JTextField(15);
+        button = new JButton("add new item");
+
+    }
+
+    public static void main(String[] args){
+        new JListDemo().go();
+    }
+
+    private void go() {
+        button.addActionListener(this);
+        JScrollPane jsp = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        Container contentPane = frame.getContentPane();
+        contentPane.add(jsp);
+        panel.add(textField);
+        panel.add(button);
+        contentPane.add(panel, BorderLayout.SOUTH);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        listModel.addElement(textField.getText());
+    }
+}
+
+```
+
+
+
+## 文本域（JTextField）和 文本区(JTextArea)
+
+```java
+package chapter9;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * @className JTextAreaDemo
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/18 下午4:25
+ * @Vsersion 1.0
+ */
+public class JTextAreaDemo implements ActionListener {
+
+    JFrame frame;
+    JTextArea textArea1,textArea2;
+    JButton copy,clear;
+
+    public JTextAreaDemo(){
+        frame = new JFrame("JTextArea Demo");
+        textArea1 = new JTextArea(3,15);
+        textArea2 = new JTextArea(7,20);
+        copy = new JButton("copy");
+        clear = new JButton("clear");
+    }
+
+
+    public static void main(String[] args){
+        JTextAreaDemo m = new JTextAreaDemo();
+        m.go();
+    }
+
+    private void go() {
+        textArea1.setSelectionColor(Color.RED);
+        textArea2.setEnabled(false);
+        JScrollPane jsp1 = new JScrollPane(textArea1,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane jsp2 = new JScrollPane(textArea2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        copy.addActionListener(this);
+        clear.addActionListener(this);
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        Border etchedBase = BorderFactory.createEtchedBorder();
+        panel1.setBorder(BorderFactory.createTitledBorder(etchedBase,"输入区"));
+        panel2.setBorder(BorderFactory.createTitledBorder(etchedBase,"复制区"));
+        panel1.add(jsp1);
+        panel1.add(copy);
+        panel2.add(jsp2);
+        panel2.add(clear);
+        Container contentPane = frame.getContentPane();
+        contentPane.add(panel1,BorderLayout.CENTER);
+        contentPane.add(panel2, BorderLayout.SOUTH);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        JButton button = (JButton) actionEvent.getSource();
+        if(button == copy){
+            if(textArea1.getSelectedText()!=null){
+                textArea2.append(textArea1.getSelectedText()+"\n");
+            }else{
+                textArea2.append(textArea1.getText()+"\n");
+            }
+        }else if(button ==clear){
+            textArea2.setText("");
+        }
+    }
+}
+
+```
+
+
+
+## 菜单栏（JMenuBar）
+
+```java
+package chapter9;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.security.Key;
+
+/**
+ * @className MenuDemo
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/18 上午10:15
+ * @Vsersion 1.0
+ */
+public class MenuDemo implements ItemListener, ActionListener {
+
+    JFrame frame;
+    JTextField ft;
+    JMenuBar menuBar;
+    JDialog backgroundDialog;
+
+
+    public MenuDemo(){
+        this.frame = new JFrame("Menu Demo");
+        this.ft = new JTextField();
+        this.menuBar = new JMenuBar();
+
+    }
+
+    public static void main(String[] args){
+        MenuDemo md = new MenuDemo();
+        md.go();
+    }
+
+    private void go() {
+        JMenu menu,submenu;
+        //menu file
+        menu = new JMenu("File");
+        frame.setJMenuBar(menuBar);
+        menu.setMnemonic(KeyEvent.VK_F);
+        menu.add(menu);
+        menuBar.add(menu);
+        //menu item open
+        JMenuItem menuItem = new JMenuItem("open");
+        menuItem.setMnemonic(KeyEvent.VK_O);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,ActionEvent.ALT_MASK));
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        //menu item save
+        menuItem = new JMenuItem("save",KeyEvent.VK_S);
+        menuItem.addActionListener(this);
+        menuItem.setEnabled(false);
+        menu.add(menuItem);
+        //menu item close
+        menuItem = new JMenuItem("close",KeyEvent.VK_C);
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        menu.add(new JSeparator());
+        //menu item exit
+        menuItem = new JMenuItem("Exit",KeyEvent.VK_E);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,ActionEvent.ALT_MASK));
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        //menu option
+        menu = new JMenu("Option");
+        menuBar.add(menu);
+        menu.add("Font...");
+        //menu item color
+        submenu = new JMenu("Color...");
+        menu.add(submenu);
+        //menu item foreground
+        menuItem = new JMenuItem("Foreground");
+        menuItem.addActionListener(this);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,ActionEvent.ALT_MASK));
+        submenu.add(menuItem);
+        //menu item background
+        initialBackground(submenu,menu);
+        //check box menu
+        JCheckBoxMenuItem cm = new JCheckBoxMenuItem("Always on Top");
+        cm.addItemListener(this);
+        menu.add(cm);
+        menu.addSeparator();
+        JRadioButtonMenuItem rm = new JRadioButtonMenuItem("Small",true);
+        rm.addItemListener(this);
+        menu.add(rm);
+        ButtonGroup group = new ButtonGroup();
+        group.add(rm);
+        rm  = new JRadioButtonMenuItem("Large");
+        rm.addItemListener(this);
+        menu.add(rm);
+        group.add(rm);
+        //help of menu
+        menu = new JMenu("help");
+        menuBar.add(menu);
+        // menu item about
+        menuItem = new JMenuItem("about",new ImageIcon("duckWaveRed.gif"));
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        ft.setEnabled(false);
+        Container contentPane = frame.getContentPane();
+        contentPane.add(ft, BorderLayout.SOUTH);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300,200);
+        frame.setVisible(true);
+
+
+    }
+
+    private void initialBackground(JMenuItem submenu,JMenu menu) {
+        JMenuItem menuItem = new JMenuItem("background");
+        menuItem.addActionListener(this);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,ActionEvent.ALT_MASK));
+        submenu.add(menuItem);
+        menu.add(new JSeparator());
+
+        backgroundDialog = MyDialogFactory.getDialog(frame);
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        ft.setText(actionEvent.getActionCommand());
+        String menuName = actionEvent.getActionCommand();
+        if (menuName == "Exit"){
+            System.exit(0);
+        }else if(menuName == "background"){
+            backgroundDialog.setVisible(true);
+        }
+    }
+
+    public void itemStateChanged(ItemEvent itemEvent) {
+        int state = itemEvent.getStateChange();
+        JMenuItem menuItem = (JMenuItem) itemEvent.getSource();
+        if (state == ItemEvent.SELECTED){
+            ft.setText(menuItem.getText()+"Selected");
+        }else if(state == ItemEvent.DESELECTED){
+            ft.setText(menuItem.getText()+"deselected");
+        }
+    }
+}
+
+```
+
+## 对话框(JDialog)
+
+```java
+package chapter9;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * @className JDialogDemo
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/18 下午1:57
+ * @Vsersion 1.0
+ */
+public class JDialogDemo implements ActionListener {
+
+    JFrame frame;
+    JDialog dialog;
+    JButton button;
+
+    public JDialogDemo(){
+        frame = new JFrame("JDialog Demo");
+        dialog = new JDialog(frame,"Dialog",true);
+        dialog.setSize(600,400);
+        button = new JButton("Show Dialog");
+    }
+
+    public static void main(String[] args){
+        JDialogDemo jd = new JDialogDemo();
+        jd.go();
+    }
+
+    private void go() {
+        dialog.getContentPane().add(new Label("hello, I'm a Dialog"));
+        button.addActionListener(this);
+        frame.getContentPane().add(button, BorderLayout.SOUTH);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(200,150);
+        frame.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        dialog.setVisible(true);
+    }
+}
+
+```
+
+## JFileChooser
+
+```java
+package chapter9;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+/**
+ * @className JFileChooserDemo
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/18 下午2:35
+ * @Vsersion 1.0
+ */
+public class JFileChooserDemo implements ActionListener {
+
+    JFrame frame;
+    JFileChooser fc;
+    JTextField textField;
+    JButton openButton,saveButton,deletedButton;
+
+    public JFileChooserDemo(){
+        frame = new JFrame("JFile chooser demo");
+        fc = new JFileChooser();
+        textField = new JTextField();
+        openButton = new JButton("Open a file");
+        saveButton = new JButton("Save file");
+        deletedButton = new JButton("Deleted file");
+    }
+
+    public static void main(String[] args){
+        JFileChooserDemo m = new JFileChooserDemo();
+        m.go();
+    }
+
+    public void go(){
+        openButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        deletedButton.addActionListener(this);
+        JPanel jp = new JPanel();
+        jp.add(openButton);
+        jp.add(saveButton);
+        jp.add(deletedButton);
+        Container contentPane = frame.getContentPane();
+        contentPane.add(textField, BorderLayout.CENTER);
+        contentPane.add(jp, BorderLayout.SOUTH);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300,200);
+        frame.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent actionEvent) {
+        Object source = actionEvent.getSource();
+        if(source instanceof JButton){
+            JButton button = (JButton) source;
+            if(button == openButton){
+                int select = fc.showOpenDialog(frame);
+                if(select == JFileChooser.APPROVE_OPTION){
+                    File file =fc.getSelectedFile();
+                    textField.setText("Opening: "+file.getName());
+                }else {
+                    textField.setText("Open command cancelled by user");
+                }
+            }else if(button == saveButton){
+                int select = fc.showSaveDialog(frame);
+                if(select == JFileChooser.APPROVE_OPTION){
+                    File file = fc.getSelectedFile();
+                    textField.setText("Saving: "+file.getName());
+                }else{
+                    textField.setText("Save command cancelled by user");
+                }
+
+            }else if(button == deletedButton){
+                int select = fc.showDialog(frame, "删除");
+                if(select == JFileChooser.APPROVE_OPTION){
+                    File file = fc.getSelectedFile();
+                    textField.setText("deleting : "+file.getName());
+                }else{
+                    textField.setText("Delete command cancelled by user");
+                }
+            }
+        }
+    }
+}
+
+```
+
+
+
+# 多线程
+
+## 线程的理论知识
+
+### 线程的概念
+
+knowledge point:
+
+1.进程可以大致描述为，占用系统资源的一个程序。
+
+2.线程是进程中的产物。
+
+3.多个线程共享进程中的资源。而多个进程未必共享指定的系统资源。
+
+4.进程是有入口和出口的，而线程则没有，它需要依附于进程中的主线程或其余线程启动。
+
+5.线程间的切换速度高于进程间的切换速度。
+
+6.多线程程序可以充分利用系统资源，特别是CUP的使用效率。从而提高程序的整体执行效率
+
+7.Java中的线程执行顺序是抢占式的，而不是时间碎片式。
+
+### 线程的结构
+
+knowledge point：
+
+java中线程由以下3部分组成：
+
+1.虚拟CPU，封装在java.lang.Thread 类中，它控制着整个线程的运行。
+
+2.执行代码，传递给Thread类，有Thread类控制按序执行。
+
+3.处理的数据，传递给Thread类，是在代码执行过程中所要处理的数据。
+
+### 线程的状态
+
+knowledge point：
+
+线程的状态分为：
+
+1.新建 ：线程对象刚刚创建，还没有启动。此时还处于不可运行状态。此时刚创建的线程处于新建状态，但已有了相应的内存空间以及其他资源。
+
+2.可运行状态：此时的线程已经启动，处于线程的run()方法之中。这种情况下的线程可能正在运行，也可能没有运行。只要CPU一空闲，马上就会运行。可以运行但没有在运行的线程都排在一个队列中，这个队列称为就绪队列。可运行状态中，正在运行的线程处于运行状态，等待运行的线程处于就绪状态。一般的，单CPU情况下，最多只有一个线程处于运行状态，其余队列中的等待的线程处于就绪状态。
+
+3.死亡：线程死亡的原因有两个，1是run方法中最后一个语句执行完毕，2是当线程遇到异常退出时便进入了死亡状态。
+
+4.阻塞：阻塞状态时的线程不能进入等待队列，需要消除阻塞原因才可以进入等待队列,因被抢占而阻塞的线程会被放置队列的尾部
+
+5.中断线程：程序中使用Thread下的interrupt方法来终止线程。它不仅可以终止平常线程而且还可以终止blocked线程
+
+## 线程实践
+
+### 线程的创建
+
+knowledge point：
+
+1.通过继承Thread类并重写run方法来实现
+
+2.通过实现Runnable,并将其放入Thread类中实现
+
+评价：第一种方法方便灵活，当时局限于Java的单继承。第二种方法可以弥补第一种方法的缺陷。
+
+### 线程的启动
+
+通过创建线程对象然后调用其start方法
+
+### 线程的调度
+
+knowledge point:
+
+1.Java中，线程的调度通常是抢占式的，而不是时间碎片式。
+
+2.java线程调度采用的优先策略规则：
+
+- 优先级高的先执行，优先级低的后执行。
+- 每一个线程都必须被分配一个优先级，默认时子类继承父类的优先级。
+- 同优先级的线程按“先进先出”的规则执行。
+
+3.Thread类与线程有关的静态变量，如下：
+
+- MAX_PRIORITY 最大优先级，值为10.
+- MIN_PRIORITY 最小优先级，值为1.
+- NORM_PRIORITY 默认优先级，值为5.
+
+4.Thread类中有关优先级的几个常用方法如下：
+
+- setPriority(int newPriority)
+- getPriority()
+- yield（）
+
+### 线程的结束
+
+knowledge point：
+
+自然死亡：线程体run方法内的代码执行完毕。
+
+强迫死亡：因异常而终止的情况下。
+
+interrupt 可以中断线程的执行
+
+### 挂起线程
+
+knowledge point：
+
+sleep
+
+wait notify notifyAll
+
+join
+
+### 线程的互斥
+
+互斥的由来：
+
+通常情况下，一些运行的线程需要共享一些数据。此时，每个线程就必须要考虑与它一起共享数据的其他线程的状态与行为，否则就不能保证共享数据的一致性。因而也不能保证程序的正确性。
+
+举例说明：
+
+假设有一个MyStack类，类中的index是多个线程要操作的公共资源。如果不加对象互斥锁
+
+可以发现，输出的信息中出现了线程并发修改index的情况。
+
+总结：导致上述案例出现问题的原因是“对公共资源操作的不完整性”而产生的。
+
+如何解决上述问题呢？答案是使用对象互斥锁
+
+java中实现对象互斥锁的方法：
+
+- 使用关键字volatile 来声明一个共享数据（变量）
+- 使用关键字synchronized来声明操作共享数据的一个方法或一个代码块
+- 使用synchronized的代码区也称为临界区
+
+knowledge point：
+
+实现线程互斥时，run方法内操作的内容需要是多个线程共享的，static修饰可实现。如果其中的内容是属于每个线程对象的，则不能实现线程的互斥。也就是说想要被互斥的代码块必须是多个线程共享的内容。
+
+sleep 方法不会释放锁。而wait()会释放锁
+
+example：
+
+```java
+package chapter10;
+
+/**
+ * @className Stack
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/20 上午11:10
+ * @Vsersion 1.0
+ */
+public class MyStack {
+
+    static int index = 0;
+
+    public static void main(String[] args){
+        for(int i =0;i<10;i++){
+            Thread s = new Thread(new Containers(),"thread 1");
+            Thread s1 = new Thread(new Containers(),"thread 2");
+            s.start();
+            s1.start();
+
+        }
+
+    }
+    public void changeIndex(){
+        synchronized(this){
+            System.out.println(Thread.currentThread().getName()+"index: "+index);
+            try {
+                Thread.sleep(1000l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            index++;
+        }
+    }
+
+
+}
+
+class Containers implements Runnable{
+
+    public static MyStack myStack = new MyStack();
+
+    public void run() {
+        System.out.println("Mystack DI is:"+myStack);
+        myStack.changeIndex();
+    }
+}
+```
+
+```java
+package chapter10;
+
+/**
+ * @className MyStack2
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/20 下午2:25
+ * @Vsersion 1.0
+ */
+public class MyStack2 extends Thread {
+
+    static int index = 0;
+
+    public static synchronized void changeIndex(){
+        System.out.println("index: "+index);
+        try {
+            Thread.sleep(1000l);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        index++;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName());
+        changeIndex();
+    }
+
+    public static void main(String[] args){
+        for(int i=0;i<10;i++){
+            MyStack2 m = new MyStack2();
+            m.start();
+        }
+    }
+}
+
+class Runnable{
+    static int index = 0;
+
+    public void changeIndex(){
+        synchronized (this){
+            System.out.println(Thread.currentThread().getName()+"index: "+index);
+            try {
+                Thread.sleep(1000l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            index++;
+        }
+    }
+}
+
+```
+
+
+
+### 线程的同步
+
+线程同步的由来：
+
+主要是为了实现线程间的交互。
+
+案例说明：
+
+如，现在我们有3个类 生产者（producer）消费者（consumer）容器（Container），现在有一个需求，操作流程是这样的。生产者需要生产10个盘子（plate）到容器中，而消费者需要消费容器中的盘子。运行条件是1个消费者 2个生产者1个容器。要求用程序来模拟这个情景
+
+knowledge point：
+
+java中的每个对象实例都有2个线程队列和它相连。第一个是用来排列等待锁定标志的线程。第二个用来实现wait()和notify/notifyAll的交互机制
+
+wait、notify、notifyAll 只能在synchronized代码块中使用。
+
+```java
+package chapter10;
+
+/**
+ * @className ThreadStudy
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/20 下午3:53
+ * @Vsersion 1.0
+ */
+public class ThreadStudy {
+
+    public static Container container = new Container();
+
+    public static int totalPlate = 10;
+
+    public  void run(){
+        while (totalPlate>0){
+
+            Producer p1 = new Producer("producer 1号");
+            Consumer c1 = new Consumer("consumer 1号");
+            p1.start();
+            c1.start();
+            try {
+                Thread.sleep(1000l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.exit(0);
+    }
+
+    public static void main(String[] ars){
+        new ThreadStudy().run();
+    }
+}
+```
+
+```java
+package chapter10;
+
+/**
+ * @className Producer
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/20 下午3:55
+ * @Vsersion 1.0
+ */
+public class Producer extends Thread {
+
+    static int pNo = 1;
+
+    public Producer(String s) {
+        super();
+        setName(s);
+    }
+
+    public static void method1() {
+        if(ThreadStudy.totalPlate<=0||pNo>10){
+            return;
+        }
+        //此处锁不能是对象本身,如果是对象本身wait等待后者不能被唤醒,所以使用container当前消费者和生产者中间交互的容器.
+        synchronized (ThreadStudy.container) {
+            System.out.println(currentThread().getName() + " in start run");
+
+            System.out.println("生产了一个盘子,盘子号：" + pNo);
+            ThreadStudy.container.pushPlate(String.valueOf(pNo));
+            pNo++;
+            ThreadStudy.container.notifyAll();
+            try {
+                ThreadStudy.container.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        method1();
+    }
+}
+
+```
+
+```java
+package chapter10;
+
+import java.util.Vector;
+
+/**
+ * @className Container
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/19 下午1:34
+ * @Vsersion 1.0
+ */
+public class Container extends Vector {
+
+    public void pushPlate(String plate){
+        this.add(plate);
+    }
+
+    public String getPlate(){
+        String result = (String) firstElement();
+        remove(0);
+        return result;
+    }
+}
+
+```
+
+```java
+package chapter10;
+
+/**
+ * @className Consumer
+ * @Descirption
+ * @Author WengLiangBao
+ * @Date 2020/5/20 下午3:55
+ * @Vsersion 1.0
+ */
+public class Consumer extends Thread {
+
+    public Consumer(String s) {
+        super();
+        setName(s);
+    }
+
+    public static void method1() {
+        //此处锁不能是对象本身,如果是对象本身wait等待后者不能被唤醒,所以使用container当前消费者和生产者中间交互的容器.
+        if(ThreadStudy.totalPlate<=0){
+            return;
+        }
+        synchronized (ThreadStudy.container) {
+            Container container = ThreadStudy.container;
+            System.out.println(currentThread().getName() + " in start run");
+            if (container.size() > 0) {
+                System.out.println("消费了一个盘子，盘子号：" + container.getPlate());
+                ThreadStudy.totalPlate--;
+            } else {
+                System.out.println("没有盘子回去歇会吧！");
+            }
+            ThreadStudy.container.notifyAll();
+            try {
+                ThreadStudy.container.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        method1();
+    }
+}
+
+```
+
+# 包导入
+
+## 静态成员导入
+
+import static静态导入是JDK1.5中的新特性。
+
+　　一般我们导入一个类都用 import 包名.类名;
+
+　　而静态导入是这样：import static 包名.类名.*;
+
+　　这里的多了个static，还有就是类名后面多了个 .* 。意思是导入这个类里的静态成员（静态方法、静态变量）。当然，也可以只导入某个静态方法，只要把 .* 换成静态方法名就行了。然后在这个类中，就可以直接用方法名调用静态方法，而不必用“类名.方法名（）” 的方式来调用。
+
+这种方法的好处就是可以简化一些操作，例如一些工具类的静态方法，如果使了静态导入，就可以像使用自己的方法一样使用这些静态方法。
+
+　　不过在使用静态导入之前，我们必须了解下面几点：
+
+1. 静态导入可能会让代码更加难以阅读
+2. 如果同时导入的两个类中又有重命名的静态成员，会出现编译器错误。例如Integer类和Long类的MAX_VALUE。
+3. 可以导入的静态成员包括静态对象引用、静态常量和静态方法。

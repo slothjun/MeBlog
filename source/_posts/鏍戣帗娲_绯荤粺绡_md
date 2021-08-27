@@ -1,0 +1,20 @@
+---
+title: 树莓派-系统篇
+---
+
+## shell程序开机启动
+
+核心文件是 /etc/profile
+
+```linux
+vim /etc/profile
+
+#将需要开机自启动的文件路径加入
+/home/pi/text.sh
+```
+
+## 获取系统位数
+
+```linux
+getconf LONG_BIT
+```

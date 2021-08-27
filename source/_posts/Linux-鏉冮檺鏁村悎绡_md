@@ -1,0 +1,78 @@
+---
+title: Linux-权限整合篇
+---
+
+## 基本权限管理
+
+### chmod
+基本权限管理使用 chmod 命令
+
+如给一个文件设置属主，所属组，其他的权限如下所示
+```Linux
+spiderbao@spiderbao-CW65S:~/桌面$ touch test.txt
+spiderbao@spiderbao-CW65S:~/桌面$ chmod 774 test.txt 
+spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt 
+-rwxrwxr-- 1 spiderbao spiderbao 0 8月   5 16:29 test.txt*
+```
+给文件夹赋予权限同上所示，上面使用数字的方式给权限赋值，4表示读 ，2表示修改，1表示执行
+
+### chown
+
+chown 命令可以修改文件的所有者以及所属组
+
+案例：
+
+```linux
+#修改文件的所属组
+spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt 
+-rwxrwxr-- 1 spiderbao spiderbao 0 8月   5 16:29 test.txt*
+spiderbao@spiderbao-CW65S:~/桌面$ sudo chown spiderbao.ftp test.txt 
+spiderbao@spiderbao-CW65S:~/桌面$ ll test.txt 
+-rwxrwxr-- 1 spiderbao ftp 0 8月   5 16:29 test.txt*
+```
+## umask默认权限管理
+
+查看系统默认umask
+```linux
+spiderbao@spiderbao-CW65S:~/桌面$ umask -S
+u=rwx,g=rx,o=rx
+
+spiderbao@spiderbao-CW65S:~/桌面$ umask 
+0022
+```
+解析 umaks 0022 代表什么
+
+其中
+
+第一位 特殊权限位，如果是1表示文件具有SBIT权限，2表示具有SetGID权限，4表示具有SetUID权限，0表示站位符
+
+第二位 所属主位，4 （read），2 （write），1（execute）
+
+第三位 所属组位，4 （read），2 （write），1（execute）
+
+第四位 其他位，4 （read），2 （write），1（execute）
+
+默认权限算法
+
+文件夹的默认最大权限 777
+文件的最大默认权限 666
+
+文件的默认值是根据 文件的最大权限值与umask设置的值进行或得出的。
+
+666 表示 rw-rw-rw- 022 表示 ----w--w- 进行或运算后得 rw r r 所以这个就是系统中创建文件后的默认权限值
+
+## ACL 权限管理
+
+ACL 的全称是 Access Control List (访问控制列表)
+
+它可以针对文件设置除基本权限外的 r w x的权限
+
+举例，现在有一个文件test 是开发小组1共同需要操作所以小组 test拥有 rw的权限，同时文件的创建者拥有rw权限，其他人无权查看test文件的内容，有一天来了以为实习生，由于他刚来不久所以需要拥有test的r权限但是不能拥有w权限这时改基本权限又不太现实。那现在怎么办呢？看看接下来我用ACL权限是如何解决的吧
+
+```Linux
+```
+## SetUID、SetGID、SBIT 权限管理
+
+## chatter 权限
+
+## sudo 权限

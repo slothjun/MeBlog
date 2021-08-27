@@ -1,0 +1,432 @@
+---
+title: webgl中文网学习笔记
+---
+
+## chapter1：
+
+### what is Three.js?
+
+什么是threejs，很简单，你将它理解成three + js就可以了。three表示3D的意思，js表示javascript的意思。那么合起来，three.js就是使用javascript 来写3D程序的意思。
+
+Javascript是运行在网页端的脚本语言，那么毫无疑问Three.js也是运行在浏览器上的。
+
+看到这里，也许你就开始有很多疑问了，那么让我来猜猜你的疑问吧。
+
+1、javascript能写高效率的3D程序吗？
+	能。技术在进步，几年前也许这是不行，写3D程序，最好是用c++，这样才能保证效率，但是现在，世界改变了。javascript的计算能力因为google的V8引 擎得到了迅猛的增强，做3D程序，做服务器都没有问题。如果你对服务器感兴趣，你可以看看nodejs，当然，不是现在。现在，你最好保持热情，将Three.js学精深，在以后的工作学习中做出 更大的成绩。
+
+### Three.js where come from?
+
+它源自github的一个开源项目.
+
+先去下载代码，它的地址是： https://github.com/mrdoob/three.js。 如图所示
+
+![](http://www.hewebgl.com/attached/image/20130513/20130513004719_893.png)
+
+analysis of source directory structur?
+
+要了解事物的真相，就要解析到它的深处去，我们来看看Three.js的源目录结果。用解压软件解开刚才的源码包，各个目录如下所示：
+
+![](http://www.hewebgl.com/attached/image/20130513/20130513004728_437.png)
+
+Build目录：包含两个文件，three.js 和three.min.js 。这是three.js最终被引用的文件。一个已经压缩，一个没有压缩的js文件。
+
+Docs目录：这里是three.js的帮助文档，里面是各个函数的api，可惜并没有详细的解释。试图用这些文档来学会three.js是不可能的。
+
+Editor目录：一个类似3D-max的简单编辑程序，它能创建一些三维物体。
+
+Examples目录：一些很有趣的例子demo，可惜没有文档介绍。对图像学理解不深入的同学，学习成本非常高。
+
+Src目录：源代码目录，里面是所有源代码。
+
+Test目录：一些测试代码，基本没用。
+
+Utils目录：存放一些脚本，python文件的工具目录。例如将3D-Max格式的模型转换为three.js特有的json模型。
+
+.gitignore文件：git工具的过滤规则文件，没有用。
+
+CONTRIBUTING.md文件：一个怎么报bug，怎么获得帮助的说明文档。
+
+LICENSE文件：版权信息。
+
+README.md文件：介绍three.js的一个文件，里面还包含了各个版本的更新内容列表。
+
+### examples one
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>canvas { width: 100%; height: 100% }</style>
+</head>
+<body>
+    <script src="js/three.js"></script>
+	
+</body>
+</html>
+```
+在chrome浏览器中 开发者工具中的console中输入 THREE.REVISION 控制台上会输出相应的版本信息。
+
+## chapter2：
+
+### three component
+
+在Three.js中，要渲染物体到网页中，我们需要3个组建：场景（scene）、相机（camera）和渲染器（renderer）。有了这三样东西，才能将物体渲染到网页中去。
+
+记住关建语句：有了这三样东西，我们才能够使用相机将场景渲染到网页上去。
+
+创建这三要素的代码如下：
+
+```javascript
+var scene = new THREE.Scene();  // 场景
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);// 透视相机
+var renderer = new THREE.WebGLRenderer();   // 渲染器
+renderer.setSize(window.innerWidth, window.innerHeight);    // 设置渲染器的大小为窗口的内宽度，也就是内容区的宽度
+document.body.appendChild(renderer.domElement);
+```
+在Threejs中场景就只有一种，用THREE.Scene来表示，要构件一个场景也很简单，只要new一个对象就可以了，代码如下：
+
+var scene = new THREE.Scene();
+
+场景是所有物体的容器，如果要显示一个苹果，就需要将苹果对象加入场景中。
+
+#### camera
+
+另一个组建是相机，相机决定了场景中那个角度的景色会显示出来。相机就像人的眼睛一样，人站在不同位置，抬头或者低头都能够看到不同的景色。
+
+场景只有一种，但是相机却又很多种。和现实中一样，不同的相机确定了呈相的各个方面。比如有的相机适合人像，有的相机适合风景，专业的摄影师根据实际用途不一样，选择不同的相机。对程序员来说，只要设置不同的相机参数，就能够让相机产生不一样的效果。
+
+在Threejs中有多种相机，这里介绍两种，它们是：
+
+透视相机（THREE.PerspectiveCamera）、这里我们使用一个透视相机，透视相机的参数很多，这里先不详细讲解。后面关于相机的那一章，我们会花大力气来讲。定义一个相机的代码如下所示：（已经迫不及待想看看相机的参数了，点这里）
+
+```javascript
+ var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+```
+#### renderer
+
+最后一步就是设置渲染器，渲染器决定了渲染的结果应该画在页面的什么元素上面，并且以怎样的方式来绘制。这里我们定义了一个WebRenderer渲染器，代码如下所示：
+
+```javascript
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+```
+
+注意，渲染器renderer的domElement元素，表示渲染器中的画布，所有的渲染都是画在domElement上的，所以这里的appendChild表示将这个domElement挂接在body下面，这样渲染的结果就能够在页面中显示了。
+
+#### scene add object
+
+那现在，我们将一个物体添加到场景中：
+
+```javascript
+var geometry = new THREE.CubeGeometry(1,1,1); 
+var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+var cube = new THREE.Mesh(geometry, material); 
+scene.add(cube);
+```
+代码中出现了THREE.CubeGeometry，THREE.CubeGeometry是什么东东，他是一个几何体，几何体由什么组成，已经不是本课的主要内容了，后面的课程我们会详细的学到。不过这里你只需要知道CubeGeometry是一个正方体或者长方体，究竟是什么，由它的3个参数所决定，cubeGeometry的原型如下代码所示：
+
+```javascript
+CubeGeometry(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides);
+```
+width：立方体x轴的长度
+
+height：立方体y轴的长度
+
+depth：立方体z轴的深度，也就是长度
+
+想一想大家就明白，以上3个参数就能够确定一个立方体。
+
+剩下的几个参数就要费解和复杂一些了，不过后面我们会自己来写一个立方体，到时候，你会更明白这些参数的意义，这里你可以将这些参数省略。
+
+#### render
+
+终于到了最后一步，这一步做完后，就可以该干嘛干嘛去了。
+
+渲染应该使用渲染器，结合相机和场景来得到结果画面。实现这个功能的函数是
+
+renderer.render(scene, camera);
+
+渲染函数的原型如下：
+
+render( scene, camera, renderTarget, forceClear )
+
+各个参数的意义是：
+
+scene：前面定义的场景
+
+camera：前面定义的相机
+
+renderTarget：渲染的目标，默认是渲染到前面定义的render变量中
+
+forceClear：每次绘制之前都将画布的内容给清除，即使自动清除标志autoClear为false，也会清除。
+
+### loop render
+
+渲染有两种方式：实时渲染和离线渲染 。
+
+先看看离线渲染，想想《西游降魔篇》中最后的佛主，他肯定不是真的，是电脑渲染出来的，其画面质量是很高的，它是事先渲染好一帧一帧的图片，然后再把图片拼接成电影的。这就是离线渲染。如果不事先处理好一帧一帧的图片，那么电影播放得会很卡。CPU和GPU根本没有能力在播放的时候渲染出这种高质量的图片。
+
+实时渲染：就是需要不停的对画面进行渲染，即使画面中什么也没有改变，也需要重新渲染。下面就是一个渲染循环：
+
+```javascript
+function render() {
+    cube.rotation.x += 0.1;
+    cube.rotation.y += 0.1;
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+}
+```
+其中一个重要的函数是requestAnimationFrame，这个函数就是让浏览器去执行一次参数中的函数，这样通过上面render中调用requestAnimationFrame()函数，requestAnimationFrame()函数又让rander()再执行一次，就形成了我们通常所说的游戏循环了。
+
+### the relationship between scene 、 camera 、render
+
+Three.js中的场景是一个物体的容器，开发者可以将需要的角色放入场景中，例如苹果，葡萄。同时，角色自身也管理着其在场景中的位置。
+
+相机的作用就是面对场景，在场景中取一个合适的景，把它拍下来。
+
+渲染器的作用就是将相机拍摄下来的图片，放到浏览器中去显示。他们三者的关系如下图所示：
+
+![](http://www.hewebgl.com/attached/image/20130810/20130810150021_257.jpg)
+
+## chapter3.1
+
+### composition of the 3d World
+
+在计算机世界里，3D世界是由点组成，两个点能够组成一条直线，三个不在一条直线上的点就能够组成一个三角形面，无数三角形面就能够组成各种形状的物体，如下图：
+
+![](http://www.hewebgl.com/attached/image/20130810/20130810194940_829.gif)
+
+我们通常把这种网格模型叫做Mesh模型。给物体贴上皮肤，或者专业点就叫做纹理，那么这个物体就活灵活现了。最后无数的物体就组成了我们的3D世界。
+
+那么3D世界的组成，是否真的这样简单？是的，从编程的角度，目前为此，你只需要知道这些。下一节，我们从点说起。
+
+### dot
+
+在三维空间中的某一个点可以用一个坐标点来表示。一个坐标点由x,y,z三个分量构成。在three.js中，点可以在右手坐标系中表示：
+
+空间几何中，点可以用一个向量来表示，在Three.js中也是用一个向量来表示的，代码如下所示：
+
+```javascript
+THREE.Vector3 = function ( x, y, z ) {
+
+this.x = x || 0;
+this.y = y || 0;
+this.z = z || 0;
+
+};
+```
+我们来分析这段代码：前面我们已经知道了THREE是Three.js引擎的一个全局变量。只要你想用它，就可以在任何地方用它。有点充气娃娃的意思，不需要你同意，你想用就用吧。
+
+那么THREE.Vector3呢，就是表示Vector3是定义在THREE下面的一个类。以后要用Vector3，就必须要加THREE前缀。当然Three.js的设计者，也可以不加THREE这个前缀，但是他们预见到，Three.js引擎中会有很多类型，最好给这些类型加一个前缀，以免与开发者的代码产生冲突。
+
+THREE.Vector3被赋值为一个函数。这个函数有3个参数，分别代表x坐标，y坐标和z坐标的分量。函数体内的代码将他们分别赋值给成员变量x，y，z。看看上面的代码，中间使用了一个“||”（或）运算符，就是当x=null或者undefine时，this.x的值应该取0。
+
+### dot operaction
+
+在3D世界中点可以用THREE.Vector3D来表示。对应源码为/src/math/Vector3.js（注意：源码所在的位置，可能不同版本不一样，请自己搜索Vector3关键词来确定）。在您继续学习之前，你可以打开该文件浏览一下，推荐使用WebStorm，如果没有，你也可以用NotePad++。
+
+现在来看看怎么定义个点，假设有一个点x=4，y=8，z=9。你可以这样定义它：
+
+```javascript
+var point1 = new THREE.Vecotr3(4,8,9);
+```
+另外你也可以使用set方法，代码如下：
+
+```javascript
+var point1 = new THREE.Vector3();
+point1.set(4,8,9);
+```
+## chapter3.2
+
+### coordinate
+
+我们下面会学习使用直线画一个网格出来，为了更好的理解这个网格在空间中的位置，我们是时候，讲一讲空间坐标系了。
+
+### right handed cartesian coordinate
+
+Threejs使用的是右手坐标系，这源于opengl默认情况下，也是右手坐标系。下面是右手坐标系的图例，如果对这个概念不理解，可以百度一下，我保证你伸出手比划的那一瞬间你就明白了，如果不明白请给作者留言，我会尽快补上关于坐标系的知识。
+
+![](http://www.hewebgl.com/attached/image/20130515/20130515134934_11.jpg)
+
+图中右边那个手对应的坐标系，就是右手坐标系。在Threejs中，坐标和右边的坐标完全一样。x轴正方向向右，y轴正方向向上，z轴由屏幕从里向外。
+
+### line
+
+在Threejs中，一条线由点，材质和颜色组成。
+
+点由THREE.Vector3表示，Threejs中没有提供单独画点的函数，它必须被放到一个THREE.Geometry形状中，这个结构中包含一个数组vertices，这个vertices就是存放无数的点（THREE.Vector3）的数组。
+
+为了绘制一条直线，首先我们需要定义两个点，如下代码所示：
+
+```javascript
+var p1 = new THREE.Vector3( -100, 0, 100 );
+
+var p2 = new THREE.Vector3(  100, 0, -100 );
+```
+请大家思考一下，这两个点在坐标系的什么位置，然后我们声明一个THREE.Geometry，并把点加进入，代码如下所示：
+
+```javascript
+var geometry = new THREE.Geometry();
+
+geometry.vertices.push(p1);
+
+geometry.vertices.push(p2);
+```
+
+geometry.vertices的能够使用push方法，是因为geometry.vertices是一个数组。这样geometry 中就有了2个点了。
+
+然后我们需要给线加一种材质，可以使用专为线准备的材质，THREE.LineBasicMaterial。
+
+最终我们通过THREE.Line绘制了一条线，如下代码所示:
+
+```javascript
+var line = new THREE.Line( geometry, material, THREE.LinePieces );
+```
+ok，line就是我们要的线条了。
+
+## chapter4
+
+### loop render
+
+物体运动还有一个关键点，就是要渲染物体运动的每一个过程，让它显示给观众。渲染的时候，我们调用的是渲染器的render() 函数。代码如下：
+
+renderer.render( scene, camera );
+
+如果我们改变了物体的位置或者颜色之类的属性，就必须重新调用render()函数，才能够将新的场景绘制到浏览器中去。不然浏览器是不会自动刷新场景的。
+
+如果不断的改变物体的颜色，那么就需要不断的绘制新的场景，所以我们最好的方式，是让画面执行一个循环，不断的调用render来重绘，这个循环就是渲染循环，在游戏中，也叫游戏循环。
+
+为了实现循环，我们需要javascript的一个特殊函数，这个函数是requestAnimationFrame。
+
+调用requestAnimationFrame函数，传递一个callback参数，则在下一个动画帧时，会调用callback这个函数。
+
+于是，我们的游戏循环会这样写。
+
+```javascript
+function animate() {
+
+    render();
+
+    requestAnimationFrame( animate );
+
+}
+```
+这样就会不断的执行animate这个函数。也就是不断的执行render()函数。在render()函数中不断的改变物体或者摄像机的位置，并渲染它们，就能够实现动画了。
+
+### Stats
+
+关于性能：测试一个程序，性能上是否有瓶颈，在3D世界里，经常使用帧数的概念，首先我们来定义一下帧数的意义。
+
+帧数：图形处理器每秒钟能够刷新几次，通常用fps（Frames Per Second）来表示。如下是每秒钟59次刷新的应用：
+
+![](http://www.hewebgl.com/attached/image/20130515/20130515140758_436.png)
+
+当物体在快速运动时,当人眼所看到的影像消失后，人眼仍能继续保留其影像1/24秒左右的图像，这种现象被称为视觉暂留现象。是人眼具有的一种性质。人眼观看物体时，成像于视网膜上，并由视神经输入人脑，感觉到物体的像。一帧一帧的图像进入人脑，人脑就会将这些图像给连接起来，形成动画。
+
+毫无疑问，帧数越高，画面的感觉就会越好。所以大多数游戏都会有超过30的FPS。为了监视FPS，看看你的程序哪里占用了很多的CPU时间，就需要学习一下性能监视器。
+
+在Three.js中，性能由一个性能监视器来管理，它的介绍在https://github.com/mrdoob/stats.js 可以看到。性能监视器的截图如下所示:
+
+![](http://www.hewebgl.com/attached/image/20130515/20130515140815_493.png)
+
+其中FPS表示：上一秒的帧数，这个值越大越好，一般都为60左右。点击上面的图，就会变成下面的另一个视图。
+
+![](http://www.hewebgl.com/attached/image/20130515/20130515140824_632.png)
+
+MS表示渲染一帧需要的毫秒数，这个数字是越小越好。再次点击又可以回到FPS视图中。
+
+### 性能监视器Stats的使用
+
+在Three.js中，性能监视器被封装在一个类中，这个类叫做Stats，下面是一段伪代码，表示Stats的使用。
+
+```javascript
+var stats = new Stats();
+stats.setMode(1); // 0: fps, 1: ms
+// 将stats的界面对应左上角
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.left = '0px';
+stats.domElement.style.top = '0px';
+document.body.appendChild( stats.domElement );
+setInterval( function () {
+    stats.begin();
+    // 你的每一帧的代码
+    stats.end();
+}, 1000 / 60 );
+```
+你现在可以自己写一段代码，来验证一下，你的程序的帧数了。
+
+Stats到底做了什么事情呢？我们来分析一下。
+
+#### 1、setMode函数
+
+参数为0的时候，表示显示的是FPS界面，参数为1的时候，表示显示的是MS界面。
+
+#### 2、stats的domElement
+
+stats的domElement表示绘制的目的地（DOM），波形图就绘制在这上面。
+
+#### 3、stats的begin函数
+
+begin，在你要测试的代码前面调用begin函数，在你代码执行完后调用end()函数，这样就能够统计出这段代码执行的平均帧数了。
+
+封装后的使用
+
+```javascript
+function initStats() {
+    //监视器
+    stats = new Stats();
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.getElementById('canvas-frame').appendChild(stats.domElement);
+}
+
+在需要监视的代码块中使用方法 stats.update();即可
+```
+
+### Tween engine
+
+
+上面介绍了通过移动相机和移动物体来产生动画的效果。使用的方法是在渲染循环里去移动相机或者物体的位置。如果动画稍微复杂一些，这种方式实现起来就比较麻烦一些了。
+
+为了使程序编写更容易一些，我们可以使用动画引擎来实现动画效果。和three.js紧密结合的动画引擎是Tween.js,你可以再https://github.com/sole下载。
+
+对于快速构件动画来说，Tween.js是一个容易上手的工具
+
+#### 使用步骤：
+
+ 1 在head中引入 <-script src="../js/tween.min.js" data-ke-src="../js/tween.min.js"><-/script>
+
+ 2 第二步，就是构件一个Tween对象，对Tween进行初始化，本例的代码是:
+
+```javascript
+
+function initTween()
+{
+    new TWEEN.Tween( mesh.position)
+            .to( { x: -400 }, 3000 ).repeat( Infinity ).start();
+}
+```
+TWEEN.Tween的构造函数接受的是要改变属性的对象，这里传入的是mesh的位置。Tween的任何一个函数返回的都是自身，所以可以用串联的方式直接调用各个函数。
+
+to函数，接受两个参数，第一个参数是一个集合，里面存放的键值对，键x表示mesh.position的x属性，值-400表示，动画结束的时候需要移动到的位置。第二个参数，是完成动画需要的时间，这里是3000ms。
+
+repeat( Infinity )表示重复无穷次，也可以接受一个整形数值，例如5次。
+
+Start表示开始动画，默认情况下是匀速的将mesh.position.x移动到-400的位置。
+
+3 需要在渲染函数中去不断的更新Tween，这样才能够让mesh.position.x移动位置:
+
+```javascript
+function animation()
+{
+    renderer.render(scene, camera);
+    requestAnimationFrame(animation);
+    stats.update();
+    TWEEN.update();
+}
+```
+其中的TWEEN.update()完成了让动画动起来到目标。如果不调用这个函数场景就不能动起来了。
