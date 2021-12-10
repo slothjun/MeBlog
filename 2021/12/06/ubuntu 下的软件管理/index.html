@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/MeBlog/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="概念部分Ubuntu软件包管理概述Ubuntu Linux采用了Debian的软件包管理机制。由于软件包具有易用性、灵活性和扩展性的特点，再加上Internet的支持，使用户随时都能拥有最新的 Ubuntu系统，这也是Ubuntu受到推崇的一个重要原因。因而，Deb软件包管理也成为Ubuntu中最有活力的部分。本章介绍Ubuntu软件包 管理和dpkg软件包管理器。 Deb软件包概述Deb软件包本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu 下的软件管理">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2021/12/06/ubuntu 下的软件管理/index.html">
+<meta property="og:site_name" content="WenLiangBaoBlog">
+<meta property="og:description" content="概念部分Ubuntu软件包管理概述Ubuntu Linux采用了Debian的软件包管理机制。由于软件包具有易用性、灵活性和扩展性的特点，再加上Internet的支持，使用户随时都能拥有最新的 Ubuntu系统，这也是Ubuntu受到推崇的一个重要原因。因而，Deb软件包管理也成为Ubuntu中最有活力的部分。本章介绍Ubuntu软件包 管理和dpkg软件包管理器。 Deb软件包概述Deb软件包本">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-15T08:07:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu 下的软件管理">
+<meta name="twitter:description" content="概念部分Ubuntu软件包管理概述Ubuntu Linux采用了Debian的软件包管理机制。由于软件包具有易用性、灵活性和扩展性的特点，再加上Internet的支持，使用户随时都能拥有最新的 Ubuntu系统，这也是Ubuntu受到推崇的一个重要原因。因而，Deb软件包管理也成为Ubuntu中最有活力的部分。本章介绍Ubuntu软件包 管理和dpkg软件包管理器。 Deb软件包概述Deb软件包本">
+
+
+
+
+
+
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2021/12/06/ubuntu 下的软件管理/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ubuntu 下的软件管理 | WenLiangBaoBlog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?634fa4157d9129d4fc7c51fd0e0849f8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/MeBlog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WenLiangBaoBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">52</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/ubuntu 下的软件管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ubuntu 下的软件管理
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-12-06 14:22:54" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:54+08:00">2021-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-15 16:07:41" itemprop="dateModified" datetime="2019-05-15T16:07:41+08:00">2019-05-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概念部分"><a href="#概念部分" class="headerlink" title="概念部分"></a>概念部分</h2><h3 id="Ubuntu软件包管理概述"><a href="#Ubuntu软件包管理概述" class="headerlink" title="Ubuntu软件包管理概述"></a>Ubuntu软件包管理概述</h3><pre><code>Ubuntu Linux采用了Debian的软件包管理机制。由于软件包具有易用性、灵活性和扩展性的特点，再加上Internet的支持，使用户随时都能拥有最新的 Ubuntu系统，这也是Ubuntu受到推崇的一个重要原因。因而，Deb软件包管理也成为Ubuntu中最有活力的部分。本章介绍Ubuntu软件包 管理和dpkg软件包管理器。
+</code></pre><h3 id="Deb软件包概述"><a href="#Deb软件包概述" class="headerlink" title="Deb软件包概述"></a>Deb软件包概述</h3><pre><code>Deb软件包本质上是文件包，这点类似于tar文件将多个文件合并为一个归档文件。但是Deb的身价不在于整合文件，而在于使应用程序更易于传播。
+
+当年流行的两种软件包管理机制
+
+最初，基于Linux系统的开发者在完成应用程序开 发后，将很多二进制文件发给用户，用户使用之前需要将相关程序逐个安装。因此，Debian Linux首先提出“软件包”的管理机制——Deb软件包，将应用程序的二进制文件、配置文档、man/info帮助页面等文件合并打包在一个文件中，用 户使用软件包管理器直接操作软件包，完成获取、安装、卸载、查询等操作。
+
+随即，Redhat Linux基于这个理念推出了自己的软件包管理机制——Rpm软件包。当然，Redhat Linux采用了自己的打包格式生成Rpm包文件，由Rpm包管理器负责安装、维护、查询，甚至软件包版本管理。由于Redhat Linux系统的普及，Rpm软件包被广泛使用，甚至出现第三方开发的软件管理工具，专门管理Rpm格式的软件包。
+
+随着Linux操作系统规模的不断扩大，系统中软件 包之间复杂的依赖关系，导致Linux用户麻烦不断。为了解决这个问题，Debian Linux开发出了APT软件包管理器。它能够自动检查和修复软件包之间的依赖关系。并且，利用Internet网络带来的快捷的连通手段，APT工具可 以帮助用户主动获取软件包。因此，APT工具再次促进了Deb软件包更为广泛地使用，成为Debian Linux的一个无法替代的亮点。
+
+Ubuntu Linux系统的软件包管理机制延续了Debian的包管理方法。
+</code></pre><h3 id="软件包的类型"><a href="#软件包的类型" class="headerlink" title="软件包的类型"></a>软件包的类型</h3><pre><code>Debian包文件包含了二进制可执行文件、库文件、配置文件和man/info帮助页面等文档。通常Debian包文件的后缀为.deb，因此称为“Deb软件包”。Ubuntu有两种类型的软件包：二进制软件包（deb）和源码包（deb-src）。
+
+  ●    二进制软件包（Binary Packages）：包含可执行文件、库文件、配置文件、man/info页面、版权声明和其他文档。
+
+  ●    源码包（Source Packages）：包含软件源代码、版本修改说明、构建指令以及编译工具等。先由tar工具归档为.tar.gz文件，然后再打包成.dsc文件。
+
+用户不确定一个软件包具体类型时，可以使用file命令查看文件类型。例如下面命令用于证实一个软件包的文件类型是否是Deb软件包文件。
+
+wdl@UbuntuFisher:~$ file  g++_4.1.2-9ubuntu2_i386.deb
+
+g++_4.1.2-9ubuntu2_i386: Debian binary package (format 2.0)
+
+在Ubuntu Linux中，需要说明一个概念——虚拟软件包。将系统中具有相同或相近功能的多个软件包作为一个软件包集合，称为虚拟软件包，并指定其中一个软件包作为 虚拟软件包的默认首选项。提出虚拟软件的意图就是为了防止软件安装过程中发生冲突。例如，exim、sendmail和postfix软件包都是用于邮件 传输代理，将“mail-transport-agent”指定为它们的虚拟软件包。当用户安装“mail-transport-agent”时，将选择 安装exim、sendmail和postfix其中的首选项。
+</code></pre><h3 id="软件包的命名"><a href="#软件包的命名" class="headerlink" title="软件包的命名"></a>软件包的命名</h3><pre><code>在Ubuntu Linux中，软件包的命名遵循以下约定：
+
+Filename_Version-Reversion_Architecture.deb
+
+其中，Filename表示软件包文件名，Version表示软件版本号，Reversion表示修订版本号，Architecture表示适用计算机架构。通常，修订版本号是由Ubuntu开发者或创建这个软件包的人指定。在软件包被修改过之后，将修改版本号加1。
+
+以g++_4.1.2-9ubuntu2_i386.deb软件包为例，g++是软件包名，4.1.2是软件版本号，9ubuntu2是修订版本号，i386是适用的计算机架构。
+</code></pre><h3 id="配置部分"><a href="#配置部分" class="headerlink" title="配置部分"></a>配置部分</h3><pre><code>Ubuntu 方便宜用，最值得让人称道的便是其安装软件的方式, 一条命令: sudo apt-get install xxx 就几乎能帮你搞定所有的软件安装难题。但是有时你可能有这样的需求，查看某个软件包是否安装、安装在哪..., 那我们就来介绍一下 Ubuntu 的软件包管理方式。
+
+一、Ubuntu 采用 Debian 的软件包管理器 dpkg 来管理软件包, 类似 RPM. 系统中所有 packages 的信息都在 /var/lib/dpkg/
+目录下, 其子目录 /var/lib/dpkg/info 用于保存各个软件包的配置文件列表:
+ (1).conffiles 记录了软件包的配置文件列表
+ (2).list 保存软件包中的文件列表, 用户可以从 .list 的信息中找到软件包中文件的具体安装位置.
+ (3).md5sums 记录了软件包的md5信息, 这个信息是用来进行包验证的.
+ (4).prerm 脚本在 Debian 包解包之前运行, 主要作用是停止作用于即将升级的软件包的服务, 直到软件包安装或升级完成.
+ (5).postinst 脚本是完成 Debian 包解开之后的配置工作, 通常用于执行所安装软件包相关命令和服务重新启动.
+
+/var/lib/dpkg/available 文件的内容是软件包的描述信息, 该软件包括当前系统所使用的 Debian 安装源中的所有软件包,
+其中包括当前系统中已安装的和未安装的软件包.
+
+/var/cache/apt/archives 目录是在用 apt-get install 安装软件时，软件包的临时存放路径
+
+/etc/apt/sources.list 存放的是软件源站点, 当你执行 sudo apt-get install xxx 时，Ubuntu 就去这些站点下载软件包到本地并执行安装
+</code></pre><h2 id="命令操作部分"><a href="#命令操作部分" class="headerlink" title="命令操作部分"></a>命令操作部分</h2><h3 id="apt和dpkg混合命令"><a href="#apt和dpkg混合命令" class="headerlink" title="apt和dpkg混合命令"></a>apt和dpkg混合命令</h3><p> (1)查看某软件包的安装内容<br>    dpkg -L xxx</p>
+<p> (2)查找软件库中的软件包<br>    apt-cache search 正则表达式</p>
+<p> (3)显示系统安装包的统计信息<br>    apt-cache stats</p>
+<p> (4)显示系统全部可用软件包的名称<br>    apt-cache pkgnames</p>
+<p> (5)显示某软件包的详细信息<br>    apt-cache show xxx</p>
+<p> (6)查找某文件属于哪个包<br>    apt-file search xxx</p>
+<p> (7)查看已经安装了哪些软件包<br>    dpkg -l</p>
+<p> (8)查询某软件依赖哪些软件包<br>    apt-cache depends xxx</p>
+<p> (9)查询某软件被哪些软件包依赖<br>    apt-cache rdepends xxx</p>
+<p> (10)增加一个光盘源<br>    sudo apt-cdrom add<br>    注: 顾名思义, 就是安装更新软件包时让其优先从Ubuntu 光盘上找(如果你不能上网安装/更新, 但有 Ubuntu 的 DVD ISO, 这会对你非常有用)</p>
+<p> (11)系统升级<br>    sudo apt-get update</p>
+<p> (12)清除所有已删除软件包的残馀配置文件<br>    dpkg -l |grep ^rc|awk ‘{print $2}’ |sudo xargs dpkg -P</p>
+<p> (13)编译时缺少h文件的自动处理<br>    sudo auto-apt run ./configure</p>
+<p> (14)查看安装软件时下载软件包的临时存放目录<br>    ls /var/cache/apt/archives</p>
+<p> (15)备份当前系统安装的所有软件包的列表<br>    dpkg –get-selections | grep -v deinstall &gt; ~/somefile</p>
+<p> (16)从上面备份的安装包的列表文件恢复所有包<br>    dpkg –set-selections &lt; ~/somefile<br>    sudo dselect</p>
+<p> (17)清理旧版本的软件缓存<br>    sudo apt-get autoclean</p>
+<p> (18)清理所有软件缓存<br>    sudo apt-get clean</p>
+<p> (19)删除系统不再使用的孤立软件<br>    sudo apt-get autoremove</p>
+<p> (20)查看软件包在服务器上面的地址<br>    apt-get -qq –print-uris install ssh | cut -d\’ -f2</p>
+<p> (21)查看安装软件的一些路径信息<br>     dpkg -L 软件包名</p>
+<h3 id="deb包安装"><a href="#deb包安装" class="headerlink" title="deb包安装"></a>deb包安装</h3><pre><code>sudo dpkg -i  &apos;deb文件路径加文件名&apos;
+</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WenLiangBao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2021/12/06/ubuntu 下的软件管理/" title="ubuntu 下的软件管理">https://slothjun.github.io/MeBlog/2021/12/06/ubuntu 下的软件管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2020/07/26/java8新特性/" rel="next" title="java8新特性">
+                <i class="fa fa-chevron-left"></i> java8新特性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/MeBlog/2021/12/06/JNDI-转载/" rel="prev" title="JNDI-转载">
+                JNDI-转载 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="WenLiangBao">
+            
+              <p class="site-author-name" itemprop="name">WenLiangBao</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)温故而知新,可以为师矣</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/MeBlog/archives/">
+                
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念部分"><span class="nav-number">1.</span> <span class="nav-text">概念部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu软件包管理概述"><span class="nav-number">1.1.</span> <span class="nav-text">Ubuntu软件包管理概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deb软件包概述"><span class="nav-number">1.2.</span> <span class="nav-text">Deb软件包概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件包的类型"><span class="nav-number">1.3.</span> <span class="nav-text">软件包的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件包的命名"><span class="nav-number">1.4.</span> <span class="nav-text">软件包的命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置部分"><span class="nav-number">1.5.</span> <span class="nav-text">配置部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令操作部分"><span class="nav-number">2.</span> <span class="nav-text">命令操作部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#apt和dpkg混合命令"><span class="nav-number">2.1.</span> <span class="nav-text">apt和dpkg混合命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deb包安装"><span class="nav-number">2.2.</span> <span class="nav-text">deb包安装</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WenLiangBao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '756ca4e66e7a3ba50532',
+    clientSecret: '840c7ad727c8f03ae56aee11949a8ac37a06ead1',
+    repo: 'BlogComments',
+    owner: 'slothjun',
+    admin: ['slothjun'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/MeBlog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
