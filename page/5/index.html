@@ -1787,166 +1787,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/Ubuntu系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2021/12/06/Ubuntu系统/" class="post-title-link" itemprop="url">Ubuntu系统</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2021-12-06 14:22:54" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:54+08:00">2021-12-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-04-21 14:44:01" itemprop="dateModified" datetime="2020-04-21T14:44:01+08:00">2020-04-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="自安装程序的图标显示"><a href="#自安装程序的图标显示" class="headerlink" title="自安装程序的图标显示"></a>自安装程序的图标显示</h1><p>进入 ～/.local/share/applications/目录，在此目录下创建一个程序名称.desktop的文件可以在应用显示程序中加入此程序</p>
-<p>example：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(base) spiderbao@spiderbao-CW65S:~$ cd ~/.local/share/applications/</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:~/.local/share/applications$ ls</span><br><span class="line">Anaconda.desktop  jetbrains-idea-1.desktop  jetbrains-idea.desktop  jetbrains-pycharm.desktop  jetbrains-toolbox.desktop  jetbrains-webstorm.desktop  mimeapps.list  mimeinfo.cache  Typora.desktop</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:~/.local/share/applications$ </span><br><span class="line">(base) spiderbao@spiderbao-CW65S:~/.local/share/applications$ cat Anaconda.desktop </span><br><span class="line">[Desktop Entry]</span><br><span class="line">Encoding=UTF-8</span><br><span class="line">Name=Anaconda</span><br><span class="line">Comment=Anaconda</span><br><span class="line">Exec=/home/spiderbao/anaconda3/bin/anaconda-navigator</span><br><span class="line">Icon=anaconda_icon_128x128</span><br><span class="line">Terminal=false</span><br><span class="line">Type=Application</span><br><span class="line">Categories=GNOME;GTK;Utility;TextEditor;</span><br><span class="line">Name[zh_CN]=anaconda</span><br></pre></td></tr></table></figure>
-<p>icon的位置 在/usr/share/pixmaps下</p>
-<p>example：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$ pwd</span><br><span class="line">/usr/share/pixmaps</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$ ls -l an</span><br><span class="line">anaconda_icon_128x128.png  anki.png                   anki.xpm                   </span><br><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$ ls -l anaconda_icon_128x128.png </span><br><span class="line">-rw-rw-r-- 1 spiderbao spiderbao 4212 4月  21 09:30 anaconda_icon_128x128.png</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/JNDI-转载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2077,6 +1917,166 @@
 <p>5.上面说了半天，目的是什么呢？这是我的痛苦经历，第一次写 EJB, 买了本书，J2EE 从入门到精通(就是那本传说中的黃皮宝典系列)，写了一个无状态 session bean 来访问数据源，死活找不到数据源：NamingException: xxx not found. 在 IBM developerworks 上看到一篇文章，茅塞顿开，原来那本书讲的是J2EE 1.2, 我用的 WSAD 5.1.2 开发用的默认配置都是 J2EE 1.3。这里面引出了 JNDI LinkRef, 为了实现上面 4 里面所说的服务器上配置一个资源，但应用程序里面配置一个引用的话，现在的应用服务器在处理这点JNDI技术实现上基本上都是用 LinkRef 来实现的，这是 JNDI 里面的一个类。服务器启动时会创建一个 jdbc/training/db2 和 jdbc/training/oracle 两个 DataSource 对象 (用的是 ObjectFactory), 当一个应用程序访问了准备访问数据源时，服务器检测到了 web.xml/ejb-jar.xml 中指定了 <resource-ref> 它就会创建一个 LinkRef 放到 context 中去，它的名称是：jdbc/training,但它的 ref 是 jdbc/training/db2.<br>这样我们 ctx.lookup(“java:jdbc/training”) 时，java 协议对应的 javaURLContextFactory 会把这个 jdbc/training 对象找出来，在检测到它是一个 LinkRef 对象时，会自动再用它的 ref 值(这里是 jdbc/training/db2) 再 lookup 一遍，这下终于找到 jdbc/training/db2 这个 data source 对象。</resource-ref></p>
 <p>6.JNDI 里面还有其他的相关的东西。再结合一个 Reference 概念看，LinkRef 是继承它的。想再具体的了解一个实现细节，请拿一份 apache commons-xxx.jar (名字我忘记了，不过用过 spring / hibernate 来创建数据源的人可能知道它们用 xxxDataSource 做一个不需要在服务器上配置，但却能使用 data source 的办法)，我不是推荐你这个 jar, 我是推荐你看这个xxxDataSource 源码，里面演示了一个 ObjectFactory 用法。这和 JMS ConnectionFactory等其他 J2EE 托管资源的配置和使用都是用的同样的技术实现的。举一反三。<br>想了解更，就再看一个 StateFactory 的实现以及 Reference 的源码之类的。作为期望迈入 J2EE 中级编程的你，至少在概念和理论上要知道 ObjectFactory / LinkRef / SPI / resource ref 配置这几点，如果你再知道 StateFactory 是怎么实现的就更好了。</p>
 <p>转载自<a href="https://blog.csdn.net/wn084/article/details/80729230" target="_blank" rel="noopener">https://blog.csdn.net/wn084/article/details/80729230</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/Ubuntu系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2021/12/06/Ubuntu系统/" class="post-title-link" itemprop="url">Ubuntu系统</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-12-06 14:22:54" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:54+08:00">2021-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-21 14:44:01" itemprop="dateModified" datetime="2020-04-21T14:44:01+08:00">2020-04-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="自安装程序的图标显示"><a href="#自安装程序的图标显示" class="headerlink" title="自安装程序的图标显示"></a>自安装程序的图标显示</h1><p>进入 ～/.local/share/applications/目录，在此目录下创建一个程序名称.desktop的文件可以在应用显示程序中加入此程序</p>
+<p>example：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(base) spiderbao@spiderbao-CW65S:~$ cd ~/.local/share/applications/</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:~/.local/share/applications$ ls</span><br><span class="line">Anaconda.desktop  jetbrains-idea-1.desktop  jetbrains-idea.desktop  jetbrains-pycharm.desktop  jetbrains-toolbox.desktop  jetbrains-webstorm.desktop  mimeapps.list  mimeinfo.cache  Typora.desktop</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:~/.local/share/applications$ </span><br><span class="line">(base) spiderbao@spiderbao-CW65S:~/.local/share/applications$ cat Anaconda.desktop </span><br><span class="line">[Desktop Entry]</span><br><span class="line">Encoding=UTF-8</span><br><span class="line">Name=Anaconda</span><br><span class="line">Comment=Anaconda</span><br><span class="line">Exec=/home/spiderbao/anaconda3/bin/anaconda-navigator</span><br><span class="line">Icon=anaconda_icon_128x128</span><br><span class="line">Terminal=false</span><br><span class="line">Type=Application</span><br><span class="line">Categories=GNOME;GTK;Utility;TextEditor;</span><br><span class="line">Name[zh_CN]=anaconda</span><br></pre></td></tr></table></figure>
+<p>icon的位置 在/usr/share/pixmaps下</p>
+<p>example：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$ pwd</span><br><span class="line">/usr/share/pixmaps</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$ ls -l an</span><br><span class="line">anaconda_icon_128x128.png  anki.png                   anki.xpm                   </span><br><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$ ls -l anaconda_icon_128x128.png </span><br><span class="line">-rw-rw-r-- 1 spiderbao spiderbao 4212 4月  21 09:30 anaconda_icon_128x128.png</span><br><span class="line">(base) spiderbao@spiderbao-CW65S:/usr/share/pixmaps$</span><br></pre></td></tr></table></figure>
 
           
         

@@ -2760,177 +2760,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/pyhton_base64/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2021/12/06/pyhton_base64/" class="post-title-link" itemprop="url">python_base64</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-05 21:10:52" itemprop="dateModified" datetime="2019-05-05T21:10:52+08:00">2019-05-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="目标1：了解base64基础知识，在python中会使用base64"><a href="#目标1：了解base64基础知识，在python中会使用base64" class="headerlink" title="目标1：了解base64基础知识，在python中会使用base64"></a>目标1：了解base64基础知识，在python中会使用base64</h2><h3 id="base64的编码原理（摘录）"><a href="#base64的编码原理（摘录）" class="headerlink" title="base64的编码原理（摘录）"></a>base64的编码原理（摘录）</h3><pre><code>Base64是一种用64个字符来表示任意二进制数据的方法。
-
-用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编码方法。
-
-Base64的原理很简单，首先，准备一个包含64个字符的数组：
-
-[&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, ... &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, ... &apos;0&apos;, &apos;1&apos;, ... &apos;+&apos;, &apos;/&apos;]
-然后，对二进制数据进行处理，每3个字节一组，一共是3x8=24bit，划为4组，每组正好6个bit：
-</code></pre><p><img src="https://www.liaoxuefeng.com/files/attachments/949444125467040" alt><br>    这样我们得到4个数字作为索引，然后查表，获得相应的4个字符，就是编码后的字符串。</p>
-<pre><code>所以，Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。
-
-如果要编码的二进制数据不是3的倍数，最后会剩下1个或2个字节怎么办？Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号，表示补了多少字节，解码的时候，会自动去掉。
-</code></pre><h3 id="python中的base64"><a href="#python中的base64" class="headerlink" title="python中的base64"></a>python中的base64</h3><h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.b64encode(<span class="string">b'binary\x00string'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.b64decode(<span class="string">b'YmluYXJ5AHN0cmluZw=='</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="safe"><a href="#safe" class="headerlink" title="safe"></a>safe</h4><pre><code>由于标准的Base64编码后可能出现字符+和/，在URL中就不能直接作为参数，所以又有一种&quot;url safe&quot;的base64编码，其实就是把字符+和/分别变成-和_
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.urlsafe_b64encode(<span class="string">b'i\xb7\x1d\xfb\xef\xff'</span>)</span><br></pre></td></tr></table></figure>
-</code></pre><p>以上内容参考<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017684507717184" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1016959663602400/1017684507717184</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/Linux-用户用户组篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3072,6 +2901,177 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 <p>​    把用户加入组中 gpasswd 选项 组名</p>
 <p>​        “-a” 用户名 把用户加入组</p>
 <p>​        “-d”用户名 把用户从组中删除</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/pyhton_base64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2021/12/06/pyhton_base64/" class="post-title-link" itemprop="url">python_base64</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-05 21:10:52" itemprop="dateModified" datetime="2019-05-05T21:10:52+08:00">2019-05-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="目标1：了解base64基础知识，在python中会使用base64"><a href="#目标1：了解base64基础知识，在python中会使用base64" class="headerlink" title="目标1：了解base64基础知识，在python中会使用base64"></a>目标1：了解base64基础知识，在python中会使用base64</h2><h3 id="base64的编码原理（摘录）"><a href="#base64的编码原理（摘录）" class="headerlink" title="base64的编码原理（摘录）"></a>base64的编码原理（摘录）</h3><pre><code>Base64是一种用64个字符来表示任意二进制数据的方法。
+
+用记事本打开exe、jpg、pdf这些文件时，我们都会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符，所以，如果要让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法。Base64是一种最常见的二进制编码方法。
+
+Base64的原理很简单，首先，准备一个包含64个字符的数组：
+
+[&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, ... &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, ... &apos;0&apos;, &apos;1&apos;, ... &apos;+&apos;, &apos;/&apos;]
+然后，对二进制数据进行处理，每3个字节一组，一共是3x8=24bit，划为4组，每组正好6个bit：
+</code></pre><p><img src="https://www.liaoxuefeng.com/files/attachments/949444125467040" alt><br>    这样我们得到4个数字作为索引，然后查表，获得相应的4个字符，就是编码后的字符串。</p>
+<pre><code>所以，Base64编码会把3字节的二进制数据编码为4字节的文本数据，长度增加33%，好处是编码后的文本数据可以在邮件正文、网页等直接显示。
+
+如果要编码的二进制数据不是3的倍数，最后会剩下1个或2个字节怎么办？Base64用\x00字节在末尾补足后，再在编码的末尾加上1个或2个=号，表示补了多少字节，解码的时候，会自动去掉。
+</code></pre><h3 id="python中的base64"><a href="#python中的base64" class="headerlink" title="python中的base64"></a>python中的base64</h3><h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.b64encode(<span class="string">b'binary\x00string'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.b64decode(<span class="string">b'YmluYXJ5AHN0cmluZw=='</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="safe"><a href="#safe" class="headerlink" title="safe"></a>safe</h4><pre><code>由于标准的Base64编码后可能出现字符+和/，在URL中就不能直接作为参数，所以又有一种&quot;url safe&quot;的base64编码，其实就是把字符+和/分别变成-和_
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64.urlsafe_b64encode(<span class="string">b'i\xb7\x1d\xfb\xef\xff'</span>)</span><br></pre></td></tr></table></figure>
+</code></pre><p>以上内容参考<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017684507717184" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/1016959663602400/1017684507717184</a></p>
 
           
         
@@ -3305,7 +3305,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 <p>总览 (SYNOPSIS)<br>       whatis keyword …</p>
 <p>描述 (DESCRIPTION)<br>       whatis 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。 查找的内容必须完全匹配关键字的才会输出。 whatis 数据库文件是用 /usr/sbin/makewhatis 命令建立的。</p>
 <p>参见 (SEE ALSO)<br>       apropos(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#111;&#x6e;&#121;&#95;&#116;&#x79;&#x40;&#x32;&#x36;&#x33;&#46;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#111;&#x6e;&#121;&#95;&#116;&#x79;&#x40;&#x32;&#x36;&#x33;&#46;&#110;&#x65;&#x74;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#116;&#x6f;&#110;&#x79;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#x6e;&#x65;&#x74;" target="_blank" rel="noopener">&#116;&#x6f;&#110;&#x79;&#x5f;&#116;&#x79;&#64;&#x32;&#x36;&#x33;&#x2e;&#x6e;&#x65;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/8</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p>命令名称：apropos</p>
@@ -3313,7 +3313,7 @@ Base64的原理很简单，首先，准备一个包含64个字符的数组：
 <p>总览 (SYNOPSIS)<br>       apropos keyword …</p>
 <p>描述 (DESCRIPTION)<br>       apropos 命令在一些特定的包含系统命令的简短描述的数据库文件里查找关键字， 然后把 结果送到标准输出。</p>
 <p>参见 (SEE ALSO)<br>       whatis(1), man(1).</p>
-<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#x79;&#64;&#x32;&#54;&#x33;&#46;&#x6e;&#x65;&#116;" target="_blank" rel="noopener">&#x74;&#x6f;&#x6e;&#121;&#x5f;&#x74;&#x79;&#64;&#x32;&#54;&#x33;&#46;&#x6e;&#x65;&#116;</a></p>
+<p>[中文版维护人]<br>       唐友 <a href="mailto:&#x74;&#x6f;&#110;&#x79;&#95;&#x74;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#110;&#x65;&#x74;" target="_blank" rel="noopener">&#x74;&#x6f;&#110;&#x79;&#95;&#x74;&#x79;&#64;&#50;&#54;&#x33;&#x2e;&#110;&#x65;&#x74;</a></p>
 <p>[中文版最新更新]<br>       2001/9/20</p>
 <p>[中国Linux论坛man手册页翻译计划]<br>       <a href="http://cmpp.linuxforum.net" target="_blank" rel="noopener">http://cmpp.linuxforum.net</a></p>
 <p><img src="http://39.104.171.29/image/1553758782441.png" alt="1553758782441"></p>

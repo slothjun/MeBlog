@@ -970,170 +970,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/linux-文件配置篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2021/12/06/linux-文件配置篇/" class="post-title-link" itemprop="url">linux-文件配置篇</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-04-03 14:06:40" itemprop="dateModified" datetime="2020-04-03T14:06:40+08:00">2020-04-03</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><h2 id="etc-profile-文件"><a href="#etc-profile-文件" class="headerlink" title="/etc/profile 文件"></a>/etc/profile 文件</h2><p>/etc/profile 文件属于一个系统的全局变量<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;PS1-&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;BASH-&#125;</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$BASH</span>"</span> != <span class="string">"/bin/sh"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># The file bash.bashrc already sets the default PS1.</span></span><br><span class="line">    <span class="comment"># PS1='\h:\w\$ '</span></span><br><span class="line">    <span class="keyword">if</span> [ -f /etc/bash.bashrc ]; <span class="keyword">then</span></span><br><span class="line">      . /etc/bash.bashrc</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"`id -u`"</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">      PS1=<span class="string">'# '</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      PS1=<span class="string">'$ '</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -d /etc/profile.d ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> /etc/profile.d/*.sh; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -r <span class="variable">$i</span> ]; <span class="keyword">then</span></span><br><span class="line">      . <span class="variable">$i</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  <span class="built_in">unset</span> i</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<ol>
-<li><p>Linux是一个多用户操作系统。用户登录或切换（即Login shell 启动）时都有一个专用的运行环境，但首先执行 /etc/profile 。而Non-login shell不会调用这个脚本。各用户的默认环境（一组环境变量的定义）一般相同。用户也可以自行配置运行环境，即修改相应的系统环境变量。</p>
-</li>
-<li><p>在 /etc/profile 文件中设置的变量是全局变量。而 .bashrc文件（在用户的家目录下）则只对当前用户有用</p>
-</li>
-<li><p>使用 source 命令更新环境变量。source /etc/profile  或者  ./profile，执行一下文件。但不能用 sh /etc/profile。sh 是在子 shell 进程中执行的，即使PATH改变了也不会反应到当前环境中。而 source 是在当前 shell 进程中执行的，所以我们能看到PATH的改变</p>
-</li>
-</ol>
-<p>4.在profile文件添加或修改的内容需要注销系统才能生效。同名的环境变量，后写入的起作用</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/quartz/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1254,6 +1090,170 @@
 <h2 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h2><p>由于Job类的创建是由Scheduler上的JobFactory 运行时动态创建的，所以个人猜测框架创作人使用了动态代理的技术。所以Job的成员变量与外界的交互就成为了难题。如何实现呢？答案就是在实现Job的类上加入@PersistJobDataAfterExecution注解，这样JobDataMap中的数据就可以与外界交互了。</p>
 <h2 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h2><pre><code>个人目前还没有使用过，w3cschool的官方文档上是这样介绍的：
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@DisallowConcurrentExecution：将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/linux-文件配置篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2021/12/06/linux-文件配置篇/" class="post-title-link" itemprop="url">linux-文件配置篇</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-03 14:06:40" itemprop="dateModified" datetime="2020-04-03T14:06:40+08:00">2020-04-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><h2 id="etc-profile-文件"><a href="#etc-profile-文件" class="headerlink" title="/etc/profile 文件"></a>/etc/profile 文件</h2><p>/etc/profile 文件属于一个系统的全局变量<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;PS1-&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;BASH-&#125;</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$BASH</span>"</span> != <span class="string">"/bin/sh"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># The file bash.bashrc already sets the default PS1.</span></span><br><span class="line">    <span class="comment"># PS1='\h:\w\$ '</span></span><br><span class="line">    <span class="keyword">if</span> [ -f /etc/bash.bashrc ]; <span class="keyword">then</span></span><br><span class="line">      . /etc/bash.bashrc</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"`id -u`"</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">      PS1=<span class="string">'# '</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      PS1=<span class="string">'$ '</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -d /etc/profile.d ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> /etc/profile.d/*.sh; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -r <span class="variable">$i</span> ]; <span class="keyword">then</span></span><br><span class="line">      . <span class="variable">$i</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  <span class="built_in">unset</span> i</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>Linux是一个多用户操作系统。用户登录或切换（即Login shell 启动）时都有一个专用的运行环境，但首先执行 /etc/profile 。而Non-login shell不会调用这个脚本。各用户的默认环境（一组环境变量的定义）一般相同。用户也可以自行配置运行环境，即修改相应的系统环境变量。</p>
+</li>
+<li><p>在 /etc/profile 文件中设置的变量是全局变量。而 .bashrc文件（在用户的家目录下）则只对当前用户有用</p>
+</li>
+<li><p>使用 source 命令更新环境变量。source /etc/profile  或者  ./profile，执行一下文件。但不能用 sh /etc/profile。sh 是在子 shell 进程中执行的，即使PATH改变了也不会反应到当前环境中。而 source 是在当前 shell 进程中执行的，所以我们能看到PATH的改变</p>
+</li>
+</ol>
+<p>4.在profile文件添加或修改的内容需要注销系统才能生效。同名的环境变量，后写入的起作用</p>
+
           
         
       
