@@ -1222,218 +1222,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/Java—日志框架解析-转载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2021/12/06/Java—日志框架解析-转载/" class="post-title-link" itemprop="url">Java—日志框架解析-转载</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-10 22:55:27" itemprop="dateModified" datetime="2019-06-10T22:55:27+08:00">2019-06-10</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>作为Java程序员，幸运的是，Java 拥有功能和性能都非常强大的日志库；不幸的是，这样的日志库有不止一个<br>相信每个人都曾经迷失在JUL(Java Util Log), JCL(Commons Logging), Log4j, SLF4J, Logback，<br>Log4j2等等的迷宫中。在我见过的绝大多数项目中，都没有能够良好的配置和使用日志库。这篇文章先讲述Java<br>常见日志库的历史和关系，后续会讲日志使用的最佳实践。让我们从头(Java Util Log)开始说起吧。</p>
-<h3 id="Java-Util-Log"><a href="#Java-Util-Log" class="headerlink" title="Java Util Log"></a>Java Util Log</h3><p>简称JUL，是JDK 中自带的log功能。虽然是官方自带的log lib，JUL的使用确不广泛。主要原因:</p>
-<p>1.JUL从JDK1.4 才开始加入(2002年)，当时各种第三方log lib已经被广泛使用了<br>2.JUL早期存在性能问题，到JDK1.5上才有了不错的进步，但现在和Logback/Log4j2相比还是有所不如<br>3.JUL的功能不如Logback/Log4j2等完善，比如Output Handler就没有Logback/Log4j2的丰富，有<br>时候需要自己来继承定制，又比如默认没有从ClassPath里加载配置文件的功能</p>
-<h3 id="Log4j-1-x"><a href="#Log4j-1-x" class="headerlink" title="Log4j 1.x"></a>Log4j 1.x</h3><p>Log4j 是在 Logback 出现之前被广泛使用的 Log Lib, 由 Gülcü 于2001年发布，后来成为Apache<br>基金会的顶级项目。Log4j 在设计上非常优秀，对后续的 Java Log 框架有长久而深远的影响，也产生了<br>Log4c, Log4s, Log4perl 等到其他语言的移植。Log4j 的短板在于性能，在Logback 和 Log4j2<br>出来之后，Log4j的使用也减少了。</p>
-<h3 id="Commons-Logging"><a href="#Commons-Logging" class="headerlink" title="Commons Logging"></a>Commons Logging</h3><p>简称JCL，是Apache下面的项目。JCL 是一个Log Facade，只提供 Log API，不提供实现，然后有 Adapter<br>来使用 Log4j 或者 JUL 作为Log Implementation。</p>
-<p>就像之前所说，JDK现在带了自己的JUL，然后又有第三方的Log4j等日志库存在，不同的项目可能各自使用了<br>不同的日志库。如果你的项目依赖的其他lib各自使用了不同的日志库，你想控制日志行为，就需要针对每个日<br>志库都写一个配置文件，是不是很酸爽?</p>
-<p>然后这个时候 JCL 就出现了。在程序中日志创建和记录都是用JCL中的接口，在真正运行时，会看当前ClassPath<br>中有什么实现，如果有Log4j 就是用 Log4j, 如果啥都没有就是用 JDK 的 JUL。</p>
-<p>这样，在你的项目中，还有第三方的项目中，大家记录日志都使用 JCL 的接口，然后最终运行程序时，可以按照自<br>己的需求(或者喜好)来选择使用合适的Log Implementation。如果用Log4j, 就添加 Log4j 的jar包进去，然<br>后写一个 Log4j 的配置文件；如果喜欢用JUL，就只需要写个JUL的配置文件。如果有其他的新的日志库出现，也<br>只需要它提供一个Adapter，运行的时候把这个日志库的 jar 包加进去。</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul.jpg" alt></p>
-<p>到这个时候一切看起来都很简单，很美好。接口和实现做了良好的分离，在统一的JCL之下，不改变任何代码，就可以<br>通过配置就换用功能更强大，或者性能更好的日志库实现。</p>
-<p>这种简单美好一直持续到SLF4J出现。</p>
-<h3 id="SLF4J-Logback"><a href="#SLF4J-Logback" class="headerlink" title="SLF4J/Logback"></a>SLF4J/Logback</h3><p>SLF4J(The Simple Logging Facade for Java)和Logback也是Gülcü创立的项目，其创立主要是为了提供更<br>高性能的实现。其中，SLF4j 是类似于JCL 的Log Facade,Logback 是类似于Log4j 的 Log Implementation。</p>
-<p>之前已经说过，Apache 有了个JCL，用来做各种Log lib统一的接口，如果 Gülcü 要搞一个更好的Log实现的话，<br>直接写一个实现就好了，为啥还要搞一个和SLF4J呢?</p>
-<p>原因是Gülcü 认为 JCL 的 API 设计得不好，容易让使用者写出性能有问题的代码。</p>
-<p>比如在用 JCL 输出一个 debug 级别的 log:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br></pre></td></tr></table></figure>
-<p>这个有什么问题呢？一般生产环境 log 级别都会设到 info 或者以上，那这条 log 是不会被输出的。然而不管会不会输出，<br>这其中都会做一个字符串连接操作，然后生产一个新的字符串。如果这条语句在循环或者被调用很多次的函数中，就会多做很多<br>无用的字符串连接，影响性能。</p>
-<p>所以 JCL 的最佳实践推荐这么写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">    logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然而开发者常常忽略这个问题或是觉得麻烦而不愿意这么写。所以SLF4J提供了新的API，方便开发者使用:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url);</span><br></pre></td></tr></table></figure>
-<p>这样的话，在不输出 log 的时候避免了字符串拼接的开销；在输出的时候需要做一个字符串format，代价比手工拼接字符串大一些,<br>但是可以接受。</p>
-<p>而 Logback 则是作为 Log4j 的继承者来开发的，提供了性能更好的实现，异步 logger，Filter等更多的特性。</p>
-<p>现在事情变复杂了。我们有了两个流行的 Log Facade，以及三个流行的 Log Implementation。Gülcü是个追求完美的人，<br>他决定让这些Log之间都能够方便的互相替换，所以做了各种 Adapter 和 Bridge 来连接:</p>
-<p><img src="http://39.104.171.29/image/jcl-log4j-jul-slf4j-logback-slf4j-nop.jpg" alt></p>
-<p>可以看到甚至 Log4j 和 JUL 都可以桥接到SLF4J，再通过 SLF4J 适配到到 Logback!</p>
-<p>在这里需要注意不能搞出循环的桥接，比如下面这些依赖就不能同时存在:</p>
-<p>1.jcl-over-slf4j 和 slf4j-jcl<br>2.log4j-over-slf4j 和 slf4j-log4j12<br>3.jul-to-slf4j 和 slf4j-jdk14</p>
-<p>总感觉事情在变得更麻烦呢！</p>
-<h3 id="Log4j2"><a href="#Log4j2" class="headerlink" title="Log4j2"></a>Log4j2</h3><p>现在有了更好的 SLF4J 和 Logback——你会想事情到这里总该了解了吧，让他们慢慢取代JCL 和 Log4j 好了。</p>
-<p>然而维护 Log4j 的人不这样想，他们不想坐视用户一点点被 SLF4J /Logback 蚕食，继而搞出了 Log4j2。</p>
-<p>Log4j2 和 Log4j1.x 并不兼容，设计上很大程度上模仿了 SLF4J/Logback，性能上也获得了很大的提升。</p>
-<p>Log4j2 也做了 Facade/Implementation 分离的设计，分成了 log4j-api 和 log4j-core。</p>
-<p>现在好了，我们有了三个流行的Log 接口和四个流行的Log实现，如果画出桥接关系的图来回事什么样子呢?</p>
-<p><img src="http://39.104.171.29/image/jcl-slf4j-log4j2-api.jpg" alt></p>
-<p>是不是感觉有点晕呢？同样，在添加依赖的时候，要小心不要搞成循环依赖。对于如今的局面我的日志使用方案是</p>
-<h2 id="个人推荐日志搭配方案"><a href="#个人推荐日志搭配方案" class="headerlink" title="个人推荐日志搭配方案"></a>个人推荐日志搭配方案</h2><h3 id="1-总是使用Log-Facade，而不是具体Log-Implementation"><a href="#1-总是使用Log-Facade，而不是具体Log-Implementation" class="headerlink" title="1. 总是使用Log Facade，而不是具体Log Implementation"></a>1. 总是使用Log Facade，而不是具体Log Implementation</h3><p>正如之前所说的，使用 Log Facade 可以方便的切换具体的日志实现。而且，如果依赖多个项目，使用了不同的Log Facade，<br>还可以方便的通过 Adapter 转接到同一个实现上。如果依赖项目使用了多个不同的日志实现，就麻烦的多了。</p>
-<p>具体来说，现在推荐使用 Log4j-API 或者 SLF4j，不推荐继续使用 JCL。</p>
-<h3 id="2-只添加一个-Log-Implementation依赖"><a href="#2-只添加一个-Log-Implementation依赖" class="headerlink" title="2. 只添加一个 Log Implementation依赖"></a>2. 只添加一个 Log Implementation依赖</h3><p>毫无疑问，项目中应该只使用一个具体的 Log Implementation，建议使用 Logback 或者Log4j2。如果有依赖的项目中，<br>使用的 Log Facade不支持直接使用当前的 Log Implementation，就添加合适的桥接器依赖。具体的桥接关系可以看<br>上一篇文章的图。</p>
-<h3 id="3-具体的日志实现依赖应该设置为optional和使用runtime-scope"><a href="#3-具体的日志实现依赖应该设置为optional和使用runtime-scope" class="headerlink" title="3. 具体的日志实现依赖应该设置为optional和使用runtime scope"></a>3. 具体的日志实现依赖应该设置为optional和使用runtime scope</h3><p>在项目中，Log Implementation的依赖强烈建议设置为runtime scope，并且设置为optional。例如项目中使用了 SLF4J<br>作为 Log Facade，然后想使用 Log4j2 作为 Implementation，那么使用 maven 添加依赖的时候这样设置:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设为optional，依赖不会传递，这样如果你是个lib项目，然后别的项目使用了你这个lib，不会被引入不想要的Log<br>Implementation 依赖；</p>
-<p>Scope设置为runtime，是为了防止开发人员在项目中直接使用Log Implementation中的类，而不适用Log Facade中的类。</p>
-<h3 id="4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖"><a href="#4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖" class="headerlink" title="4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖"></a>4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖</h3><p>这是很常见的一个问题，第三方库的开发者未必会把具体的日志实现或者桥接器的依赖设置为optional，然后你的项目继承了这些<br>依赖——具体的日志实现未必是你想使用的，比如他依赖了Log4j，你想使用Logback，这时就很尴尬。另外，如果不同的第三方依<br>赖使用了不同的桥接器和Log实现，也极容易形成环。</p>
-<p>这种情况下，推荐的处理方法，是使用exclude来排除所有的这些Log实现和桥接器的依赖，只保留第三方库里面对Log Facade的依赖。</p>
-<p>比如阿里的JStorm就没有很好的处理这个问题，依赖jstorm会引入对Logback和log4j-over-slf4j的依赖，如果你想在自己的项目<br>中使用Log4j或其他Log实现的话，就需要加上excludes:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.jstorm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstorm-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-over-slf4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-避免为不会输出的log付出代价-减少对不输出日志的成本"><a href="#5-避免为不会输出的log付出代价-减少对不输出日志的成本" class="headerlink" title="5. 避免为不会输出的log付出代价(减少对不输出日志的成本)"></a>5. 避免为不会输出的log付出代价(减少对不输出日志的成本)</h3><p>Log库都可以灵活的设置输出界别，所以每一条程序中的log，都是有可能不会被输出。这时候要注意不要额外的付出代价。（字符拼接代价）</p>
-<p>先看两个有问题的写法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url: "</span> + url);</span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, toJson(request));</span><br></pre></td></tr></table></figure>
-<p>第一条是直接做了字符串拼接，所以即使日志级别高于debug也会做一个字符串连接操作；第二条虽然用了SLF4J/Log4j2中的懒<br>求值方式来避免不必要的字符串拼接开销，但是toJson()这个函数却是都会被调用并且开销更大。</p>
-<p>推荐的写法如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url); <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, () -&gt; toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line">logger.debug(() -&gt; <span class="string">"receive request: "</span> + toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123; <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">    logger.debug(<span class="string">"receive request: "</span> + toJson(request)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-日志格式中最好不要使用行号，函数名等字段"><a href="#6-日志格式中最好不要使用行号，函数名等字段" class="headerlink" title="6. 日志格式中最好不要使用行号，函数名等字段"></a>6. 日志格式中最好不要使用行号，函数名等字段</h3><p>原因是，为了获取语句所在的函数名，或者行号，log库的实现都是获取当前的stacktrace，然后分析取出这些信息，而获取<br>stacktrace的代价是很昂贵的。如果有很多的日志输出，就会占用大量的CPU。在没有特殊需要的情况下，建议不要在日志中<br>输出这些这些字段。</p>
-<h3 id="7-log中不要输出稀奇古怪的字符！"><a href="#7-log中不要输出稀奇古怪的字符！" class="headerlink" title="7. log中不要输出稀奇古怪的字符！"></a>7. log中不要输出稀奇古怪的字符！</h3><p>部分开发人员为了方便看到自己的log，会在log语句中加上醒目的前缀，比如:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"========================start process request============="</span>);</span><br></pre></td></tr></table></figure>
-<p>虽然对于自己来说是方便了，但是如果所有人都这样来做的话，那log输出就没法看了！正确的做法是使用grep（linux 中的shell命令） 来看只自己关心的日志。</p>
-<p>转载处：<a href="https://zhuanlan.zhihu.com/p/24272450" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24272450</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1615,6 +1403,218 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on experiment: 394e7af test</span><br><span class="line">$ git stash drop stash@&#123;0&#125; </span><br><span class="line">丢弃了 stash@&#123;0&#125; (b1cb57a6cb76585027a27eed6779bcab6ca4f400)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/Java—日志框架解析-转载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2021/12/06/Java—日志框架解析-转载/" class="post-title-link" itemprop="url">Java—日志框架解析-转载</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-10 22:55:27" itemprop="dateModified" datetime="2019-06-10T22:55:27+08:00">2019-06-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>作为Java程序员，幸运的是，Java 拥有功能和性能都非常强大的日志库；不幸的是，这样的日志库有不止一个<br>相信每个人都曾经迷失在JUL(Java Util Log), JCL(Commons Logging), Log4j, SLF4J, Logback，<br>Log4j2等等的迷宫中。在我见过的绝大多数项目中，都没有能够良好的配置和使用日志库。这篇文章先讲述Java<br>常见日志库的历史和关系，后续会讲日志使用的最佳实践。让我们从头(Java Util Log)开始说起吧。</p>
+<h3 id="Java-Util-Log"><a href="#Java-Util-Log" class="headerlink" title="Java Util Log"></a>Java Util Log</h3><p>简称JUL，是JDK 中自带的log功能。虽然是官方自带的log lib，JUL的使用确不广泛。主要原因:</p>
+<p>1.JUL从JDK1.4 才开始加入(2002年)，当时各种第三方log lib已经被广泛使用了<br>2.JUL早期存在性能问题，到JDK1.5上才有了不错的进步，但现在和Logback/Log4j2相比还是有所不如<br>3.JUL的功能不如Logback/Log4j2等完善，比如Output Handler就没有Logback/Log4j2的丰富，有<br>时候需要自己来继承定制，又比如默认没有从ClassPath里加载配置文件的功能</p>
+<h3 id="Log4j-1-x"><a href="#Log4j-1-x" class="headerlink" title="Log4j 1.x"></a>Log4j 1.x</h3><p>Log4j 是在 Logback 出现之前被广泛使用的 Log Lib, 由 Gülcü 于2001年发布，后来成为Apache<br>基金会的顶级项目。Log4j 在设计上非常优秀，对后续的 Java Log 框架有长久而深远的影响，也产生了<br>Log4c, Log4s, Log4perl 等到其他语言的移植。Log4j 的短板在于性能，在Logback 和 Log4j2<br>出来之后，Log4j的使用也减少了。</p>
+<h3 id="Commons-Logging"><a href="#Commons-Logging" class="headerlink" title="Commons Logging"></a>Commons Logging</h3><p>简称JCL，是Apache下面的项目。JCL 是一个Log Facade，只提供 Log API，不提供实现，然后有 Adapter<br>来使用 Log4j 或者 JUL 作为Log Implementation。</p>
+<p>就像之前所说，JDK现在带了自己的JUL，然后又有第三方的Log4j等日志库存在，不同的项目可能各自使用了<br>不同的日志库。如果你的项目依赖的其他lib各自使用了不同的日志库，你想控制日志行为，就需要针对每个日<br>志库都写一个配置文件，是不是很酸爽?</p>
+<p>然后这个时候 JCL 就出现了。在程序中日志创建和记录都是用JCL中的接口，在真正运行时，会看当前ClassPath<br>中有什么实现，如果有Log4j 就是用 Log4j, 如果啥都没有就是用 JDK 的 JUL。</p>
+<p>这样，在你的项目中，还有第三方的项目中，大家记录日志都使用 JCL 的接口，然后最终运行程序时，可以按照自<br>己的需求(或者喜好)来选择使用合适的Log Implementation。如果用Log4j, 就添加 Log4j 的jar包进去，然<br>后写一个 Log4j 的配置文件；如果喜欢用JUL，就只需要写个JUL的配置文件。如果有其他的新的日志库出现，也<br>只需要它提供一个Adapter，运行的时候把这个日志库的 jar 包加进去。</p>
+<p><img src="http://39.104.171.29/image/jcl-log4j-jul.jpg" alt></p>
+<p>到这个时候一切看起来都很简单，很美好。接口和实现做了良好的分离，在统一的JCL之下，不改变任何代码，就可以<br>通过配置就换用功能更强大，或者性能更好的日志库实现。</p>
+<p>这种简单美好一直持续到SLF4J出现。</p>
+<h3 id="SLF4J-Logback"><a href="#SLF4J-Logback" class="headerlink" title="SLF4J/Logback"></a>SLF4J/Logback</h3><p>SLF4J(The Simple Logging Facade for Java)和Logback也是Gülcü创立的项目，其创立主要是为了提供更<br>高性能的实现。其中，SLF4j 是类似于JCL 的Log Facade,Logback 是类似于Log4j 的 Log Implementation。</p>
+<p>之前已经说过，Apache 有了个JCL，用来做各种Log lib统一的接口，如果 Gülcü 要搞一个更好的Log实现的话，<br>直接写一个实现就好了，为啥还要搞一个和SLF4J呢?</p>
+<p>原因是Gülcü 认为 JCL 的 API 设计得不好，容易让使用者写出性能有问题的代码。</p>
+<p>比如在用 JCL 输出一个 debug 级别的 log:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br></pre></td></tr></table></figure>
+<p>这个有什么问题呢？一般生产环境 log 级别都会设到 info 或者以上，那这条 log 是不会被输出的。然而不管会不会输出，<br>这其中都会做一个字符串连接操作，然后生产一个新的字符串。如果这条语句在循环或者被调用很多次的函数中，就会多做很多<br>无用的字符串连接，影响性能。</p>
+<p>所以 JCL 的最佳实践推荐这么写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">    logger.debug(<span class="string">"start process request, url:"</span> + url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而开发者常常忽略这个问题或是觉得麻烦而不愿意这么写。所以SLF4J提供了新的API，方便开发者使用:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url);</span><br></pre></td></tr></table></figure>
+<p>这样的话，在不输出 log 的时候避免了字符串拼接的开销；在输出的时候需要做一个字符串format，代价比手工拼接字符串大一些,<br>但是可以接受。</p>
+<p>而 Logback 则是作为 Log4j 的继承者来开发的，提供了性能更好的实现，异步 logger，Filter等更多的特性。</p>
+<p>现在事情变复杂了。我们有了两个流行的 Log Facade，以及三个流行的 Log Implementation。Gülcü是个追求完美的人，<br>他决定让这些Log之间都能够方便的互相替换，所以做了各种 Adapter 和 Bridge 来连接:</p>
+<p><img src="http://39.104.171.29/image/jcl-log4j-jul-slf4j-logback-slf4j-nop.jpg" alt></p>
+<p>可以看到甚至 Log4j 和 JUL 都可以桥接到SLF4J，再通过 SLF4J 适配到到 Logback!</p>
+<p>在这里需要注意不能搞出循环的桥接，比如下面这些依赖就不能同时存在:</p>
+<p>1.jcl-over-slf4j 和 slf4j-jcl<br>2.log4j-over-slf4j 和 slf4j-log4j12<br>3.jul-to-slf4j 和 slf4j-jdk14</p>
+<p>总感觉事情在变得更麻烦呢！</p>
+<h3 id="Log4j2"><a href="#Log4j2" class="headerlink" title="Log4j2"></a>Log4j2</h3><p>现在有了更好的 SLF4J 和 Logback——你会想事情到这里总该了解了吧，让他们慢慢取代JCL 和 Log4j 好了。</p>
+<p>然而维护 Log4j 的人不这样想，他们不想坐视用户一点点被 SLF4J /Logback 蚕食，继而搞出了 Log4j2。</p>
+<p>Log4j2 和 Log4j1.x 并不兼容，设计上很大程度上模仿了 SLF4J/Logback，性能上也获得了很大的提升。</p>
+<p>Log4j2 也做了 Facade/Implementation 分离的设计，分成了 log4j-api 和 log4j-core。</p>
+<p>现在好了，我们有了三个流行的Log 接口和四个流行的Log实现，如果画出桥接关系的图来回事什么样子呢?</p>
+<p><img src="http://39.104.171.29/image/jcl-slf4j-log4j2-api.jpg" alt></p>
+<p>是不是感觉有点晕呢？同样，在添加依赖的时候，要小心不要搞成循环依赖。对于如今的局面我的日志使用方案是</p>
+<h2 id="个人推荐日志搭配方案"><a href="#个人推荐日志搭配方案" class="headerlink" title="个人推荐日志搭配方案"></a>个人推荐日志搭配方案</h2><h3 id="1-总是使用Log-Facade，而不是具体Log-Implementation"><a href="#1-总是使用Log-Facade，而不是具体Log-Implementation" class="headerlink" title="1. 总是使用Log Facade，而不是具体Log Implementation"></a>1. 总是使用Log Facade，而不是具体Log Implementation</h3><p>正如之前所说的，使用 Log Facade 可以方便的切换具体的日志实现。而且，如果依赖多个项目，使用了不同的Log Facade，<br>还可以方便的通过 Adapter 转接到同一个实现上。如果依赖项目使用了多个不同的日志实现，就麻烦的多了。</p>
+<p>具体来说，现在推荐使用 Log4j-API 或者 SLF4j，不推荐继续使用 JCL。</p>
+<h3 id="2-只添加一个-Log-Implementation依赖"><a href="#2-只添加一个-Log-Implementation依赖" class="headerlink" title="2. 只添加一个 Log Implementation依赖"></a>2. 只添加一个 Log Implementation依赖</h3><p>毫无疑问，项目中应该只使用一个具体的 Log Implementation，建议使用 Logback 或者Log4j2。如果有依赖的项目中，<br>使用的 Log Facade不支持直接使用当前的 Log Implementation，就添加合适的桥接器依赖。具体的桥接关系可以看<br>上一篇文章的图。</p>
+<h3 id="3-具体的日志实现依赖应该设置为optional和使用runtime-scope"><a href="#3-具体的日志实现依赖应该设置为optional和使用runtime-scope" class="headerlink" title="3. 具体的日志实现依赖应该设置为optional和使用runtime scope"></a>3. 具体的日志实现依赖应该设置为optional和使用runtime scope</h3><p>在项目中，Log Implementation的依赖强烈建议设置为runtime scope，并且设置为optional。例如项目中使用了 SLF4J<br>作为 Log Facade，然后想使用 Log4j2 作为 Implementation，那么使用 maven 添加依赖的时候这样设置:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>设为optional，依赖不会传递，这样如果你是个lib项目，然后别的项目使用了你这个lib，不会被引入不想要的Log<br>Implementation 依赖；</p>
+<p>Scope设置为runtime，是为了防止开发人员在项目中直接使用Log Implementation中的类，而不适用Log Facade中的类。</p>
+<h3 id="4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖"><a href="#4-如果有必要-排除依赖的第三方库中的Log-Impementation依赖" class="headerlink" title="4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖"></a>4. 如果有必要, 排除依赖的第三方库中的Log Impementation依赖</h3><p>这是很常见的一个问题，第三方库的开发者未必会把具体的日志实现或者桥接器的依赖设置为optional，然后你的项目继承了这些<br>依赖——具体的日志实现未必是你想使用的，比如他依赖了Log4j，你想使用Logback，这时就很尴尬。另外，如果不同的第三方依<br>赖使用了不同的桥接器和Log实现，也极容易形成环。</p>
+<p>这种情况下，推荐的处理方法，是使用exclude来排除所有的这些Log实现和桥接器的依赖，只保留第三方库里面对Log Facade的依赖。</p>
+<p>比如阿里的JStorm就没有很好的处理这个问题，依赖jstorm会引入对Logback和log4j-over-slf4j的依赖，如果你想在自己的项目<br>中使用Log4j或其他Log实现的话，就需要加上excludes:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.jstorm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstorm-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-over-slf4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-避免为不会输出的log付出代价-减少对不输出日志的成本"><a href="#5-避免为不会输出的log付出代价-减少对不输出日志的成本" class="headerlink" title="5. 避免为不会输出的log付出代价(减少对不输出日志的成本)"></a>5. 避免为不会输出的log付出代价(减少对不输出日志的成本)</h3><p>Log库都可以灵活的设置输出界别，所以每一条程序中的log，都是有可能不会被输出。这时候要注意不要额外的付出代价。（字符拼接代价）</p>
+<p>先看两个有问题的写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url: "</span> + url);</span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, toJson(request));</span><br></pre></td></tr></table></figure>
+<p>第一条是直接做了字符串拼接，所以即使日志级别高于debug也会做一个字符串连接操作；第二条虽然用了SLF4J/Log4j2中的懒<br>求值方式来避免不必要的字符串拼接开销，但是toJson()这个函数却是都会被调用并且开销更大。</p>
+<p>推荐的写法如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"start process request, url:&#123;&#125;"</span>, url); <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">logger.debug(<span class="string">"receive request: &#123;&#125;"</span>, () -&gt; toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line">logger.debug(() -&gt; <span class="string">"receive request: "</span> + toJson(request)); <span class="comment">// LOG4J2</span></span><br><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123; <span class="comment">// SLF4J/LOG4J2</span></span><br><span class="line">    logger.debug(<span class="string">"receive request: "</span> + toJson(request)); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-日志格式中最好不要使用行号，函数名等字段"><a href="#6-日志格式中最好不要使用行号，函数名等字段" class="headerlink" title="6. 日志格式中最好不要使用行号，函数名等字段"></a>6. 日志格式中最好不要使用行号，函数名等字段</h3><p>原因是，为了获取语句所在的函数名，或者行号，log库的实现都是获取当前的stacktrace，然后分析取出这些信息，而获取<br>stacktrace的代价是很昂贵的。如果有很多的日志输出，就会占用大量的CPU。在没有特殊需要的情况下，建议不要在日志中<br>输出这些这些字段。</p>
+<h3 id="7-log中不要输出稀奇古怪的字符！"><a href="#7-log中不要输出稀奇古怪的字符！" class="headerlink" title="7. log中不要输出稀奇古怪的字符！"></a>7. log中不要输出稀奇古怪的字符！</h3><p>部分开发人员为了方便看到自己的log，会在log语句中加上醒目的前缀，比如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">"========================start process request============="</span>);</span><br></pre></td></tr></table></figure>
+<p>虽然对于自己来说是方便了，但是如果所有人都这样来做的话，那log输出就没法看了！正确的做法是使用grep（linux 中的shell命令） 来看只自己关心的日志。</p>
+<p>转载处：<a href="https://zhuanlan.zhihu.com/p/24272450" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24272450</a></p>
 
           
         
