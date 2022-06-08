@@ -254,7 +254,7 @@
       
     
 
-    <a href="/MeBlog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">4</span></a>
+    <a href="/MeBlog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">5</span></a>
 
   </li>
         
@@ -273,7 +273,7 @@
       
     
 
-    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">56</span></a>
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">57</span></a>
 
   </li>
 
@@ -338,6 +338,179 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/web_认证机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MeBlog/2021/12/06/web_认证机制/" class="post-title-link" itemprop="url">web认证机制</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-29 21:24:25" itemprop="dateModified" datetime="2019-04-29T21:24:25+08:00">2019-04-29</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="HTTP-Basic-Auth"><a href="#HTTP-Basic-Auth" class="headerlink" title="HTTP Basic Auth"></a>HTTP Basic Auth</h2><p>​    HTTP Basic Auth简单点说明就是每次请求API时都提供用户的username和password，简言之，Basic Auth是配合<br>RESTful API 使用的最简单的认证方式，只需提供用户名密码即可，但由于有把用户名密码暴露给第三方客户端的风险，在生产环境下被使用的越来越少。因此，在开发对外开放的RESTful API时，尽量避免采用HTTP Basic Auth</p>
+<p>个人观点：简单易于实现，安全性低</p>
+<h2 id="Cookie-Auth"><a href="#Cookie-Auth" class="headerlink" title="Cookie Auth"></a>Cookie Auth</h2><p>​    Cookie认证机制就是为一次请求认证在服务端创建一个Session对象，同时在客户端的浏览器端创建了一个Cookie<br>对象；通过客户端带上来Cookie对象来与服务器端的session对象匹配来实现状态管理的。默认的，当我们关闭浏览器的时候，cookie会被删除。但可以通过修改cookie 的expire time使cookie在一定时间内有效</p>
+<p>个人观点：可以使应用认证有状态性，要想保证认证的有状态性使得服务器的session频繁创建，会对服务器的开销增加压力。安全性：一般</p>
+<h2 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h2><p>​    OAuth（开放授权）是一个开放的授权标准，允许用户让第三方应用访问该用户在某一web服务上存储的私密的资<br>源（如照片，视频，联系人列表），而无需将用户名和密码提供给第三方应用。 OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们存放在特定服务提供者的数据。每一个令牌授权一个特定的第三方系统（例如，视频编辑网站)在特定的时段（例如，接下来的2小时内）内访问特定的资源（例如仅仅是某一相册中的视频）。这样，OAuth让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息，而非所有内容这种基于OAuth的认证机制适用于个人消者类的互联网产品，如社交类APP等应用，但是不太适合拥有自有认证权限管理的企业应用。</p>
+<p><img src="http://39.104.171.29:80/image/oauth_storm.jpg" alt></p>
+<p>个人观点：安全性高。OAuth让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息，而非所有内容这种基于OAuth的认证机制适用于个人消者类的互联网产品，如社交类APP等应用，但是不太适合拥有自有认证权限管理的企业应用。</p>
+<h2 id="Token-Auth"><a href="#Token-Auth" class="headerlink" title="Token Auth"></a>Token Auth</h2><p>使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：</p>
+<ol>
+<li>客户端使用用户名跟密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端</li>
+<li>客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里</li>
+<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 Token</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</li>
+</ol>
+<p><img src="http://39.104.171.29:80/image/token_auth_storm.jpg" alt></p>
+<p>Token Auth的优点</p>
+<p>​    支持跨域访问: Cookie是不允许垮域访问的，这一点对Token机制是不存在的，前提是传输的用户认证信息通过HTTP头传输.<br>    无状态(也称：服务端可扩展行):Token机制在服务端不需要存储session信息，因为Token 自身包含了所有登录用户的信息，只需要在客户端的cookie或本地介质存储状态信息.<br>    更适用CDN: 可以通过内容分发网络请求你服务端的所有资料（如：javascript，HTML,图片等），而你的服务端只要提供API即可.<br>    去耦: 不需要绑定到一个特定的身份验证方案。Token可以在任何地方生成，只要在你的API被调用的时候，你可以进行Token生成调用即可.<br>    更适用于移动应用: 当你的客户端是一个原生平台（iOS, Android，Windows 8等）时，Cookie是不被支持的（你需要通过Cookie容器进行处理），这时采用Token认证机制就会简单得多。<br>    CSRF:因为不再依赖于Cookie，所以你就不需要考虑对CSRF（跨站请求伪造）的防范。<br>性能: 一次网络往返时间（通过数据库查询session信息）总比做一次HMACSHA256计算 的Token验证和解析要费时得多.<br>    不需要为登录页面做特殊处理: 如果你使用Protractor 做功能测试的时候，不再需要为登录页面做特殊处理.<br>    基于标准化:你的API可以采用标准化的 JSON Web Token (JWT). 这个标准已经存在多个后端库（.NET, Ruby,<br>Java,Python, PHP）和多家公司的支持（如：Firebase,Google, Microsoft）.</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -2170,243 +2343,6 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2021/12/06/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WenLiangBao">
-      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
-      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WenLiangBaoBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/MeBlog/2021/12/06/git/" class="post-title-link" itemprop="url">git</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2021-12-06 14:22:55" itemprop="dateCreated datePublished" datetime="2021-12-06T14:22:55+08:00">2021-12-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-06-09 14:29:36" itemprop="dateModified" datetime="2020-06-09T14:29:36+08:00">2020-06-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="为什么使用git"><a href="#为什么使用git" class="headerlink" title="为什么使用git"></a>为什么使用git</h2><p>这个问题的答案就在于，集中式版本控制和分布式版本控制的的区别。</p>
-<p>那么怎样算得上集中式版本控制呢？</p>
-<p>比如说SVN就是集中式版本控制系统，版本库是集中放在中央服务器的,而干活的时候,用的都是自己的电脑,所以首先要从中央服务器哪里得到最新的版本,然后干活,干完后,需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作,如果在局域网还可以,带宽够大,速度够快,如果在互联网下,如果网速慢的话,就郁闷了。</p>
-<p><img src="http://39.104.171.29/image/svn-1.png" alt="svn-active-stream"></p>
-<p>集中式版本控制存在如下缺陷： 依赖网络性强，由于只使用一个中央服务器，所以会有单点问题。</p>
-<p>以上说了集中式版本控制，那么分布式版本控制工具又是怎么样的呢？</p>
-<p>分布式版本控制的代表就是git</p>
-<p>Git 是分布式版本控制系统,每个人的电脑就是一个完整的版本库,这样,工作的时候就不需要联网了,因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库,那多个人如何协作呢?比如说自己在电脑上改了文件A,其他人也在电脑上改了文件A,这时,如果是自己先push上传，别想要push时远程库就会阻止并提示他更新最新的远程版本库中的内容后再push。下图就是分布式版本控制工具管理方式:</p>
-<p><img src="http://39.104.171.29/image/git-1.png" alt="git-active-stream"></p>
-<p>分布式版本控制：解决了集中式版本控制的单点问题，和网络依赖性问题，适用于互联网多地区协同开发，但是在只是在局域网下开发，个人认为还是使用svn会更方便，git虽然性能优越但是使用上没有SVN简便。</p>
-<h2 id="git-和svn等系统的存储差异"><a href="#git-和svn等系统的存储差异" class="headerlink" title=" git 和svn等系统的存储差异 "></a><span id="jump-storageMode"> git 和svn等系统的存储差异 </span></h2><p>从概念上来说，其他大部分系统以文件变更列表的方式存储信息。这类系统将它们存储的信息看作是一组基本文件和每个文件随时间逐步积累的差异。（被称作基于差异的版本控制）</p>
-<p>如下图：<br><img src="/MeBlog/.io//checking-over-time.png" alt="checking-over-time"></p>
-<p>Figure . 存储每个文件与初始版本的差异.</p>
-<p>git对待数据的方式与上图不同，而git是把每个文件看做一个小的文件系统然后为其生成快照，从而管理一系列快照。在git中，每当你提交更新或保存项目的状态时，它基本上对待当前项目的文件创建一份快照，并保存这个快照指向的索引。为了效率，如果文件没有修改，git不再更新存储该文件，而是只保留一个链接指向之前存储的文件。git对待数据更像是一个快照流</p>
-<p><img src="/MeBlog/.io//checking-over-time-git.png" alt="checking-over-time-git"></p>
-<p>Figure.存储项目随时间改变的快照.</p>
-<h2 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h2><p>同生活中的许多伟大事件一样,Git 诞生于一个极富纷争大举创新的年代。Linux 内核<br>开源项目有着为数众广的参与者。绝大多数的 Linux 内核维护工作都花在了提交补丁和保<br>存归档的繁琐事务上(1991-2002 年间)。到 2002 年,整个项目组开始启用分布式版本<br>控制系统 BitKeeper 来管理和维护代码。<br>到 2005 年的时候,开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结<br>束,他们收回了免费使用 BitKeeper 的权力。这就迫使 Linux 开源社区(特别是 Linux 的<br>缔造者 Linus Torvalds )不得不吸取教训,只有开发一套属于自己的版本控制系统才不至于<br>重蹈覆辙。他们对新的系统订了若干目标:<br>• 速度<br>• 简单的设计<br>• 对非线性开发模式的强力支持(允许上千个并行开发的分支)<br>• 完全分布式<br>• 有能力高效管理类似 Linux 内核一样的超大规模项目(速度和数据量)</p>
-<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>一般工作流程如下:<br>1.从远程仓库中克隆 Git 资源作为本地仓库。<br>2.从本地仓库中 checkout 代码然后进行代码修改<br>3.在提交前先将代码提交到暂存区。<br>4.提交修改。提交到本地仓库。本地仓库中保存修改的各个历史版本。<br>5.在修改完成后,需要和团队成员共享代码时,可以将代码 push 到远程仓库。<br>下图展示了 Git 的工作流程:</p>
-<p><img src="http://39.104.171.29/image/git-2.png" alt="git-active-stream"></p>
-<h3 id="git-的工作目录介绍"><a href="#git-的工作目录介绍" class="headerlink" title="git 的工作目录介绍"></a>git 的工作目录介绍</h3><p><img src="http://39.104.171.29/image/git-3.png" alt="git-active-stream"></p>
-<p>其中 ./git 文件夹下就是git的本地仓库</p>
-<h2 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init 要初始的文件夹路径</span><br></pre></td></tr></table></figure>
-<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 要加入的文件</span><br></pre></td></tr></table></figure>
-<h3 id="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"><a href="#将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中" class="headerlink" title="将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中"></a>将暂存区文件添加到本地仓库，并将本地仓库推送到远程仓库中</h3><p>将缓存区域文件添加到本地仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
-<p>将本地仓库推送到远程仓库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push ssh://git@39.xxx.171.29/home/git/git_study</span><br><span class="line">fatal: 当前分支 master 没有对应的上游分支。</span><br><span class="line">为推送当前分支并建立与远程上游的跟踪，使用</span><br><span class="line"></span><br><span class="line">    git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git push --set-upstream ssh://git@39.XXX.171.29/home/git/git_study master</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">Permission denied, please try again.</span><br><span class="line">git@39.XXX.171.29&apos;s password: </span><br><span class="line">对象计数中: 6, 完成.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">压缩对象中: 100% (3/3), 完成.</span><br><span class="line">写入对象中: 100% (6/6), 523 bytes | 523.00 KiB/s, 完成.</span><br><span class="line">Total 6 (delta 0), reused 0 (delta 0)</span><br><span class="line">To ssh://39.XXX.171.29/home/git/git_study</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">分支 &apos;master&apos; 设置为跟踪来自 &apos;ssh://git@39.XXX.171.29/home/git/git_study&apos; 的远程分支 &apos;master&apos;。</span><br></pre></td></tr></table></figure></p>
-<h3 id="查看修改历史"><a href="#查看修改历史" class="headerlink" title="查看修改历史"></a>查看修改历史</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git log</span><br><span class="line">commit 4cb2b4f87b03b6cf3301b000a3e14c44027e3f42 (HEAD -&gt; master)</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:28:44 2019 +0800</span><br><span class="line"></span><br><span class="line">    第二次修改</span><br><span class="line"></span><br><span class="line">commit 1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">Date:   Fri May 17 14:21:19 2019 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br></pre></td></tr></table></figure>
-<h3 id="还原修改"><a href="#还原修改" class="headerlink" title="还原修改"></a>还原修改</h3><p>reset 还原，还原后历史版本不存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git reset --hard  1910c01353a8f12304e2a923164f69e33925a03a</span><br><span class="line">HEAD 现在位于 1910c01 first commit</span><br></pre></td></tr></table></figure></p>
-<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git rm test </span><br><span class="line">rm &apos;test&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="忽略文件或文件夹"><a href="#忽略文件或文件夹" class="headerlink" title="忽略文件或文件夹"></a>忽略文件或文件夹</h3><p>在文件目录下创建gitignore 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure></p>
-<p>忽略语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">空行或是以 # 开头的行即注释行将被忽略。</span><br><span class="line">可以在前面添加正斜杠 / 来避免递归,下面的例子中可以很明白的看出来与下一条的区别。</span><br><span class="line">可以在后面添加正斜杠 / 来忽略文件夹,例如 build/ 即忽略 build 文件夹。</span><br><span class="line">可以使用 ! 来否定忽略,即比如在前面用了 *.apk ,然后使用 !a.apk ,则这个 a.apk 不会</span><br><span class="line">被忽略。</span><br><span class="line">* 用来匹配零个或多个字符,如 *.[oa] 忽略所有以&quot;.o&quot;或&quot;.a&quot;结尾, *~ 忽略所有以 ~ 结尾</span><br><span class="line">的文件(这种文件通常被许多编辑器标记为临时文件); [] 用来匹配括号内的任一字符,</span><br><span class="line">如 [abc] ,也可以在括号内加连接符,如 [0-9] 匹配 0 至 9 的数; ? 用来匹配单个字符。</span><br><span class="line">看了这么多,还是应该来个栗子:</span><br><span class="line"># 忽略 .a 文件</span><br><span class="line">*.a</span><br><span class="line"># 但否定忽略 lib.a, 尽管已经在前面忽略了 .a 文件</span><br><span class="line">!lib.a</span><br><span class="line"># 仅在当前目录下忽略 TODO 文件, 但不包括子目录下的 subdir/TODO</span><br><span class="line">/TODO</span><br><span class="line"># 忽略 build/ 文件夹下的所有文件</span><br><span class="line">build/</span><br><span class="line"># 忽略 doc/notes.txt, 不包括 doc/server/arch.txt</span><br><span class="line">doc/*.txt</span><br><span class="line"># 忽略所有的 .pdf 文件 在 doc/ directory 下的</span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
-<h3 id="解决文件冲突"><a href="#解决文件冲突" class="headerlink" title="解决文件冲突"></a>解决文件冲突</h3><p>编辑有冲突后的文件，再次提交即可</p>
-<h3 id="文件更新或拉取"><a href="#文件更新或拉取" class="headerlink" title="文件更新或拉取"></a>文件更新或拉取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ git clone ssh://git@39.xxx.xxx.29/home/git/git_study</span><br><span class="line">正克隆到 &apos;git_study&apos;...</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">remote: Counting objects: 13, done.</span><br><span class="line">remote: Compressing objects: 100% (7/7), done.</span><br><span class="line">remote: Total 13 (delta 0), reused 0 (delta 0)</span><br><span class="line">接收对象中: 100% (13/13), 完成.</span><br><span class="line"></span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit$ cd git_study/</span><br><span class="line">spiderbao@spiderbao-CW65S:~/cloneToGit/git_study$ git pull</span><br><span class="line">git@39.xxx.xxx.29&apos;s password: </span><br><span class="line">已经是最新的。</span><br></pre></td></tr></table></figure>
-<h2 id="git分支管理"><a href="#git分支管理" class="headerlink" title="git分支管理"></a>git分支管理</h2><p>为了真正理解 Git 处理分支的方式，我们需要回顾一下 Git 是如何<a href="#jump-storageMode">保存数据</a>的。</p>
-<p>Git 保存的不是文件的变化或者差异，而是一系列不同时刻的 <strong>快照</strong> </p>
-<p>在进行提交操作时，git会保存一个提交对象（commit object）。该提交对象会包含一个指向暂存快照的指针。但不仅仅是这样，该提交对象还包含了作者的姓名和邮箱、提交时输入的信息以及指向它的父对象的指针。 首次提交产生的提交对象没有父对象，普通提交操作产生的提交对象有一个父对象， 而由多个分支合并产生的提交对象有多个父对象</p>
-<p>案例：</p>
-<p>我们假设现在有一个工作目录，里面包含了三个将要被暂存和提交的文件。 暂存操作会为每一个文件计算校验和（使用我们在 <a href="https://git-scm.com/book/zh/v2/ch00/ch01-getting-started" target="_blank" rel="noopener">起步</a> 中提到的 SHA-1 哈希算法），然后会把当前版本的文件快照保存到 Git 仓库中 （Git 使用 <em>blob</em> 对象来保存它们），最终将校验和加入到暂存区域等待提交</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add README test.rb LICENSE</span><br><span class="line">$ git commit -m &apos;The initial commit of my project&apos;</span><br></pre></td></tr></table></figure>
-<p>当使用 <code>git commit</code> 进行提交操作时，Git 会先计算每一个子目录（本例中只有项目根目录）的校验和， 然后在 Git 仓库中这些校验和保存为树对象。随后，Git 便会创建一个提交对象， 它除了包含上面提到的那些信息外，还包含指向这个树对象（项目根目录）的指针。 如此一来，Git 就可以在需要的时候重现此次保存的快照。</p>
-<p>现在，Git 仓库中有五个对象：三个 <em>blob</em> 对象（保存着文件快照）、一个 <strong>树</strong> 对象 （记录着目录结构和 blob 对象索引）以及一个 <strong>提交</strong> 对象（包含着指向前述树对象的指针和所有提交信息）。</p>
-<p><img src="/MeBlog/.io//git-branch-1.png" alt="branch-1"></p>
-<p>Figure 首次提交对象及其树结构</p>
-<p>做些修改后再次提交，那么这次产生的提交对象会包含一个指向上次提交对象（父对象）的指针。</p>
-<p><img src="/MeBlog/.io//git-branch-2.png" alt="branch-1"></p>
-<p>Figure 提交对象及其父对象</p>
-<p>Git 的分支，其实本质上仅仅是指向提交对象的可变指针。 Git 的默认分支名字是 <code>master</code>。 在多次提交操作之后，你其实已经有一个指向最后那个提交对象的 <code>master</code> 分支。 <code>master</code> 分支会在每次提交时自动向前移动。</p>
-<p><strong> <span style="color:red">Note</span></strong>:   Git 的 <code>master</code> 分支并不是一个特殊分支。 它就跟其它分支完全没有区别。 之所以几乎每一个仓库都有 master 分支，是因为 <code>git init</code> 命令默认创建它，并且大多数人都懒得去改动它。</p>
-<p><img src="/MeBlog/.io//git-branch-3.png" alt="branch-3"></p>
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 新分支名称</span><br></pre></td></tr></table></figure>
-<h3 id="选择分支"><a href="#选择分支" class="headerlink" title="选择分支"></a>选择分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名称</span><br></pre></td></tr></table></figure>
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spiderbao@spiderbao-CW65S:~/git_study$ git merge mybatis </span><br><span class="line">更新 8c65eb0..458de41</span><br><span class="line">Fast-forward</span><br><span class="line"> xiaoli | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 xiaoli</span><br></pre></td></tr></table></figure>
-<h2 id="git-贮藏-stash"><a href="#git-贮藏-stash" class="headerlink" title="git 贮藏(stash)"></a>git 贮藏(stash)</h2><p>个人认为此功能用来间当前缓存区中的信息暂时贮藏，便于切换别的分支去处理事情。等处理完后再切换到当前分支并恢复贮藏信息并继续当前分支的开发。</p>
-<p>使用场景：</p>
-<p>由于分支的切换需要干净的暂存区（stage，也是就是这个区域内不能有信息）。所以导致想要切换版本就必须面临提交当前工作区信息到版本库中或者不提交。而这两者都具有弊端，前者能保存当前工作区中的内容，但是会对提交历史产生影响。后者虽然不会对仓库的历史产生影响，但是当前工作区中的信息也不会保存。使用git的贮藏功能可以兼备以上所期望的2点。实现过程如下案例</p>
-<p>场景：</p>
-<p>当前项目的分支情况如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">* commit 394e7afc1077df0bf4d399c8d6d1e6821eb7f49d (HEAD -&gt; experiment)</span><br><span class="line">| Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">| Date:   Thu Jun 4 14:29:01 2020 +0800</span><br><span class="line">| </span><br><span class="line">|     test</span><br><span class="line">|     </span><br><span class="line">|     modified test</span><br><span class="line">| </span><br><span class="line">* commit 49fd47ed235a96ebe7a353c016aa4602c3b8dfb5</span><br><span class="line">| Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">| Date:   Wed Jun 3 10:05:10 2020 +0800</span><br><span class="line">| </span><br><span class="line">|     add experiment</span><br><span class="line">| </span><br><span class="line">* commit 214cbe6f166becc20309a70f35bbc43ff60ec7eb (master)</span><br><span class="line">| Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">| Date:   Wed Jun 3 10:06:25 2020 +0800</span><br><span class="line">| </span><br><span class="line">|     add test</span><br><span class="line">| </span><br><span class="line">* commit 252d42a731d129478ecfc2882d691ab3ee6e5deb</span><br><span class="line">  Author: spiderbao &lt;13593265401@163.com&gt;</span><br><span class="line">  Date:   Wed Jun 3 10:02:57 2020 +0800</span><br><span class="line">  </span><br><span class="line">      add README.md</span><br></pre></td></tr></table></figure>
-<p>当用户在experiment开发时，接到了临时的紧急通知需要修改master分支上的几处BUG。</p>
-<p>1.使用git status 查看当前项目的情况，将要保存的信息放入暂存区（stage）处</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">位于分支 experiment</span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git reset HEAD &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">	新文件：   index.html</span><br><span class="line">	新文件：   lib/simplegit.rb</span><br><span class="line"></span><br><span class="line">未跟踪的文件:</span><br><span class="line">  （使用 &quot;git add &lt;文件&gt;...&quot; 以包含要提交的内容）</span><br><span class="line"></span><br><span class="line">	TODO</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  git add TODO</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">位于分支 experiment</span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git reset HEAD &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">	新文件：   TODO</span><br><span class="line">	新文件：   index.html</span><br><span class="line">	新文件：   lib/simplegit.rb</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li><p>将暂存区中的内容通过stash 放入特定的一个栈中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git stash </span><br><span class="line">保存工作目录和索引状态 WIP on experiment: 394e7af test</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="3">
-<li><p>切换分支工作，解决BUG并提交</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">切换到分支 &apos;master&apos;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="4">
-<li><p>切换分支并恢复贮藏信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout experiment </span><br><span class="line">切换到分支 &apos;experiment&apos;</span><br><span class="line">$ git stash apply stash@&#123;0&#125; </span><br><span class="line">位于分支 experiment</span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git reset HEAD &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">	新文件：   TODO</span><br><span class="line">	新文件：   index.html</span><br><span class="line">	新文件：   lib/simplegit.rb</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="5">
-<li><p>清理贮藏区中的信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on experiment: 394e7af test</span><br><span class="line">$ git stash drop stash@&#123;0&#125; </span><br><span class="line">丢弃了 stash@&#123;0&#125; (b1cb57a6cb76585027a27eed6779bcab6ca4f400)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2455,7 +2391,7 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
                 
                   <a href="/MeBlog/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2478,7 +2414,9 @@ maven 是一个项目管理工具,它包含了一个项目对象模型（pom:pro
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
