@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/MeBlog/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="目标： ​    实现一个简易的公式计算器，如根据用户输入 2+4*3-2-(2*8) 公式可以自行求解 实现思路： ​    概念： ​            中缀式：如2+4*3-2-(2*8) ​            后缀式：如上中缀式转换为后缀式为 1. 公式转换，解决公式开头为负数的问题。 1. 将中缀式转换为后缀式并放入后缀栈中 1. 将后缀栈中的数据弹出计算并放入结果栈中 逆波兰">
+<meta name="keywords" content="逆波兰式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="公式计算器实现">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2022/06/07/公式计算器实现/index.html">
+<meta property="og:site_name" content="WenLiangBaoBlog">
+<meta property="og:description" content="目标： ​    实现一个简易的公式计算器，如根据用户输入 2+4*3-2-(2*8) 公式可以自行求解 实现思路： ​    概念： ​            中缀式：如2+4*3-2-(2*8) ​            后缀式：如上中缀式转换为后缀式为 1. 公式转换，解决公式开头为负数的问题。 1. 将中缀式转换为后缀式并放入后缀栈中 1. 将后缀栈中的数据弹出计算并放入结果栈中 逆波兰">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-06-07T03:17:51.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="公式计算器实现">
+<meta name="twitter:description" content="目标： ​    实现一个简易的公式计算器，如根据用户输入 2+4*3-2-(2*8) 公式可以自行求解 实现思路： ​    概念： ​            中缀式：如2+4*3-2-(2*8) ​            后缀式：如上中缀式转换为后缀式为 1. 公式转换，解决公式开头为负数的问题。 1. 将中缀式转换为后缀式并放入后缀栈中 1. 将后缀栈中的数据弹出计算并放入结果栈中 逆波兰">
+
+
+
+
+
+
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2022/06/07/公式计算器实现/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>公式计算器实现 | WenLiangBaoBlog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?634fa4157d9129d4fc7c51fd0e0849f8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/MeBlog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WenLiangBaoBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">4</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">56</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2022/06/07/公式计算器实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">公式计算器实现
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-06-07 09:30:42 / 修改时间：11:17:51" itemprop="dateCreated datePublished" datetime="2022-06-07T09:30:42+08:00">2022-06-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> 目标：</p>
+<p>​    <code>实现一个简易的公式计算器，如根据用户输入 2+4*3-2-(2*8) 公式可以自行求解</code></p>
+<p>实现思路：</p>
+<p>​    概念：</p>
+<p>​            中缀式：<code>如2+4*3-2-(2*8)</code></p>
+<p>​            后缀式：<code>如上中缀式转换为后缀式为</code></p>
+<pre><code>1. 公式转换，解决公式开头为负数的问题。
+1. 将中缀式转换为后缀式并放入后缀栈中
+1. 将后缀栈中的数据弹出计算并放入结果栈中
+</code></pre><p>逆波兰(中缀转后缀式)总结：</p>
+<ol>
+<li><p>从左往右依次处理</p>
+</li>
+<li><p>遇见数字直接追加写入公式中，如果遇见的是运算符。</p>
+<p>2.1 遇见的运算符与栈顶中的运算符进行优先级对比，如栈中不存在运算符则直接放入栈中，优先级小于等于栈顶运算符时循环取出栈顶运算符追加入公式中，最后将当前运算符放入栈中。优先级大于栈顶运算符时直接放入栈中。</p>
+<p>2.2 遇见的运算符为）时，依次弹出栈顶运算符并追加入公式中，直至栈顶的运算符为（时为止。</p>
+</li>
+</ol>
+<p>代码核心组件逻辑图</p>
+<blockquote class="pullquote mindmap mindmap-md"><ul>
+<li>公式计算器<ul>
+<li>解析器（逆波兰/后缀表达式）<ul>
+<li>后缀式栈</li>
+<li>运算符号栈</li>
+<li>计算栈</li>
+</ul>
+</li>
+<li>函数集<ul>
+<li>常用的数学函数<ul>
+<li>加</li>
+<li>减</li>
+<li>乘</li>
+<li>除</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>代码实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.spidermen.math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"><span class="keyword">import</span> java.math.RoundingMode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseMethod</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 默认除法运算精度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEF_DIV_SCALE = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个类不能实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ArithHelper</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 提供精确的加法运算。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v1 被加数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v2 加数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 两个参数的和</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">add</span><span class="params">(<span class="keyword">double</span> v1, <span class="keyword">double</span> v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(Double.toString(v1));</span><br><span class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(Double.toString(v2));</span><br><span class="line">        <span class="keyword">return</span> b1.add(b2).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">add</span><span class="params">(String v1, String v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(v1);</span><br><span class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(v2);</span><br><span class="line">        <span class="keyword">return</span> b1.add(b2).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 提供精确的减法运算。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v1 被减数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v2 减数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 两个参数的差</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">sub</span><span class="params">(<span class="keyword">double</span> v1, <span class="keyword">double</span> v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(Double.toString(v1));</span><br><span class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(Double.toString(v2));</span><br><span class="line">        <span class="keyword">return</span> b1.subtract(b2).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">sub</span><span class="params">(String v1, String v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(v1);</span><br><span class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(v2);</span><br><span class="line">        <span class="keyword">return</span> b1.subtract(b2).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 提供精确的乘法运算。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v1 被乘数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v2 乘数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 两个参数的积</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">mul</span><span class="params">(<span class="keyword">double</span> v1, <span class="keyword">double</span> v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(Double.toString(v1));</span><br><span class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(Double.toString(v2));</span><br><span class="line">        <span class="keyword">return</span> b1.multiply(b2).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">mul</span><span class="params">(String v1, String v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(v1);</span><br><span class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(v2);</span><br><span class="line">        <span class="keyword">return</span> b1.multiply(b2).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 提供（相对）精确的除法运算，当发生除不尽的情况时，精确到 小数点以后10位，以后的数字四舍五入。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v1 被除数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v2 除数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 两个参数的商</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">div</span><span class="params">(<span class="keyword">double</span> v1, <span class="keyword">double</span> v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = BigDecimal.valueOf(v1);</span><br><span class="line">        BigDecimal b2 = BigDecimal.valueOf(v2);</span><br><span class="line">        <span class="keyword">return</span> div(b1, b2, DEF_DIV_SCALE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">div</span><span class="params">(String v1, String v2)</span> </span>&#123;</span><br><span class="line">        BigDecimal b1 = <span class="keyword">new</span> BigDecimal(v1);</span><br><span class="line">        BigDecimal b2 = <span class="keyword">new</span> BigDecimal(v2);</span><br><span class="line">        <span class="keyword">return</span> div(b1,b2,DEF_DIV_SCALE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指 定精度，以后的数字四舍五入。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v1    被除数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> v2    除数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> scale 表示表示需要精确到小数点以后几位。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 两个参数的商</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">div</span><span class="params">(BigDecimal v1, BigDecimal v2, <span class="keyword">int</span> scale)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (scale &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The  scale  must  be  a  positive  integer  or  zero"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> v1.divide(v2, scale, RoundingMode.HALF_UP).doubleValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.spidermen.math;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSONArray;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数学表达式计算核心功能</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;String&gt; postfixStack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line">    <span class="comment">// 后缀式栈</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Character&gt; opStack = <span class="keyword">new</span> Stack&lt;Character&gt;();</span><br><span class="line">    <span class="comment">// 运算符栈</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] operatPriority = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 运用运算符ASCII码-40做索引的运算符优先级</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">conversion</span><span class="params">(String expression)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        log.info("公式[&#123;&#125;]开始计算！",expression);</span></span><br><span class="line">        <span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">        Calculator cal = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            expression = transform(expression);</span><br><span class="line">            result = cal.calculate(expression);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="comment">// 运算错误返回0</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// return new String().valueOf(result);</span></span><br><span class="line"><span class="comment">//        log.info("公式[&#123;&#125;]计算结果为:&#123;&#125;",expression,result);</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将表达式中负数的符号更改</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> expression 例如-2+-1*(-3E-2)-(-1) 被转为 ~2+~1*(~3E~2)-(~1)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">transform</span><span class="params">(String expression)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] arr = expression.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] == <span class="string">'-'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">                    arr[i] = <span class="string">'~'</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">char</span> c = arr[i - <span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> (c == <span class="string">'+'</span> || c == <span class="string">'-'</span> || c == <span class="string">'*'</span> || c == <span class="string">'/'</span> || c == <span class="string">'('</span> || c == <span class="string">'E'</span> || c == <span class="string">'e'</span>) &#123;</span><br><span class="line">                        arr[i] = <span class="string">'~'</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (arr[<span class="number">0</span>] == <span class="string">'~'</span>) &#123;</span><br><span class="line">            arr[<span class="number">0</span>] = <span class="string">'-'</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"0"</span> + <span class="keyword">new</span> String(arr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (arr[i] ==<span class="string">'('</span>)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]==<span class="string">'-'</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> String(arr,<span class="number">0</span>,i)+<span class="string">"0"</span>+<span class="keyword">new</span> String(arr,i,arr.length-i);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> String(arr);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 按照给定的表达式计算</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> expression 要计算的表达式例如:5+12*(3+5)/7</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculate</span><span class="params">(String expression)</span> </span>&#123;</span><br><span class="line">        Stack&lt;String&gt; resultStack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line">        prepare(expression);</span><br><span class="line">        Collections.reverse(postfixStack);</span><br><span class="line">        <span class="comment">// 将后缀式栈反转</span></span><br><span class="line">        String firstValue, secondValue, currentValue;</span><br><span class="line">        <span class="comment">// 参与计算的第一个值，第二个值和算术运算符</span></span><br><span class="line">        <span class="keyword">while</span> (!postfixStack.isEmpty()) &#123;</span><br><span class="line">            currentValue = postfixStack.pop();</span><br><span class="line">            <span class="keyword">if</span> (!isOperator(currentValue.charAt(<span class="number">0</span>))) &#123;</span><br><span class="line">                <span class="comment">// 如果不是运算符则存入操作数栈中</span></span><br><span class="line">                currentValue = currentValue.replace(<span class="string">"~"</span>, <span class="string">"-"</span>);</span><br><span class="line">                resultStack.push(currentValue);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 如果是运算符则从操作数栈中取两个值和该数值一起参与运算</span></span><br><span class="line">                secondValue = resultStack.pop();</span><br><span class="line">                firstValue = resultStack.pop();</span><br><span class="line">                <span class="comment">// 将负数标记符改为负号</span></span><br><span class="line">                firstValue = firstValue.replace(<span class="string">"~"</span>, <span class="string">"-"</span>);</span><br><span class="line">                secondValue = secondValue.replace(<span class="string">"~"</span>, <span class="string">"-"</span>);</span><br><span class="line">                String tempResult = calculate(firstValue, secondValue, currentValue.charAt(<span class="number">0</span>));</span><br><span class="line">                resultStack.push(tempResult);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Double.valueOf(resultStack.pop());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据准备阶段将表达式转换成为后缀式栈</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> expression</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(String expression)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"中缀式为: "</span>+expression);</span><br><span class="line">        opStack.push(<span class="string">','</span>);</span><br><span class="line">        <span class="comment">// 运算符放入栈底元素逗号，此符号优先级最低</span></span><br><span class="line">        <span class="keyword">char</span>[] arr = expression.toCharArray();</span><br><span class="line">        <span class="keyword">int</span> currentIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 当前字符的位置</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 上次算术运算符到本次算术运算符的字符的长度便于获取之间的数值</span></span><br><span class="line">        <span class="keyword">char</span> currentOp, peekOp;</span><br><span class="line">        <span class="comment">// 当前操作符和栈顶操作符</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            currentOp = arr[i];</span><br><span class="line">            <span class="keyword">if</span> (isOperator(currentOp)) &#123;</span><br><span class="line">                <span class="comment">// 如果当前字符是运算符</span></span><br><span class="line">                <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    postfixStack.push(<span class="keyword">new</span> String(arr, currentIndex, count));</span><br><span class="line">                    <span class="comment">// 取两个运算符之间的数字</span></span><br><span class="line">                &#125;</span><br><span class="line">                peekOp = opStack.peek();</span><br><span class="line">                <span class="keyword">if</span> (currentOp == <span class="string">')'</span>) &#123;</span><br><span class="line">                    <span class="comment">// 遇到反括号则将运算符栈中的元素移除到后缀式栈中直到遇到左括号</span></span><br><span class="line">                    <span class="keyword">while</span> (opStack.peek() != <span class="string">'('</span>) &#123;</span><br><span class="line">                        postfixStack.push(String.valueOf(opStack.pop()));</span><br><span class="line">                    &#125;</span><br><span class="line">                    opStack.pop();</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">while</span> (currentOp != <span class="string">'('</span> &amp;&amp; peekOp != <span class="string">','</span> &amp;&amp; compare(currentOp, peekOp)) &#123;</span><br><span class="line">                        postfixStack.push(String.valueOf(opStack.pop()));</span><br><span class="line">                        peekOp = opStack.peek();</span><br><span class="line">                    &#125;</span><br><span class="line">                    opStack.push(currentOp);</span><br><span class="line">                &#125;</span><br><span class="line">                count = <span class="number">0</span>;</span><br><span class="line">                currentIndex = i + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (count &gt; <span class="number">1</span> || (count == <span class="number">1</span> &amp;&amp; !isOperator(arr[currentIndex]))) &#123;</span><br><span class="line">            <span class="comment">// 最后一个字符不是括号或者其他运算符的则加入后缀式栈中</span></span><br><span class="line">            postfixStack.push(<span class="keyword">new</span> String(arr, currentIndex, count));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (opStack.peek() != <span class="string">','</span>) &#123;</span><br><span class="line">            postfixStack.push(String.valueOf(opStack.pop()));</span><br><span class="line">            <span class="comment">// 将操作符栈中的剩余的元素添加到后缀式栈中</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"后缀式为: "</span>+ JSONArray.toJSONString(postfixStack));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断是否为算术符号</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> c</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Boolean <span class="title">isOperator</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> c == <span class="string">'+'</span> || c == <span class="string">'-'</span> || c == <span class="string">'*'</span> || c == <span class="string">'/'</span> || c == <span class="string">'('</span> || c == <span class="string">')'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 利用ASCII码-40做下标去算术符号优先级</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cur</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> peek</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Boolean <span class="title">compare</span><span class="params">(<span class="keyword">char</span> cur, <span class="keyword">char</span> peek)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果是peek优先级高于cur，返回true，默认都是peek优先级要低</span></span><br><span class="line">        Boolean result = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (operatPriority[(peek) - <span class="number">40</span>] &gt;= operatPriority[(cur) - <span class="number">40</span>]) &#123;</span><br><span class="line">            result = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 按照给定的算术运算符做计算</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> firstValue</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> secondValue</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> currentOp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">calculate</span><span class="params">(String firstValue, String secondValue, <span class="keyword">char</span> currentOp)</span> </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">switch</span> (currentOp) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'+'</span>:</span><br><span class="line">                result = String.valueOf(BaseMethod.add(firstValue, secondValue));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">                result = String.valueOf(BaseMethod.sub(firstValue, secondValue));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'*'</span>:</span><br><span class="line">                result = String.valueOf(BaseMethod.mul(firstValue, secondValue));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'/'</span>:</span><br><span class="line">                result = String.valueOf(BaseMethod.div(firstValue, secondValue));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WenLiangBao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2022/06/07/公式计算器实现/" title="公式计算器实现">https://slothjun.github.io/MeBlog/2022/06/07/公式计算器实现/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/MeBlog/tags/逆波兰式/" rel="tag"># 逆波兰式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2022/05/12/spring-BeanDefinition/" rel="next" title="spring-BeanDefinition">
+                <i class="fa fa-chevron-left"></i> spring-BeanDefinition
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="WenLiangBao">
+            
+              <p class="site-author-name" itemprop="name">WenLiangBao</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)温故而知新,可以为师矣</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/MeBlog/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/MeBlog/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WenLiangBao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '756ca4e66e7a3ba50532',
+    clientSecret: '840c7ad727c8f03ae56aee11949a8ac37a06ead1',
+    repo: 'BlogComments',
+    owner: 'slothjun',
+    admin: ['slothjun'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/MeBlog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
