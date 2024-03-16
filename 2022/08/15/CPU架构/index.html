@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/MeBlog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/MeBlog/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/MeBlog/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/MeBlog/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/MeBlog/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/MeBlog/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/MeBlog/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="概述CPU架构是CPU商给CPU产品定的一个规范，主要目的是为了区分不同类型的CPU。 目前市场上的CPU分类主要分有两大阵营，一个是intel、AMD为首的复杂指令集CPU，另一个是以IBM、ARM为首的精简指令集CPU。不同品牌的CPU，其产品的架构也不相同。Intel、AMD的CPU是X86架构，IBM公司的CPU是PowerPC架构，ARM公司的CPU是ARM架构，国内的飞腾CPU也是AR">
+<meta name="keywords" content="计算机基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU架构">
+<meta property="og:url" content="https://slothjun.github.io/MeBlog/2022/08/15/CPU架构/index.html">
+<meta property="og:site_name" content="WenLiangBaoBlog">
+<meta property="og:description" content="概述CPU架构是CPU商给CPU产品定的一个规范，主要目的是为了区分不同类型的CPU。 目前市场上的CPU分类主要分有两大阵营，一个是intel、AMD为首的复杂指令集CPU，另一个是以IBM、ARM为首的精简指令集CPU。不同品牌的CPU，其产品的架构也不相同。Intel、AMD的CPU是X86架构，IBM公司的CPU是PowerPC架构，ARM公司的CPU是ARM架构，国内的飞腾CPU也是AR">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://slothjun.github.io/MeBlog/.io//v2-f7044f50f322bc93fc718f148541e3e4_720w.jpg">
+<meta property="og:updated_time" content="2022-08-15T07:04:23.736Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CPU架构">
+<meta name="twitter:description" content="概述CPU架构是CPU商给CPU产品定的一个规范，主要目的是为了区分不同类型的CPU。 目前市场上的CPU分类主要分有两大阵营，一个是intel、AMD为首的复杂指令集CPU，另一个是以IBM、ARM为首的精简指令集CPU。不同品牌的CPU，其产品的架构也不相同。Intel、AMD的CPU是X86架构，IBM公司的CPU是PowerPC架构，ARM公司的CPU是ARM架构，国内的飞腾CPU也是AR">
+<meta name="twitter:image" content="https://slothjun.github.io/MeBlog/.io//v2-f7044f50f322bc93fc718f148541e3e4_720w.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://slothjun.github.io/MeBlog/2022/08/15/CPU架构/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CPU架构 | WenLiangBaoBlog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?634fa4157d9129d4fc7c51fd0e0849f8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/MeBlog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WenLiangBaoBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">个人博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">7</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/MeBlog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">62</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://slothjun.github.io/MeBlog/MeBlog/2022/08/15/CPU架构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WenLiangBao">
+      <meta itemprop="description" content="个人技术总结。(*^_^*)温故而知新,可以为师矣">
+      <meta itemprop="image" content="/MeBlog/images/blog_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WenLiangBaoBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CPU架构
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-08-15 14:54:26 / 修改时间：15:04:23" itemprop="dateCreated datePublished" datetime="2022-08-15T14:54:26+08:00">2022-08-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>CPU架构是CPU商给CPU产品定的一个规范，主要目的是为了区分不同类型的CPU。</p>
+<p>目前市场上的CPU分类主要分有两大阵营，一个是intel、AMD为首的复杂指令集CPU，另一个是以IBM、ARM为首的精简指令集CPU。不同品牌的CPU，其产品的架构也不相同。Intel、AMD的CPU是X86架构，IBM公司的CPU是PowerPC架构，ARM公司的CPU是ARM架构，国内的飞腾CPU也是ARM架构。此外还有MPIS架构、SPARC架构、Alpha架构</p>
+<h1 id="主流架构"><a href="#主流架构" class="headerlink" title="主流架构"></a>主流架构</h1><p>目前cpu主流架构有 <strong>X86</strong>、<strong>ARM</strong>、<strong>MPIS</strong>、<strong>SPARC</strong>、<strong>Alpha</strong></p>
+<h2 id="x86"><a href="#x86" class="headerlink" title="x86"></a>x86</h2><p>X86架构（The X86 architecture）是微处理器执行的计算机语言指令集。X86指令集是美国Intel公司为其第一块16位CPU(i8086)专门开发的。</p>
+<p>美国IBM公司1981年推出的世界第一台PC机中的CPU–i8088(i8086简化版)使用的也是X86指令。同时电脑中为提高浮点数据处理能力而增加的X87芯片系列数字协处理器则另外使用X87指令，包括后来 Intel 80186、80286、80386以及80486，由于以“86”作为结尾，以后就将X86指令集和X87指令集统称为X86指令集。虽然随着CPU技术的不断发展，Intel陆续研制出更新型的i80386、i80486直到今天的Pentium 4(以下简为P4)系列，但为了保证电脑能继续运行以往开发的各类应用程序以保护和继承丰富的软件资源，所以Intel公司所生产的所有CPU仍然继续使用X86指令集，所以它的CPU仍属于X86系列。</p>
+<p>x86架构CPU主要应用领域：个人计算机、服务器等。在PC端市场Wintel组合（windows系统 + intel处理器）占据了大部分江山，另外一部分有ADM占领。</p>
+<p>目前国内有兆芯，从AMD和VIA获取授权，研发自己的X86CPU，有其它国产CPU + 国产操作系统（linux系）可以用于教育和事业单位以及军工行针对的是特殊用户，国产CPU和操作系统想进入民用市场，由于性能、价格以及生态系统等，仍需要继续优化打磨以及一个合适契机。</p>
+<h3 id="X86指令集发展"><a href="#X86指令集发展" class="headerlink" title="X86指令集发展"></a>X86指令集发展</h3><p><strong>IA：</strong>Intel（英特尔）处理器的服务器称之为IA（Intel Architecture）架构服务器</p>
+<p><strong>IA-32：</strong>英特尔32位体系架构，X86从16位到32位是在原有的架构基础上进行修改（Intel称之为IA-32）</p>
+<p><strong>x86-32</strong>：现如今Intel把x86-32称为IA-32</p>
+<p><strong>x86-64：</strong>分为intel和AMD</p>
+<p><strong>AMD64：</strong>x86架构的64位拓展，向后兼容于16位及32位的x86架构。x64于1999年由AMD设计，AMD首次公开64位集以扩展给x86，称为“AMD64”，AMD64和Intel64基本上一致</p>
+<p><strong>Intel64：</strong>EM64T（Extended Memory 64 Technology）扩展64bit内存技术，本质上和AMD64一样都是IA-32的增强版本。</p>
+<p><strong>IA-64：</strong>64位的英特尔架构，英特尔安腾架构（Intel Itanium architecture），使用在Itanium处理器家族上的64位指令集架构，由英特尔公司与惠普公司共同开发。IA是Intel Architecture（英特尔架构）的缩写，64指64位系统。使用这种架构的CPU，包括Itanium和Itanium 2。此架构与x86及x86-64并不相容，操作系统与软件需使用IA-64专用版本。</p>
+<p>Intel推出X86架构已满40年了，同486相比，Pentium向前迈进了一大步， 而PⅡ的前进步伐则没有这么大了，X86 CPU的发展似乎已到了尽头。英特尔非常清楚，是X86指令集限制了CPU性能的进一步提高，因此，他们正同惠普共同努力开发下一代指令集架构（Instruction Set Architecture ，ISA）： EPIC(Explicitly Parallel Instruction Computing，显性并行指令计算)。对英特尔而言， IA－64（英特尔的64位架构）是下一个10到15年的架构。新的ISA将使英特尔摆脱X86架构的限制，从而设计出超越所有现有RISC CPU和X86 CPU的新型处理器。</p>
+<h2 id="ARM架构"><a href="#ARM架构" class="headerlink" title="ARM架构"></a>ARM架构</h2><p>ARM架构，也称作进阶精简指令集机器（Advanced RISC Machine，更早称作：Acorn RISC Machine），是一个32位精简指令集（RISC）处理器架构。其广泛地使用在许多嵌入式系统上。由于节能的特点，ARM处理器非常适用于行动通讯领域，符合其主要设计目标为低耗电的特性。</p>
+<p>目前，ARM家族占了所有32位嵌入式处理器75%的比例，使它成为占全世界最多数的32位架构之一。ARM处理器可以在很多消费性电子产品上看到，从可携式装置（PDA、移动电话、多媒体播放器、掌上型电子游戏，和计算机）到电脑外设（硬盘、桌上型路由器）甚至在导弹的弹载计算机等军用设施中都有他的存在。在此还有一些基于ARM设计的派生产品，重要产品还包括Marvell的XScale架构和德州仪器的OMAP系列。</p>
+<p><img src="/MeBlog/.io//v2-f7044f50f322bc93fc718f148541e3e4_720w.jpg" alt></p>
+<p><strong>ARM 授权方式：</strong>ARM 公司本身并不靠自有的设计来制造或出售 CPU ，而是将处理器架构授权给有兴趣的厂家。ARM 提供了多样的授权条款，包括售价与散播性等项目。对于授权方来说，ARM 提供了 ARM 内核的整合硬件叙述，包含完整的软件开发工具（编译器、debugger、SDK），以及针对内含 ARM CPU 硅芯片的销售权。</p>
+<p>对于无晶圆厂的授权方来说，其希望能将 ARM 内核整合到他们自行研发的芯片设计中，通常就仅针对取得一份生产就绪的智财核心技术（IP Core）认证。对这些客户来说，ARM 会释出所选的 ARM 核心的闸极电路图，连同抽象模拟模型和测试程式，以协助设计整合和验证。</p>
+<p>需求更多的客户，包括整合元件制造商（IDM）和晶圆厂家，就选择可合成的RTL（暂存器转移层级，如 Verilog）形式来取得处理器的智财权（IP）。借着可整合的 RTL，客户就有能力能进行架构上的最佳化与加强。这个方式能让设计者完成额外的设计目标（如高震荡频率、低能量耗损、指令集延伸等）而不会受限于无法更动的电路图。虽然 ARM 并不授予授权方再次出售 ARM 架构本身，但授权方可以任意地出售制品（如芯片元件、评估板、完整系统等）。商用晶圆厂是特殊例子，因为他们不仅授予能出售包含 ARM 内核的硅晶成品，对其它客户来讲，他们通常也保留重制 ARM 内核的权利。</p>
+<p><strong>国外生产厂商：</strong>TI （德州仪器）、Samsung（三星）、Freescale（飞思卡尔）、Marvell（马维尔）、Nvidia（英伟达）、Qualcomm(高通）、STMicroelectronics(意法半导体）。</p>
+<p><strong>国内生产厂商：</strong>华为（海思芯片）、飞腾（FT-1500、FT2000-4等CPU芯片）、兆易创新（GD32系列MCU，参考STM32系列）、瑞芯微（RK系列芯片）、联发科（台湾，天玑系列）。</p>
+<p>ARM架构的CPU可以有多核，例如几年前联发科推出10核处理器Helio X20（被戏称一核有难，八核围观，国产FT处理器已经推出了16核处理器。但是由于ARM自身低功耗等因素的限制，核心数多并不一定能大大提升性能。</p>
+<p>目前ARM主要市场是手机端CPU和MCU，手机CPU市场，由高通骁龙系列、华为麒麟系列、以及三星猎户系列和联发科系列，在MCU端主要是STM32以及国产的GD32，其它厂商的芯片用于其它领域，比如汽车电子、智能家居等。在CPU处理器上，有华为海思的鲲鹏920CPU（应用于泰山服务器中）和FT的CPU（军工领域），虽然FT的CPU起步很早，但是鲲鹏显然有后来居上之趋势。国内ARM芯片做的最好的是华为海思，鲲鹏920CPU性能在ARM架构中是NO1，另外海思麒麟系列手机芯片已发展为全球前三的地位，海思的视频处理芯片以及IoT芯片，在行业中都是标杆的产品。</p>
+<p>在2020年11月11日，apple公司发布了新一代的mac book，亮点就是使用了apple自己的ARM架构的M1。由于ARM的功耗小，在新一代的macbook上，apple大胆的去掉了散热风扇芯片，将笔记本厚度进一步压缩，续航时间达到了18小时。同时，搭载M1芯片的mac book CPU 性能提升至 3.5 倍，GPU 性能提升至 5 倍，机器学习性能提升至 9 倍。根据apple公司的影响力，未来PC中市场将会被ARM架构的CPU替代。</p>
+<h2 id="MPIS架构"><a href="#MPIS架构" class="headerlink" title="MPIS架构"></a>MPIS架构</h2><p>MIPS是世界上很流行的一种RISC处理器。MIPS的意思是“无内部互锁流水级的微处理器”(Microprocessor without interlockedpipedstages)，其机制是尽量利用软件办法避免流水线中的数据相关问题。它最早是在80年代初期由斯坦福(Stanford)大学Hennessy教授领导的研究小组研制出来的。MIPS公司的R系列就是在此基础上开发的RISC工业产品的微处理器。这些系列产品为很多计算机公司采用构成各种工作站和计算机系统。</p>
+<p>MIPS技术公司是美国著名的芯片设计公司，它采用精简指令系统计算结构(RISC)来设计芯片。和英特尔采用的复杂指令系统计算结构(CISC)相比，RISC具有设计更简单、设计周期更短等优点，并可以应用更多先进的技术，开发更快的下一代处理器。MIPS是出现最早的商业RISC架构芯片之一，新的架构集成了所有原来MIPS指令集，并增加了许多更强大的功能。MIPS自己只进行CPU的设计，之后把设计方案授权给客户，使得客户能够制造出高性能的CPU。</p>
+<p>1984年，MIPS计算机公司成立，开始设计RISC处理器；</p>
+<p>1986年推出R2000处理器。</p>
+<p>1988年推R3000处理器。</p>
+<p>1991年推出第一款64位商用微处器R4000；之后又陆续推出R8000（于1994年）、R10000（于1996年）和R12000（于1997年）等型号。</p>
+<p>1992年，SGI收购了MIPS计算机公司。</p>
+<p>1998年，MIPS脱离SGI，成为MIPS技术公司；随后，MIPS公司的战略发生变化，把重点放在嵌入式系统；1998年－MIPS科技股票在美国纳斯达克股票交易所公开上市。</p>
+<p>1999年，MIPS公司发布MIPS32和MIPS64架构标准，为未来MIPS处理器的开发奠定了基础。新的架构集成了所有原来NIPS指令集，并且增加了许多更强大的功能。</p>
+<p>MIPS公司陆续开发了高性能、低功耗的32位处理器内核（core）MIPS324Kc与高性能64位处理器内核MIPS645Kc。</p>
+<p>2000年，MIPS公司发布了针对MIPS32 4Kc的版本以及64位MIPS 64 20Kc处理器内核。</p>
+<p>2007年8月16日－MIPS科技宣布，中科院计算机研究所的龙芯中央处理器获得其处理器IP的全部专利和总线、指令集授权。</p>
+<p>2007年12月20日－MIPS科技宣布，扬智科技已取得其针对先进多媒体所设计的可定制化系统单芯片（SoC）核心“MIPS32 24KEcPro”授权。</p>
+<p>MPIS架构授权和ARM架构授权不一样，ARM架构授权用户基本不能自行修改，而MPIS架构授权后，可以自己修改。目前MPIS发扬光大寄希望中科龙芯公司，龙芯处理器从龙芯1号，到现在的龙芯3号系列的3A4000，CPU的性能已经大幅度提高，在完全可以胜任日常办公或者作为特殊用途的服务器。龙芯CPU和国产的飞腾（FT）处理器并驾齐驱，发展我国自主可控CPU。</p>
+<h3 id="PowerPC系列"><a href="#PowerPC系列" class="headerlink" title="PowerPC系列"></a><strong>PowerPC系列</strong></h3><p>PowerPC 是一种精简指令集（RISC）架构的中央处理器（CPU），其基本的设计源自IBM（国际商用机器公司）的IBMPowerPC 601 微处理器POWER（PerformanceOptimized With Enhanced RISC；《IBM Connect 电子报》2007年8月号译为“增强RISC性能优化”）架构。二十世纪九十年代，IBM(国际商用机器公司)、Apple（苹果公司）和Motorola（摩托罗拉）公司开发PowerPC芯片成功，并制造出基于PowerPC的多处理器计算机。PowerPC架构的特点是可伸缩性好、方便灵活。</p>
+<p>PowerPC 处理器有广泛的实现范围，包括从诸如 Power4 那样的高端服务器CPU 到嵌入式 CPU 市场（任天堂Gamecube 使用了 PowerPC）。PowerPC处理器有非常强的嵌入式表现，因为它具有优异的性能、较低的能量损耗以及较低的散热量。除了象串行和以太网控制器那样的集成 I/O，该嵌入式处理器与“台式机”CPU 存在非常显著的区别。</p>
+<h2 id="SPARC架构"><a href="#SPARC架构" class="headerlink" title="SPARC架构"></a>SPARC架构</h2><p>SPARC架构（Scalable Processor ARChitecture，可扩展处理器架构）是国际上流行的RISC处理器体系架构之一，SPRAC如今已发展成为一个开放的标准，任何机构或个人均可研究或开发基于SPRAC架构的产品，而无需交纳版权费。SPARC 处理器架构具备精简指令集（RISC）、支持32 位/64 位指令精度，架构运行稳定、可扩展性优良、体系标准开放等特点。SPARC因此得以迅速发展壮大，在现在已经有大约3万多个成功的应用案例。</p>
+<p>SPARCV7/V8 是目前嵌入式控制系统常用的处理器标准版本，并在航天设备的电子系统中得到广泛应用。然而，SPARC只是一个处理器的架构标准，并不提供现成的源码或IP核，具体的芯片实现要由开发者去完成。</p>
+<p>运行Oracle Solaris的Oracle SPARC T4服务器提供了创世界纪录的性能，其单线程性能提高了5倍、内存容量高达2 TB且实现了极高的系统吞吐量和I/O容量。SPARC T4服务器适用于需要极高的可靠性、可用性和集成式片上加密加速的企业应用程序和任务关键型应用程序，可确保最终的安全性。</p>
+<h2 id="AIpha架构"><a href="#AIpha架构" class="headerlink" title="AIpha架构"></a>AIpha架构</h2><p>Alpha处理器最早由DEC公司设计制造，在Compaq(康柏）公司收购DEC之后，Alpha处理器继续得到发展，并且应用于许多高档的Compaq服务器上。自1995年开始开发了21164芯片，那时的工艺为0.5um，主频为200MHz。1998年，推出新型号21264，当时的主频是600MHz。较新的21264芯片主频达到1GHz，工艺为0.18um。在该芯片具有完善的指令预测能力和很高的存储系统带宽（超过1GB/s），并且其中增加了处理视频信息的功能，其多媒体处理能力得到了增强。</p>
+<p>Alpha架构于1992年2月25日，在东京召开的一次会议上面被正式推介，新架构的关键特性都一一的被罗列出来。当时说Alpha只是产品开发的内部代号。新处理器采用完全64-bit RISC设计，执行固定长度指令(32 bits)。有32个64 bit整数寄存器，操作43-bit的虚拟地址(在后来能够扩充到64-bit)。和VAX相同，使用little-endian字节顺序，即低字节的寄存器占用低内存地址线。而不像如摩托罗拉等大多数处理器所使用的big-endian字节顺序，即低字节寄存器占用高内存地址线。除此之外，处理器还内建一个算术协处理器，有32个浮点64-bit寄存器，采用随机存取，而不是在intel x86协处理器上使用的堆栈存取方式。整个Alpha的生命周期被设计为至少25年。</p>
+<p>Alpha处理器被用于DEC自己的工作站和服务器中。作为VAX的后续被开发，支持VMS操作系统，如 Digital UNIX。不久之后开放源代码的操作系统也可以在其上运行，如Linux和 DSB 。Microsoft 支持这款处理器，直到Windows NT 4.0 SP6 ，但是从Windows 2000 RC2开始放弃了对Alpha的支持。</p>
+<p>目前国内采用此架构的是申微超算处理器，得益于国家的支持，申威处理器在军队应用广泛。</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>WenLiangBao</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://slothjun.github.io/MeBlog/2022/08/15/CPU架构/" title="CPU架构">https://slothjun.github.io/MeBlog/2022/08/15/CPU架构/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/MeBlog/tags/计算机基础知识/" rel="tag"># 计算机基础知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MeBlog/2022/06/18/jdk新特性/" rel="next" title="jdk新特性">
+                <i class="fa fa-chevron-left"></i> jdk新特性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/MeBlog/2024/01/20/freemarker/" rel="prev" title="freemarker">
+                freemarker <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/MeBlog/images/blog_head.png" alt="WenLiangBao">
+            
+              <p class="site-author-name" itemprop="name">WenLiangBao</p>
+              <p class="site-description motion-element" itemprop="description">个人技术总结。(*^_^*)温故而知新,可以为师矣</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/MeBlog/archives/">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/MeBlog/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/MeBlog/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主流架构"><span class="nav-number">2.</span> <span class="nav-text">主流架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#x86"><span class="nav-number">2.1.</span> <span class="nav-text">x86</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#X86指令集发展"><span class="nav-number">2.1.1.</span> <span class="nav-text">X86指令集发展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARM架构"><span class="nav-number">2.2.</span> <span class="nav-text">ARM架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MPIS架构"><span class="nav-number">2.3.</span> <span class="nav-text">MPIS架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PowerPC系列"><span class="nav-number">2.3.1.</span> <span class="nav-text">PowerPC系列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPARC架构"><span class="nav-number">2.4.</span> <span class="nav-text">SPARC架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AIpha架构"><span class="nav-number">2.5.</span> <span class="nav-text">AIpha架构</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WenLiangBao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/MeBlog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/MeBlog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/MeBlog/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/MeBlog/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/MeBlog/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/MeBlog/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/MeBlog/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/MeBlog/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+  
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '756ca4e66e7a3ba50532',
+    clientSecret: '840c7ad727c8f03ae56aee11949a8ac37a06ead1',
+    repo: 'BlogComments',
+    owner: 'slothjun',
+    admin: ['slothjun'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/MeBlog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
